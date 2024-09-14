@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="btnCadastrar" layoutX="246.0" layoutY="298.0" mnemonicParsing="false" onAction="#CadastrarEquipe" prefHeight="49.0" prefWidth="109.0" text="Cadastrar" />
+      <TextField fx:id="txtID" layoutX="163.0" layoutY="102.0" prefHeight="25.0" prefWidth="341.0" />
+      <TextField fx:id="txtGithub" layoutX="163.0" layoutY="175.0" prefHeight="25.0" prefWidth="341.0" />
+      <TextField fx:id="txtNome" layoutX="163.0" layoutY="137.0" prefHeight="25.0" prefWidth="341.0" />
+      <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="106.0" prefHeight="17.0" prefWidth="97.0" text="ID Equipe: " />
+      <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="141.0" prefHeight="17.0" prefWidth="97.0" text="Nome Equipe: " />
+      <Label alignment="CENTER_RIGHT" layoutX="60.0" layoutY="179.0" prefHeight="17.0" prefWidth="97.0" text="Github: " />
+      <Label alignment="CENTER" layoutX="210.0" layoutY="42.0" text="Cadastrar Equipe">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
