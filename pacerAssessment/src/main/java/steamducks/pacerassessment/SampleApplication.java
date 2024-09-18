@@ -10,9 +10,9 @@ import java.io.IOException;
 public class SampleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/menuView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Pacer Assessment");
+        stage.setTitle("Menu foda");
         stage.setScene(scene);
         stage.show();
     }
