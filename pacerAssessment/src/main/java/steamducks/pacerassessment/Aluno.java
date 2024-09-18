@@ -4,14 +4,12 @@ public class Aluno {
     private String nome;
     private String email;
     private String senha;
-    private String semestre;
     private String equipe;
 
-    public Aluno(String nome, String email, String senha, String semestre, String equipe) {
+    public Aluno(String nome, String email, String senha, String equipe) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.semestre = semestre;
         this.equipe = equipe;
     }
 
@@ -40,14 +38,6 @@ public class Aluno {
         this.senha = senha;
     }
 
-    public String getSemestre() {
-        return semestre;
-    }
-
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
-    }
-
     public String getEquipe() {
         return equipe;
     }
@@ -61,7 +51,6 @@ public class Aluno {
         return "Aluno{" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", semestre='" + semestre + '\'' +
                 ", equipe='" + equipe + '\'' +
                 '}';
     }
