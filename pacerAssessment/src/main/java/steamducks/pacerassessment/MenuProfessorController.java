@@ -9,11 +9,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class MenuController {
+public class MenuProfessorController {
 
-@FXML
+    @FXML
     private Button btnAvaliarSprint;
 
     @FXML
@@ -24,6 +25,9 @@ public class MenuController {
 
     @FXML
     private Button btnExportar;
+
+    @FXML
+    private Button btnGerarRelatorio;
 
     @FXML
     private Button btnGerenciarCriterios;
@@ -44,7 +48,17 @@ public class MenuController {
     private ComboBox<?> cmbBoxSprint;
 
     @FXML
-    void abrirCadastroAluno(ActionEvent event) {
+    void abrirAvaliacaoSprint(ActionEvent event) {
+
+    }
+
+    @FXML
+    void abrirCadastroAlunoEquipes(ActionEvent event) {
+
+    }
+
+    @FXML
+    void abrirCadastroCriterios(ActionEvent event) {
 
     }
 
@@ -58,6 +72,10 @@ public class MenuController {
 
             Stage stage = new Stage();
             stage.setTitle("Cadastro de Semestre");
+
+            Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
+            stage.getIcons().add(logo);
+
 
             stage.setScene(scene);
             stage.show();
