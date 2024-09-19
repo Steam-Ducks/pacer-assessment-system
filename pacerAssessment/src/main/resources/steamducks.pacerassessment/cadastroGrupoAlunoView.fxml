@@ -13,19 +13,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="536.0" prefWidth="460.0" spacing="10" style="-fx-background-color: e5e5e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CadastroGrupoAluno">
-    <children>
-      <AnchorPane prefHeight="741.0" prefWidth="877.0">
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CadastroGrupoAluno">
+   <children>
+      <AnchorPane prefHeight="539.0" prefWidth="456.0">
          <children>
-            <Label layoutX="52.0" layoutY="18.0" text="Grupo:" />
-            <TextField fx:id="txtGrupo" layoutX="95.0" layoutY="14.0" prefHeight="26.0" prefWidth="279.0" promptText="Nome do Grupo" />
-            <Label alignment="CENTER_RIGHT" layoutX="46.0" layoutY="50.0" prefHeight="17.0" prefWidth="42.0" text="Github:" />
-            <TextField fx:id="txtGithub" layoutX="95.0" layoutY="46.0" prefHeight="25.0" prefWidth="279.0" promptText="https://github.com/" />
+            <Label layoutX="70.0" layoutY="26.0" text="Grupo:" />
+            <TextField fx:id="txtGrupo" layoutX="113.0" layoutY="22.0" prefHeight="26.0" prefWidth="279.0" promptText="Nome do Grupo" />
+            <Label alignment="CENTER_RIGHT" layoutX="64.0" layoutY="58.0" prefHeight="17.0" prefWidth="42.0" text="Github:" />
+            <TextField fx:id="txtGithub" layoutX="113.0" layoutY="54.0" prefHeight="25.0" prefWidth="279.0" promptText="https://github.com/" />
               <!-- Button for uploading CSV file -->
-              <Button fx:id="btnUpload" layoutX="187.0" layoutY="79.0" onAction="#upload" prefHeight="62.0" prefWidth="62.0" text="subir csv" />
+              <Button fx:id="btnUpload" layoutX="198.0" layoutY="99.0" onAction="#upload" prefHeight="47.0" prefWidth="62.0" text="subir csv" />
       
-              <!-- TableView for displaying CSV data -->
-              <TableView fx:id="tvAlunos" layoutY="152.0" prefHeight="295.0" prefWidth="421.0">
+                    <!-- TableView for displaying CSV data -->
+              <TableView fx:id="tvAlunos" layoutX="18.0" layoutY="160.0" prefHeight="295.0" prefWidth="421.0">
                   <columns>
                       <TableColumn fx:id="tcNome" prefWidth="139.0" text="Nome" />
                       <TableColumn fx:id="tcEmail" prefWidth="139.0" text="Email" />
@@ -33,13 +34,10 @@
                   </columns>
               </TableView>
       
-              <!-- Button for registering the data -->
-              <Button fx:id="btnRegistrar" layoutX="88.0" layoutY="447.0" onAction="#registrar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
-            <Button fx:id="btnCancelar" layoutX="226.0" layoutY="447.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
+                    <!-- Button for registering the data -->
+              <Button fx:id="btnRegistrar" layoutX="95.0" layoutY="463.0" onAction="#registrar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
+            <Button fx:id="btnCancelar" layoutX="241.0" layoutY="463.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
          </children>
       </AnchorPane>
-    </children>
-    <padding>
-        <Insets bottom="20" left="20" right="20" top="20" />
-    </padding>
-</VBox>
+   </children>
+</AnchorPane>
