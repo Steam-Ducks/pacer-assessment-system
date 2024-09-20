@@ -17,16 +17,21 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CadastroGrupoAluno {
+public class CadastroGrupoAlunoController {
 
     @FXML
-    private TextField txtGrupo;
+    private TextField txtEquipe;
+    @FXML
+    private TextField txtGithub;
 
     @FXML
     private Button btnRegistrar;
 
     @FXML
     private Button btnUpload;
+
+    @FXML
+    private Button btnCancelar;
 
     @FXML
     private TableColumn<Aluno, String> tcEmail;
@@ -59,6 +64,11 @@ public class CadastroGrupoAluno {
     }
 
     @FXML
+    void cancelar(ActionEvent event) {
+
+    }
+
+    @FXML
     void upload(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
@@ -75,6 +85,8 @@ public class CadastroGrupoAluno {
             boolean primeiraLinha = true;
             alunoList.clear();
 
+            Equipe equipe = new Equipe(txtEquipe.getText(), txtGithub.getText());
+
             while ((line = br.readLine()) != null) {
                 if (primeiraLinha) {
                     primeiraLinha = false;
@@ -83,7 +95,7 @@ public class CadastroGrupoAluno {
 
                 String[] values = line.split(",");
                 if (values.length >= 3) {
-                    Aluno aluno = new Aluno(values[0], values[1], values[2], txtGrupo.getText());
+                    Aluno aluno = new Aluno(values[0], values[1], values[2], equipe);
                     alunoList.add(aluno);
                 }
             }
