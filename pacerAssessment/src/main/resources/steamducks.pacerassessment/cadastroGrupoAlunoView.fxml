@@ -27,6 +27,7 @@
                     </columns>
                 </TableView>
 
+
                 <!-- Button for registering the data -->
                 <Button fx:id="btnRegistrar" layoutX="254.0" layoutY="486.0" onAction="#registrar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
                 <Button fx:id="btnCancelar" layoutX="69.0" layoutY="486.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
