@@ -10,9 +10,9 @@ import java.io.IOException;
 public class SampleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/telaLogin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/menuView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Tela Login");
+        stage.setTitle("Menu Foda");
         stage.setScene(scene);
         stage.show();
     }
