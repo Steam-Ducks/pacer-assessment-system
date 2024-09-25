@@ -1,4 +1,4 @@
-package org.example.telaAvaliacaoSprint;
+package steamducks.pacerassessment;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

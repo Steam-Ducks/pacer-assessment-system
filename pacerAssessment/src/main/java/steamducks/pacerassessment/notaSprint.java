@@ -1,4 +1,4 @@
-package org.example.telaAvaliacaoSprint;
+package steamducks.pacerassessment;
 
 public class notaSprint {
 
