@@ -3,6 +3,7 @@ module steamducks.pacerassessment {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
+    requires javafx.graphics;
 
     opens steamducks.pacerassessment to javafx.fxml;
     exports steamducks.pacerassessment;
