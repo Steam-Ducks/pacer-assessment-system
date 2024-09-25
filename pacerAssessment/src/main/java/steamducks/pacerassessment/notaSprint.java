@@ -1,13 +1,13 @@
 package steamducks.pacerassessment;
 
-public class notaSprint {
+public class NotaSprint {
 
     private int nota;
     private String turma;
     private String equipe;
     private String sprint;
 
-    public notaSprint(int nota, String turma, String equipe, String sprint) {
+    public NotaSprint(int nota, String turma, String equipe, String sprint) {
         this.nota = nota;
         this.turma = turma;
         this.equipe = equipe;

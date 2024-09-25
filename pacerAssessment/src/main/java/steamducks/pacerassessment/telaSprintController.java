@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.List;
-public class telaSprintController {
+public class TelaSprintController {
 
     @FXML
     private ComboBox<String> cmb_SelSprint;// Combobox Selecionar Sprint
