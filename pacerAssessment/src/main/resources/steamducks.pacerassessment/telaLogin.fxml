@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="338.0" prefWidth="519.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.TeladeLoginController">
+   <children>
+      <TextField fx:id="txtFieldLogin" layoutX="164.0" layoutY="134.0" prefHeight="31.0" prefWidth="223.0" />
+      <Label layoutX="116.0" layoutY="179.0" prefHeight="21.0" prefWidth="170.0" text="Senha:" />
+      <Label layoutX="116.0" layoutY="139.0" prefHeight="21.0" prefWidth="170.0" text="Login:" />
+      <Button fx:id="btnEntrar" layoutX="180.0" layoutY="251.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="159.0" text="Entrar">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <PasswordField fx:id="txtSenha" layoutX="164.0" layoutY="174.0" prefHeight="31.0" prefWidth="223.0" />
+      <Label alignment="CENTER" layoutX="67.0" layoutY="59.0" prefHeight="45.0" prefWidth="380.0" text="PACER Assessment System" textAlignment="CENTER" textOverrun="LEADING_ELLIPSIS">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
