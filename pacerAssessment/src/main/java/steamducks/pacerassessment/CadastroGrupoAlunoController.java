@@ -58,14 +58,22 @@ public class CadastroGrupoAlunoController {
 
     @FXML
     void registrar(ActionEvent event) {
+        System.out.println("Registrado com sucesso!");
         alunoList.forEach(aluno -> {
             System.out.println(aluno);
         });
+        String equipe = txtEquipe.getText();
+        String github = txtGithub.getText();
+        System.out.println("Equipe: "+equipe);
+        System.out.println("Github: "+github);
+        Stage stage = (Stage) btnRegistrar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void cancelar(ActionEvent event) {
-
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
