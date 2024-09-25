@@ -1,5 +1,9 @@
 package steamducks.pacerassessment;
 
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,10 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
 
 public class CadastroSemestreController implements Initializable {
 
@@ -33,83 +33,78 @@ public class CadastroSemestreController implements Initializable {
     private ListView<String> listViewOpcoes;
 
     @FXML
-    private ListView<String> listViewAtributos;
+    private ListView<String> listViewCriterios;
 
     @FXML
     private TextField txtFieldNome;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Opções disponíveis no ListView de opções
         ObservableList<String> opcoes = FXCollections.observableArrayList("Autonomia", "Trabalho em Equipe",
                 "Organização", "Comunicação", "Criatividade", "Resolução de Problemas", "Pontualidade", "Entrega");
         listViewOpcoes.setItems(opcoes);
-        listViewAtributos.setItems(FXCollections.observableArrayList()); // Inicializa a lista de atributos vazia
+        listViewCriterios.setItems(FXCollections.observableArrayList()); 
     }
 
     @FXML
     void addOption(ActionEvent event) {
         String selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
         if (selectedOption != null) {
-            ObservableList<String> atributos = listViewAtributos.getItems();
-            if (!atributos.contains(selectedOption)) {
-                atributos.add(selectedOption); // Adiciona o atributo selecionado se ainda não estiver na lista
+            ObservableList<String> criterios = listViewCriterios.getItems();
+            if (!criterios.contains(selectedOption)) {
+                criterios.add(selectedOption); 
             }
         } else {
-            showAlert("Erro", "Nenhuma opção selecionada para adicionar.", Alert.AlertType.ERROR); // Alerta de erro
+            showAlert("Erro", "Nenhuma opção selecionada para adicionar.", Alert.AlertType.ERROR); 
         }
     }
 
     @FXML
     void removeOption(ActionEvent event) {
-        String selectedOption = listViewAtributos.getSelectionModel().getSelectedItem();
+        String selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
         if (selectedOption != null) {
-            ObservableList<String> atributos = listViewAtributos.getItems();
-            atributos.remove(selectedOption); // Remove o atributo selecionado
+            ObservableList<String> criterios = listViewCriterios.getItems();
+            criterios.remove(selectedOption); 
         } else {
-            showAlert("Erro", "Nenhuma opção selecionada para remover.", Alert.AlertType.ERROR); // Alerta de erro
+            showAlert("Erro", "Nenhuma opção selecionada para remover.", Alert.AlertType.ERROR); 
         }
     }
 
     @FXML
     void cadastrarSemestre(ActionEvent event) {
-        String nome = txtFieldNome.getText(); // Obtém o nome do semestre
+        String nome = txtFieldNome.getText();
 
         if (nome.isEmpty()) {
-            showAlert("Erro", "O campo nome não pode estar vazio.", Alert.AlertType.ERROR); // Valida se o campo de nome está vazio
+            showAlert("Erro", "O campo nome não pode estar vazio.", Alert.AlertType.ERROR); 
+        }
+
+        List<String> criteriosSelecionados = listViewCriterios.getItems();
+        if (criteriosSelecionados.isEmpty()) {
+            showAlert("Erro", "Adicione pelo menos um critério.", Alert.AlertType.ERROR);
             return;
         }
 
-        List<String> atributosSelecionados = listViewAtributos.getItems();
-        if (atributosSelecionados.isEmpty()) {
-            showAlert("Erro", "Adicione pelo menos um atributo.", Alert.AlertType.ERROR); // Valida se há atributos selecionados
-            return;
-        }
+        String[] criteriosArray = criteriosSelecionados.toArray(new String[0]);
+        String criterios = String.join(", ", criteriosArray);
 
-        // Convertendo a lista de atributos em uma string
-        String[] atributosArray = atributosSelecionados.toArray(new String[0]);
-        String atributos = String.join(", ", atributosArray);
-
-        // Exibindo o semestre cadastrado no console (ou salve no banco de dados, se necessário)
         System.out.println("Semestre cadastrado:");
         System.out.println("Nome: " + nome);
-        System.out.println("Atributos: " + atributos);
+        System.out.println("Critérios: " + criterios);
 
-        showAlert("Cadastro Realizado", "Semestre cadastrado com sucesso!", Alert.AlertType.INFORMATION); // Alerta de sucesso
+        showAlert("Cadastro Realizado", "Semestre cadastrado com sucesso!", Alert.AlertType.INFORMATION); 
 
-        // Limpar campos
         txtFieldNome.clear();
-        listViewAtributos.getItems().clear();
+        listViewCriterios.getItems().clear();
     }
 
     @FXML
     void cancelarCadastrarSemestre(ActionEvent event) {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close(); // Fecha a janela
+        stage.close(); 
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type); // Alerta customizado com o tipo adequado
+        Alert alert = new Alert(type); 
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Semestre {
     private String nome;
-    private String[] atributos;
+    private String[] criterios;
 
-    public Semestre(String nome, String[] atributos) {
+    public Semestre(String nome, String[] criterios) {
         this.nome = nome;
-        this.atributos = atributos;
+        this.criterios = criterios;
     }
 
     public String getNome() {
@@ -19,19 +19,19 @@ public class Semestre {
         this.nome = nome;
     }
 
-    public String[] getAtributos() {
-        return atributos;
+    public String[] getCriterios() {
+        return criterios;
     }
 
-    public void setAtributos(String[] atributos) {
-        this.atributos = atributos;
+    public void setCriterios(String[] criterios) {
+        this.criterios = criterios;
     }
 
     @Override
     public String toString() {
         return "Semestre{" +
                 "nome='" + nome + '\'' +
-                ", atributos='" + Arrays.toString(atributos) + '\'' +
+                ", criterios='" + Arrays.toString(criterios) + '\'' +
                 '}';
 
     }
