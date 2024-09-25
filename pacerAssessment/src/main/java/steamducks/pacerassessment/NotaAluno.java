@@ -1,6 +1,6 @@
-package org.example.telaAvaliacaoAluno;
+package steamducks.pacerassessment;
 
-public class notaAluno {
+public class NotaAluno {
 
     private int nota;
     private String aluno;
@@ -8,7 +8,7 @@ public class notaAluno {
     private String descCriterio;
     private String sprint;
 
-    public notaAluno(int nota, String aluno, String criterio, String descCriterio, String sprint) {
+    public NotaAluno(int nota, String aluno, String criterio, String descCriterio, String sprint) {
         this.nota = nota;
         this.aluno = aluno;
         this.criterio = criterio;

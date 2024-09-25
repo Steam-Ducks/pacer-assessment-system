@@ -1,4 +1,4 @@
-package org.example.telaAvaliacaoAluno;
+package steamducks.pacerassessment;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 // Classe controller, onde definimos as ações por trás da interface e seus elementos
-public class telaAlunoController {
+public class TelaAlunoController {
 
     // Dentro da classe, primeiro referenciamos os elementos FXML, que estão presentes na nossa tela
     @FXML
