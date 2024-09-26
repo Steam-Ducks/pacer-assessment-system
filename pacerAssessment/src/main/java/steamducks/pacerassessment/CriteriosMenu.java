@@ -1,23 +1,24 @@
 package steamducks.pacerassessment;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class SampleApplication extends Application {
+import java.io.IOException;
+
+public class CriteriosMenu extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/menuProfessorView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/criteriosMenuView.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Steamducks Pacer");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

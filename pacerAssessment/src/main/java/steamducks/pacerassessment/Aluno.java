@@ -4,9 +4,9 @@ public class Aluno {
     private String nome;
     private String email;
     private String senha;
-    private String equipe;
+    private Equipe equipe;
 
-    public Aluno(String nome, String email, String senha, String equipe) {
+    public Aluno(String nome, String email, String senha, Equipe equipe) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -38,11 +38,11 @@ public class Aluno {
         this.senha = senha;
     }
 
-    public String getEquipe() {
+    public Equipe getEquipe() {
         return equipe;
     }
 
-    public void setEquipe(String equipe) {
+    public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
 
@@ -51,7 +51,7 @@ public class Aluno {
         return "Aluno{" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", equipe='" + equipe + '\'' +
+                ", equipe='" + equipe.getNome() + '\'' +
                 '}';
     }
 }
