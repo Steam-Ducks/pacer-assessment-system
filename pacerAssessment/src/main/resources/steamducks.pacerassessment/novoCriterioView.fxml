@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="302.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CriteriosController">
+   <children>
+      <TextArea fx:id="txtDescricao" layoutX="28.0" layoutY="128.0" prefHeight="102.0" prefWidth="293.0" promptText="Digite a Descrição" />
+      <TextField fx:id="txtNome" layoutX="28.0" layoutY="64.0" prefHeight="31.0" prefWidth="293.0" promptText="Digite o Nome" />
+      <Label layoutX="28.0" layoutY="43.0" text="Nome:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="107.0" text="Descriçao:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnAdcNovoCrit" layoutX="211.0" layoutY="245.0" mnemonicParsing="false" onAction="#adicionarCriterio" prefHeight="38.0" prefWidth="88.0" text="Adicionar" />
+      <Button fx:id="btnCnlNovoCrit" layoutX="51.0" layoutY="245.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="82.0" text="Cancelar" />
+      <Label layoutX="127.0" layoutY="14.0" text="Novo Critério">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
