@@ -5,9 +5,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pacerAssessment/pom.xml" />
+        <option value="$PROJECT_DIR$/telaAvaliacaoAluno/pom.xml" />
       </list>
     </option>
   </component>
-    <output url="file://$PROJECT_DIR$/out" />
-  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="openjdk-22" project-jdk-type="JavaSDK" />
 </project>
