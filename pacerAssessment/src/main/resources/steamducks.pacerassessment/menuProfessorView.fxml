@@ -60,24 +60,24 @@
                   <Font name="SansSerif Bold" size="24.0" />
                </font>
             </Text>
-            <Button fx:id="btnCadastrarAluno" graphicTextGap="0.0" layoutX="22.0" layoutY="77.0" mnemonicParsing="false" onAction="#abrirCadastroAlunoEquipes" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: transparent;" text="Alunos/Equipes" textFill="WHITE">
+            <Button fx:id="btnCadastrarAluno" graphicTextGap="0.0" layoutX="19.0" layoutY="77.0" mnemonicParsing="false" onAction="#abrirCadastroAlunoEquipes" style="-fx-background-color: transparent;" text="Alunos/Equipes" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCadastrarSemestre" layoutX="16.0" layoutY="166.0" mnemonicParsing="false" onAction="#abrirCadastroSemestre" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: transparent;" text="Semestre" textFill="WHITE">
+            <Button fx:id="btnCadastrarSemestre" graphicTextGap="0.0" layoutX="18.0" layoutY="166.0" mnemonicParsing="false" onAction="#abrirCadastroSemestre" style="-fx-background-color: transparent;" text="Semestre" textFill="WHITE">
                <font>
-                  <Font name="SansSerif Regular" size="3.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="20.0" layoutY="107.0" mnemonicParsing="false" onAction="#abrirCadastroCriterios" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: transparent;" text="Critérios" textFill="WHITE">
+            <Button graphicTextGap="0.0" layoutX="18.0" layoutY="107.0" mnemonicParsing="false" onAction="#abrirCadastroCriterios" style="-fx-background-color: transparent;" text="Critérios" textFill="WHITE">
                <font>
-                  <Font name="SansSerif Regular" size="3.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnPontuacaoSprint" layoutX="22.0" layoutY="136.0" mnemonicParsing="false" onAction="#abrirPontuacaoSprint" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: transparent;" text="Pontuação da Sprint" textFill="WHITE">
+            <Button fx:id="btnPontuacaoSprint" graphicTextGap="0.0" layoutX="18.0" layoutY="136.0" mnemonicParsing="false" onAction="#abrirPontuacaoSprint" style="-fx-background-color: transparent;" text="Pontuação da Sprint" textFill="WHITE">
                <font>
-                  <Font name="SansSerif Regular" size="3.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
             <Text fill="WHITE" layoutX="26.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciar">
@@ -86,24 +86,24 @@
                </font>
             </Text>
             <Line endX="237.33334350585938" endY="351.8333435058594" layoutX="13.0" layoutY="-79.0" startX="9.078693389892578" startY="351.8333435058594" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Button fx:id="btnGerenciarCriterios" layoutX="15.0" layoutY="282.0" mnemonicParsing="false" onAction="#abrirGerenciarCriterios" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Critérios" textFill="WHITE">
+            <Button fx:id="btnGerenciarCriterios" graphicTextGap="0.0" layoutX="15.0" layoutY="282.0" mnemonicParsing="false" onAction="#abrirGerenciarCriterios" style="-fx-background-color: transparent;" text="Critérios" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnGerenciarEquipes" layoutX="14.0" layoutY="313.0" mnemonicParsing="false" onAction="#abrirGerenciarEquipes" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Equipes" textFill="WHITE">
+            <Button fx:id="btnGerenciarEquipes" graphicTextGap="0.0" layoutX="15.0" layoutY="311.0" mnemonicParsing="false" onAction="#abrirGerenciarEquipes" style="-fx-background-color: transparent;" text="Equipes" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnGerenciarSemestre" layoutX="22.0" layoutY="343.0" mnemonicParsing="false" onAction="#abrirGerenciarSemestre" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Semestres" textFill="WHITE">
+            <Button fx:id="btnGerenciarSemestre" graphicTextGap="0.0" layoutX="15.0" layoutY="341.0" mnemonicParsing="false" onAction="#abrirGerenciarSemestre" style="-fx-background-color: transparent;" text="Semestres" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnCadastrarSprint" layoutX="17.0" layoutY="196.0" mnemonicParsing="false" onAction="#abrirCadastroSprint" prefHeight="30.0" prefWidth="63.0" style="-fx-background-color: transparent;" text="Sprint" textFill="WHITE">
+            <Button fx:id="btnCadastrarSprint" graphicTextGap="0.0" layoutX="17.0" layoutY="196.0" mnemonicParsing="false" onAction="#abrirCadastroSprint" style="-fx-background-color: transparent;" text="Sprint" textFill="WHITE">
                <font>
-                  <Font name="SansSerif Regular" size="3.0" />
+                  <Font name="SansSerif Regular" size="14.0" />
                </font>
             </Button>
          </children>
