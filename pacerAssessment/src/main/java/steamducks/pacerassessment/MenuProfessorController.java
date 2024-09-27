@@ -112,11 +112,6 @@ public class MenuProfessorController {
     }
 
     @FXML
-    void abrirCadastroAlunoEquipes(ActionEvent event) {
-
-    }
-
-    @FXML
     void abrirCadastroCriterios(ActionEvent event) {
 
     }
