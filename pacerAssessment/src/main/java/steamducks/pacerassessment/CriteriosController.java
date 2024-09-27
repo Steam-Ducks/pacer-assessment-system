@@ -17,6 +17,7 @@ import javafx.util.Callback;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class CriteriosController {
 
@@ -33,7 +34,10 @@ public class CriteriosController {
     private TextArea txtDescricao;
 
     @FXML
-    private TableColumn<Criterios, Void> acoesColumn;
+    private Button btnRmvCrit;
+
+    @FXML
+    private Button btnEditCrit;
 
     @FXML
     private TableColumn<Criterios, String> criteriosColumn;
@@ -61,27 +65,10 @@ public class CriteriosController {
 
         descricaoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
 
-        // Adiciona os botões de ação na coluna ações
-        addBtnAcoes();
-
         tableCriterios.setItems(criteriosData);
 
     }
 
-
-    //@FXML
-    //public void abrirNovoCriterio(ActionEvent event) {
-    //    try {
-    //        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/novoCriterioView.fxml"));
-    //        Scene scene = new Scene(fxmlLoader.load());
-    //        Stage stage = new Stage();
-    //        stage.setTitle("Novo Criterio");
-    //        stage.setScene(scene);
-    //        stage.show();
-    //    } catch (IOException e) {
-    //        e.printStackTrace();
-    //    }
-    //}
 
     @FXML
     void adicionarCriterio(ActionEvent event) {
@@ -97,60 +84,29 @@ public class CriteriosController {
         }
     }
 
-    private void addBtnAcoes() {
-        Callback<TableColumn<Criterios, Void>, TableCell<Criterios, Void>> cellFactory = new Callback<>() {
-            @Override
-            public TableCell<Criterios, Void> call(final TableColumn<Criterios, Void> param) {
-                final TableCell<Criterios, Void> cell = new TableCell<>() {
+    // Metodo para abrir a tela de edição
+    @FXML
+    void abrirTelaEdicao(ActionEvent event) {
 
-                    private final Button btnEdit = new Button("Editar");
-                    private final Button btnRemove = new Button("Remover");
+        Criterios criteriosSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
 
-                    {
-                        // Botão Editar - Abre a nova tela de edição
-                        btnEdit.setStyle("-fx-background-color: #C2CC29; -fx-text-fill: white;");
-                        btnEdit.setOnAction(event -> {
-                            Criterios criterios = getTableView().getItems().get(getIndex());
-                            abrirTelaEdicao(criterios);
-                        });
+        if (criteriosSelecionado == null) {
+            // Caso nenhum item esteja selecionado, exibe uma mensagem de alerta
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Nenhum critério selecionado");
+            alert.setContentText("Por favor, selecione um critério para editar.");
+            alert.showAndWait();
+            return;
+        }
 
-                        // Botão Remover
-                        btnRemove.setStyle("-fx-background-color: #CC2936; -fx-text-fill: white;");
-                        btnRemove.setOnAction(event -> {
-                            Criterios criterios = getTableView().getItems().get(getIndex());
-                            criteriosData.remove(criterios);
-                        });
-                    }
-
-                    @Override
-                    public void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            HBox actionButtons = new HBox(btnEdit, btnRemove);
-                            actionButtons.setSpacing(10);
-                            actionButtons.setAlignment(Pos.CENTER);
-                            setGraphic(actionButtons);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-
-        acoesColumn.setCellFactory(cellFactory);
-    }
-
-    // Método para abrir a tela de edição
-    private void abrirTelaEdicao(Criterios criterios) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtCriteriosView.fxml"));
             Parent root = loader.load();
 
             // Pega o controlador da tela de edição
             EdtCriteriosController edtCriteriosController = loader.getController();
-            edtCriteriosController.setCriterio(criterios);
+            edtCriteriosController.setCriterio(criteriosSelecionado);  // Passa o critério selecionado
 
             // Cria uma janela para a edição
             Stage stage = new Stage();
@@ -166,5 +122,40 @@ public class CriteriosController {
         }
     }
 
+    @FXML
+    void removerCriterio(ActionEvent event) {
+        // Pega o critério selecionado
+        Criterios criteriosSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
+
+        if (criteriosSelecionado == null) {
+            // Caso nenhum item esteja selecionado, você pode exibir uma mensagem de alerta
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Aviso");
+            alert.setHeaderText("Nenhum critério selecionado");
+            alert.setContentText("Por favor, selecione um critério para excluir.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Exibir um alerta de confirmação
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmação de Exclusão");
+        confirmAlert.setHeaderText("Você realmente quer excluir o critério?");
+        confirmAlert.setContentText("Essa ação não pode ser desfeita.");
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            // Se o usuário confirmar, remove o critério da lista e atualiza a tabela
+            tableCriterios.getItems().remove(criteriosSelecionado);
+
+            // Opcionalmente, se estiver usando uma lista Observable, remova da lista associada à tabela
+            criteriosData.remove(criteriosSelecionado);
+
+            // Atualize a tabela após a exclusão
+            tableCriterios.refresh();
+        }
+    }
 }
+
+
 
