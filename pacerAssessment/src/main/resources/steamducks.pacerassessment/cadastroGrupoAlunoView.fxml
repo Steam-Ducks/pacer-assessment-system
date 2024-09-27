@@ -29,8 +29,8 @@
 
 
                 <!-- Button for registering the data -->
-                <Button fx:id="btnRegistrar" layoutX="254.0" layoutY="486.0" onAction="#registrar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
-                <Button fx:id="btnCancelar" layoutX="69.0" layoutY="486.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="62.0" prefWidth="120.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
+                <Button fx:id="btnRegistrar" layoutX="238.0" layoutY="493.0" onAction="#registrar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
+                <Button fx:id="btnCancelar" layoutX="134.0" layoutY="493.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
             </children>
         </AnchorPane>
     </children>
