@@ -12,8 +12,14 @@ public class SampleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/menuProfessorView.fxml"));
+
         Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("PACER Score");
         stage.setScene(scene);
+
+        Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
+        stage.getIcons().add(logo);
+
         stage.show();
     }
 
