@@ -61,11 +61,18 @@ public class CadastroGrupoAlunoController {
         alunoList.forEach(aluno -> {
             System.out.println(aluno);
         });
+
+        txtEquipe.setText("");
+        txtGithub.setText("");
+
+        alunoList.clear();
     }
+
 
     @FXML
     void cancelar(ActionEvent event) {
-
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -99,9 +106,11 @@ public class CadastroGrupoAlunoController {
                     alunoList.add(aluno);
                 }
             }
+           
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 }
