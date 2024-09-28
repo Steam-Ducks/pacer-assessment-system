@@ -27,4 +27,3 @@
       <Label layoutX="271.0" layoutY="112.0" prefHeight="28.0" prefWidth="127.0" text="Critérios Selecionados" />
    </children>
 </AnchorPane>
-the Javafx runtime is not configured.Either use a JDK that has the JavaFX built in, or add a javaFX
