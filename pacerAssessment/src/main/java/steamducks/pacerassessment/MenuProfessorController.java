@@ -85,25 +85,7 @@ public class MenuProfessorController {
   
     @FXML
     void abrirCadastroAlunoEquipes(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setTitle("Cadastro de Equipe");
-
-            Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
-            stage.getIcons().add(logo);
-
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
+        loadView("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml", "Cadastro de Equipe");
     }
 
     @FXML
