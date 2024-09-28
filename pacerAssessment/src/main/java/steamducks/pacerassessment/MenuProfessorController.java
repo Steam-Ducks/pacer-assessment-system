@@ -53,6 +53,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirLogin(ActionEvent event) {
+        loadView("/steamducks.pacerassessment/telaLogin.fxml","Login");
     }
   
     @FXML
