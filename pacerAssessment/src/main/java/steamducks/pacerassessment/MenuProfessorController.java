@@ -53,32 +53,12 @@ public class MenuProfessorController {
 
     @FXML
     void abrirLogin(ActionEvent event) {
+
+        Stage stageAtual = (Stage) btnLogout.getScene().getWindow();
+        stageAtual.close();
+
         loadView("/steamducks.pacerassessment/telaLogin.fxml","Login");
     }
-  
-    @FXML
-    void abrirAvaliacaoSprint(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/avaliacaoSprintView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setTitle("Pontuação Sprint");
-
-            Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
-            stage.getIcons().add(logo);
-
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
 
     @FXML
     void abrirCadastroSprint(ActionEvent event) {
@@ -91,7 +71,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirPontuacaoSprint(ActionEvent event) {
-
+        loadView("/steamducks.pacerassessment/avaliacaoSprintView.fxml", "Pontuar Sprint");
     }
 
     @FXML
