@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="pacerAssessment" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="pacerAssessment" target="20" />
       <module name="telaAvaliacaoAluno" target="22" />
     </bytecodeTargetLevel>
   </component>
