@@ -69,7 +69,7 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
-            // Carrega o ícone (opcional)
+            // Carrega o ícone - opcional
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-teste.png")));
             stage.getIcons().add(logo);
 
