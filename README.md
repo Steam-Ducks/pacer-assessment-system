@@ -8,7 +8,7 @@
 
  
 <div align="center">
-    <img src="assets/capa-readme.png" alt="capa-readme" width="100%" />
+<img src="assets/capa-readme.png" alt="capa-readme" width="100%" />
 </div>
 
 <br />
@@ -21,9 +21,11 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 ♦ [Integrantes do projeto](#integrantes-do-projeto) <br />
 ♦ [Backlog do Produto](#backlog-do-produto) <br />
 ♦ [Validações feitas com o Cliente](#validações-feitas-com-o-cliente) <br />
-♦ [Termo de Requisitos de Permanência](Termo-de-Requisitos-de-Permanência) <br />
+♦ [Cronograma do Projeto](#cronograma-do-projeto) <br />
+♦ [Burndown](#burndonw) <br />
+♦ [Diagrama de entidade relacionamento do banco de dados](#diagrama-de-entidade-relacionamento-do-banco-de-dados) <br />
 ♦ [Tecnologias Utilizadas](#tecnologias-utilizadas) <br />
-♦ [Como Usar](#como-usar) <br />
+♦ [Termo de Requisitos de Permanência](#termo-de-requisitos-de-permanência) <br />
 ♦ [Boas práticas](#boas-práticas) <br />
 ♦ [Contato](#contato) <br />
     
@@ -56,58 +58,85 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 
 ## Backlog do Produto
 <a href="https://docs.google.com/spreadsheets/d/1DYEea0bZCwJRRKwjq7ib3rXRjN1lnyTx6z3y3kyuVuM/edit?gid=1029324717#gid=1029324717" target="_blank">♦ Backlog Dinâmico</a>
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero importar um arquivo .csv para salvar as informações dos alunos.       | 1          | 1      | 4                     |
+| 2    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes.         | 1          | 1      | 5                     |
+| 3    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 14  | Como um aluno, eu quero dar notas para todos os integrantes da minha equipe.                      | 3          | 1      | 1                     |
+| 4    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 12  | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos, por que isso permite que os integrantes utilizem esses pontos para avaliar todos os integrantes do grupo  | 3          | 1      | 1                     |
+| 5    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 16  | Como um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha.                    | 1          | 1      | 8                     |
+| 6    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 18  | Como um professor, eu quero criar e editar critérios de avaliação.                                | 1          | 1      | 6                     |
+| 7    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 04  | Como um professor, eu quero poder alterar membros de um grupo.                                    | 1          | 2      | 7                     |
+| 8    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 09  | Como um professor, eu quero criar sprints para que os alunos avaliem os integrantes.              | 2          | 2      | 8                     |
+| 9    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 36  | Como um professor, eu quero cadastrar o calendário das sprints.                                   | 5          | 2      | 1                     |
+| 10   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos.               | 2          | 2      | 2                     |
+| 11   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério.    | 2          | 2      | 3                     |
+| 12   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 26  | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo.             | 3          | 3      | 3                     |
+| 13   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação.          | 3          | 3      | 2                     |
+| 14   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 33  | Como um professor, eu quero poder mudar senha pelo e-mail.                                       | 4          | 4      | 8                     |
+| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar senha pelo e-mail.                                           | 4          | 4      | 8                     |
 
-| Sprint | ID    | Status | Descrição                                                                                                                        | Priorização | Nível de priorização |
-|--------|-------|--------|----------------------------------------------------------------------------------------------------------------------------------|-------------|----------------------|
-|        | PAS 1 | ❌ | Como um professor, eu quero salvar as informações cadastrais de usuário aluno com credenciais de acesso para que ele possa acessar a plataforma | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 2 | ❌ | Como um professor, eu quero uma tela de cadastro de aluno com campos para informações pessoais e credenciais, por que isso facilita a inserção e gestão dos dados dos alunos na plataforma. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 3 | ❌ | Como um professor, eu quero criar grupos para dividir os alunos                                                                 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 4 | ❌ | Como um professor, eu quero poder alterar membros de um grupo para que possa gerenciar as equipes                               | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 5 | ❌ | Como um professor, eu quero uma interface para criar e gerenciar grupos, por que isso permite organizar os alunos de forma intuitiva e visual, facilitando a divisão em equipes. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 6 | ❌ | Como um professor, eu quero vincular alunos a um grupo para que possam se avaliar no final de cada sprint                       | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 7 | ❌ | Como um professor, eu quero criar turmas para dividir os grupos por semestre                                                      | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 8 | ❌ | Como um professor, eu quero uma interface para criar e gerenciar turmas, por que isso permite agrupar os grupos por semestre e organizar as atividades de forma estruturada. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 9 | ❌ | Como um professor, eu quero criar sprints para que ao final delas os grupos se autoavaliem                                       | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 10| ❌ | Como um professor, eu quero uma tela para criar e gerenciar sprints, por que isso facilita o planejamento e a organização dos períodos de avaliação dos grupos. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 11| ❌ | Como um professor, eu quero avaliar a sprint de cada um dos grupos para que possam distribuir a média na avaliação interna dos integrantes da equipe | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 12| ❌ | Como um professor, eu quero uma interface para avaliar todas as sprints dos grupos, por que isso permite registrar e visualizar as notas e feedbacks de forma acessível e organizada. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 13| ❌ | Como um aluno, eu quero dar uma nota para todos os integrantes de minha equipe para que eu possa avaliá-los no final de cada sprint | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 14| ❌ | Como um aluno, eu quero uma tela para dar notas para todos os integrantes da minha equipe, por que isso facilita a avaliação dos colegas e contribui para a avaliação final do grupo. | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 15| ❌ | Como um aluno ou professor, eu quero fazer login com minhas credenciais para acessar a plataforma, por que isso garante que eu tenha um acesso único e seguro à minha conta, protegendo minhas informações pessoais e permitindo que eu acesse as funcionalidades específicas para meu papel (aluno ou professor). | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-| 1      | PAS 16| ❌ | Como um aluno ou professor, eu quero uma tela de login onde eu possa inserir as minhas credenciais para acessar a plataforma, por que isso permite que eu tenha acesso as informações que eu devo acessar | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) Alto |        |
-|        | PAS 17| ❌ | Como um professor, eu quero criar critérios de avaliação em cada projeto que ainda não iniciou para adequar o método de avaliação | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-| 1      | PAS 18| ❌ | Como um professor, eu quero uma interface para criar e editar critérios de avaliação, por que isso permite definir e ajustar os critérios de forma clara e flexível conforme as necessidades do projeto. | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 19| ❌ | Como um professor eu quero alterar critérios de avaliação em cada projeto que ainda não iniciou para adequar o método de avaliação | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 20| ❌ | Como um professor, eu quero uma interface para alterar e desativar critérios de avaliação, por que isso permite ajustar os critérios conforme necessário antes do início dos projetos. | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 21| ❌ | Como um professor eu quero desativar critérios de avaliação em cada projeto que ainda não iniciou para adequar o método de avaliação | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 22| ❌ | Como um professor, eu quero gerar um relatório contendo a nota média de todos os alunos de um determinado grupo em uma determinada sprint para identificar o grau de desempenho de cada integrante do grupo | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 23| ❌ | Como um professor, eu quero uma tela para gerar relatórios contendo a nota média de todos os alunos de um grupo em uma determinada sprint, por que isso ajuda a analisar o desempenho do grupo e tomar decisões informadas. | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 24| ❌ | Como um professor eu quero gerar um relatório contendo a nota média por aluno para cada critério de avaliação em uma determinada sprint para que eu identifique o grau de desempenho do aluno | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 25| ❌ | Como um professor, eu quero uma tela para gerar relatórios contendo a nota média por aluno para cada critério de avaliação em uma determinada sprint, por que isso permite metrificar desempenho de cada aluno em relação aos critérios estabelecidos | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+) Médio |        |
-|        | PAS 26| ❌ | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo em uma determinada sprint para identificar o grau de desempenho do meu grupo pela visão do meu grupo | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 27| ❌ | Como um aluno, eu quero uma tela para visualizar a nota média de todos os integrantes do meu grupo em uma determinada sprint, por que isso me ajuda a entender o desempenho geral do grupo e a contribuição de cada membro. | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 28| ❌ | Como um aluno, eu quero visualizar as minhas notas médias para cada critério de avaliação em uma determinada sprint para que eu identifique o resultado do meu trabalho pela visão da equipe | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 29| ❌ | Como um aluno, eu quero uma tela para visualizar minhas notas médias para cada critério de avaliação em uma determinada sprint, por que isso permite que eu veja claramente o resultado do meu trabalho e identifique áreas para melhorar. | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 30| ❌ | Como um professor eu quero poder importar informações de um arquivo .csv referente aos grupos para facilitar o cadastro, inserção ou alteração de dados dos alunos e grupos | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 31| ❌ | Como um professor eu quero poder exportar informações para um arquivo .csv referente aos grupos para facilitar o cadastro, inserção ou alteração de dados dos alunos e grupos | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 32| ❌ | Como um professor, eu quero uma interface para importar e exportar informações para arquivos .csv, por que isso facilita a gestão de dados e a atualização de informações dos alunos e grupos de forma eficiente. | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 33| ❌ | Eu como professor quero poder mudar senha pelo e-mail para resgatar o acesso                                                        | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 34| ❌ | Eu como aluno quero poder mudar senha pelo e-mail para resgatar o acesso                                                           | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 35| ❌ | Como um professor e como um aluno, eu quero uma tela para mudar minha senha pelo e-mail, por que isso oferece um método simples e seguro para recuperar o acesso à minha conta caso eu esqueça minha senha. | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 36| ❌ | Como um professor eu quero cadastrar o calendário das sprints para que delimite o começo e final de cada sprint                   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-|        | PAS 37| ❌ | Como um professor, eu quero uma interface para cadastrar o calendário das sprints, por que isso permite definir claramente os períodos de avaliação e organizar as atividades de acordo com o calendário acadêmico. | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
-| 1      | PAS 38| ❌ | Como aluno e professor, eu quero uma interface após o login principal para que eu possa acessar facilmente todas as funcionalidades disponíveis para mim no sistema | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) Baixo |        |
 
 
 ## Validações feitas com o Cliente
 
-| Sprint | Validações | Respostas |
-|------------|------------|-----------|
-| 1 | Em relação aos grupos que realizarão as sprints, além dos integrantes e do nome do grupo, há mais alguma informações que deseja vincular a esses grupos? | link do git |
-| 1 | Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024" | sim, preciso separar por semestre/turma |
-| 1 | O professor será o único a cadastrar os alunos ou ele pode liberado um acesso para que o próprio aluno faça o seu cadastro? | o professor cadastra |
-| 1 |  Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
-| 1 | Seria interessante então poder cadastrar vários professores? | A princípio só tem 1 |
+| Sprint | Validações                                                                                                                                     | Respostas                                                                       |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| 1      | Em relação aos grupos que realizarão as sprints, além dos integrantes e do nome do grupo, há mais alguma informações que deseja vincular a esses grupos? | link do git                                                                    |
+| 1      | Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024"                             | sim, preciso separar por semestre/turma                                        |
+| 1      | O professor será o único a cadastrar os alunos ou ele pode liberar um acesso para que o próprio aluno faça o seu cadastro?                    | o professor cadastra                                                           |
+| 1      | Seria interessante então poder cadastrar vários professores?                                                                                 | A princípio só tem 1                                                           |
+| 1      | Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
+| 1      | Em relação aos critérios que o professor vai colocar na avaliação do aluno, há um limite máximo para a quantidade de critérios?                | A princípio não                                                                |
+| 1      | Todo mundo que for usar o sistema vai ter que se identificar para entrar e usar o sistema. Essa identificação inicial eu e meu time achamos interessante usar um e-mail e senha. O que você acha? | Pode ser                                                                       |
+| 1      | Podemos criar tela para cadastrar os alunos individualmente?  |	Pode, mas a prioridade para isso é baixa pois a forma principal de cadastro deve ser por importação de arquivo
+| 1      | Qual informação o professor já deve visualizar ao fazer o login?                                                                             | Ele já deve acessar diretamente em gerar relatórios.                           |
+| 1      | Faz sentido manter um botão de lembrar-me na tela de login?                                                                                  | Não porque o sistema vai ser instalado em computadores públicos                  |
+| 1      | Podemos elaborar um nome e um ícone para o aplicativo?                                                                                      | Pode, porém tem que validar com o cliente antes                               |
+| 1      | Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | Isso está no doc que passei no começo                                          |
+| 1      | Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
+
+## Cronograma do Projeto
+
+| Fase                   | Início         | Entrega        |
+|-----------------------|----------------|-----------------|
+| Kick off do projeto    | 28/08/2024     | 08/09/2024      |
+| Sprint 1               | 09/09/2024     | 29/09/2024      |
+| Sprint 2               | 30/09/2024     | 20/10/2024      |
+| Sprint 3               | 21/10/2024     | 10/11/2024      |
+| Sprint 4               | 11/11/2024     | 01/12/2024      |
+| Feira de Soluções      | 12/12/2024     | 12/12/2024      |
+
+## Burndonw
+<details> 
+    <summary>Sprint 1</summary>
+    <img src="assets/BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
+</details>
+<details>
+    <summary>Sprint 2</summary>
+</details>
+<details>
+    <summary>Sprint 3</summary>
+</details>
+<details>
+    <summary>Sprint 4</summary>
+</details>
+
+
+## Diagrama de entidades de relacionamento do banco de dados
+<img src="assets/DER_BD.png" alt="DER_BD" width="100%" />
+
+## Tecnologias Utilizadas
+
+![Git](https://img.shields.io/badge/Git-333333?style=for-the-badge&logo=git)
+![GitHub](https://img.shields.io/badge/GitHub-333333?style=for-the-badge&logo=github)
+![Java](https://img.shields.io/badge/Java-333333?style=for-the-badge&logo=java)
+![SQL](https://img.shields.io/badge/SQL-333333?style=for-the-badge&logo=sqlite)
+![VSCode](https://img.shields.io/badge/VSCode-333333?style=for-the-badge&logo=visualstudiocode)
+![Jira](https://img.shields.io/badge/Jira-333333?style=for-the-badge&logo=jira)
+![Scrum](https://img.shields.io/badge/Scrum-333333?style=for-the-badge&logo=scrum)
+![Slack](https://img.shields.io/badge/Slack-333333?style=for-the-badge&logo=slack)
+
 
 ## Termo de Requisitos de Permanência
 
@@ -146,37 +175,6 @@ Garantir a continuidade e o comprometimento dos membros da equipe no projeto ess
 ### Observação: 
 O projeto é uma parte fundamental para a conclusão do semestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
 
-## Tecnologias Utilizadas
-
-![Git](https://img.shields.io/badge/Git-333333?style=for-the-badge&logo=git)
-![GitHub](https://img.shields.io/badge/GitHub-333333?style=for-the-badge&logo=github)
-![Java](https://img.shields.io/badge/Java-333333?style=for-the-badge&logo=java)
-![SQL](https://img.shields.io/badge/SQL-333333?style=for-the-badge&logo=sqlite)
-![VSCode](https://img.shields.io/badge/VSCode-333333?style=for-the-badge&logo=visualstudiocode)
-![Jira](https://img.shields.io/badge/Jira-333333?style=for-the-badge&logo=jira)
-![Scrum](https://img.shields.io/badge/Scrum-333333?style=for-the-badge&logo=scrum)
-![Slack](https://img.shields.io/badge/Slack-333333?style=for-the-badge&logo=slack)
-
-## Como Usar
-<ol>
-    <li>Clone o repositório:</li>
-</ol>
-<pre><code>git clone https://github.com/Steam-Ducks/pacer-assessment-system</code></pre>
-<ol start="2">
-    <li>Abra o código-fonte no IntelliJ.</li>
-    <li>Execute o programa e siga as instruções para utilizar as operações desejadas.</li>
-    <li>Após fazer alterações nos arquivos, adicione-os ao controle de versão:</li>
-</ol>
-<pre><code>git add .</code></pre>
-<ol start="5">
-    <li>Faça um commit das mudanças com uma mensagem descritiva:</li>
-</ol>
-<pre><code>git commit -m "Alteração do layout dos critérios de avaliação."</code></pre>
-<ol start="6">
-    <li>Envie as alterações para o repositório remoto:</li>
-</ol>
-<pre><code>git push origin main</code></pre>
-
  ## Boas práticas
 
  1. Sempre nomeie arquivos, funções ou funcionalidades utilizando camelCase é uma convenção de nomenclatura, onde as palavras são unidas sem espaços e cada palavra subsequente é capitalizada, exceto a primeira, como por exemplo o próprio nome da convenção: camelCase.
@@ -184,24 +182,24 @@ O projeto é uma parte fundamental para a conclusão do semestre, e o comprometi
  3. Ao realizar os commits utilize o pradrão: emoji + tipo do commit + breve descrição do que foi feito, se tiver dúvidas, dê uma olhada no repositório: 
 [**Padrões de Commits**](https://github.com/arafaellacruz/padroes-de-commits)
 
-## Contato
+# Contato
 
 Se você tiver alguma dúvida, sugestão ou apenas quiser trocar uma ideia, sinta-se à vontade para me enviar um e-mail em [steamduckss@gmail.com](mailto:steamduckss@gmail.com). 
 Estamos ansiosos para ouvir de você!
 
 ## 🌟 Conheça o Time Brilhante 🌟
 
-### Ana Souza
+### Alexsander Silva
 🚀 [GitHub: Alexsander Silva](https://github.com/alexttz)  
-🔗 [LinkedIn: Alexsander Silva]([https://www.linkedin.com/in/](https://www.linkedin.com/in/alexander-silva-lima-96a0432a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+🔗 [LinkedIn: Alexsander Silva](https://www.linkedin.com/in/alexander-silva-lima-96a0432a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
 ### Carlos Daniel
 🚀 [GitHub: Carlos Daniel](https://github.com/darloscaniel)  
 🔗 [LinkedIn: Carlos Daniel](https://www.linkedin.com/in/carlos-daniel-alves-dos-santos-9516952b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
-### Isabelly Souse
-🚀 [GitHub: Isabelly Souse](https://github.com/61isabelly)  
-🔗 [LinkedIn: Isabelly Souse](https://www.linkedin.com/in/isabelly-sousa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+### Isabelly Sousa
+🚀 [GitHub: Isabelly Sousa](https://github.com/61isabelly)  
+🔗 [LinkedIn: Isabelly Sousa](https://www.linkedin.com/in/isabelly-sousa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
 
 ### Lucas Acosta
 🚀 [GitHub: Lucas Acosta](https://github.com/Lucas-heck-acosta)  
@@ -217,11 +215,11 @@ Estamos ansiosos para ouvir de você!
 
 ### Rafaella Cruz
 🚀 [GitHub: Rafaella Cruz](https://github.com/arafaellacruz)  
-🔗 [LinkedIn: Rafaella Cruz](https://www.linkedin.com/in/matheus-gabriel-barbosa-6b4a2320a/)
+🔗 [LinkedIn: Rafaella Cruz](https://www.linkedin.com/posts/cruz-rafaella_%C3%A9-um-prazer-compartilhar-que-finalizei-meu-activity-7212665413376081921-mEAy?utm_source=share&utm_medium=member_desktop)
 
 ### Samuel Prado
-🚀 [GitHub: Rafaella Cruz](https://github.com/Samuelprado99)  
-🔗 [LinkedIn: Rafaella Cruz](https://www.linkedin.com/in/samuel-prado-9142381b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
+🚀 [GitHub: Samuel Prado](https://github.com/Samuelprado99)  
+🔗 [LinkedIn: Samuel Prado](https://www.linkedin.com/in/samuel-prado-9142381b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
 
 ### Theo da Rosa
 🚀 [GitHub: Theo da Rosa](https://github.com/TheodaRosa)  
