@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,6 +20,9 @@ public class CadastroGrupoAlunoController {
     private TextField txtEquipe;
     @FXML
     private TextField txtGithub;
+
+    @FXML
+    private ComboBox<String> cmbSemestre;
 
     @FXML
     private Button btnRegistrar;
@@ -45,6 +45,7 @@ public class CadastroGrupoAlunoController {
     @FXML
     private TableView<Aluno> tvAlunos;
 
+    private Equipe equipe;
     private final ObservableList<Aluno> alunoList = FXCollections.observableArrayList();
 
     @FXML
@@ -54,20 +55,26 @@ public class CadastroGrupoAlunoController {
         tcSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
 
         tvAlunos.setItems(alunoList);
+
+        ObservableList<String> semestreList = FXCollections.observableArrayList(
+                "1º semestre", "2º semestre", "3º semestre", "4º semestre", "5º semestre", "6º semestre"
+        );
+        cmbSemestre.setItems(semestreList);
     }
 
     @FXML
     void registrar(ActionEvent event) {
-        alunoList.forEach(aluno -> {
-            System.out.println(aluno);
-        });
+        if (equipe != null) {
+            System.out.println(equipe);
+        } else {
+            System.out.println("Equipe não criada.");
+        }
 
         txtEquipe.setText("");
         txtGithub.setText("");
 
         alunoList.clear();
     }
-
 
     @FXML
     void cancelar(ActionEvent event) {
@@ -92,8 +99,6 @@ public class CadastroGrupoAlunoController {
             boolean primeiraLinha = true;
             alunoList.clear();
 
-            Equipe equipe = new Equipe(txtEquipe.getText(), txtGithub.getText());
-
             while ((line = br.readLine()) != null) {
                 if (primeiraLinha) {
                     primeiraLinha = false;
@@ -102,15 +107,15 @@ public class CadastroGrupoAlunoController {
 
                 String[] values = line.split(",");
                 if (values.length >= 3) {
-                    Aluno aluno = new Aluno(values[0], values[1], values[2], equipe);
+                    Aluno aluno = new Aluno(values[0], values[1], values[2]);
                     alunoList.add(aluno);
                 }
             }
-           
+
+            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, cmbSemestre.getValue());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }
