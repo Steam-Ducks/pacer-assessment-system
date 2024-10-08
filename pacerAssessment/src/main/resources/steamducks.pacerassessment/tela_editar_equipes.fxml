@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e5e5e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="74.0" layoutY="50.0" prefHeight="200.0" prefWidth="452.0">
+        <columns>
+          <TableColumn prefWidth="183.0" text="NOME" />
+          <TableColumn prefWidth="268.0" text="E-MAIL" />
+        </columns>
+      </TableView>
+      <Button layoutX="187.0" layoutY="293.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="102.0" style="-fx-background-color: #20BF55;" text="Confirmar" textFill="WHITE" />
+      <Button layoutX="312.0" layoutY="293.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="102.0" style="-fx-background-color: #CC2936;" text="Confirmar" textFill="WHITE" />
+   </children>
+</AnchorPane>
