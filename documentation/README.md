@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-# Sprint 1
+<details>
+<summary>Sprint 1</summary>
 
 ### User Stories da Sprint
 
@@ -41,7 +41,10 @@
 ### Burndonw
 <img src="assets/BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
 
-# Sprint 2
+</details>
+
+<details>
+<summary>Sprint 2</summary>
 
 ### User Stories da Sprint
 
@@ -56,8 +59,10 @@
 ### Validações feitas com o Cliente
 
 ### Burndonw
+</details>
 
-# Sprint 3
+<details>
+<summary>Sprint 3</summary>
 
 ### User Stories da Sprint
 
@@ -70,7 +75,12 @@
 
 ### Burndonw
 
-# Sprint 4
+</details>
+
+<details>
+<summary>Sprint 4</summary>
+
+### User Stories da Sprint
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
@@ -80,6 +90,8 @@
 ### Validações feitas com o Cliente
 
 ### Burndonw
+
+</details>
 
 # Diagrama de entidades de relacionamento do banco de dados
 <img src="assets/DER_BD.png" alt="DER_BD" width="100%" />
