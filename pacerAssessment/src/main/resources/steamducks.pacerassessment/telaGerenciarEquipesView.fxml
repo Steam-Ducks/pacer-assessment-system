@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e5e5e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="29.0" layoutY="42.0" prefHeight="291.0" prefWidth="543.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="225.0" text="Nome" />
+            <TableColumn prefWidth="242.0" text="GitHub" />
+        </columns>
+      </TableView>
+      <Button layoutX="317.0" layoutY="349.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #20BF55;" text="Adicionar" textFill="WHITE" />
+      <Button layoutX="405.0" layoutY="349.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" text="Editar" />
+      <Button layoutX="492.0" layoutY="349.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #CC2936;" text="Remover" textFill="WHITE" />
+      <Label layoutX="253.0" layoutY="14.0" text="Gerenciar Equipes">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
