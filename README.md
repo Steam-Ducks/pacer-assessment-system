@@ -20,14 +20,9 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 ♦ [Requisitos](#requisitos) <br />
 ♦ [Integrantes do projeto](#integrantes-do-projeto) <br />
 ♦ [Backlog do Produto](#backlog-do-produto) <br />
-♦ [Validações feitas com o Cliente](#validações-feitas-com-o-cliente) <br />
 ♦ [Cronograma do Projeto](#cronograma-do-projeto) <br />
-♦ [Burndown](#burndonw) <br />
-♦ [Diagrama de entidade relacionamento do banco de dados](#diagrama-de-entidade-relacionamento-do-banco-de-dados) <br />
 ♦ [Tecnologias Utilizadas](#tecnologias-utilizadas) <br />
 ♦ [Termo de Requisitos de Permanência](#termo-de-requisitos-de-permanência) <br />
-♦ [Boas práticas](#boas-práticas) <br />
-♦ [Contato](#contato) <br />
     
 ## Requisitos
 
@@ -57,7 +52,6 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 </div>
 
 ## Backlog do Produto
-<a href="https://docs.google.com/spreadsheets/d/1DYEea0bZCwJRRKwjq7ib3rXRjN1lnyTx6z3y3kyuVuM/edit?gid=1029324717#gid=1029324717" target="_blank">♦ Backlog Dinâmico</a>
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero importar um arquivo .csv para salvar as informações dos alunos.       | 1          | 1      | 4                     |
@@ -76,26 +70,6 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 | 14   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 33  | Como um professor, eu quero poder mudar senha pelo e-mail.                                       | 4          | 4      | 8                     |
 | 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar senha pelo e-mail.                                           | 4          | 4      | 8                     |
 
-
-
-## Validações feitas com o Cliente
-
-| Sprint | Validações                                                                                                                                     | Respostas                                                                       |
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| 1      | Em relação aos grupos que realizarão as sprints, além dos integrantes e do nome do grupo, há mais alguma informações que deseja vincular a esses grupos? | link do git                                                                    |
-| 1      | Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024"                             | sim, preciso separar por semestre/turma                                        |
-| 1      | O professor será o único a cadastrar os alunos ou ele pode liberar um acesso para que o próprio aluno faça o seu cadastro?                    | o professor cadastra                                                           |
-| 1      | Seria interessante então poder cadastrar vários professores?                                                                                 | A princípio só tem 1                                                           |
-| 1      | Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
-| 1      | Em relação aos critérios que o professor vai colocar na avaliação do aluno, há um limite máximo para a quantidade de critérios?                | A princípio não                                                                |
-| 1      | Todo mundo que for usar o sistema vai ter que se identificar para entrar e usar o sistema. Essa identificação inicial eu e meu time achamos interessante usar um e-mail e senha. O que você acha? | Pode ser                                                                       |
-| 1      | Podemos criar tela para cadastrar os alunos individualmente?  |	Pode, mas a prioridade para isso é baixa pois a forma principal de cadastro deve ser por importação de arquivo
-| 1      | Qual informação o professor já deve visualizar ao fazer o login?                                                                             | Ele já deve acessar diretamente em gerar relatórios.                           |
-| 1      | Faz sentido manter um botão de lembrar-me na tela de login?                                                                                  | Não porque o sistema vai ser instalado em computadores públicos                  |
-| 1      | Podemos elaborar um nome e um ícone para o aplicativo?                                                                                      | Pode, porém tem que validar com o cliente antes                               |
-| 1      | Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | Isso está no doc que passei no começo                                          |
-| 1      | Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
-
 ## Cronograma do Projeto
 
 | Fase                   | Início         | Entrega        |
@@ -106,25 +80,6 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 | Sprint 3               | 21/10/2024     | 10/11/2024      |
 | Sprint 4               | 11/11/2024     | 01/12/2024      |
 | Feira de Soluções      | 12/12/2024     | 12/12/2024      |
-
-## Burndonw
-<details> 
-    <summary>Sprint 1</summary>
-    <img src="assets/BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
-</details>
-<details>
-    <summary>Sprint 2</summary>
-</details>
-<details>
-    <summary>Sprint 3</summary>
-</details>
-<details>
-    <summary>Sprint 4</summary>
-</details>
-
-
-## Diagrama de entidades de relacionamento do banco de dados
-<img src="assets/DER_BD.png" alt="DER_BD" width="100%" />
 
 ## Tecnologias Utilizadas
 
@@ -174,18 +129,6 @@ Garantir a continuidade e o comprometimento dos membros da equipe no projeto ess
 
 ### Observação: 
 O projeto é uma parte fundamental para a conclusão do semestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
-
- ## Boas práticas
-
- 1. Sempre nomeie arquivos, funções ou funcionalidades utilizando camelCase é uma convenção de nomenclatura, onde as palavras são unidas sem espaços e cada palavra subsequente é capitalizada, exceto a primeira, como por exemplo o próprio nome da convenção: camelCase.
- 2. Ao dar nome aos arquivos, funções ou ao fazer os commits, faça em inglês para exercitar o idioma e também é amplamente aceito como a língua padrão na indústria de tecnologia e programação. Usar nomes em inglês ajuda a manter a consistência e a interoperabilidade entre diferentes projetos e equipes ao redor do mundo.
- 3. Ao realizar os commits utilize o pradrão: emoji + tipo do commit + breve descrição do que foi feito, se tiver dúvidas, dê uma olhada no repositório: 
-[**Padrões de Commits**](https://github.com/arafaellacruz/padroes-de-commits)
-
-# Contato
-
-Se você tiver alguma dúvida, sugestão ou apenas quiser trocar uma ideia, sinta-se à vontade para me enviar um e-mail em [steamduckss@gmail.com](mailto:steamduckss@gmail.com). 
-Estamos ansiosos para ouvir de você!
 
 ## 🌟 Conheça o Time Brilhante 🌟
 
