@@ -57,13 +57,13 @@ public class MenuProfessorController {
         Stage stageAtual = (Stage) btnLogout.getScene().getWindow();
         stageAtual.close();
 
-        loadView("/steamducks.pacerassessment/telaLogin.fxml","Login");
+        loadView("/steamducks.pacerassessment/loginView.fxml","Login");
     }
 
     @FXML
     void abrirCadastroSprint(ActionEvent event) {
     }
-  
+
     @FXML
     void abrirCadastroAlunoEquipes(ActionEvent event) {
         loadView("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml", "Cadastro de Equipe");
@@ -76,25 +76,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirCadastroCriterios(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/criteriosMenuView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setTitle("Gerenciador de Critérios");
-
-            Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
-            stage.getIcons().add(logo);
-
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadView("/steamducks.pacerassessment/criteriosMenuView.fxml", "Gerenciador de Critérios");
     }
 
     @FXML

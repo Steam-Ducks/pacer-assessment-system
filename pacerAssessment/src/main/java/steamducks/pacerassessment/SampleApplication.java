@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class SampleApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/telaLogin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/loginView.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("PACER Score");
