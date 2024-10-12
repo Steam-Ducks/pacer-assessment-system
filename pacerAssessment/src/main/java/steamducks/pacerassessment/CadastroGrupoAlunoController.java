@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+
 public class CadastroGrupoAlunoController {
 
     @FXML
@@ -34,20 +36,21 @@ public class CadastroGrupoAlunoController {
     private Button btnCancelar;
 
     @FXML
-    private TableColumn<Aluno, String> tcEmail;
+    private TableColumn<Usuario, String> tcEmail;
 
     @FXML
-    private TableColumn<Aluno, String> tcNome;
+    private TableColumn<Usuario, String> tcNome;
 
     @FXML
-    private TableColumn<Aluno, String> tcSenha;
+    private TableColumn<Usuario, String> tcSenha;
 
     @FXML
-    private TableView<Aluno> tvAlunos;
+    private TableView<Usuario> tvAlunos;
 
     private Equipe equipe;
-    private final ObservableList<Aluno> alunoList = FXCollections.observableArrayList();
+    private final ObservableList<Usuario> alunoList = FXCollections.observableArrayList();
 
+    // Inicializa a tela e popula o ComboBox com os semestres do banco
     @FXML
     public void initialize() {
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -56,24 +59,47 @@ public class CadastroGrupoAlunoController {
 
         tvAlunos.setItems(alunoList);
 
-        ObservableList<String> semestreList = FXCollections.observableArrayList(
-                "1º semestre", "2º semestre", "3º semestre", "4º semestre", "5º semestre", "6º semestre"
-        );
+        // Chamar o método para buscar semestres do banco
+        carregarSemestres();
+    }
+
+    // Método para carregar semestres do banco de dados
+    private void carregarSemestres() {
+        GrupoAlunoDAO grupoAlunoDAO = new GrupoAlunoDAO();
+        ObservableList<String> semestreList = FXCollections.observableArrayList(grupoAlunoDAO.buscarSemestres());
         cmbSemestre.setItems(semestreList);
     }
 
     @FXML
     void registrar(ActionEvent event) {
-        if (equipe != null) {
-            System.out.println(equipe);
-        } else {
-            System.out.println("Equipe não criada.");
+        String nomeEquipe = txtEquipe.getText();
+        String github = txtGithub.getText();
+        String semestreSelecionado = cmbSemestre.getValue();
+
+        if (nomeEquipe.isEmpty() || github.isEmpty() || semestreSelecionado == null) {
+            System.out.println("Por favor, preencha todos os campos.");
+            return;
         }
 
+        GrupoAlunoDAO dao = new GrupoAlunoDAO();
+
+        // Obter o ID do semestre baseado no nome selecionado
+        int idSemestre = dao.obterIdSemestre(semestreSelecionado);
+
+        int idEquipe = dao.criarEquipe(nomeEquipe, github, idSemestre); // Cria a equipe
+
+        // Update `idEquipe` for each `Usuario`
+        for (Usuario aluno : alunoList) {
+            aluno.setIdEquipe(idEquipe);
+        }
+
+        dao.adicionarAlunos(idEquipe, alunoList); // Adiciona os alunos à equipe
+
+        // Limpar campos e lista de alunos
         txtEquipe.setText("");
         txtGithub.setText("");
-
         alunoList.clear();
+        tvAlunos.setItems(alunoList); // Limpa a tabela de alunos
     }
 
     @FXML
@@ -107,7 +133,7 @@ public class CadastroGrupoAlunoController {
 
                 String[] values = line.split(",");
                 if (values.length >= 3) {
-                    Aluno aluno = new Aluno(values[0], values[1], values[2]);
+                    Usuario aluno = new Usuario(values[0], values[1], values[2], 0, false);  // False indicates the user is a student
                     alunoList.add(aluno);
                 }
             }

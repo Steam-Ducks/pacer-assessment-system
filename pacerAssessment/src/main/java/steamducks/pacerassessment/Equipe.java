@@ -6,68 +6,63 @@ public class Equipe {
 
     private String nome;
     private String gitHub;
+    private ObservableList<Usuario> usuarios;
+    private String semestre;
 
-    private ObservableList<Aluno> alunos;
-
-    public Equipe(String nome, String gitHub, ObservableList<Aluno> alunos, String semestre) {
+    public Equipe(String nome, String gitHub, ObservableList<Usuario> usuarios, String semestre) {
         this.nome = nome;
         this.gitHub = gitHub;
-        this.alunos = alunos;
+        this.usuarios = usuarios;
         this.semestre = semestre;
     }
 
-    //private Semestre semestre;
-    private String semestre;
-
-
     public String getNome() {
         return nome;
-    }
-
-    public String getGitHub() {
-        return gitHub;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setGitHub(String gitHub) {
-        this.gitHub = gitHub;
+    public String getGitHub() {
+        return gitHub;
     }
 
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setGitHub(String gitHub) {
+        this.gitHub = gitHub;
     }
 
     public String getSemestre() {
         return semestre;
     }
 
-    public ObservableList<Aluno> getAlunos() {
-        return alunos;
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
     }
 
-    public void setAlunos(ObservableList<Aluno> alunos) {
-        this.alunos = alunos;
+    public ObservableList<Usuario> getUsuarios() {
+        return usuarios;
     }
 
+    public void setUsuarios(ObservableList<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 
     @Override
     public String toString() {
-        StringBuilder alunosString = new StringBuilder();
-        for (Aluno aluno : alunos) {
-            alunosString.append(aluno.toString()).append(", \n");
+        StringBuilder usuariosString = new StringBuilder();
+        for (Usuario usuario : usuarios) {
+            usuariosString.append(usuario.toString()).append(", \n");
         }
-        if (alunosString.length() > 0) {
-            alunosString.setLength(alunosString.length() - 2);
+        if (usuariosString.length() > 0) {
+            usuariosString.setLength(usuariosString.length() - 2);
         }
 
         return "Equipe{" +
                 "nome='" + nome + '\'' +
                 ", gitHub='" + gitHub + '\'' +
                 ", semestre='" + semestre + '\'' +
-                ", alunos=[" + alunosString + "]" +
+                ", usuarios=[" + usuariosString + "]" +
                 '}';
     }
 }
