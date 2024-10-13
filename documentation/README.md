@@ -12,6 +12,8 @@
 
 <br>
 
+# Planejamento das Sprints
+
 <details>
 <summary>Sprint 1</summary>
 
@@ -138,6 +140,8 @@
 | 1      | Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | Isso está no doc que passei no começo                                          |
 | 1      | Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
 
+---
+
 ### Burndonw
 <img src="../assets/BunrDown_Sprint1.JPG" alt="BurnDown_Sprint1" width="100%" />
 
@@ -146,17 +150,59 @@
 <details>
 <summary>Sprint 2</summary>
 
-### User Stories da Sprint
+## User Stories da Sprint
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 7    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 04  | Como um professor, eu quero poder alterar membros de um grupo.                                    | 1          | 2      | 7                     |
+
+### Defitionion of done: 
+
+### Definition of ready: 
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 8    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 09  | Como um professor, eu quero criar sprints para que os alunos avaliem os integrantes.              | 2          | 2      | 8                     |
+
+### Defitionion of done: 
+
+### Definition of ready: 
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 9    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 36  | Como um professor, eu quero cadastrar o calendário das sprints.                                   | 5          | 2      | 1                     |
+
+### Defitionion of done: 
+
+### Definition of ready: 
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 10   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos.               | 2          | 2      | 2                     |
+
+### Defitionion of done: 
+
+### Definition of ready: 
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
 | 11   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério.    | 2          | 2      | 3                     |
 
+### Defitionion of done: 
+
+### Definition of ready: 
+
+---
+
 ### Validações feitas com o Cliente
+
+| Sprint                                   | Validações                                                                                                            | Respostas                                                                                          |
+|----------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| 2 | Há uma pontuação máxima que o professor disponibilizará para a Sprint?| O máximo é se todo mundo puder dar 3 em todos os critérios para todo mundo.|
+| 2 | Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
+| 2 | As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
+
+---
 
 ### Burndonw
 </details>
@@ -192,6 +238,8 @@
 ### Burndonw
 
 </details>
+
+---
 
 # Diagrama de entidades de relacionamento do banco de dados
 <img src="../assets/Pacer_Assessment_System_BD.png" alt="DER_BD" width="100%" />
