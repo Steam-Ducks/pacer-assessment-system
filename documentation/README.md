@@ -5,22 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
+<div align="center">
+    <img src="../assets/capa-readme.png" alt="capa-readme" width="100%" />
+</div>
+
+<br>
+
 <details>
 <summary>Sprint 1</summary>
 
-### User Stories da Sprint
+## User Stories da Sprint
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero importar um arquivo .csv para salvar as informações dos alunos.       | 1          | 1      | 4                     |
-| 2    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes.         | 1          | 1      | 5                     |
-| 3    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 14  | Como um aluno, eu quero dar notas para todos os integrantes da minha equipe.                      | 3          | 1      | 1                     |
-| 4    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 12  | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos, por que isso permite que os integrantes utilizem esses pontos para avaliar todos os integrantes do grupo  | 3          | 1      | 1                     |
-| 5    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 16  | Como um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha.                    | 1          | 1      | 8                     |
-| 6    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 18  | Como um professor, eu quero criar e editar critérios de avaliação.                                | 1          | 1      | 6                     |
+| 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada.       | 1          | 1      | 4                     |
 
+### Defitionion of done: 
+- O professor deve poder importar um arquivo CSV com as informações Nome, e-mail e senha.
+- Deve haver uma validação para garantir que o formato do arquivo esteja correto.
+- Em caso de erro no arquivo CSV, uma mensagem de erro deve ser exibida para o professor.
 
-### Validações feitas com o Cliente
+### Definition of ready: 
+- O arquivo CSV pode ser importado com sucesso sem erros.
+- Todas as informações dos alunos foram carregadas na tela de protótipo.
+- Em caso de falha, uma mensagem de erro é exibida.
+- Testes unitários e de integração foram criados.
+- A funcionalidade foi revisada pelo time e aprovada pelo PO.
+  <br>
+
+---
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 2    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes, de forma a facilitar a gestão e o acompanhamento do progresso dos alunos na API.       | 1          | 1      | 5                     |
+
+### Defitionion of done: 
+- O professor deve poder selecionar quais critérios serão avaliados.
+- O sistema deve permitir a criação e edição do semestres.
+- Deve ser possível associar grupos a um semestre específico.
+- O professor deve ser capaz de visualizar todos os semestres criados e os grupos associados a cada um.
+
+### Definition of ready: 
+- A funcionalidade de criação e edição de semestres seguem o DOD.
+- Testes unitários foram realizados com sucesso.
+- O código foi revisado por outros membros da equipe.
+- A nova funcionalidade foi apresentada ao Product Owner e aprovada.
+  <br>
+
+  ---
+  
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 3    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 14  | Como um aluno, eu quero dar notas para todos os integrantes da minha equipe para avaliar a contribuição de cada um no desenvolvimento da API       | 3          | 1      | 1                     |
+
+### Defitionion of done: 
+- O aluno deve ser capaz de selecionar cada integrante da equipe e atribuir uma nota para cada critério avaliado.
+- A nota deve ser de 0 a 3.
+- Uma mensagem de confirmação deve ser exibida após a atribuição de notas.
+- O aluno não deve poder avaliar mais de uma vez por sprint.
+
+### Definition of ready: 
+- Testes unitários foram desenvolvidos para garantir a correta atribuição de notas.
+- A funcionalidade foi validada manualmente.
+- O Product Owner aprovou a implementação final.
+
+---
+  
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 4    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 12  | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos para que os integrantes possam usar esses pontos para avaliar uns aos outros  | 3          | 1      | 1                     |
+
+### Defitionion of done: 
+- O professor deve ser capaz de definir um limite máximo de pontos da sprint para cada grupo.
+- O sistema deve garantir que os pontos distribuídos pelos alunos não excedam o limite estabelecido.
+- Uma mensagem de erro deve ser exibida caso o limite de pontos seja excedido durante a avaliação (Limite de pontos é 3 em todos os critérios para todo mundo.)
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar a lógica de distribuição de pontos.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+---
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 5    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 16  | omo um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha para que eu possa avaliar os outros integrantes do meu grupo em todos os critérios                    | 1          | 1      | 8                     |
+
+### Defitionion of done: 
+- O usuário deve poder inserir seu e-mail e senha para autenticar no sistema.
+- Deve haver validação para garantir que o e-mail e senha estejam corretos.
+- Se as credenciais estiverem incorretas, uma mensagem de erro deve ser exibida.
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar login com e-mail e senha .
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+---
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 6    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 18  | Como um professor, eu quero criar e editar critérios de avaliação para que os alunos possa se avaliar no final de cadas Spint. | 1          | 1      | 6                     |
+
+### Defitionion of done: 
+- O professor deve ser capaz de criar novos critérios de avaliação, especificando título e descrição.
+- Deve ser possível editar critérios existentes e salvar as alterações.
+- Deve haver a opção de excluir critérios de avaliação, com uma mensagem de confirmação antes da exclusão.
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar a criação e edição dos critérios de avaliação.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+---
+
+## Validações feitas com o Cliente
 
 | Sprint | Validações                                                                                                                                     | Respostas                                                                       |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
@@ -39,7 +139,7 @@
 | 1      | Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
 
 ### Burndonw
-<img src="assets/BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
+<img src="../assets/BunrDown_Sprint1.JPG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
 
@@ -94,7 +194,13 @@
 </details>
 
 # Diagrama de entidades de relacionamento do banco de dados
-<img src="assets/DER_BD.png" alt="DER_BD" width="100%" />
+<img src="../assets/Pacer_Assessment_System_BD.png" alt="DER_BD" width="100%" />
+
+<br>
+
+<div align="center">
+    <img src="../assets/footer.new.png" alt="footer" width="100%" />
+</div>
 
 </body>
 </html>
