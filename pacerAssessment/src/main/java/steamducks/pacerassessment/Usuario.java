@@ -1,17 +1,20 @@
 package steamducks.pacerassessment;
 
-public class Aluno {
+public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private int idEquipe;
+    private boolean isProfessor;
 
-    public Aluno(String nome, String email, String senha) {
+    public Usuario(String nome, String email, String senha, int idEquipe, boolean isProfessor) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.idEquipe = idEquipe;
+        this.isProfessor = isProfessor;
     }
 
-    // Getters e Setters
     public String getNome() {
         return nome;
     }
@@ -36,11 +39,29 @@ public class Aluno {
         this.senha = senha;
     }
 
+    public long getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
+    }
+
+    public boolean isProfessor() {
+        return isProfessor;
+    }
+
+    public void setProfessor(boolean professor) {
+        isProfessor = professor;
+    }
+
     @Override
     public String toString() {
-        return "Aluno{" +
+        return "Usuario{" +
                 "nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
+                ", idEquipe=" + idEquipe +
+                ", isProfessor=" + isProfessor +
                 '}';
     }
 }
