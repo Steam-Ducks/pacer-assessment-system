@@ -53,7 +53,6 @@
 - Testes unitários foram realizados com sucesso.
 - O código foi revisado por outros membros da equipe.
 - A nova funcionalidade foi apresentada ao Product Owner e aprovada.
-  <br>
 
   ---
   
@@ -154,53 +153,44 @@
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 7    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 04  | Como um professor, eu quero poder alterar membros de um grupo.                                    | 1          | 2      | 7                     |
+| 7    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 04  | um professor, eu quero poder adicionar, remover ou modificar membros de um grupo de alunos para garantir que cada grupo tenha a composição correta do grupo da API. | 1          | 2      | 7                     |
 
 ### Defitionion of done: 
+- O professor deve poder adicionar um aluno com nome, e-mail e senha.
+- O professor deve poder editar um aluno com nome, e-mail e senha.
+- O professor deve poder excluir um aluno cadastrado.
+- Deve ser possível o professor verificar e selecionar todos os grupos cadastrados no sistema.
 
 ### Definition of ready: 
+- Testes unitários foram realizados para verificar a adição, edição e remossão dos membros de uma equipe.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 8    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 09  | Como um professor, eu quero criar sprints para que os alunos avaliem os integrantes.              | 2          | 2      | 8                     |
+| 8    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 09  | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar de forma sistemática o desempenho dos integrantes do grupo.| 2          | 2      | 8                     |
 
 ### Defitionion of done: 
+- O professor deve poder criar diversas sprints
+- O professor deve vincular a sprint criada a um semestre
+- O professor deve poder visualizar as sprints criadas
 
 ### Definition of ready: 
-
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 9    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 36  | Como um professor, eu quero cadastrar o calendário das sprints.                                   | 5          | 2      | 1                     |
-
-### Defitionion of done: 
-
-### Definition of ready: 
-
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 10   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos.               | 2          | 2      | 2                     |
-
-### Defitionion of done: 
-
-### Definition of ready: 
-
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 11   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério.    | 2          | 2      | 3                     |
-
-### Defitionion of done: 
-
-### Definition of ready: 
+- Testes unitários foram realizados para verificar a criação de Sprints.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
 
 ---
 
 ### Validações feitas com o Cliente
 
-| Sprint                                   | Validações                                                                                                            | Respostas                                                                                          |
-|----------------------------------------|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Sprint | Validações | Respostas |
+|--------|------------|-----------|
 | 2 | Há uma pontuação máxima que o professor disponibilizará para a Sprint?| O máximo é se todo mundo puder dar 3 em todos os critérios para todo mundo.|
 | 2 | Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
 | 2 | As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
+| 2 | Validação de nome e logo    <img src="../assets/recap-logo.png" alt="recap-logo.png" width="10%" /> | Aprovado |
+| 2 | Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? |  |
 
 ---
 
@@ -214,8 +204,76 @@
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 12   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 26  | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo.             | 3          | 3      | 3                     |
-| 13   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação.          | 3          | 3      | 2                     |
+| 10   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2          | 2      | 2                     |
+
+### Defitionion of done: 
+- O professor deve poder gerar o relatório com o mínimo de clicks possível
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema
+- O professor deve poder gerar quantos arquivos quiser
+- O professor deve poder filtrar os grupos do relatório por semestre
+
+### Definition of ready: 
+- Testes unitários foram realizados para geração do relatório.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 11   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas."    | 2          | 2      | 3                     |
+
+
+### Defitionion of done: 
+- O professor deve poder gerar o relatório com o mínimo de clicks possível
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar
+- O professor deve poder gerar quantos arquivos quiser
+- O professor deve poder filtrar os alunos do relatório por turma
+
+### Definition of ready: 
+- Testes unitários foram realizados para geração do relatório.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 9    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 36  | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5          | 2      | 1                     |
+
+### Defitionion of done: 
+- O professor deve poder cadastrar um calendário com todas as sprints que haverão no semestre
+- O professor deve vincular as sprints cadastradas a um semestre
+- O professor deve poder visualizar as sprints criadas
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar a criação do calendário.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 12   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 26  | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral e identificar áreas onde podemos melhorar como equipe. | 3          | 3      | 3           |
+
+### Defitionion of done: 
+- A tela que demonstra as notas médias deve ser a primeira a aparecer para o aluno ao fazer o login
+- O aluno deve apenas ver as notas médias dos outros alunos de sua equipe
+- Quando estiver no período de avaliação da Sprint, deve haver um botão para avaliar os integrantes do grupo na mesma tela
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar se as médias estão corretas.
+- Testes unitários foram realizados para verificar se os alunos do grupo estão corretas.
+- Testes unitários foram realizados para verificar se o botão de avaliar funciona na data correta.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| 13   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3          | 3      | 2                     |
+
+### Defitionion of done: 
+- Deve aparecer juntamente a a tela que demonstra as notas médias dos outros integrantes da equipe
+
+### Definition of ready: 
+- Testes unitários foram realizados para verificar se as médias estão corretas.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
 
 ### Validações feitas com o Cliente
 
@@ -230,9 +288,32 @@
 
 | Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 14   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 33  | Como um professor, eu quero poder mudar senha pelo e-mail.                                       | 4          | 4      | 8                     |
-| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar senha pelo e-mail.    
+| 14   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 33  | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual. | 4          | 4      | 8                     |
 
+### Defitionion of done: 
+- Deve ser apenas um botão na tela de login
+- Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login]
+- E-mail de recuperação deve ser gerado automaticamente com link para alterar senha
+
+### Definition of ready: 
+- Testes unitários foram realizados para enviar o e-mail correto.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro | 
+|------|------------|----|------------|------------|--------|-----------------------|
+| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual."     | 4          | 4      | 8 |
+
+### Defitionion of done: 
+- Deve ser apenas um botão na tela de login
+- Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login]
+- E-mail de recuperação deve ser gerado automaticamente com link para alterar senha
+
+### Definition of ready: 
+- Testes unitários foram realizados para enviar o e-mail correto.
+- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
+- O Product Owner revisou e aprovou a implementação final.
+   
 ### Validações feitas com o Cliente
 
 ### Burndonw
