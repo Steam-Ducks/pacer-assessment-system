@@ -7,7 +7,7 @@
 <body>
 
 <div align="center">
-    <img src="../assets/capa-readme.png" alt="capa-readme" width="100%" />
+    <img src="../assets/capa-readme-documentation.png" alt="capa-readme" width="100%" />
 </div>
 
 <br>
@@ -19,8 +19,8 @@
 
 ## User Stories da Sprint
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
 | 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada.       | 1          | 1      | 4                     |
 
 ### Defitionion of done: 
@@ -142,7 +142,7 @@
 ---
 
 ### Burndonw
-<img src="../assets/BunrDown_Sprint1.JPG" alt="BurnDown_Sprint1" width="100%" />
+<img src="BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
 
@@ -323,7 +323,7 @@
 ---
 
 # Diagrama de entidades de relacionamento do banco de dados
-<img src="../assets/Pacer_Assessment_System_BD.png" alt="DER_BD" width="100%" />
+<img src="DER_BD.png" alt="DER_BD" width="100%" />
 
 <br>
 
