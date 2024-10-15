@@ -84,15 +84,7 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 
 ## Tecnologias Utilizadas
 
-![Git](https://img.shields.io/badge/Git-333333?style=for-the-badge&logo=git)
-![GitHub](https://img.shields.io/badge/GitHub-333333?style=for-the-badge&logo=github)
-![Java](https://img.shields.io/badge/Java-333333?style=for-the-badge&logo=java)
-![SQL](https://img.shields.io/badge/SQL-333333?style=for-the-badge&logo=sqlite)
-![VSCode](https://img.shields.io/badge/VSCode-333333?style=for-the-badge&logo=visualstudiocode)
-![Jira](https://img.shields.io/badge/Jira-333333?style=for-the-badge&logo=jira)
-![Scrum](https://img.shields.io/badge/Scrum-333333?style=for-the-badge&logo=scrum)
-![Slack](https://img.shields.io/badge/Slack-333333?style=for-the-badge&logo=slack)
-
+<img src="assets/tecnologias.png" alt="tecnologias" width="100%" />
 
 ## Termo de Requisitos de Permanência
 
