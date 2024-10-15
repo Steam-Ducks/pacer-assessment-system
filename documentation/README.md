@@ -190,7 +190,7 @@
 | 2 | Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
 | 2 | As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
 | 2 | Validação de nome e logo    <img src="../assets/recap-logo.png" alt="recap-logo.png" width="10%" /> | Aprovado |
-| 2 | Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? |  |
+| 2 | Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
 
 ---
 
