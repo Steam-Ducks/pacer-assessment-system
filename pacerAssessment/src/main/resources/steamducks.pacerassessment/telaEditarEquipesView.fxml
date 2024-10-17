@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0" prefWidth="475.0" style="-fx-background-color: e5e5e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaEditarEquipesController">
+   <children>
+      <Button fx:id="btnConfirmar" layoutX="132.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnConfirmarEditar" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #20BF55;" text="Confirmar" textFill="WHITE" />
+      <Button fx:id="btnCancelar" layoutX="265.0" layoutY="390.0" mnemonicParsing="false" onAction="#btnCancelarEditar" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
+      <Label layoutX="103.0" layoutY="63.0" prefHeight="10.0" prefWidth="50.0" text="Nome: " />
+      <Label layoutX="103.0" layoutY="107.0" prefHeight="17.0" prefWidth="42.0" text="Github:" />
+      <TextField fx:id="txtNome" layoutX="145.0" layoutY="59.0" prefHeight="25.0" prefWidth="239.0" />
+      <TextField fx:id="txtGithub" layoutX="145.0" layoutY="103.0" prefHeight="25.0" prefWidth="239.0" />
+      <Label alignment="CENTER" layoutX="168.0" layoutY="14.0" prefHeight="25.0" prefWidth="151.0" text="Editar Equipe">
+         <font>
+            <Font name="SansSerif Bold" size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="35.0" layoutY="147.0" prefHeight="233.0" prefWidth="417.0">
+        <columns>
+          <TableColumn prefWidth="41.0" text="ID" />
+          <TableColumn prefWidth="102.0" text="Nome" />
+            <TableColumn prefWidth="177.0" text="E-mail" />
+            <TableColumn minWidth="0.0" prefWidth="96.0" text="Senha" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

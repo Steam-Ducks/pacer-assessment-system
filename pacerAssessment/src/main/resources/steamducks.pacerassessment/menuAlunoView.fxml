@@ -1,12 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="steamducks.pacerassessment.MenuAlunoController">
-
-    <VBox alignment="CENTER" layoutX="201.0" layoutY="171.0" spacing="20.0" />
-     <Label layoutX="225.0" layoutY="186.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Em construção" />
-
-</AnchorPane>
+<BorderPane prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.MenuAlunoController">
+   <center>
+      <AnchorPane fx:id="Anchorpane" style="-fx-pref-height: 700; -fx-pref-width: 900;">
+         <children>
+            <Line endX="754.0" layoutX="220.0" layoutY="219.0" startX="-211.6000213623047" stroke="#14213d" strokeWidth="2.0" />
+            <Label layoutX="49.0" layoutY="15.0" prefHeight="63.0" prefWidth="629.0" text="Prezado(a) aluno(a)" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="46.0" prefHeight="144.0" prefWidth="886.0" text="Informamos que o período de avaliação ainda não começou. Fique atento(a) ao calendário acadêmico para as datas oficiais e, caso tenha dúvidas, entre em contato com a coordenação." wrapText="true">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+   <left>
+      <AnchorPane prefHeight="779.0" prefWidth="273.0" style="-fx-background-color: #14213d;" BorderPane.alignment="CENTER">
+         <children>
+            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="69.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
+            <Text fill="WHITE" layoutX="19.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minhas informações">
+               <font>
+                  <Font name="SansSerif Bold" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="163.0" fitWidth="208.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo-dark.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nomeAluno" layoutX="26.0" layoutY="232.0" prefHeight="23.0" prefWidth="222.0" text="Samuel Prado" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="DataAluno" layoutX="26.0" layoutY="280.0" prefHeight="23.0" prefWidth="222.0" text="02/07/2003" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="emailAluno" layoutX="20.0" layoutY="325.0" prefHeight="58.0" prefWidth="230.0" text="samuel.prado@fatec.sp.gov.br" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="232.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
+            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="118.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
+            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="12.0" layoutY="165.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <AnchorPane prefHeight="54.0" prefWidth="1024.0" style="-fx-background-color: #14213D;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo-dark.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema RECAP">
+               <font>
+                  <Font name="SansSerif Bold" size="20.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="1068.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
+            <Text fill="WHITE" layoutX="1099.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá, Aluno (a)  |">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnLogout" alignment="CENTER" graphicTextGap="2.0" layoutX="1194.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" style="-fx-background-color: transparent;" text="Sair" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

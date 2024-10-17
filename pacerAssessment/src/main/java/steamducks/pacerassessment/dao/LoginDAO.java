@@ -1,8 +1,13 @@
 package steamducks.pacerassessment.dao;
 
-import steamducks.pacerassessment.Usuario;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
 
-import java.sql.*;
+import steamducks.pacerassessment.Usuario;
 
 public class LoginDAO {
 

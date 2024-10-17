@@ -66,7 +66,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirCadastroAlunoEquipes(ActionEvent event) {
-        loadView("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml", "Cadastro de Equipe");
+        loadView("/steamducks.pacerassessment/cadastroEquipeAlunoView.fxml", "Cadastro de Equipe");
     }
 
     @FXML
