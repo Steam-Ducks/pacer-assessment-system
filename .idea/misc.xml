@@ -5,13 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pacerAssessment/pom.xml" />
-        <option value="$PROJECT_DIR$/telaAvaliacaoAluno/pom.xml" />
       </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/telaAvaliacaoAluno/pom.xml" />
-      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="22" project-jdk-type="JavaSDK">
