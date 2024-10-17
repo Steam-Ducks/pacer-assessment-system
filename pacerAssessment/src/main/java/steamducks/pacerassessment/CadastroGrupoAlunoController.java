@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class CadastroGrupoAlunoController {
 
+    private GrupoAlunoDAO grupoAlunoDAO;
+
     @FXML
     private TextField txtEquipe;
     @FXML
@@ -57,6 +59,8 @@ public class CadastroGrupoAlunoController {
     private final ObservableList<Usuario> alunoList = FXCollections.observableArrayList();
 
     public void initialize() {
+        grupoAlunoDAO = new GrupoAlunoDAO();
+
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tcSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
@@ -124,7 +128,6 @@ public class CadastroGrupoAlunoController {
     }
 
     private void carregarSemestres() {
-        GrupoAlunoDAO grupoAlunoDAO = new GrupoAlunoDAO();
         ObservableList<String> semestreList = FXCollections.observableArrayList(grupoAlunoDAO.buscarSemestres());
         cmbSemestre.setItems(semestreList);
     }
@@ -140,13 +143,6 @@ public class CadastroGrupoAlunoController {
             return;
         }
 
-        /* precisa ter um aluno?
-        if (alunoList.isEmpty()) {
-            mostrarAlerta("Erro", "A equipe deve ter pelo menos um aluno.", Alert.AlertType.WARNING);
-            return;
-        }
-        */
-
         for (Usuario aluno : alunoList) {
             if (aluno.getNome().isEmpty() || aluno.getEmail().isEmpty() || aluno.getSenha().isEmpty()) {
                 mostrarAlerta("Erro", "Todos os campos dos alunos devem ser preenchidos.", Alert.AlertType.WARNING);
@@ -154,11 +150,10 @@ public class CadastroGrupoAlunoController {
             }
         }
 
-        GrupoAlunoDAO dao = new GrupoAlunoDAO();
         int idSemestre;
 
         try {
-            idSemestre = dao.obterIdSemestre(semestreSelecionado);
+            idSemestre = grupoAlunoDAO.obterIdSemestre(semestreSelecionado);
         } catch (RuntimeException e) {
             mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
             return;
@@ -167,7 +162,7 @@ public class CadastroGrupoAlunoController {
         int idEquipe;
 
         try {
-            idEquipe = dao.criarEquipe(nomeEquipe, github, idSemestre);
+            idEquipe = grupoAlunoDAO.criarEquipe(nomeEquipe, github, idSemestre);
         } catch (RuntimeException e) {
             mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
             return;
@@ -183,7 +178,7 @@ public class CadastroGrupoAlunoController {
         }
 
         try {
-            boolean alunosAdicionados = dao.adicionarAlunos(idEquipe, alunoList);
+            boolean alunosAdicionados = grupoAlunoDAO.adicionarAlunos(idEquipe, alunoList);
             if (!alunosAdicionados) {
                 mostrarAlerta("Erro", "Falha ao adicionar alunos. Tente novamente.", Alert.AlertType.WARNING);
                 return;
