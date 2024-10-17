@@ -2,15 +2,22 @@ package steamducks.pacerassessment;
 
 public class Criterios {
 
-    private static int contadorId = 0;
     private int id;
     private String nome;
     private String descricao;
 
-    public Criterios(String nome, String descricao) {
-        this.id = contadorId++;
+    public Criterios(int id, String nome, String descricao) {
+        this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -23,10 +30,6 @@ public class Criterios {
 
     public String getDescricao() {
         return descricao;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setDescricao(String descricao) {
