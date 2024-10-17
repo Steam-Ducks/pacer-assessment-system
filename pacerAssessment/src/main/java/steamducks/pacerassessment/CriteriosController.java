@@ -15,8 +15,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.scene.layout.HBox;
+import steamducks.pacerassessment.dao.CriteriosDAO;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 public class CriteriosController {
@@ -58,6 +60,13 @@ public class CriteriosController {
 
     public void initialize() {
         criteriosData = FXCollections.observableArrayList();
+
+        CriteriosDAO criteriosDao = new CriteriosDAO();
+
+        List<Criterios> criterios = criteriosDao.buscarCriterios(); // usa essa funcao da DAO pra criar uma lista de criterios
+        criteriosData.addAll(criterios); // Adiciona essa lista do banco na lista do controlador
+
+
 
         idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
 
