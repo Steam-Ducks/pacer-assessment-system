@@ -1,6 +1,7 @@
 package steamducks.pacerassessment;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.dao.SemestreDAO;
 
 public class CadastroSemestreController implements Initializable {
 
@@ -30,43 +32,44 @@ public class CadastroSemestreController implements Initializable {
     private Button btnRemove;
 
     @FXML
-    private ListView<String> listViewOpcoes;
+    private ListView<Criterios> listViewOpcoes;
 
     @FXML
-    private ListView<String> listViewCriterios;
+    private ListView<Criterios> listViewCriterios;
 
     @FXML
     private TextField txtFieldNome;
 
+    private final SemestreDAO semestreDAO = new SemestreDAO();
+    private List<String> criteriosSelecionados = new ArrayList<>();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<String> opcoes = FXCollections.observableArrayList("Autonomia", "Trabalho em Equipe",
-                "Organização", "Comunicação", "Criatividade", "Resolução de Problemas", "Pontualidade", "Entrega");
+        List<Criterios> criteriosDisponiveis = semestreDAO.buscarCriterios();
+        ObservableList<Criterios> opcoes = FXCollections.observableArrayList(criteriosDisponiveis);
         listViewOpcoes.setItems(opcoes);
-        listViewCriterios.setItems(FXCollections.observableArrayList()); 
+        listViewCriterios.setItems(FXCollections.observableArrayList());
     }
 
     @FXML
     void addOption(ActionEvent event) {
-        String selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
-        if (selectedOption != null) {
-            ObservableList<String> criterios = listViewCriterios.getItems();
-            if (!criterios.contains(selectedOption)) {
-                criterios.add(selectedOption); 
-            }
+        Criterios selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
+        if (selectedOption != null && !listViewCriterios.getItems().contains(selectedOption)) {
+            listViewCriterios.getItems().add(selectedOption);
+            criteriosSelecionados.add(String.valueOf(selectedOption.getId()));
         } else {
-            showAlert("Erro", "Nenhuma opção selecionada para adicionar.", Alert.AlertType.ERROR); 
+            showAlert("Erro", "Nenhuma opção selecionada para adicionar.", Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     void removeOption(ActionEvent event) {
-        String selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
+        Criterios selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
         if (selectedOption != null) {
-            ObservableList<String> criterios = listViewCriterios.getItems();
-            criterios.remove(selectedOption); 
+            listViewCriterios.getItems().remove(selectedOption);
+            criteriosSelecionados.remove(selectedOption.getId());
         } else {
-            showAlert("Erro", "Nenhuma opção selecionada para remover.", Alert.AlertType.ERROR); 
+            showAlert("Erro", "Nenhuma opção selecionada para remover.", Alert.AlertType.ERROR);
         }
     }
 
@@ -75,36 +78,39 @@ public class CadastroSemestreController implements Initializable {
         String nome = txtFieldNome.getText();
 
         if (nome.isEmpty()) {
-            showAlert("Erro", "O campo nome não pode estar vazio.", Alert.AlertType.ERROR); 
+            showAlert("Erro", "O campo nome não pode estar vazio.", Alert.AlertType.ERROR);
+            return;
         }
 
-        List<String> criteriosSelecionados = listViewCriterios.getItems();
         if (criteriosSelecionados.isEmpty()) {
             showAlert("Erro", "Adicione pelo menos um critério.", Alert.AlertType.ERROR);
             return;
         }
 
-        String[] criteriosArray = criteriosSelecionados.toArray(new String[0]);
-        String criterios = String.join(", ", criteriosArray);
+        int idSemestre = semestreDAO.criarSemestre(nome);
 
-        System.out.println("Semestre cadastrado:");
-        System.out.println("Nome: " + nome);
-        System.out.println("Critérios: " + criterios);
+        if (idSemestre > 0) {
+            // Vincular critérios ao semestre criado
+            semestreDAO.vincularCriterios(idSemestre, listViewCriterios.getItems());
 
-        showAlert("Cadastro Realizado", "Semestre cadastrado com sucesso!", Alert.AlertType.INFORMATION); 
+            showAlert("Sucesso", "Semestre cadastrado com sucesso!", Alert.AlertType.INFORMATION);
 
-        txtFieldNome.clear();
-        listViewCriterios.getItems().clear();
+            txtFieldNome.clear();
+            listViewCriterios.getItems().clear();
+            criteriosSelecionados.clear();
+        } else {
+            showAlert("Erro", "Erro ao cadastrar semestre.", Alert.AlertType.ERROR);
+        }
     }
 
     @FXML
     void cancelarCadastrarSemestre(ActionEvent event) {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close(); 
+        stage.close();
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type); 
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
