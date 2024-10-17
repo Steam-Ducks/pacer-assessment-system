@@ -35,4 +35,9 @@ public class Criterios {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    @Override
+    public String toString() {
+        return nome; // Exibe apenas o nome do critério
+    }
 }
