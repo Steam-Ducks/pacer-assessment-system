@@ -21,7 +21,7 @@
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 1    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada.       | 1          | 1      | 4                     |
+| 1 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada. | 1 | 1 | 4 |
 
 ### Defitionion of done: 
 - O professor deve poder importar um arquivo CSV com as informações Nome, e-mail e senha.
@@ -34,13 +34,21 @@
 - Em caso de falha, uma mensagem de erro é exibida.
 - Testes unitários e de integração foram criados.
 - A funcionalidade foi revisada pelo time e aprovada pelo PO.
-  <br>
+
+## Validações feitas com o Cliente
+
+| Validações                                                              | Respostas                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+Em relação aos grupos que realizarão as sprints, além dos integrantes e do nome do grupo, há mais alguma informações que deseja vincular a esses grupos? | link do git |
+| O professor será o único a cadastrar os alunos ou ele pode liberar um acesso para que o próprio aluno faça o seu cadastro? | o professor cadastra |
+| Seria interessante então poder cadastrar vários professores? | A princípio só tem 1 |
+| Podemos criar tela para cadastrar os alunos individualmente?  |	Pode, mas a prioridade para isso é baixa pois a forma principal de cadastro deve ser por importação de arquivo |
 
 ---
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 2    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes, de forma a facilitar a gestão e o acompanhamento do progresso dos alunos na API.       | 1          | 1      | 5                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 2 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes, de forma a facilitar a gestão e o acompanhamento do progresso dos alunos na API. | 1 | 1 | 5 |
 
 ### Defitionion of done: 
 - O professor deve poder selecionar quais critérios serão avaliados.
@@ -54,11 +62,18 @@
 - O código foi revisado por outros membros da equipe.
 - A nova funcionalidade foi apresentada ao Product Owner e aprovada.
 
+## Validações feitas com o Cliente
+
+| Validações                                                              | Respostas                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024" | sim, preciso separar por semestre/turma |
+| Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
+
   ---
   
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 3    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 14  | Como um aluno, eu quero dar notas para todos os integrantes da minha equipe para avaliar a contribuição de cada um no desenvolvimento da API       | 3          | 1      | 1                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 3 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 14 | Como um aluno, eu quero dar notas para todos os integrantes da minha equipe para avaliar a contribuição de cada um no desenvolvimento da API | 3 | 1 | 1 |
 
 ### Defitionion of done: 
 - O aluno deve ser capaz de selecionar cada integrante da equipe e atribuir uma nota para cada critério avaliado.
@@ -71,11 +86,15 @@
 - A funcionalidade foi validada manualmente.
 - O Product Owner aprovou a implementação final.
 
+| Validações | Respostas |
+|------------|-----------|
+| Há uma pontuação máxima que o professor disponibilizará para a Sprint?| O máximo é se todo mundo puder dar 3 em todos os critérios para todo mundo.|
+
 ---
   
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 4    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 12  | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos para que os integrantes possam usar esses pontos para avaliar uns aos outros  | 3          | 1      | 1                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 4 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 12 | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos para que os integrantes possam usar esses pontos para avaliar uns aos outros | 3 | 1 | 1 |
 
 ### Defitionion of done: 
 - O professor deve ser capaz de definir um limite máximo de pontos da sprint para cada grupo.
@@ -89,9 +108,9 @@
 
 ---
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 5    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 16  | omo um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha para que eu possa avaliar os outros integrantes do meu grupo em todos os critérios                    | 1          | 1      | 8                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 5 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 16 | omo um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha para que eu possa avaliar os outros integrantes do meu grupo em todos os critérios | 1 | 1 | 8 |
 
 ### Defitionion of done: 
 - O usuário deve poder inserir seu e-mail e senha para autenticar no sistema.
@@ -103,11 +122,20 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
+## Validações feitas com o Cliente
+
+| Validações                                                              | Respostas                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+|Todo mundo que for usar o sistema vai ter que se identificar para entrar e usar o sistema. Essa identificação inicial eu e meu time achamos interessante usar um e-mail e senha. O que você acha? | Pode ser |
+| Qual informação o professor já deve visualizar ao fazer o login? | Ele já deve acessar diretamente em gerar relatórios.|
+| Faz sentido manter um botão de lembrar-me na tela de login? | Não porque o sistema vai ser instalado em computadores públicos |
+| Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
+
 ---
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 6    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 18  | Como um professor, eu quero criar e editar critérios de avaliação para que os alunos possa se avaliar no final de cadas Spint. | 1          | 1      | 6                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 6 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 18 | Como um professor, eu quero criar e editar critérios de avaliação para que os alunos possa se avaliar no final de cadas Spint. | 1 | 1 | 6 |
 
 ### Defitionion of done: 
 - O professor deve ser capaz de criar novos critérios de avaliação, especificando título e descrição.
@@ -119,25 +147,11 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
----
-
 ## Validações feitas com o Cliente
 
-| Sprint | Validações                                                                                                                                     | Respostas                                                                       |
-|--------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| 1      | Em relação aos grupos que realizarão as sprints, além dos integrantes e do nome do grupo, há mais alguma informações que deseja vincular a esses grupos? | link do git                                                                    |
-| 1      | Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024"                             | sim, preciso separar por semestre/turma                                        |
-| 1      | O professor será o único a cadastrar os alunos ou ele pode liberar um acesso para que o próprio aluno faça o seu cadastro?                    | o professor cadastra                                                           |
-| 1      | Seria interessante então poder cadastrar vários professores?                                                                                 | A princípio só tem 1                                                           |
-| 1      | Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
-| 1      | Em relação aos critérios que o professor vai colocar na avaliação do aluno, há um limite máximo para a quantidade de critérios?                | A princípio não                                                                |
-| 1      | Todo mundo que for usar o sistema vai ter que se identificar para entrar e usar o sistema. Essa identificação inicial eu e meu time achamos interessante usar um e-mail e senha. O que você acha? | Pode ser                                                                       |
-| 1      | Podemos criar tela para cadastrar os alunos individualmente?  |	Pode, mas a prioridade para isso é baixa pois a forma principal de cadastro deve ser por importação de arquivo
-| 1      | Qual informação o professor já deve visualizar ao fazer o login?                                                                             | Ele já deve acessar diretamente em gerar relatórios.                           |
-| 1      | Faz sentido manter um botão de lembrar-me na tela de login?                                                                                  | Não porque o sistema vai ser instalado em computadores públicos                  |
-| 1      | Podemos elaborar um nome e um ícone para o aplicativo?                                                                                      | Pode, porém tem que validar com o cliente antes                               |
-| 1      | Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | Isso está no doc que passei no começo                                          |
-| 1      | Nós já combinamos que é interessante que, ao abrir o sistema, o professor visualize a tela de exportação de relatórios. No caso dos alunos, além da avaliação de sprint, há alguma outra função que eles devem acessar? E qual tela eles devem visualizar logo ao fazer o login? | O aluno só avalia. Fora do período de avaliação pode deixar sem nada ou mostrar o resultado final do grupo (as médias) |
+| Validações                                                              | Respostas                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Em relação aos critérios que o professor vai colocar na avaliação do aluno, há um limite máximo para a quantidade de critérios? | A princípio não|
 
 ---
 
@@ -151,9 +165,9 @@
 
 ## User Stories da Sprint
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 7    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 04  | um professor, eu quero poder adicionar, remover ou modificar membros de um grupo de alunos para garantir que cada grupo tenha a composição correta do grupo da API. | 1          | 2      | 7                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 7 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 04 | um professor, eu quero poder adicionar, remover ou modificar membros de um grupo de alunos para garantir que cada grupo tenha a composição correta do grupo da API. | 1 | 2 | 7 |
 
 ### Defitionion of done: 
 - O professor deve poder adicionar um aluno com nome, e-mail e senha.
@@ -166,9 +180,13 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 8    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 09  | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar de forma sistemática o desempenho dos integrantes do grupo.| 2          | 2      | 8                     |
+## Validações feitas com o Cliente
+
+---
+
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 8 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 09 | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar de forma sistemática o desempenho dos integrantes do grupo.| 2 | 2 | 8 |
 
 ### Defitionion of done: 
 - O professor deve poder criar diversas sprints
@@ -180,17 +198,12 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
----
+## Validações feitas com o Cliente
 
-### Validações feitas com o Cliente
-
-| Sprint | Validações | Respostas |
-|--------|------------|-----------|
-| 2 | Há uma pontuação máxima que o professor disponibilizará para a Sprint?| O máximo é se todo mundo puder dar 3 em todos os critérios para todo mundo.|
-| 2 | Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
-| 2 | As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
-| 2 | Validação de nome e logo    <img src="../assets/recap-logo.png" alt="recap-logo.png" width="10%" /> | Aprovado |
-| 2 | Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
+| Validações | Respostas |
+|------------|-----------|
+| Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
+| As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|| Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
 
 ---
 
@@ -202,9 +215,9 @@
 
 ### User Stories da Sprint
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 10   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2          | 2      | 2                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 2 | 2 |
 
 ### Defitionion of done: 
 - O professor deve poder gerar o relatório com o mínimo de clicks possível
@@ -217,9 +230,9 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 11   | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO      | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas."    | 2          | 2      | 3                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 2 | 3 |
 
 
 ### Defitionion of done: 
@@ -233,9 +246,15 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 9    | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 36  | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5          | 2      | 1                     |
+| Validações                                                              | Respostas                                                                       |
+|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | 
+Isso está no doc que passei no começo |
+
+
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 2 | 1 |
 
 ### Defitionion of done: 
 - O professor deve poder cadastrar um calendário com todas as sprints que haverão no semestre
@@ -247,9 +266,9 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 12   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 26  | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral e identificar áreas onde podemos melhorar como equipe. | 3          | 3      | 3           |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 12 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 26 | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral e identificar áreas onde podemos melhorar como equipe. | 3 | 3 | 3 |
 
 ### Defitionion of done: 
 - A tela que demonstra as notas médias deve ser a primeira a aparecer para o aluno ao fazer o login
@@ -263,9 +282,9 @@
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 13   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3          | 3      | 2                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 13 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3 | 3 | 2 |
 
 ### Defitionion of done: 
 - Deve aparecer juntamente a a tela que demonstra as notas médias dos outros integrantes da equipe
@@ -274,8 +293,6 @@
 - Testes unitários foram realizados para verificar se as médias estão corretas.
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
-
-### Validações feitas com o Cliente
 
 ### Burndonw
 
@@ -286,9 +303,9 @@
 
 ### User Stories da Sprint
 
-| Rank | Prioridade | ID        | User Story                                                                                         | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|-----------|----------------------------------------------------------------------------------------------------|------------|--------|-----------------------|
-| 14   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 33  | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual. | 4          | 4      | 8                     |
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 14 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 33 | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual. | 4 | 4 | 8 |
 
 ### Defitionion of done: 
 - Deve ser apenas um botão na tela de login
