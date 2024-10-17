@@ -42,7 +42,7 @@ public class LoginDAO {
     }
 
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/recapSystem", "sistema", "123");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
 
     public Usuario login(String email, String senha) {
