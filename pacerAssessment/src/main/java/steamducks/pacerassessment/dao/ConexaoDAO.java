@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConexaoDAO {
 
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/recapSystem";
-    private final String jdbcUsername = "sistema";
-    private final String jdbcPassword = "123";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/sistema_recap";
+    private final String jdbcUsername = "admin";
+    private final String jdbcPassword = "1234";
     protected Connection getConnection() throws SQLException {
         return DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
     }

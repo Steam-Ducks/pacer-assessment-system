@@ -96,7 +96,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirGerenciarSemestre(ActionEvent event) {
-
+        loadView("/steamducks.pacerassessment/gerenciarSemestreView.fxml", "Gerenciar Semestre");
     }
 
     @FXML

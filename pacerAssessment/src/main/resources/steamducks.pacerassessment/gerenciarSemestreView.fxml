@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="464.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.SemestreController">
+   <children>
+      <Text layoutX="126.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciador de Semestre">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtSemestre" layoutX="21.0" layoutY="359.0" prefHeight="31.0" prefWidth="275.0" promptText="Digite o semestre" />
+      <Text fill="#000000b4" layoutX="21.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Semestre:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="bntEditSem" layoutX="328.0" layoutY="359.0" mnemonicParsing="false" onAction="#abrirTelaEdicao" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #C2CC29;" text="Editar" textFill="WHITE" />
+      <Button id="btnCancelEdit" fx:id="bntAdcSemestre" layoutX="328.0" layoutY="316.0" mnemonicParsing="false" onAction="#adicionarSemestre" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #20BF55;" text="Adicionar" textFill="WHITE" />
+      <Button fx:id="bntRmvCrit" layoutX="328.0" layoutY="401.0" mnemonicParsing="false" onAction="#removerSemestre" prefHeight="31.0" prefWidth="113.0" style="-fx-background-color: #CC2936;" text="Remover" textFill="WHITE" />
+      <ListView fx:id="listView" layoutY="84.0" prefHeight="217.0" prefWidth="464.0" />
+   </children>
+</AnchorPane>
