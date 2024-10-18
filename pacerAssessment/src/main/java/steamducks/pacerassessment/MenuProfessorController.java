@@ -28,6 +28,9 @@ public class MenuProfessorController {
     private Button btnCadastrarSemestre;
 
     @FXML
+    private Button btnCadastrarSprint;
+
+    @FXML
     private Button btnExportar;
 
     @FXML
@@ -62,6 +65,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirCadastroSprint(ActionEvent event) {
+        loadView("/steamducks.pacerassessment/cadastrarSprintView.fxml", "Cadastro de Sprint");
     }
 
     @FXML
