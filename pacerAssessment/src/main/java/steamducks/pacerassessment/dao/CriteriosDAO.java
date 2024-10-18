@@ -17,11 +17,10 @@ public class CriteriosDAO {
 
         try {
             con = getConnection();
-            String insert_sql = "INSERT INTO criterio (nome, descricao, id_criterio) VALUES (?, ?, ?)";
+            String insert_sql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
             PreparedStatement pst = con.prepareStatement(insert_sql, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, nomeCriterio);
             pst.setString(2, descricaoCriterio);
-            pst.setInt(3, idCriterio);
             pst.executeUpdate();
 
             ResultSet rs = pst.getGeneratedKeys();
@@ -30,7 +29,7 @@ public class CriteriosDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException("Erro ao criar nova criterio! " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao criar novo critério! " + e.getMessage(), e);
         } finally {
             try {
                 if (con != null)
