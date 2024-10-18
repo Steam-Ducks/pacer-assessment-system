@@ -1,12 +1,21 @@
 package steamducks.pacerassessment.dao;
 
-import steamducks.pacerassessment.Usuario;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrupoAlunoDAO extends ConexaoDAO {
+import steamducks.pacerassessment.Usuario;
+
+public class GrupoAlunoDAO {
+
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
+    }
 
     public List<String> buscarSemestres() {
         List<String> semestres = new ArrayList<>();
@@ -26,7 +35,13 @@ public class GrupoAlunoDAO extends ConexaoDAO {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar semestres! " + e.getMessage(), e);
         } finally {
-            closeConnection(con);
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
         }
 
         return semestres;
@@ -53,7 +68,13 @@ public class GrupoAlunoDAO extends ConexaoDAO {
             e.printStackTrace();
             throw new RuntimeException("Erro ao criar nova equipe! " + e.getMessage(), e);
         } finally {
-            closeConnection(con);
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
         }
 
         return idEquipe;
@@ -91,7 +112,15 @@ public class GrupoAlunoDAO extends ConexaoDAO {
             }
             throw new RuntimeException("Erro ao adicionar usuários! " + e.getMessage(), e);
         } finally {
-            closeConnection(con);
+            try {
+                if (con != null) {
+                    con.setAutoCommit(true);
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
         }
     }
 
@@ -113,20 +142,15 @@ public class GrupoAlunoDAO extends ConexaoDAO {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar ID do semestre! " + e.getMessage(), e);
         } finally {
-            closeConnection(con);
-        }
-
-        return idSemestre;
-    }
-
-    private void closeConnection(Connection con) {
-        if (con != null) {
             try {
-                con.close();
+                if (con != null)
+                    con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
             }
         }
+
+        return idSemestre;
     }
 }

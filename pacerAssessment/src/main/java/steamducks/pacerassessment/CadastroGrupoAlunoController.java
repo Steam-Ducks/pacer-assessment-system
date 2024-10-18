@@ -11,10 +11,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.GrupoAlunoDAO;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class CadastroGrupoAlunoController {
 
@@ -249,6 +246,29 @@ public class CadastroGrupoAlunoController {
 
         } catch (IOException e) {
             mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    void downloadModel(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("modelo.csv");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        File file = fileChooser.showSaveDialog(new Stage());
+
+        if (file != null) {
+            exportarCsvModelo(file);
+        }
+    }
+
+    private void exportarCsvModelo(File file) {
+        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(file)))) {
+            pw.println("nome,email,senha"); // Cabeçalho do modelo
+            pw.println("Exemplo Nome,exemplo@email.com,senha123"); // Linha de exemplo
+
+            System.out.println("Modelo CSV exportado com sucesso.");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

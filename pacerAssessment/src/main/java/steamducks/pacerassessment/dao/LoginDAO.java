@@ -1,10 +1,15 @@
 package steamducks.pacerassessment.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+
 import steamducks.pacerassessment.Usuario;
 
-import java.sql.*;
-
-public class LoginDAO extends ConexaoDAO {
+public class LoginDAO {
 
     private static final String ADMIN_EMAIL = "admin";
     private static final String ADMIN_PASSWORD = "1234";
@@ -41,6 +46,10 @@ public class LoginDAO extends ConexaoDAO {
         }
     }
 
+    public Connection getConnection() throws SQLException {
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
+    }
+
     public Usuario login(String email, String senha) {
         Usuario usuario = null;
 
@@ -62,7 +71,7 @@ public class LoginDAO extends ConexaoDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Erro durante o login: " + e.getMessage());
+            System.out.println("Error during login: " + e.getMessage());
         }
 
         return usuario;

@@ -76,7 +76,7 @@ public class CriteriosController {
         String descricao = txtDescricao.getText();
 
         if (!nome.isEmpty() && !descricao.isEmpty()) {
-            criteriosData.add(new Criterios(nome, descricao));
+            criteriosData.add(new Criterios(1, nome, descricao));
 
             // Limpa os campos após adicionar
             txtNome.clear();
