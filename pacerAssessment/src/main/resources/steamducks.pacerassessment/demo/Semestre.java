@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package com.example.demo;
 
 public class Semestre {
 
