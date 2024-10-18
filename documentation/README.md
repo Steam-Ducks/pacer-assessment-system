@@ -241,6 +241,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A origem dos dados que serão usados para gerar o relatório estão identificados.
 - Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
 - User storie revisada para garantir que os requisitos estão claros.
+- Wireframe <img src="WireframePAS-22.jpeg" alt="Wireframe PAS - 22" width="100%" />  
 
 ---
 
