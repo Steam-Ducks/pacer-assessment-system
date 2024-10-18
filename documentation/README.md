@@ -217,23 +217,36 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 2 | 2 |
+| 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 3 | 2 |
 
-### Defitionion of done: 
+### Requisitos: 
+- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
 - O professor deve poder gerar o relatório com o mínimo de clicks possível
 - A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema
 - O professor deve poder gerar quantos arquivos quiser
 - O professor deve poder filtrar os grupos do relatório por semestre
 
+### Definition of done:
+- Os relatórios são gerados com os arredondamentos seguindo os requisitos
+- O relatório gerado apresenta todos os critérios avaliados de forma clara e organizada.
+- Realizados testes unitários para validar a lógica de cálculo das notas.
+- Testes de integração foram executados para garantir que o relatório é gerado 
+- Todos os critérios de aceitação definidos para a user story foram atendidos e verificados.
+- O Product Owner revisou e aprovou a user story como completa.
+
 ### Definition of ready: 
-- Testes unitários foram realizados para geração do relatório.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+- As regras de cálculo para a média das notas dos alunos estão especificadas.
+- O layout do relatório e os dados que ele deve conter foram detalhados.
+- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
+- A origem dos dados que serão usados para gerar o relatório estão identificados.
+- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
+- User storie revisada para garantir que os requisitos estão claros.
+
+---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 2 | 3 |
-
+| 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 3 | 3 |
 
 ### Defitionion of done: 
 - O professor deve poder gerar o relatório com o mínimo de clicks possível
@@ -251,10 +264,11 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | 
 Isso está no doc que passei no começo |
 
+---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 2 | 1 |
+| 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 3 | 1 |
 
 ### Defitionion of done: 
 - O professor deve poder cadastrar um calendário com todas as sprints que haverão no semestre
@@ -265,6 +279,8 @@ Isso está no doc que passei no começo |
 - Testes unitários foram realizados para verificar a criação do calendário.
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
+
+--
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
@@ -282,6 +298,8 @@ Isso está no doc que passei no começo |
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
+---
+
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
 | 13 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3 | 3 | 2 |
@@ -293,6 +311,8 @@ Isso está no doc que passei no começo |
 - Testes unitários foram realizados para verificar se as médias estão corretas.
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
+
+---
 
 ### Burndonw
 
@@ -317,11 +337,13 @@ Isso está no doc que passei no começo |
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
+---
+
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro | 
 |------|------------|----|------------|------------|--------|-----------------------|
 | 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual."     | 4          | 4      | 8 |
 
-### Defitionion of done: 
+### Definition of done: 
 - Deve ser apenas um botão na tela de login
 - Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login]
 - E-mail de recuperação deve ser gerado automaticamente com link para alterar senha
