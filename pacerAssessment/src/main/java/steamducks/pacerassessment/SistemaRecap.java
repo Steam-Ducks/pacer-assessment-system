@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-public class SampleApplication extends Application {
+public class SistemaRecap extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/loginView.fxml"));
@@ -17,7 +17,7 @@ public class SampleApplication extends Application {
         stage.setTitle("Sistema RECAP");
         stage.setScene(scene);
 
-        Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
+        Image logo = new Image(getClass().getResourceAsStream("/assets/logo-dark.png"), 200, 200, true, true);
         stage.getIcons().add(logo);
 
         stage.show();
