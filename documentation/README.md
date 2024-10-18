@@ -220,27 +220,24 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 3 | 2 |
 
 ### Requisitos: 
-- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
 - O professor deve poder gerar o relatório com o mínimo de clicks possível
 - A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema
 - O professor deve poder gerar quantos arquivos quiser
 - O professor deve poder filtrar os grupos do relatório por semestre
 
 ### Definition of done:
-- Os relatórios são gerados com os arredondamentos seguindo os requisitos
-- O relatório gerado apresenta todos os critérios avaliados de forma clara e organizada.
-- Realizados testes unitários para validar a lógica de cálculo das notas.
-- Testes de integração foram executados para garantir que o relatório é gerado 
-- Todos os critérios de aceitação definidos para a user story foram atendidos e verificados.
-- O Product Owner revisou e aprovou a user story como completa.
+- Codigos organizados
+- Layout definido
 
 ### Definition of ready: 
-- As regras de cálculo para a média das notas dos alunos estão especificadas.
+- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
 - O layout do relatório e os dados que ele deve conter foram detalhados.
 - A interface onde o professor solicitará e visualizará o relatório foi finalizada.
 - A origem dos dados que serão usados para gerar o relatório estão identificados.
 - Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
 - User storie revisada para garantir que os requisitos estão claros.
+- Wireframe
+<img src="WireframePAS-22.jpeg" alt="Wireframe PAS - 22" width="50%" />  
 
 ---
 
