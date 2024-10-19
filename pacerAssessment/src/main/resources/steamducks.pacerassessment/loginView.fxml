@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.TeladeLoginController">
    <children>
-      <Label layoutX="93.0" layoutY="47.0" prefHeight="45.0" prefWidth="305.0" text="PACER Assessment System" textAlignment="CENTER">
+      <Label layoutX="150.0" layoutY="47.0" prefHeight="45.0" prefWidth="305.0" text="Sistema RECAP" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

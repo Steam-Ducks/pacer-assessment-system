@@ -178,6 +178,3 @@ public class CriteriosController {
         }
     }
 }
-
-
-
