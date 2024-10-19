@@ -22,8 +22,8 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 ♦ [Backlog do Produto](#backlog-do-produto) <br />
 ♦ [Cronograma do Projeto](#cronograma-do-projeto) <br />
 ♦ [Tecnologias Utilizadas](#tecnologias-utilizadas) <br />
-♦ [Documentação](/documentation) <br />
 ♦ [Termo de Requisitos de Permanência](#termo-de-requisitos-de-permanência) <br />
+♦ [Documentação](/documentation) <br />
     
 ## Requisitos
 
@@ -48,9 +48,17 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
    
 ## Integrantes do projeto
   
-<div align="center">
-  <img src="assets/integrantes.png" alt="Equipe e funções" width="600px" />
-</div>
+| LinkedIn & GitHub | Integrantes | Função | Identificação |
+|-------------------|-------------|--------|---------------|
+| <a href="https://www.linkedin.com/in/alexander-silva-lima-96a0432a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/alexttz" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a>   | Alexsander Silva | Scrum Master | <a href="" ><img src="assets/Dev team avatars/Avatar_Alexsander.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/carlos-daniel-alves-dos-santos-9516952b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/darloscaniel" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Carlos Daniel | Dev Team | <a href="" ><img src="assets/Dev team avatars/Avatar_Carlos.png" width="60"></a>||
+| <a href="https://www.linkedin.com/in/isabelly-sousa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/61isabelly" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Isabelly Sousa | Dev Team | <a href="" ><img src="assets/Dev team avatars/Avatar_Isabelly.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/lucas-h-acosta?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/Lucas-heck-acosta" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Lucas Acosta | Dev Team | <a href="" ><img src="assets/Dev team avatars/Avatar_Lucas.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/luiz-henrique-rabello-ferreira-3600752ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/LuizHRFerreira" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Luiz Henrique | Product Owner |<img src="assets/Dev team avatars/Avatar_Luiz.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/matheus-gabriel-barbosa-6b4a2320a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/devmatba" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Matheus Barbosa | Dev Team  | <a href="" ><img src="assets/Dev team avatars/Avatar_Matheus.png" width="60"></a>|
+| <a href="https://www.linkedin.com/posts/cruz-rafaella_%C3%A9-um-prazer-compartilhar-que-finalizei-meu-activity-7212665413376081921-mEAy?utm_source=share&utm_medium=member_desktop" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/arafaellacruz" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a> | Rafaella Cruz | Dev Team  | <a href="" ><img src="assets/Dev team avatars/Avatar_Rafaella.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/samuel-prado-9142381b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/Samuelprado99" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a>  | Samuel Prado | Dev Team  | <a href="" ><img src="assets/Dev team avatars/Avatar_Samuel.png" width="60"></a>|
+| <a href="https://www.linkedin.com/in/theo-da-rosa-smidt-838b211b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" alt="Linkedin"></a> <a href="https://github.com/TheodaRosa" target="_blank"><img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a>   | Theo da Rosa | Dev Team  | <a href="" ><img src="assets/Dev team avatars/Avatar_Theo.png" width="60"></a>|
 
 ## Backlog do Produto
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
@@ -72,14 +80,14 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 
 ## Cronograma do Projeto
 
-| Fase                   | Início         | Entrega        |
-|-----------------------|----------------|-----------------|
-| Kick off do projeto    | 28/08/2024     | 08/09/2024      |
-| Sprint 1               | 09/09/2024     | 29/09/2024      |
-| Sprint 2               | 30/09/2024     | 20/10/2024      |
-| Sprint 3               | 21/10/2024     | 10/11/2024      |
-| Sprint 4               | 11/11/2024     | 01/12/2024      |
-| Feira de Soluções      | 12/12/2024     | 12/12/2024      |
+| Fase                   | Início         | Entrega        | Status  |
+|-----------------------|----------------|-----------------|---------|
+| Kick off do projeto   | 28/08/2024     | 08/09/2024      |   ✅   | 
+| Sprint 1              | 09/09/2024     | 29/09/2024      |   ✅   | 
+| Sprint 2              | 30/09/2024     | 20/10/2024      |   🔄   | 
+| Sprint 3              | 21/10/2024     | 10/11/2024      |   ❌   | 
+| Sprint 4              | 11/11/2024     | 01/12/2024      |   ❌   | 
+| Feira de Soluções     | 12/12/2024     | 12/12/2024      |   ❌   | 
 
 ## Tecnologias Utilizadas
 
@@ -122,47 +130,6 @@ Garantir a continuidade e o comprometimento dos membros da equipe no projeto ess
 ### Observação: 
 O projeto é uma parte fundamental para a conclusão do semestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
 
-## 🌟 Conheça o Time Brilhante 🌟
-
-### Alexsander Silva
-🚀 [GitHub: Alexsander Silva](https://github.com/alexttz)  
-🔗 [LinkedIn: Alexsander Silva](https://www.linkedin.com/in/alexander-silva-lima-96a0432a6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-### Carlos Daniel
-🚀 [GitHub: Carlos Daniel](https://github.com/darloscaniel)  
-🔗 [LinkedIn: Carlos Daniel](https://www.linkedin.com/in/carlos-daniel-alves-dos-santos-9516952b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-### Isabelly Sousa
-🚀 [GitHub: Isabelly Sousa](https://github.com/61isabelly)  
-🔗 [LinkedIn: Isabelly Sousa](https://www.linkedin.com/in/isabelly-sousa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-### Lucas Acosta
-🚀 [GitHub: Lucas Acosta](https://github.com/Lucas-heck-acosta)  
-🔗 [LinkedIn: Lucas Acosta](https://www.linkedin.com/in/https://www.linkedin.com/in/lucas-h-acosta?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_appd)
-
-### Luiz Henrique
-🚀 [GitHub: Luiz Henrique](https://github.com/LuizHRFerreira)  
-🔗 [LinkedIn: Luiz Henrique](https://www.linkedin.com/in/luiz-henrique-rabello-ferreira-3600752ba?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-### Matheus Barbosa
-🚀 [GitHub: Matheus Barbosa](https://github.com/devmatba)  
-🔗 [LinkedIn: Matheus Barbosa](https://www.linkedin.com/in/matheus-gabriel-barbosa-6b4a2320a/)
-
-### Rafaella Cruz
-🚀 [GitHub: Rafaella Cruz](https://github.com/arafaellacruz)  
-🔗 [LinkedIn: Rafaella Cruz](https://www.linkedin.com/posts/cruz-rafaella_%C3%A9-um-prazer-compartilhar-que-finalizei-meu-activity-7212665413376081921-mEAy?utm_source=share&utm_medium=member_desktop)
-
-### Samuel Prado
-🚀 [GitHub: Samuel Prado](https://github.com/Samuelprado99)  
-🔗 [LinkedIn: Samuel Prado](https://www.linkedin.com/in/samuel-prado-9142381b6?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
-
-### Theo da Rosa
-🚀 [GitHub: Theo da Rosa](https://github.com/TheodaRosa)  
-🔗 [LinkedIn: Theo da Rosa](https://www.linkedin.com/in/theo-da-rosa-smidt-838b211b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
-
-🔥 Entre em contato com a gente e descubra o que estamos criando juntos! 🔥
-
----
 <div align="center">
     <img src="assets/footer.new.png" alt="footer" width="100%" />
 </div>
