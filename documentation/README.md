@@ -21,7 +21,7 @@
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 1 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA       | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada. | 1 | 1 | 4 |
+| 1 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 02  | Como um professor, eu quero criar um grupo e importar um arquivo .csv para salvar as informações dos alunos que fazem parte desse grupo para que eu possa gerenciar os dados dos integrantes de forma rápida e organizada. | 1 | 1 | 4 |
 
 ### Defitionion of done: 
 - O professor deve poder importar um arquivo CSV com as informações Nome, e-mail e senha.
@@ -228,6 +228,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 ### Definition of done:
 - Codigos organizados
 - Layout definido
+- Validação de dados devidamente tratados
+- Funcionalidade totalmente integrada ao sistema
 
 ### Definition of ready: 
 - As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
@@ -245,21 +247,27 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 |------|------------|----|------------|------------|--------|-----------------------|
 | 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 3 | 3 |
 
-### Defitionion of done: 
+### Requisitos: 
 - O professor deve poder gerar o relatório com o mínimo de clicks possível
 - A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar
 - O professor deve poder gerar quantos arquivos quiser
 - O professor deve poder filtrar os alunos do relatório por turma
 
-### Definition of ready: 
-- Testes unitários foram realizados para geração do relatório.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+### Definition of done:
+- Codigos organizados
+- Layout definido
+- Validação de dados devidamente tratados
+- Funcionalidade totalmente integrada ao sistema
 
-| Validações                                                              | Respostas                                                                       |
-|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Quando for gerar um relatório, quais opções de filtro deseja ter? Por exemplo, as notas médias dos alunos por grupo, por sprint, por turma, por data, etc. | 
-Isso está no doc que passei no começo |
+### Definition of ready: 
+- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
+- O layout do relatório e os dados que ele deve conter foram detalhados.
+- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
+- A origem dos dados que serão usados para gerar o relatório estão identificados.
+- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
+- User storie revisada para garantir que os requisitos estão claros.
+- Wireframe
+<img src="WireframePAS-24.jpeg" alt="Wireframe PAS - 24" width="50%" />
 
 ---
 
@@ -267,17 +275,26 @@ Isso está no doc que passei no começo |
 |------|------------|----|------------|------------|--------|-----------------------|
 | 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 3 | 1 |
 
-### Defitionion of done: 
-- O professor deve poder cadastrar um calendário com todas as sprints que haverão no semestre
+### Requisitos 
+- O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no semestre
 - O professor deve vincular as sprints cadastradas a um semestre
 - O professor deve poder visualizar as sprints criadas
 
-### Definition of ready: 
-- Testes unitários foram realizados para verificar a criação do calendário.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+### Defitionion of done: 
+- Codigos organizados
+- Layout de exibição definido
+- Layout de importação definido
+- Funcionalidade totalmente integrada ao sistema
 
---
+### Definition of ready: 
+- A origem e destino dos dados para o calendário das sprints está identificada e os dados estão corretamente integrados ao banco.
+- Os dados inseridos pelo professor são para cadastrar as sprints são nome, data de inicio e data de fim.
+- User storie revisada para garantir que os requisitos estão claros.
+- O layout da interface para cadastro e gerenciamento do calendário das sprints foi finalizado.
+- Wireframe
+<img src="WireframePAS-36.jpeg" alt="Wireframe PAS - 36" width="50%" />
+
+---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
