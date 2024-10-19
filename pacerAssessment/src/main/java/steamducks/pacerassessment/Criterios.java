@@ -21,6 +21,12 @@ public class Criterios {
 
     }
 
+    public Criterios(int idCriterio, String nome, String descricao) {
+        this.id = idCriterio;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
     public int getId() {
         return id;
     }
