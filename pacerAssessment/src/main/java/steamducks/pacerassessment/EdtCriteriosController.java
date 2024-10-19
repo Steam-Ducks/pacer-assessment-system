@@ -5,8 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.dao.CriteriosDAO;
 
 public class EdtCriteriosController {
+
+    private CriteriosDAO criteriosDAO = new CriteriosDAO();
 
     @FXML
     private TextField txtEdtNome;
@@ -38,6 +41,8 @@ public class EdtCriteriosController {
         btnConcluirEdt.setOnAction(event -> {
             criterios.setNome(txtEdtNome.getText()); // Atualiza o valor do critério
             criterios.setDescricao(txtEditDescricao.getText());
+            criteriosDAO.editarCriterio(criterios);
+
             fecharJanela();
         });
     }
