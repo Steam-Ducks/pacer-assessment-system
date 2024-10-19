@@ -189,9 +189,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 8 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 09 | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar de forma sistemática o desempenho dos integrantes do grupo.| 2 | 2 | 8 |
 
 ### Defitionion of done: 
-- O professor deve poder criar diversas sprints
-- O professor deve vincular a sprint criada a um semestre
-- O professor deve poder visualizar as sprints criadas
+- O professor deve poder criar diversas sprints.
+- O professor deve vincular a sprint criada a um semestre.
+- O professor deve poder visualizar as sprints criadas.
 
 ### Definition of ready: 
 - Testes unitários foram realizados para verificar a criação de Sprints.
@@ -220,16 +220,16 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 3 | 2 |
 
 ### Requisitos: 
-- O professor deve poder gerar o relatório com o mínimo de clicks possível
-- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema
-- O professor deve poder gerar quantos arquivos quiser
-- O professor deve poder filtrar os grupos do relatório por semestre
+- O professor deve poder gerar o relatório com o mínimo de clicks possível.
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema.
+- O professor deve poder gerar quantos arquivos quiser.
+- O professor deve poder filtrar os grupos do relatório por semestre.
 
 ### Definition of done:
-- Codigos organizados
-- Layout definido
-- Validação de dados devidamente tratados
-- Funcionalidade totalmente integrada ao sistema
+- Codigos organizados.
+- Layout definido.
+- Validação de dados devidamente tratados.
+- Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
 - As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
@@ -238,7 +238,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A origem dos dados que serão usados para gerar o relatório estão identificados.
 - Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
 - User storie revisada para garantir que os requisitos estão claros.
-- Wireframe
+- Wireframe:
 <img src="WireframePAS-22.jpeg" alt="Wireframe PAS - 22" width="50%" />  
 
 ---
@@ -248,16 +248,16 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 3 | 3 |
 
 ### Requisitos: 
-- O professor deve poder gerar o relatório com o mínimo de clicks possível
-- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar
-- O professor deve poder gerar quantos arquivos quiser
-- O professor deve poder filtrar os alunos do relatório por turma
+- O professor deve poder gerar o relatório com o mínimo de clicks possível.
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar.
+- O professor deve poder gerar quantos arquivos quiser.
+- O professor deve poder filtrar os alunos do relatório por turma.
 
 ### Definition of done:
-- Codigos organizados
-- Layout definido
-- Validação de dados devidamente tratados
-- Funcionalidade totalmente integrada ao sistema
+- Codigos organizados.
+- Layout definido.
+- Validação de dados devidamente tratados.
+- Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
 - As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
@@ -266,7 +266,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A origem dos dados que serão usados para gerar o relatório estão identificados.
 - Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
 - User storie revisada para garantir que os requisitos estão claros.
-- Wireframe
+- Wireframe:
 <img src="WireframePAS-24.jpeg" alt="Wireframe PAS - 24" width="50%" />
 
 ---
@@ -276,22 +276,22 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 3 | 1 |
 
 ### Requisitos 
-- O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no semestre
-- O professor deve vincular as sprints cadastradas a um semestre
-- O professor deve poder visualizar as sprints criadas
+- O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no semestre.
+- O professor deve vincular as sprints cadastradas a um semestre.
+- O professor deve poder visualizar as sprints criadas.
 
 ### Defitionion of done: 
-- Codigos organizados
-- Layout de exibição definido
-- Layout de importação definido
-- Funcionalidade totalmente integrada ao sistema
+- Codigos organizados.
+- Layout de exibição definido.
+- Layout de importação definido.
+- Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
 - A origem e destino dos dados para o calendário das sprints está identificada e os dados estão corretamente integrados ao banco.
 - Os dados inseridos pelo professor são para cadastrar as sprints são nome, data de inicio e data de fim.
 - User storie revisada para garantir que os requisitos estão claros.
 - O layout da interface para cadastro e gerenciamento do calendário das sprints foi finalizado.
-- Wireframe
+- Wireframe:
 <img src="WireframePAS-36.jpeg" alt="Wireframe PAS - 36" width="50%" />
 
 ---
@@ -300,17 +300,23 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 |------|------------|----|------------|------------|--------|-----------------------|
 | 12 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 26 | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral e identificar áreas onde podemos melhorar como equipe. | 3 | 3 | 3 |
 
+### Requisitos 
+- A tela que demonstra as notas médias deve ser a primeira a aparecer para o aluno ao fazer o login juntamente a opção de avaliar os outros integrantes da equipe.
+- O aluno deve apenas ver as notas médias dos outros alunos de sua equipe.
+- Quando estiver no período de avaliação da Sprint, deve haver um botão para avaliar os integrantes do grupo na mesma tela.
+
 ### Defitionion of done: 
-- A tela que demonstra as notas médias deve ser a primeira a aparecer para o aluno ao fazer o login
-- O aluno deve apenas ver as notas médias dos outros alunos de sua equipe
-- Quando estiver no período de avaliação da Sprint, deve haver um botão para avaliar os integrantes do grupo na mesma tela
+- Codigos organizados.
+- Finalização de tela inicial do Aluno.
+- Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
-- Testes unitários foram realizados para verificar se as médias estão corretas.
-- Testes unitários foram realizados para verificar se os alunos do grupo estão corretas.
-- Testes unitários foram realizados para verificar se o botão de avaliar funciona na data correta.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+- O layout da interface inicial aonde o aluno vosualiza a nota média dos integrantes do grupo foi finalizado.
+- As notas dos demais alunos do grupo estão claramente exibir e organizadas de objetiva.
+- A interface onde os alunos irão visualizar as notas foi finalizada e está de fácil entendimento.
+- A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
+- Wireframe:
+<img src="WireframePAS-26.jpeg" alt="Wireframe PAS - 26" width="50%" />
 
 ---
 
@@ -318,13 +324,21 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 |------|------------|----|------------|------------|--------|-----------------------|
 | 13 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3 | 3 | 2 |
 
+### Requisitos: 
+- Deve aparece no menu inicial demonstrando a nota média de cada critério de forma clara.
+
 ### Defitionion of done: 
-- Deve aparecer juntamente a a tela que demonstra as notas médias dos outros integrantes da equipe
+- Codigos organizados.
+- Finalização de tela inicial do Aluno.
+- Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
-- Testes unitários foram realizados para verificar se as médias estão corretas.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+- O layout da interface inicial aonde o aluno vosualiza a nota média dos integrantes do grupo foi finalizado.
+- As notas do próprio aluno estão claramente exibir e organizadas de objetiva.
+- A interface onde os alunos irão visualizar as notas foi finalizada e está de fácil entendimento.
+- A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
+- Wireframe:
+<img src="WireframePAS-28.jpeg" alt="Wireframe PAS - 28" width="50%" />
 
 ---
 
