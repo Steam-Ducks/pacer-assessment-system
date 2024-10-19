@@ -95,7 +95,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirGerenciarEquipes(ActionEvent event) {
-
+        loadView("/steamducks.pacerassessment/telaGerenciarEquipesView.fxml", "Gerenciar Equipes");
     }
 
     @FXML
