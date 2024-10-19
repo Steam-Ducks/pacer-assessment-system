@@ -58,10 +58,12 @@ public class CriteriosController {
 
     private ObservableList<Criterios> criteriosData = FXCollections.observableArrayList();
 
+    CriteriosDAO criteriosDao;
+
     public void initialize() {
         criteriosData = FXCollections.observableArrayList();
 
-        CriteriosDAO criteriosDao = new CriteriosDAO();
+        criteriosDao = new CriteriosDAO();
 
         List<Criterios> criterios = criteriosDao.buscarCriterios(); // usa essa funcao da DAO pra criar uma lista de criterios
         criteriosData.addAll(criterios); // Adiciona essa lista do banco na lista do controlador
@@ -85,11 +87,19 @@ public class CriteriosController {
         String descricao = txtDescricao.getText();
 
         if (!nome.isEmpty() && !descricao.isEmpty()) {
-            criteriosData.add(new Criterios(nome, descricao));
+            Criterios criterio = new Criterios(nome, descricao);
+            try {
+                int tempId = criteriosDao.adicionarCriterio(criterio);
+                criterio.setId(tempId);
+                criteriosData.add(criterio);
 
-            // Limpa os campos após adicionar
-            txtNome.clear();
-            txtDescricao.clear();
+                txtNome.clear();
+                txtDescricao.clear();
+            } catch (RuntimeException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Nome e Descrição não podem estar vazios.");
         }
     }
 
@@ -153,15 +163,18 @@ public class CriteriosController {
         confirmAlert.setContentText("Essa ação não pode ser desfeita.");
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Se o usuário confirmar, remove o critério da lista e atualiza a tabela
-            tableCriterios.getItems().remove(criteriosSelecionado);
+        try {
+            criteriosDao.removerCriterio(criteriosSelecionado.getId()); //chama a funcao da DAO enviando o ID do objeto selecionado
 
-            // Opcionalmente, se estiver usando uma lista Observable, remova da lista associada à tabela
+            // Remove o critério da lista e atualiza a tabela
+            tableCriterios.getItems().remove(criteriosSelecionado);
             criteriosData.remove(criteriosSelecionado);
 
-            // Atualize a tabela após a exclusão
+            // Atualiza a tabela após a exclusão
             tableCriterios.refresh();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

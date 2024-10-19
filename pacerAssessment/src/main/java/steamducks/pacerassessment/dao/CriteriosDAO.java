@@ -11,77 +11,31 @@ public class CriteriosDAO {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
 
-    public int criarCriterio(String nomeCriterio, String descricaoCriterio) {
-        Connection con = null;
-        int idCriterio = 0;
+    public int adicionarCriterio(Criterios criterio) {
+        String insertCriterioSql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
 
-        try {
-            con = getConnection();
-            String insert_sql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
-            PreparedStatement pst = con.prepareStatement(insert_sql, Statement.RETURN_GENERATED_KEYS);
-            pst.setString(1, nomeCriterio);
-            pst.setString(2, descricaoCriterio);
-            pst.executeUpdate();
+        try (Connection con = getConnection();
+             PreparedStatement pstCriterio = con.prepareStatement(insertCriterioSql, Statement.RETURN_GENERATED_KEYS)) {
 
-            ResultSet rs = pst.getGeneratedKeys();
-            if (rs.next()) {
-                idCriterio = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao criar novo critério! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
+            pstCriterio.setString(1, criterio.getNome());
+            pstCriterio.setString(2, criterio.getDescricao());
 
-        return idCriterio;
-    }
-
-    public boolean adicionarCriterio(long idCriterio, List<Criterios> criterios) {
-        Connection con = null;
-
-        try {
-            con = getConnection();
-            String insertCriterioSql = "INSERT INTO criterios (nome, descricao) VALUES (?, ?, ?)";
-            con.setAutoCommit(false);
-            PreparedStatement pstCriterio = con.prepareStatement(insertCriterioSql);
-
-            for (Criterios criterio : criterios) {
-                pstCriterio.setString(1, criterio.getNome());
-                pstCriterio.setString(2, criterio.getDescricao());
-                pstCriterio.setLong(3, idCriterio);
-                pstCriterio.executeUpdate();
+            int linhasAfetadas = pstCriterio.executeUpdate();
+            if (linhasAfetadas == 0) {
+                throw new RuntimeException("Nenhuma linha foi afetada ao adicionar o critério.");
             }
 
-            con.commit();
-            return true;
+            try (ResultSet generatedKeys = pstCriterio.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getInt(1);
+                } else {
+                    throw new RuntimeException("Erro ao obter o ID do critério inserido.");
+                }
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                if (con != null) {
-                    con.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            throw new RuntimeException("Erro ao adicionar usuários! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null) {
-                    con.setAutoCommit(true);
-                    con.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
+            throw new RuntimeException("Erro ao adicionar critério! " + e.getMessage(), e);
         }
     }
 
@@ -113,4 +67,46 @@ public class CriteriosDAO {
         return criterios; // volta a lista de criterios
     }
 
-}
+    public void removerCriterio(int idCriterio) { //passando o id do criterio que queremos bigodar
+        String deleteCriterioSql = "DELETE FROM criterio WHERE id_criterio = ?"; //query que deleta
+
+        try (Connection con = getConnection();
+             PreparedStatement pstCriterio = con.prepareStatement(deleteCriterioSql)) {
+
+            pstCriterio.setInt(1, idCriterio); // passa o id
+
+            int linhasAfetadas = pstCriterio.executeUpdate(); // ve se apagou algo ou nao
+
+            if (linhasAfetadas == 0) {
+                throw new RuntimeException("Nenhum critério encontrado com o ID: " + idCriterio);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao remover critério " + e.getMessage(), e);
+        }
+    }
+
+    public void editarCriterio(Criterios criterio) {
+        String updateCriterioSql = "UPDATE criterio SET nome = ?, descricao = ? WHERE id_criterio = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement pstCriterio = con.prepareStatement(updateCriterioSql)) {
+
+            pstCriterio.setString(1, criterio.getNome());
+            pstCriterio.setString(2, criterio.getDescricao());
+            pstCriterio.setInt(3, criterio.getId());
+
+            int linhasAfetadas = pstCriterio.executeUpdate();
+            if (linhasAfetadas == 0) {
+                throw new RuntimeException("Nenhum criterio Editado!");
+            }
+
+            } catch (SQLException e) {
+            throw new RuntimeException("nenhum criterio encontrado");
+        }
+
+    }
+
+    }
+
