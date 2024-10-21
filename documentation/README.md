@@ -226,9 +226,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder filtrar os grupos do relatório por semestre.
 
 ### Definition of done:
-- Codigos organizados.
-- Layout definido.
-- Validação de dados devidamente tratados.
+- Código funcional disponibilizado no Git.
+- Documento de instalação atualizado.
+- Layout definido e implementado.
+- Validação de dados realizada e tratada.
 - Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
@@ -254,9 +255,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder filtrar os alunos do relatório por turma.
 
 ### Definition of done:
-- Codigos organizados.
-- Layout definido.
-- Validação de dados devidamente tratados.
+- Código funcional e organizado, disponibilizado no Git.
+- Documento de instalação atualizado.
+- Layout definido e implementado.
+- Validação de dados realizada e tratada.
 - Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
@@ -281,9 +283,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder visualizar as sprints criadas.
 
 ### Defitionion of done: 
-- Codigos organizados.
-- Layout de exibição definido.
-- Layout de importação definido.
+- Código funcional e organizado, disponibilizado no Git.
+- Documento de instalação atualizado.
+- Layout de exibição definido e implementado.
+- Layout de importação definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
@@ -306,8 +309,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - Quando estiver no período de avaliação da Sprint, deve haver um botão para avaliar os integrantes do grupo na mesma tela.
 
 ### Defitionion of done: 
-- Codigos organizados.
-- Finalização de tela inicial do Aluno.
+- Código funcional e organizado, disponibilizado no Git.
+- Layout de exibição definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
@@ -328,8 +331,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - Deve aparece no menu inicial demonstrando a nota média de cada critério de forma clara.
 
 ### Defitionion of done: 
-- Codigos organizados.
-- Finalização de tela inicial do Aluno.
+- Código funcional e organizado, disponibilizado no Git.
+- Layout de exibição definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
 
 ### Definition of ready: 
