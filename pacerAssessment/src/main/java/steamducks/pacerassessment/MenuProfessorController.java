@@ -28,6 +28,9 @@ public class MenuProfessorController {
     private Button btnCadastrarSemestre;
 
     @FXML
+    private Button btnCadastrarSprint;
+
+    @FXML
     private Button btnExportar;
 
     @FXML
@@ -57,13 +60,14 @@ public class MenuProfessorController {
         Stage stageAtual = (Stage) btnLogout.getScene().getWindow();
         stageAtual.close();
 
-        loadView("/steamducks.pacerassessment/telaLogin.fxml","Login");
+        loadView("/steamducks.pacerassessment/loginView.fxml","Login");
     }
 
     @FXML
     void abrirCadastroSprint(ActionEvent event) {
+        loadView("/steamducks.pacerassessment/cadastrarSprintView.fxml", "Cadastro de Sprint");
     }
-  
+
     @FXML
     void abrirCadastroAlunoEquipes(ActionEvent event) {
         loadView("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml", "Cadastro de Equipe");
@@ -76,25 +80,7 @@ public class MenuProfessorController {
 
     @FXML
     void abrirCadastroCriterios(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/criteriosMenuView.fxml"));
-            Parent root = fxmlLoader.load();
-
-            Scene scene = new Scene(root);
-
-            Stage stage = new Stage();
-            stage.setTitle("Gerenciador de Critérios");
-
-            Image logo = new Image(getClass().getResourceAsStream("/assets/logo-teste.png"));
-            stage.getIcons().add(logo);
-
-
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        loadView("/steamducks.pacerassessment/criteriosMenuView.fxml", "Gerenciador de Critérios");
     }
 
     @FXML
@@ -109,12 +95,12 @@ public class MenuProfessorController {
 
     @FXML
     void abrirGerenciarEquipes(ActionEvent event) {
-
+        loadView("/steamducks.pacerassessment/telaGerenciarEquipesView.fxml", "Gerenciar Equipes");
     }
 
     @FXML
     void abrirGerenciarSemestre(ActionEvent event) {
-
+        loadView("/steamducks.pacerassessment/gerenciarSemestreView.fxml", "Gerenciar Semestre");
     }
 
     @FXML
