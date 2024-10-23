@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -6,16 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.scene.layout.HBox;
 import steamducks.pacerassessment.dao.CriteriosDAO;
+import steamducks.pacerassessment.models.Criterio;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,31 +39,31 @@ public class CriteriosController {
     private Button btnEditCrit;
 
     @FXML
-    private TableColumn<Criterios, String> criteriosColumn;
+    private TableColumn<Criterio, String> criteriosColumn;
 
     @FXML
-    private TableColumn<Criterios, String> descricaoColumn;
+    private TableColumn<Criterio, String> descricaoColumn;
 
     @FXML
-    private TableView<Criterios> tableCriterios;
+    private TableView<Criterio> tableCriterios;
 
     @FXML
     private Button btnNovoCriterio;
 
     @FXML
-    private TableColumn<Criterios, Integer > idColumn;
+    private TableColumn<Criterio, Integer > idColumn;
 
-    private ObservableList<Criterios> criteriosData = FXCollections.observableArrayList();
+    private ObservableList<Criterio> criterioData = FXCollections.observableArrayList();
 
     CriteriosDAO criteriosDao;
 
     public void initialize() {
-        criteriosData = FXCollections.observableArrayList();
+        criterioData = FXCollections.observableArrayList();
 
         criteriosDao = new CriteriosDAO();
 
-        List<Criterios> criterios = criteriosDao.buscarCriterios(); // usa essa funcao da DAO pra criar uma lista de criterios
-        criteriosData.addAll(criterios); // Adiciona essa lista do banco na lista do controlador
+        List<Criterio> criterios = criteriosDao.buscarCriterios(); // usa essa funcao da DAO pra criar uma lista de criterios
+        criterioData.addAll(criterios); // Adiciona essa lista do banco na lista do controlador
 
 
 
@@ -76,7 +73,7 @@ public class CriteriosController {
 
         descricaoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
 
-        tableCriterios.setItems(criteriosData);
+        tableCriterios.setItems(criterioData);
 
     }
 
@@ -87,11 +84,11 @@ public class CriteriosController {
         String descricao = txtDescricao.getText();
 
         if (!nome.isEmpty() && !descricao.isEmpty()) {
-            Criterios criterio = new Criterios(nome, descricao);
+            Criterio criterio = new Criterio(nome, descricao);
             try {
                 int tempId = criteriosDao.adicionarCriterio(criterio);
                 criterio.setId(tempId);
-                criteriosData.add(criterio);
+                criterioData.add(criterio);
 
                 txtNome.clear();
                 txtDescricao.clear();
@@ -107,9 +104,9 @@ public class CriteriosController {
     @FXML
     void abrirTelaEdicao(ActionEvent event) {
 
-        Criterios criteriosSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
+        Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
 
-        if (criteriosSelecionado == null) {
+        if (criterioSelecionado == null) {
             // Caso nenhum item esteja selecionado, exibe uma mensagem de alerta
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Aviso");
@@ -125,7 +122,7 @@ public class CriteriosController {
 
             // Pega o controlador da tela de edição
             EdtCriteriosController edtCriteriosController = loader.getController();
-            edtCriteriosController.setCriterio(criteriosSelecionado);  // Passa o critério selecionado
+            edtCriteriosController.setCriterio(criterioSelecionado);  // Passa o critério selecionado
 
             // Cria uma janela para a edição
             Stage stage = new Stage();
@@ -144,9 +141,9 @@ public class CriteriosController {
     @FXML
     void removerCriterio(ActionEvent event) {
         // Pega o critério selecionado
-        Criterios criteriosSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
+        Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
 
-        if (criteriosSelecionado == null) {
+        if (criterioSelecionado == null) {
             // Caso nenhum item esteja selecionado, você pode exibir uma mensagem de alerta
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Aviso");
@@ -164,11 +161,11 @@ public class CriteriosController {
 
         Optional<ButtonType> result = confirmAlert.showAndWait();
         try {
-            criteriosDao.removerCriterio(criteriosSelecionado.getId()); //chama a funcao da DAO enviando o ID do objeto selecionado
+            criteriosDao.removerCriterio(criterioSelecionado.getId()); //chama a funcao da DAO enviando o ID do objeto selecionado
 
             // Remove o critério da lista e atualiza a tabela
-            tableCriterios.getItems().remove(criteriosSelecionado);
-            criteriosData.remove(criteriosSelecionado);
+            tableCriterios.getItems().remove(criterioSelecionado);
+            criterioData.remove(criterioSelecionado);
 
             // Atualiza a tabela após a exclusão
             tableCriterios.refresh();

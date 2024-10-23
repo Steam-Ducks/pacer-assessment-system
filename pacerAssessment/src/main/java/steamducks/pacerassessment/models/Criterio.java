@@ -1,27 +1,27 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.models;
 
-public class Criterios {
+public class Criterio {
 
     private int id;
     private String nome;
     private String descricao;
 
-    public Criterios(String nome, String descricao, int id) {
+    public Criterio(String nome, String descricao, int id) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public Criterios(String nome, String descricao) {
+    public Criterio(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public Criterios() {
+    public Criterio() {
 
     }
 
-    public Criterios(int idCriterio, String nome, String descricao) {
+    public Criterio(int idCriterio, String nome, String descricao) {
         this.id = idCriterio;
         this.nome = nome;
         this.descricao = descricao;

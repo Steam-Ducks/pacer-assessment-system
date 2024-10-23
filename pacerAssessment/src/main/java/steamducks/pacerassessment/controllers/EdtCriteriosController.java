@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.CriteriosDAO;
+import steamducks.pacerassessment.models.Criterio;
 
 public class EdtCriteriosController {
 
@@ -24,12 +25,12 @@ public class EdtCriteriosController {
     private TextArea txtEditDescricao;
 
 
-    private Criterios criterios;
+    private Criterio criterio;
 
-    public void setCriterio(Criterios criterios) {
-        this.criterios = criterios;
-        txtEdtNome.setText(criterios.getNome()); // Preenche o campo com o valor atual
-        txtEditDescricao.setText(criterios.getDescricao());
+    public void setCriterio(Criterio criterio) {
+        this.criterio = criterio;
+        txtEdtNome.setText(criterio.getNome()); // Preenche o campo com o valor atual
+        txtEditDescricao.setText(criterio.getDescricao());
     }
 
     @FXML
@@ -39,9 +40,9 @@ public class EdtCriteriosController {
 
         // Botão Concluir - salva o novo valor e fecha a janela
         btnConcluirEdt.setOnAction(event -> {
-            criterios.setNome(txtEdtNome.getText()); // Atualiza o valor do critério
-            criterios.setDescricao(txtEditDescricao.getText());
-            criteriosDAO.editarCriterio(criterios);
+            criterio.setNome(txtEdtNome.getText()); // Atualiza o valor do critério
+            criterio.setDescricao(txtEditDescricao.getText());
+            criteriosDAO.editarCriterio(criterio);
 
             fecharJanela();
         });

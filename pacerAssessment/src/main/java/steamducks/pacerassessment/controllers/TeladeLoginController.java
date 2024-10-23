@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.LoginDAO;
+import steamducks.pacerassessment.models.Usuario;
 
 import java.io.IOException;
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package steamducks.pacerassessment.dao;
 
-import steamducks.pacerassessment.Criterios;
+import steamducks.pacerassessment.models.Criterio;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class CriteriosDAO {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
 
-    public int adicionarCriterio(Criterios criterio) {
+    public int adicionarCriterio(Criterio criterio) {
         String insertCriterioSql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
 
         try (Connection con = getConnection();
@@ -39,8 +39,8 @@ public class CriteriosDAO {
         }
     }
 
-    public List<Criterios> buscarCriterios() {
-        List<Criterios> criterios = new ArrayList<>(); //lista que vamos salvar os criterios que retornar do banco
+    public List<Criterio> buscarCriterios() {
+        List<Criterio> criterios = new ArrayList<>(); //lista que vamos salvar os criterios que retornar do banco
         String selectSQL = "SELECT * FROM criterio"; //select que vamos fazer no banco
 
         try (Connection connection = getConnection();
@@ -52,7 +52,7 @@ public class CriteriosDAO {
 
             //faz um loop por todos os resultados
             while (resultSet.next()) {
-                Criterios criterio = new Criterios(); //cria um novo objeto criterio e usa os dados do resultado pra preencher os valores
+                Criterio criterio = new Criterio(); //cria um novo objeto criterio e usa os dados do resultado pra preencher os valores
                 criterio.setId(resultSet.getInt("id_criterio"));
                 criterio.setDescricao(resultSet.getString("descricao"));
                 criterio.setNome(resultSet.getString("nome"));
@@ -87,7 +87,7 @@ public class CriteriosDAO {
         }
     }
 
-    public void editarCriterio(Criterios criterio) {
+    public void editarCriterio(Criterio criterio) {
         String updateCriterioSql = "UPDATE criterio SET nome = ?, descricao = ? WHERE id_criterio = ?";
 
         try (Connection con = getConnection();
