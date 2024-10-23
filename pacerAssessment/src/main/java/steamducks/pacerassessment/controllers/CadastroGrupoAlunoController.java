@@ -10,6 +10,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+import steamducks.pacerassessment.models.Equipe;
+import steamducks.pacerassessment.models.Usuario;
 
 import java.io.*;
 

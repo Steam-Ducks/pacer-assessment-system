@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.CriteriosDAO;
+import steamducks.pacerassessment.models.Criterios;
 
 public class EdtCriteriosController {
 

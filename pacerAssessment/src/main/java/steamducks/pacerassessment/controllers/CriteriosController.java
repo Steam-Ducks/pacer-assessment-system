@@ -6,16 +6,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import javafx.scene.layout.HBox;
 import steamducks.pacerassessment.dao.CriteriosDAO;
+import steamducks.pacerassessment.models.Criterios;
 
 import java.io.IOException;
 import java.util.List;

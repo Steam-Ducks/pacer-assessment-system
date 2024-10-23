@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.LoginDAO;
+import steamducks.pacerassessment.models.Usuario;
 
 import java.io.IOException;
 import java.util.Objects;

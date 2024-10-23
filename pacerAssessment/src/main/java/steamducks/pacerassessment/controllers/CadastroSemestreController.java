@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.SemestreDAO;
+import steamducks.pacerassessment.models.Criterios;
 
 public class CadastroSemestreController implements Initializable {
 
