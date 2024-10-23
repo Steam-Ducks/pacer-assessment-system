@@ -1,6 +1,6 @@
 package steamducks.pacerassessment.dao;
 
-import steamducks.pacerassessment.Criterios;
+import steamducks.pacerassessment.models.Criterio;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,8 +11,8 @@ public class SemestreDAO {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
 
-    public List<Criterios> buscarCriterios() {
-        List<Criterios> criterios = new ArrayList<>();
+    public List<Criterio> buscarCriterios() {
+        List<Criterio> criterios = new ArrayList<>();
         Connection con = null;
 
         try {
@@ -22,7 +22,7 @@ public class SemestreDAO {
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
-                Criterios c = new Criterios(rs.getInt("id_criterio"), rs.getString("nome"), rs.getString("descricao"));
+                Criterio c = new Criterio(rs.getInt("id_criterio"), rs.getString("nome"), rs.getString("descricao"));
                 criterios.add(c);
             }
 
@@ -80,7 +80,7 @@ public class SemestreDAO {
         return idSemestre;
     }
 
-    public void vincularCriterios(int idSemestre, List<Criterios> criterios) {
+    public void vincularCriterios(int idSemestre, List<Criterio> criterios) {
         Connection con = null;
 
         try {
@@ -90,7 +90,7 @@ public class SemestreDAO {
             String insertCriteriosSql = "INSERT INTO semestre_criterio (id_semestre, id_criterio) VALUES (?, ?)";
             PreparedStatement pstCriterios = con.prepareStatement(insertCriteriosSql);
 
-            for (Criterios criterio : criterios) {
+            for (Criterio criterio : criterios) {
                 pstCriterios.setInt(1, idSemestre);
                 pstCriterios.setInt(2, criterio.getId());
                 pstCriterios.executeUpdate();

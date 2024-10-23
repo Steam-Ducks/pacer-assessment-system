@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import steamducks.pacerassessment.Usuario;
+import steamducks.pacerassessment.models.Usuario;
 
 public class GrupoAlunoDAO {
 

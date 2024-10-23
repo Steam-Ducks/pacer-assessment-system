@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.SemestreDAO;
-import steamducks.pacerassessment.models.Criterios;
+import steamducks.pacerassessment.models.Criterio;
 
 public class CadastroSemestreController implements Initializable {
 
@@ -33,10 +33,10 @@ public class CadastroSemestreController implements Initializable {
     private Button btnRemove;
 
     @FXML
-    private ListView<Criterios> listViewOpcoes;
+    private ListView<Criterio> listViewOpcoes;
 
     @FXML
-    private ListView<Criterios> listViewCriterios;
+    private ListView<Criterio> listViewCriterios;
 
     @FXML
     private TextField txtFieldNome;
@@ -46,15 +46,15 @@ public class CadastroSemestreController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Criterios> criteriosDisponiveis = semestreDAO.buscarCriterios();
-        ObservableList<Criterios> opcoes = FXCollections.observableArrayList(criteriosDisponiveis);
+        List<Criterio> criterioDisponiveis = semestreDAO.buscarCriterios();
+        ObservableList<Criterio> opcoes = FXCollections.observableArrayList(criterioDisponiveis);
         listViewOpcoes.setItems(opcoes);
         listViewCriterios.setItems(FXCollections.observableArrayList());
     }
 
     @FXML
     void addOption(ActionEvent event) {
-        Criterios selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
+        Criterio selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
         if (selectedOption != null && !listViewCriterios.getItems().contains(selectedOption)) {
             listViewCriterios.getItems().add(selectedOption);
             criteriosSelecionados.add(String.valueOf(selectedOption.getId()));
@@ -65,7 +65,7 @@ public class CadastroSemestreController implements Initializable {
 
     @FXML
     void removeOption(ActionEvent event) {
-        Criterios selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
+        Criterio selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
         if (selectedOption != null) {
             listViewCriterios.getItems().remove(selectedOption);
             criteriosSelecionados.remove(selectedOption.getId());

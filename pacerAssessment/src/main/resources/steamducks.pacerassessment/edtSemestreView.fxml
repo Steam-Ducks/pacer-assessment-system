@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.EdtSemestreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="178.0" prefWidth="314.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.EdtSemestreController">
    <children>
       <Button fx:id="btnConcluirEdt" layoutX="208.0" layoutY="119.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #20BF55;" text="Concluir" textFill="WHITE" />
       <Button fx:id="btnCancelEdit" layoutX="24.0" layoutY="119.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />

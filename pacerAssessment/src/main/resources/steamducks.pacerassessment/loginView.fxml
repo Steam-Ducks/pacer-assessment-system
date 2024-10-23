@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.TeladeLoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.TeladeLoginController">
    <children>
       <Label layoutX="150.0" layoutY="47.0" prefHeight="45.0" prefWidth="305.0" text="Sistema RECAP" textAlignment="CENTER">
          <font>

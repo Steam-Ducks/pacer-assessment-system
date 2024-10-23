@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 
-import steamducks.pacerassessment.Usuario;
+import steamducks.pacerassessment.models.Usuario;
 
 public class LoginDAO {
 
