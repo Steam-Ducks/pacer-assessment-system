@@ -346,6 +346,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 ---
 
 ### Burndonw
+<img src="BurnDown_Sprint2.PNG" alt="BurnDown_Sprint2" width="100%" />
 
 </details>
 
@@ -358,33 +359,47 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 |------|------------|----|------------|------------|--------|-----------------------|
 | 14 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 33 | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual. | 4 | 4 | 8 |
 
-### Defitionion of done: 
+### Requisitos
 - Deve ser apenas um botão na tela de login
 - Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login]
 - E-mail de recuperação deve ser gerado automaticamente com link para alterar senha
 
+### Definition of done: 
+- Código funcional e organizado, disponibilizado no Git.
+- Layout integrado na tela de login.
+- Funcionalidade totalmente integrada ao sistema.
+
 ### Definition of ready: 
-- Testes unitários foram realizados para enviar o e-mail correto.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
+- O cadastro dos usuários já está funcionando e integrado ao banco de dados.
+- O texto exibido no e-mail é "Clique no link para recuperar a senha"
+- O e-mail de recuperação será enviado do e-mail 
+- A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
+- Wireframe:
+<img src="WireframePAS-33.peg" alt="Wireframe PAS - 33" width="50%" />
 
 ---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro | 
 |------|------------|----|------------|------------|--------|-----------------------|
-| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual."     | 4          | 4      | 8 |
+| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual.     | 4          | 4      | 8 |
 
-### Definition of done: 
+### Requisitos
 - Deve ser apenas um botão na tela de login
-- Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login]
+- Deve passar por uma validação para saber se a pessoa que está pedindo a senha é realmente a dona do login
 - E-mail de recuperação deve ser gerado automaticamente com link para alterar senha
 
+### Definition of done: 
+- Código funcional e organizado, disponibilizado no Git.
+- Layout integrado na tela de login.
+- Funcionalidade totalmente integrada ao sistema.
+
 ### Definition of ready: 
-- Testes unitários foram realizados para enviar o e-mail correto.
-- A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
-- O Product Owner revisou e aprovou a implementação final.
-   
-### Validações feitas com o Cliente
+- O cadastro dos usuários já está funcionando e integrado ao banco de dados.
+- O texto exibido no e-mail é "Clique no link para recuperar a senha"
+- O e-mail de recuperação será enviado do e-mail 
+- A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
+- Wireframe:
+<img src="WireframePAS-34.peg" alt="Wireframe PAS - 34" width="50%" />
 
 ### Burndonw
 
