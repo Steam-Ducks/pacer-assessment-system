@@ -378,7 +378,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:<br>
 <img src="WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" /> <br>
-<img src="WireframePAS-33-2.jpg" alt="Wireframe PAS - 33 - 2" width="50%" />
+<img src="WireframePAS-33-2.JPG" alt="Wireframe PAS - 33 - 2" width="50%" />
 
 ---
 
@@ -403,7 +403,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:<br>
 <img src="WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" /> <br>
-<img src="WireframePAS-34-2.jpg" alt="Wireframe PAS - 34 - 2" width="50%" />
+<img src="WireframePAS-34-2.JPG" alt="Wireframe PAS - 34 - 2" width="50%" />
 
 ### Burndown
 
