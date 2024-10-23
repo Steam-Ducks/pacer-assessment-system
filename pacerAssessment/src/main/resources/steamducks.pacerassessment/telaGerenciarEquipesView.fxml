@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: e5e5e5;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TelaGerenciarEquipesController">
+   <children>
+      <TableView layoutX="29.0" layoutY="42.0" prefHeight="291.0" prefWidth="543.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="ID" />
+          <TableColumn prefWidth="225.0" text="Nome" />
+            <TableColumn prefWidth="242.0" text="GitHub" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnAdicionar" layoutX="317.0" layoutY="349.0" mnemonicParsing="false" onAction="#btnAdicionarEquipe" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
+      <Button fx:id="btnEditar" layoutX="405.0" layoutY="349.0" mnemonicParsing="false" onAction="#btnEditarEquipe" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #C2CC29;" text="Editar" textFill="WHITE" />
+      <Button fx:id="btnRemover" layoutX="492.0" layoutY="349.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="80.0" style="-fx-background-color: #CC2936;" text="Remover" textFill="WHITE" />
+      <Label layoutX="212.0" layoutY="14.0" text="Gerenciar Equipes">
+         <font>
+            <Font name="SansSerif Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
