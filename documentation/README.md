@@ -155,7 +155,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ---
 
-### Burndonw
+### Burndown
 <img src="BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
@@ -207,7 +207,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ---
 
-### Burndonw
+
+### Burndown
+<img src="BurnDown_Sprint2.PNG" alt="BurnDown_Sprint2" width="100%" />
+
 </details>
 
 <details>
@@ -346,7 +349,6 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 ---
 
 ### Burndonw
-<img src="BurnDown_Sprint2.PNG" alt="BurnDown_Sprint2" width="100%" />
 
 </details>
 
@@ -375,7 +377,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O e-mail de recuperação será enviado do e-mail 
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:
-<img src="WireframePAS-33.peg" alt="Wireframe PAS - 33" width="50%" />
+<img src="WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" />
 
 ---
 
@@ -399,9 +401,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O e-mail de recuperação será enviado do e-mail 
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:
-<img src="WireframePAS-34.peg" alt="Wireframe PAS - 34" width="50%" />
+<img src="WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" />
 
-### Burndonw
+### Burndown
 
 </details>
 
