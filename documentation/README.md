@@ -376,8 +376,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O texto exibido no e-mail é "Clique no link para recuperar a senha"
 - O e-mail de recuperação será enviado do e-mail 
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
-- Wireframe:
-<img src="WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" />
+- Wireframe:<br>
+<img src="WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" /> <br>
+<img src="WireframePAS-33-2.jpg" alt="Wireframe PAS - 33 - 2" width="50%" />
 
 ---
 
@@ -400,8 +401,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O texto exibido no e-mail é "Clique no link para recuperar a senha"
 - O e-mail de recuperação será enviado do e-mail 
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
-- Wireframe:
-<img src="WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" />
+- Wireframe:<br>
+<img src="WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" /> <br>
+<img src="WireframePAS-34-2.jpg" alt="Wireframe PAS - 34 - 2" width="50%" />
 
 ### Burndown
 
