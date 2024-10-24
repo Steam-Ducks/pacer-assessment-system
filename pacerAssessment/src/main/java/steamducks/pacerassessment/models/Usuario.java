@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.models;
 
 public class Usuario {
     private String nome;

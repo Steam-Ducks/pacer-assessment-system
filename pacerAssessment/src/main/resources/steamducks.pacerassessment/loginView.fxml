@@ -1,30 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="491.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.TeladeLoginController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #FFFFFF;" styleClass=".panneLogin" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.TeladeLoginController">
    <children>
-      <Label layoutX="150.0" layoutY="47.0" prefHeight="45.0" prefWidth="305.0" text="Sistema RECAP" textAlignment="CENTER">
+      <Label layoutX="83.0" layoutY="105.0" prefHeight="45.0" prefWidth="199.0" styleClass="tituloPrincipal" text="Bem-vindo (a)!" textAlignment="CENTER" textFill="#14213d">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
+      <TextField fx:id="txtFieldLogin" layoutX="62.0" layoutY="238.0" prefHeight="35.0" prefWidth="242.0" promptText="Usuário">
+         <styleClass>
+            <String fx:value="txtFieldLogin" />
+            <String fx:value="panneLogin" />
+         </styleClass></TextField>
+      <PasswordField fx:id="txtSenha" focusTraversable="true" layoutX="62.0" layoutY="288.0" prefHeight="35.0" prefWidth="242.0" promptText="Senha" stylesheets="@../styles.css">
+         <styleClass>
+            <String fx:value="txtFieldLogin" />
+            <String fx:value="panneLogin" />
+         </styleClass></PasswordField>
 
-      <Label layoutX="74.0" layoutY="116.0" prefHeight="31.0" prefWidth="70.0" text="Login:" />
-      <TextField fx:id="txtFieldLogin" layoutX="134.0" layoutY="116.0" prefHeight="31.0" prefWidth="223.0" />
-
-      <Label layoutX="74.0" layoutY="166.0" prefHeight="31.0" prefWidth="70.0" text="Senha:" />
-      <PasswordField fx:id="txtSenha" focusTraversable="true" layoutX="134.0" layoutY="166.0" prefHeight="31.0" prefWidth="223.0" />
-
-      <Button fx:id="btnEntrar" layoutX="166.0" layoutY="231.0" mnemonicParsing="false" onAction="#login" prefHeight="35.0" prefWidth="159.0" text="Entrar">
+      <Button fx:id="btnEntrar" layoutX="127.0" layoutY="364.0" mnemonicParsing="false" onAction="#login" styleClass="buttonLoginEntrar" text="Entrar" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
+      <AnchorPane layoutX="374.0" prefHeight="509.0" prefWidth="378.0" styleClass="secondPane">
+         <children>
+            <ImageView fitHeight="292.0" fitWidth="311.0" layoutX="43.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logo-dark.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text fill="#14213d" layoutX="34.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="Transforme a maneira como você gerencia" wrappingWidth="311.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#14213d" layoutX="30.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="avaliações e impulsione a educação de seus" wrappingWidth="332.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="114.0" layoutY="331.0" text="Esqueci minha senha" textFill="#14213d" />
+      <Text fill="#14213d" layoutX="73.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="alunos para um futuro brilhante!" wrappingWidth="233.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </Pane>

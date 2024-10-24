@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.LoginDAO;
+import steamducks.pacerassessment.models.Usuario;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -45,9 +46,9 @@ public class TeladeLoginController {
             System.out.println("Login bem-sucedido!");
 
             if (usuario.isProfessor()) {
-                loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Menu Professor");
+                loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Sistema RECAP");
             } else {
-                loadView("/steamducks.pacerassessment/menuAlunoView.fxml", "Menu Estudante");
+                loadView("/steamducks.pacerassessment/menuAlunoView.fxml", "Sistema RECAP");
             }
 
             logLoginAttempt(email, true);
@@ -76,7 +77,7 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
-            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-teste.png")));
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
             stage.getIcons().add(logo);
 
             stage.setScene(scene);

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="320.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CadastroSemestreController">
+<AnchorPane prefHeight="320.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CadastroSemestreController">
    <children>
       <Label layoutX="20.0" layoutY="52.0" prefHeight="28.0" prefWidth="41.0" text="Nome" />
       <TextField fx:id="txtFieldNome" layoutX="19.0" layoutY="77.0" prefHeight="26.0" prefWidth="259.0" promptText="Insira o nome da turma" />

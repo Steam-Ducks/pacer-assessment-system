@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.models.Semestre;
 
 import java.io.IOException;
 

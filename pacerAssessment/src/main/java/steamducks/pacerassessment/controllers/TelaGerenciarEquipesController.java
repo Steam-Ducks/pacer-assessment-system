@@ -1,4 +1,4 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,4 +50,6 @@ public class TelaGerenciarEquipesController {
         }
     }
 
+    public void btnAdicionarEquipe(ActionEvent actionEvent) {
+    }
 }
