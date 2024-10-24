@@ -57,7 +57,7 @@ public class MenuProfessorController {
 
     @FXML
     public void abrirGerenciarPontuacaoSprint(ActionEvent event) throws IOException {
-
+        carregarView("/steamducks.pacerassessment/gerenciarPontuacaoSprintView.fxml");
     }
 
     @FXML
@@ -71,8 +71,8 @@ public class MenuProfessorController {
     }
 
     @FXML
-    public void abrirGerenciarSprints(ActionEvent event) {
-
+    public void abrirGerenciarSprints(ActionEvent event) throws IOException {
+        carregarView("/steamducks.pacerassessment/gerenciarSprintView.fxml");
     }
 
     @FXML
