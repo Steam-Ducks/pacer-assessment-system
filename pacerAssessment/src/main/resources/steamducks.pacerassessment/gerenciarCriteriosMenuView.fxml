@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="447.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CriteriosController">
+<AnchorPane prefHeight="447.0" prefWidth="629.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CriteriosController">
     <children>
         <TableView fx:id="tableCriterios" layoutY="29.0" prefHeight="257.0" prefWidth="629.0">
             <columns>

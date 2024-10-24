@@ -4,7 +4,12 @@ module steamducks.pacerassessment {
 
     requires com.dlsc.formsfx;
     requires javafx.graphics;
+    requires java.sql;
 
     opens steamducks.pacerassessment to javafx.fxml;
     exports steamducks.pacerassessment;
+    exports steamducks.pacerassessment.models;
+    opens steamducks.pacerassessment.models to javafx.fxml;
+    exports steamducks.pacerassessment.controllers;
+    opens steamducks.pacerassessment.controllers to javafx.fxml;
 }

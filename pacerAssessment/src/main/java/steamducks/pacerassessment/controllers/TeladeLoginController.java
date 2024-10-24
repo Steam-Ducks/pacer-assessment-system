@@ -1,15 +1,19 @@
-package steamducks.pacerassessment;
+package steamducks.pacerassessment.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.dao.LoginDAO;
+import steamducks.pacerassessment.models.Usuario;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -25,40 +29,44 @@ public class TeladeLoginController {
     @FXML
     private Button btnEntrar;
 
+    private LoginDAO loginDAO;
+
+    public TeladeLoginController() {
+        loginDAO = new LoginDAO();
+    }
+
     @FXML
     void login(ActionEvent event) {
-        String login = txtFieldLogin.getText();
+        String email = txtFieldLogin.getText();
         String senha = txtSenha.getText();
 
-        // Verificação simples de login
-        if (login.equals("admin") && senha.equals("1234")) {
+        Usuario usuario = loginDAO.login(email, senha);
+
+        if (usuario != null) {
             System.out.println("Login bem-sucedido!");
 
-            // Chama a função para carregar a tela `menuProfessorView.fxml`
-            loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Menu Professor");
+            if (usuario.isProfessor()) {
+                loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Sistema RECAP");
+            } else {
+                loadView("/steamducks.pacerassessment/menuAlunoView.fxml", "Sistema RECAP");
+            }
 
-            // Chama a função para registrar a tentativa de login bem-sucedida
-            logLoginAttempt(login, true);
+            logLoginAttempt(email, true);
 
-            // Fecha a janela atual de login
             Stage stage = (Stage) btnEntrar.getScene().getWindow();
             stage.close();
         } else {
             System.out.println("Login ou senha incorretos.");
-
-            // Chama a função para registrar a tentativa de login falha
-            logLoginAttempt(login, false);
+            logLoginAttempt(email, false);
+            showLoginErrorPopup();
         }
     }
 
-    // Método para carregar uma nova tela
     private void loadView(String fxmlFile, String nomeTela) {
         try {
-            // Imprime o caminho do FXML para depuração
             System.out.println("Tentando carregar: " + fxmlFile);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
 
-            // Verifica se o recurso foi encontrado
             if (fxmlLoader.getLocation() == null) {
                 System.out.println("Erro: Arquivo FXML não encontrado -> " + fxmlFile);
                 return;
@@ -69,8 +77,7 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
-            // Carrega o ícone - opcional
-            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-teste.png")));
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
             stage.getIcons().add(logo);
 
             stage.setScene(scene);
@@ -82,9 +89,16 @@ public class TeladeLoginController {
         }
     }
 
-    // Exemplo de uma função para registrar a tentativa de login
     private void logLoginAttempt(String login, boolean success) {
         String status = success ? "bem-sucedido" : "falho";
         System.out.println("Tentativa de login: " + login + " foi " + status);
+    }
+
+    private void showLoginErrorPopup() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erro de Login");
+        alert.setHeaderText("Login ou senha incorretos");
+        alert.setContentText("Por favor, verifique seu e-mail e senha e tente novamente.");
+        alert.showAndWait();
     }
 }

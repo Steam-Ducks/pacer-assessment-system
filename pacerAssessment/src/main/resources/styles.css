@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.root {
+    -fx-font-family: 'Poppins';
+}
+
+/* Tela de Login */
+.panneLogin {
+    -fx-font-family: Poppins;
+    -fx-background-radius: 10px;
+}
+
+.secondPane {
+    -fx-background-color: #14213D;
+    -fx-min-height: 500px;
+}
+
+.txtFieldLogin {
+    -fx-font-family: Poppins;
+    -fx-border-radius: 10px;
+    -fx-min-width: 100px;
+    -fx-min-height: 20px;
+}
+
+.tituloPrincipal {
+    -fx-font-family: Poppins;
+    -fx-font-weight: bold;
+}
+
+.subTituloPrincipal {
+    -fx-font-family: Poppins;
+}
+
+.buttonLoginEntrar {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #14213D;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(31, 49, 90, 0.5), 10, 0.0, 2, 2);
+}
+
+.buttonLoginEntrar:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #1F315A;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+/* Menu Professor */
+.buttonMenuPrincipal {
+    -fx-font-family: Poppins;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-min-height: 60px;
+    -fx-text-alignment: left !important;
+}
+
+.buttonMenuPrincipal:hover {
+    -fx-background-color: #1F315A;
+    -fx-cursor: hand;
+}
+
+.buttonSairMenuPrincipal {
+    -fx-font-family: Poppins;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.buttonSairMenuPrincipal:hover {
+    -fx-background-color: #1F315A;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.buttonGerarRelatório {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #18B04B;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgb(45, 121, 69), 10, 0.0, 2, 2);
+}
+
+.buttonGerarRelatório:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #1F315A;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.contentPane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 10px;
+    -fx-min-height: 520px;
+    -fx-min-width: 740px;
+}
+
+.txtField {
+    -fx-font-family: Poppins;
+}
+
+/* Títulos de tela */
+.tituloDeTelasGerenciar {
+    -fx-font-family: Poppins;
+    -fx-font-size: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(164, 164, 164, 0.5), 10, 0.0, 1, 0);
+}
+
+.linhaGradiente {
+    -fx-stroke: linear-gradient(to right, #14213D, #4b82ff);
+    -fx-stroke-width: 3px;
+}
+
+/* Tela de Relatórios */
+.txtRelatorios {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16;
+}
+
+

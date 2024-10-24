@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.CadastroGrupoAlunoController">
+<AnchorPane prefHeight="609.0" prefWidth="497.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CadastroGrupoAlunoController">
     <children>
-        <AnchorPane prefHeight="559.0" prefWidth="456.0">
+        <AnchorPane prefHeight="609.0" prefWidth="519.0">
             <children>
-                <Label layoutX="45.0" layoutY="35.0" text="Equipe:" />
-                <TextField fx:id="txtEquipe" layoutX="95.0" layoutY="30.0" prefHeight="26.0" prefWidth="279.0" promptText="Nome da Equipe" />
-                <Label alignment="CENTER_RIGHT" layoutX="44.0" layoutY="64.0" prefHeight="17.0" prefWidth="42.0" text="Github:" />
-                <TextField fx:id="txtGithub" layoutX="95.0" layoutY="62.0" prefHeight="25.0" prefWidth="279.0" promptText="https://github.com/" />
-                <!-- Button for uploading CSV file -->
-                <Button fx:id="btnUpload" layoutX="168.0" layoutY="121.0" onAction="#upload" prefHeight="34.0" prefWidth="120.0" text="Importar Alunos" />
+                <Label layoutX="73.0" layoutY="54.0" text="Equipe:" textAlignment="RIGHT" />
+                <TextField fx:id="txtEquipe" layoutX="120.0" layoutY="49.0" prefHeight="26.0" prefWidth="279.0" promptText="Nome da Equipe" />
+                <Label alignment="CENTER_RIGHT" layoutX="72.0" layoutY="85.0" prefHeight="17.0" prefWidth="42.0" text="Github:" textAlignment="RIGHT" />
+                <TextField fx:id="txtGithub" layoutX="120.0" layoutY="81.0" prefHeight="25.0" prefWidth="279.0" promptText="https://github.com/" />
+                <Button fx:id="btnAddAluno" layoutX="45.0" layoutY="179.0" onAction="#addAluno" prefHeight="34.0" prefWidth="120.0" text="Adicionar Aluno" />
 
-                <!-- TableView for displaying CSV data -->
-                <TableView fx:id="tvAlunos" layoutX="18.0" layoutY="179.0" prefHeight="295.0" prefWidth="421.0">
+                <TableView fx:id="tvAlunos" layoutX="14.0" layoutY="232.0" prefHeight="295.0" prefWidth="492.0">
                     <columns>
-                        <TableColumn fx:id="tcNome" prefWidth="139.0" text="Nome" />
-                        <TableColumn fx:id="tcEmail" prefWidth="139.0" text="Email" />
-                        <TableColumn fx:id="tcSenha" prefWidth="141.0" text="Senha" />
+                        <TableColumn fx:id="tcNome" prefWidth="129.0" text="Nome" />
+                        <TableColumn fx:id="tcEmail" prefWidth="175.0" text="Email" />
+                        <TableColumn fx:id="tcSenha" prefWidth="142.0" text="Senha" />
+                        <TableColumn fx:id="tcDelete" prefWidth="45.0" />
                     </columns>
                 </TableView>
 
-
-                <!-- Button for registering the data -->
-                <Button fx:id="btnRegistrar" layoutX="238.0" layoutY="493.0" onAction="#registrar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
-                <Button fx:id="btnCancelar" layoutX="134.0" layoutY="493.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
+                <Button fx:id="btnRegistrar" layoutX="269.0" layoutY="540.0" onAction="#registrar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Cadastrar" textFill="WHITE" />
+                <Button fx:id="btnCancelar" layoutX="165.0" layoutY="540.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE" />
+                <Label layoutX="58.0" layoutY="116.0" text="Semestre:" textAlignment="RIGHT" />
+                <ComboBox fx:id="cmbSemestre" layoutX="120.0" layoutY="112.0" prefHeight="25.0" prefWidth="279.0" />
+                <Text fill="#716b6b" layoutX="152.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro de Equipe">
+                    <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                    </font>
+                </Text>
+            <Button fx:id="btnUpload" layoutX="200.0" layoutY="179.0" onAction="#upload" prefHeight="34.0" prefWidth="120.0" text="Importar Alunos" />
+            <Button fx:id="btnDownload" layoutX="354.0" layoutY="179.0" onAction="#downloadModel" prefHeight="34.0" prefWidth="120.0" text="Baixar Modelo CSV" />
             </children>
         </AnchorPane>
     </children>
