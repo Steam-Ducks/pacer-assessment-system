@@ -6,27 +6,24 @@ public class Criterio {
     private String nome;
     private String descricao;
 
-    public Criterio(String nome, String descricao, int id) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-
-    public Criterio(String nome, String descricao) {
-        this.nome = nome;
-        this.descricao = descricao;
-    }
-
-    public Criterio() {
-
-    }
-
+    // Construtor completo com ID
     public Criterio(int idCriterio, String nome, String descricao) {
         this.id = idCriterio;
         this.nome = nome;
         this.descricao = descricao;
     }
 
+    // Construtor para novo Criterio (sem ID)
+    public Criterio(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    // Construtor padrão (vazio)
+    public Criterio() {
+    }
+
+    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -52,7 +49,7 @@ public class Criterio {
     }
 
     @Override
-public String toString(){
-        return nome; //Exibe apenas o nome do criterio
-    };
+    public String toString() {
+        return nome; // Exibe apenas o nome do critério
+    }
 }
