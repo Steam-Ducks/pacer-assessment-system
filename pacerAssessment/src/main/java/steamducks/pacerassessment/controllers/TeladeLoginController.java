@@ -46,9 +46,9 @@ public class TeladeLoginController {
             System.out.println("Login bem-sucedido!");
 
             if (usuario.isProfessor()) {
-                loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Sistema RECAP");
+                loadView("/steamducks.pacerassessment/menuProfessorView.fxml", "Sistema RECAP", usuario);
             } else {
-                loadView("/steamducks.pacerassessment/menuAlunoView.fxml", "Sistema RECAP");
+                loadView("/steamducks.pacerassessment/menuAlunoView.fxml", "Sistema RECAP", usuario);
             }
 
             logLoginAttempt(email, true);
@@ -62,7 +62,7 @@ public class TeladeLoginController {
         }
     }
 
-    private void loadView(String fxmlFile, String nomeTela) {
+    private void loadView(String fxmlFile, String nomeTela, Usuario usuario) {
         try {
             System.out.println("Tentando carregar: " + fxmlFile);
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -77,6 +77,16 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
+            Object controller = fxmlLoader.getController();
+            if (controller instanceof MenuProfessorController)
+            {
+                //((MenuProfessorController) controller).inicializar(usuario);
+            }
+            else if (controller instanceof MenuAlunoController)
+            {
+                ((MenuAlunoController) controller).inicializar(usuario);
+            }
+
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
             stage.getIcons().add(logo);
 
@@ -88,6 +98,7 @@ public class TeladeLoginController {
             e.printStackTrace();
         }
     }
+
 
     private void logLoginAttempt(String login, boolean success) {
         String status = success ? "bem-sucedido" : "falho";

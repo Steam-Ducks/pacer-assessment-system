@@ -15,6 +15,7 @@ public class Usuario {
         this.idEquipe = idEquipe;
         this.isProfessor = isProfessor;
     }
+    public Usuario() {}
 
     public String getEmail() {
         return email;
@@ -52,17 +53,12 @@ public class Usuario {
         return isProfessor;
     }
 
-    public void setProfessor(boolean isProfessor) {
+    public void setIsProfessor(boolean isProfessor) {
         this.isProfessor = isProfessor;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "email='" + email + '\'' +
-                ", nome='" + nome + '\'' +
-                ", idEquipe=" + idEquipe +
-                ", isProfessor=" + isProfessor +
-                '}';
+        return nome;
     }
 }

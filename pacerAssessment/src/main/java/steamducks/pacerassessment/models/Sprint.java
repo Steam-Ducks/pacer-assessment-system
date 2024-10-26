@@ -4,25 +4,29 @@ import java.time.LocalDate;
 
 public class Sprint {
     private int idSprint;
+    private String nome;
     private LocalDate dataInicio;
     private LocalDate dataFim;
-    private int idSemestre;
+    private int idSemestre ;
 
     // Construtor completo
-    public Sprint(int idSprint, LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
+    public Sprint(int idSprint, String nome, LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
         this.idSprint = idSprint;
+        this.nome = nome;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.idSemestre = idSemestre;
     }
 
     // Construtor sem id (para novos sprints)
-    public Sprint(LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
+    public Sprint(String nome, LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
+        this.nome = nome;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.idSemestre = idSemestre;
     }
 
+    public  Sprint(){}
     // Getters e Setters
     public int getIdSprint() {
         return idSprint;
@@ -30,6 +34,14 @@ public class Sprint {
 
     public void setIdSprint(int idSprint) {
         this.idSprint = idSprint;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public LocalDate getDataInicio() {
@@ -58,11 +70,6 @@ public class Sprint {
 
     @Override
     public String toString() {
-        return "Sprint{" +
-                "idSprint=" + idSprint +
-                ", dataInicio=" + dataInicio +
-                ", dataFim=" + dataFim +
-                ", idSemestre=" + idSemestre +
-                '}';
+        return nome;
     }
 }
