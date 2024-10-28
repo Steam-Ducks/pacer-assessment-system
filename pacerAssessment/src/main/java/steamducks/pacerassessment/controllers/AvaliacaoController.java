@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.beans.property.SimpleStringProperty;
 import steamducks.pacerassessment.dao.AvaliacaoDAO;
 import steamducks.pacerassessment.models.Criterio;
 import steamducks.pacerassessment.models.Sprint;
@@ -41,7 +42,9 @@ public class AvaliacaoController {
         this.alunoAvaliador = alunoAvaliador;
         carregarAlunosEquipe();
         carregarSprints();
-        carregarCriterios();
+        configurarOuvintesComboBox();
+        configurarColunas(); // Mover configuração para cá
+        carregarCriteriosComNotas();
     }
 
     private void carregarAlunosEquipe() {
@@ -56,21 +59,47 @@ public class AvaliacaoController {
         cmbSprint.setItems(sprintsObservableList);
     }
 
-    private void carregarCriterios() {
-        List<Criterio> criterios = avaliacaoDAO.obterCriteriosPorEquipe(alunoAvaliador.getIdEquipe());
-        ObservableList<Criterio> criteriosObservableList = FXCollections.observableArrayList(criterios);
-        tvAvaliacao.setItems(criteriosObservableList);
+    private void configurarOuvintesComboBox() {
+        cmbAluno.valueProperty().addListener((observable, oldValue, newValue) -> carregarCriteriosComNotas());
+        cmbSprint.valueProperty().addListener((observable, oldValue, newValue) -> carregarCriteriosComNotas());
+    }
 
+    private void configurarColunas() {
         tcCriterio.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
-        // Configura a coluna de nota como editável
-        tcNota.setCellValueFactory(new PropertyValueFactory<>("nota"));
+        // Se 'nota' for Integer, convertê-lo para String na exibição
+        tcNota.setCellValueFactory(cellData -> {
+            Integer nota = cellData.getValue().getNota();
+            return new SimpleStringProperty(nota != null ? nota.toString() : ""); // Usar String
+        });
         tcNota.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        // Permitir edição de notas
         tcNota.setOnEditCommit(event -> {
             Criterio criterio = event.getRowValue();
-            criterio.setNota(Integer.valueOf(event.getNewValue())); // Atualiza a nota no objeto Criterio
+            try {
+                criterio.setNota(Integer.parseInt(event.getNewValue())); // Certifique-se de que 'setNota' aceita Integer
+            } catch (NumberFormatException e) {
+                criterio.setNota(0); // Define como 0 se a nota não for numérica
+            }
         });
+    }
 
-        tvAvaliacao.setEditable(true);
+    @FXML
+    private void carregarCriteriosComNotas() {
+        Usuario alunoAvaliado = cmbAluno.getValue();
+        Sprint sprintSelecionada = cmbSprint.getValue();
+
+        if (alunoAvaliado != null && sprintSelecionada != null) {
+            List<Criterio> criteriosComNotas = avaliacaoDAO.obterNotasPorCriterio(
+                    alunoAvaliador.getEmail(),
+                    alunoAvaliado.getEmail(),
+                    sprintSelecionada.getIdSprint()
+            );
+
+            ObservableList<Criterio> criteriosObservableList = FXCollections.observableArrayList(criteriosComNotas);
+            tvAvaliacao.setItems(criteriosObservableList);
+            tvAvaliacao.setEditable(true); // Definindo a tabela como editável
+        }
     }
 }

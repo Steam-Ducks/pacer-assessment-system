@@ -43,11 +43,11 @@ public class AvaliacaoDAO extends ConexaoDAO {
     public List<Sprint> obterSprintsPorEquipe(int idEquipe) {
         List<Sprint> sprints = new ArrayList<>();
         String sql = """
-        SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
-        FROM sprint s
-        INNER JOIN equipe e ON s.id_semestre = e.id_semestre
-        WHERE e.id_equipe = ?
-    """;
+            SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
+            FROM sprint s
+            INNER JOIN equipe e ON s.id_semestre = e.id_semestre
+            WHERE e.id_equipe = ?
+        """;
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -102,4 +102,40 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
         return criterios;
     }
+
+    public List<Criterio> obterNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint) {
+        List<Criterio> criteriosComNota = new ArrayList<>();
+        String sql = """
+        SELECT c.id_criterio, c.nome, c.descricao, COALESCE(a.nota, 0) AS nota
+        FROM criterio c
+        LEFT JOIN avaliacao a ON c.id_criterio = a.id_criterio
+            AND a.email_avaliador = ? 
+            AND a.email_avaliado = ?
+            AND a.id_sprint = ?
+    """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, emailAvaliador);
+            stmt.setString(2, emailAvaliado);
+            stmt.setInt(3, idSprint);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Criterio criterio = new Criterio();
+                    criterio.setId(rs.getInt("id_criterio"));
+                    criterio.setNome(rs.getString("nome"));
+                    criterio.setDescricao(rs.getString("descricao"));
+                    criterio.setNota(rs.getInt("nota"));
+                    criteriosComNota.add(criterio);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return criteriosComNota;
+    }
+
 }
