@@ -135,8 +135,12 @@ public class SemestreController {
 
                 // Exibir a nova janela
                 Stage stage = new Stage();
-                stage.setTitle("Editar Semestre");
+                stage.setTitle("Sistema RECAP");
                 stage.setScene(new Scene(root));
+                stage.setMaximized(false);
+                stage.setResizable(false);
+                Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+                stage.getIcons().add(logo);
                 stage.initModality(Modality.APPLICATION_MODAL); // Bloquear interação com a janela anterior
                 stage.show();
 
