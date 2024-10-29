@@ -118,10 +118,117 @@
     -fx-stroke-width: 3px;
 }
 
+/* Pop-Ups */
+.titulosPopUps {
+    -fx-font-family: Poppins;
+    -fx-font-size: 28px;
+    -fx-font-weight: 400;
+    -fx-effect: dropshadow(gaussian, rgba(164, 164, 164, 0.5), 10, 0.0, 1, 0);
+    -fx-border-color: #A4A4A47F;
+}
+
+.titleLabel {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-effect: dropshadow(gaussian, rgba(164, 164, 164, 0.5), 10, 0.0, 1, 0);
+}
+
+.txtFieldPopUp {
+    -fx-font-family: Poppins;
+    -fx-border-radius: 70px !important;
+    -fx-min-height: 30px;
+}
+
+.contentPanePopUp {
+    -fx-background-color: #FFFFFF;
+    /* -fx-border-radius: 50px; */
+    /* -fx-background-radius: 50px; */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 10, 0, 0, 5); /* Aplica uma sombra */
+    -fx-min-height: 430px;
+    -fx-min-width: 592px;
+}
+
 /* Tela de Relatórios */
-.txtRelatorios {
+.descricaoTela {
     -fx-font-family: Poppins;
     -fx-font-size: 16;
 }
+
+/* Botões */
+.buttonVerde {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #18B04B;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 2, 2);
+    -fx-cursor: hand;
+}
+.buttonVerde:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #409d62;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+.buttonEditar {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #FCA311;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 2, 2);
+    -fx-cursor: hand;
+}
+.buttonEditar:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #cba259;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+.buttonCancelar {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #B0B0B0;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 2, 2);
+    -fx-cursor: hand;
+}
+.buttonCancelar:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #8d8d8d;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+.buttonExcluir {
+    -fx-font-family: Poppins;
+    -fx-font-size: 16px;
+    -fx-background-color: #000000;
+    -fx-min-height: 40px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.0, 2, 2);
+    -fx-cursor: hand;
+}
+.buttonExcluir:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #444444;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+}
+
+.listViewGerenciar {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+}
+
 
 
