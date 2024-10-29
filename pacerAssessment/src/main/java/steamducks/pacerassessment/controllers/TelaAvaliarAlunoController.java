@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 // Classe controller, onde definimos as ações por trás da interface e seus elementos
-public class TelaAlunoController {
+public class TelaAvaliarAlunoController {
 
     // Dentro da classe, primeiro referenciamos os elementos FXML, que estão presentes na nossa tela
     @FXML

@@ -12,6 +12,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import steamducks.pacerassessment.dao.SemestreDAO;
+import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+import steamducks.pacerassessment.dao.CriteriosDAO;
+import steamducks.pacerassessment.models.Criterio;
+import steamducks.pacerassessment.models.Semestre;
 
 public class TelaSprintController {
 
@@ -33,36 +40,39 @@ public class TelaSprintController {
     @FXML
     private ScrollPane scrollBox;//ScrollBox onde estão localizadas as equipes
 
+    GrupoAlunoDAO grupoAlunoDAO;
+
+    private ObservableList<Semestre> semestreData = FXCollections.observableArrayList();
+
     // Inicialização da tela
     @FXML
     public void initialize() {
-        // Define as opções da ComboBox (as turmas)
-        ObservableList<String> turmas = FXCollections.observableArrayList(
-                "BD-1", "BD-2", "BD-3", "BD-4", "BD-5", "BD-6"
-        );
+        grupoAlunoDAO = new GrupoAlunoDAO();
 
-        // introduz as opções para a combobox
-        cmb_SelTurma.setItems(turmas);
+        // Obtém a lista de nomes dos semestres
+        List<String> semestre = grupoAlunoDAO.buscarSemestres(); // usa essa função da DAO pra criar uma lista de nomes de semestres
+        ObservableList<String> nomesSemestres = FXCollections.observableArrayList(semestre); // Cria uma ObservableList de nomes
 
-        // Define as opções da Combobox de Sprints
+        // Define as opções para a ComboBox de turmas
+        cmb_SelTurma.setItems(nomesSemestres);
+
+        // Define as opções da ComboBox de Sprints
         ObservableList<String> sprints = FXCollections.observableArrayList(
                 "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4"
         );
 
-        //introduz as opções para a combobox
+        // Introduz as opções para a ComboBox
         cmb_SelSprint.setItems(sprints);
 
         // Adiciona um listener para atualizar as equipes ao selecionar uma turma
         cmb_SelTurma.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                atualizarEquipes(newValue); // Chama o metodo para atualizar as equipes
+                atualizarEquipes(newValue); // Chama o método para atualizar as equipes
             }
         });
 
         // Ações para os botões
-        // Botão cancelar fecha a janela
         btn_Cancelar.setOnAction(event -> fecharJanela());
-        // Botão Salvar confirma as alterações feitas
         btn_Salvar.setOnAction(event -> verificarCampos());
     }
 

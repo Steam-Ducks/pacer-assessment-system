@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.telaAlunoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.TelaAvaliarAlunoController">
    <children>
       <ComboBox fx:id="cmb_SelAluno" layoutX="14.0" layoutY="54.0" prefWidth="150.0" promptText="Selecionar Aluno" />
       <Button fx:id="btn_Salvar" layoutX="245.0" layoutY="348.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Salvar" textFill="#fcfcfc">
