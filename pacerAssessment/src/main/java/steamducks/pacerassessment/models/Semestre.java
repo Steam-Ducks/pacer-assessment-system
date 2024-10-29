@@ -5,8 +5,8 @@ public class Semestre {
     private int id;
     private String nome;
 
-
     public Semestre(int id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
@@ -24,6 +24,11 @@ public class Semestre {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Semestre{id=" + id + ", nome='" + nome + "'}";
     }
 
 }
