@@ -1,6 +1,7 @@
 package steamducks.pacerassessment.dao;
 
 import steamducks.pacerassessment.models.Criterio;
+import steamducks.pacerassessment.models.Semestre;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,6 +10,39 @@ import java.util.List;
 public class SemestreDAO {
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
+    }
+
+    public List<Semestre> getSemestres() {
+        List<Semestre> semestres = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String selectSql = "SELECT * FROM semestre";
+            PreparedStatement pst = con.prepareStatement(selectSql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id_semestre");
+                String nome = rs.getString("nome");
+
+                Semestre semestre = new Semestre(id, nome); // Supondo que o construtor da classe Semestre aceite id e nome
+                semestres.add(semestre);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar semestres: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return semestres;
     }
 
     public List<Criterio> buscarCriterios() {
