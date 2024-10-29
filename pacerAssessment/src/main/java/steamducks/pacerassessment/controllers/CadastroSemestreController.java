@@ -43,21 +43,32 @@ public class CadastroSemestreController implements Initializable {
 
     private final SemestreDAO semestreDAO = new SemestreDAO();
     private List<String> criteriosSelecionados = new ArrayList<>();
+    private ObservableList<Criterio> opcoes;
+    private ObservableList<Criterio> criteriosSelecionadosView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         List<Criterio> criterioDisponiveis = semestreDAO.buscarCriterios();
-        ObservableList<Criterio> opcoes = FXCollections.observableArrayList(criterioDisponiveis);
+        opcoes = FXCollections.observableArrayList(criterioDisponiveis);
+        criteriosSelecionadosView = FXCollections.observableArrayList();
+
+        opcoes.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
+        criteriosSelecionadosView.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
+
         listViewOpcoes.setItems(opcoes);
-        listViewCriterios.setItems(FXCollections.observableArrayList());
+        listViewCriterios.setItems(criteriosSelecionadosView);
     }
 
     @FXML
     void addOption(ActionEvent event) {
         Criterio selectedOption = listViewOpcoes.getSelectionModel().getSelectedItem();
         if (selectedOption != null && !listViewCriterios.getItems().contains(selectedOption)) {
-            listViewCriterios.getItems().add(selectedOption);
+            criteriosSelecionadosView.add(selectedOption);
             criteriosSelecionados.add(String.valueOf(selectedOption.getId()));
+            opcoes.remove(selectedOption); // Remove da lista de opções
+
+            opcoes.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
+            criteriosSelecionadosView.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
         } else {
             showAlert("Erro", "Nenhuma opção selecionada para adicionar.", Alert.AlertType.ERROR);
         }
@@ -67,8 +78,12 @@ public class CadastroSemestreController implements Initializable {
     void removeOption(ActionEvent event) {
         Criterio selectedOption = listViewCriterios.getSelectionModel().getSelectedItem();
         if (selectedOption != null) {
-            listViewCriterios.getItems().remove(selectedOption);
-            criteriosSelecionados.remove(selectedOption.getId());
+            criteriosSelecionadosView.remove(selectedOption);
+            criteriosSelecionados.remove(String.valueOf(selectedOption.getId()));
+            opcoes.add(selectedOption);
+
+            opcoes.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
+            criteriosSelecionadosView.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
         } else {
             showAlert("Erro", "Nenhuma opção selecionada para remover.", Alert.AlertType.ERROR);
         }
@@ -91,7 +106,6 @@ public class CadastroSemestreController implements Initializable {
         int idSemestre = semestreDAO.criarSemestre(nome);
 
         if (idSemestre > 0) {
-            // Vincular critérios ao semestre criado
             semestreDAO.vincularCriterios(idSemestre, listViewCriterios.getItems());
 
             showAlert("Sucesso", "Semestre cadastrado com sucesso!", Alert.AlertType.INFORMATION);
@@ -99,6 +113,11 @@ public class CadastroSemestreController implements Initializable {
             txtFieldNome.clear();
             listViewCriterios.getItems().clear();
             criteriosSelecionados.clear();
+            opcoes.setAll(semestreDAO.buscarCriterios());
+
+
+            opcoes.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));
+            criteriosSelecionadosView.clear();
         } else {
             showAlert("Erro", "Erro ao cadastrar semestre.", Alert.AlertType.ERROR);
         }
