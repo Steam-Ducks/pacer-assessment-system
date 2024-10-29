@@ -8,13 +8,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Semestre;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+import javafx.scene.image.Image;
 
 public class SemestreController {
+
+    @FXML
+    private AnchorPane contentPane; // Pane para aplicar o efeito de desfoque
 
     @FXML
     private Button bntEditSem;
@@ -31,12 +43,14 @@ public class SemestreController {
     @FXML
     private ListView<Semestre> listView; // <Semestre> especifica o tipo da ListView
 
-    // ObservableList que contém os semestres
     private ObservableList<Semestre> semestreNome = FXCollections.observableArrayList();
+
+    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     @FXML
     private void initialize() {
-        // Configurar a ListView para exibir o nome dos semestres
+        carregarSemestres(); // Adiciona semestres do banco de dados na ObservableList
+
         listView.setCellFactory(param -> new ListCell<Semestre>() {
             @Override
             protected void updateItem(Semestre item, boolean empty) {
@@ -44,30 +58,63 @@ public class SemestreController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getNome()); // Exibir o nome do semestre
+                    setText(item.getNome());
                 }
             }
         });
 
-        // Definir a lista observável como o modelo de dados da ListView
         listView.setItems(semestreNome);
 
-        // Definir os eventos para os botões
         bntAdcSemestre.setOnAction(event -> adicionarSemestre());
         bntEditSem.setOnAction(event -> abrirTelaEdicao());
         bntRmvCrit.setOnAction(event -> removerSemestre());
     }
 
-    // Método para adicionar um novo semestre
-    public void adicionarSemestre() {
-        String nomeSemestre = txtSemestre.getText();
+    private void carregarSemestres() {
+        SemestreDAO dao = new SemestreDAO();
 
-        if (nomeSemestre.isEmpty()) {
-            mostrarAlerta("Erro", "Preencha todos os campos antes de adicionar um semestre.", AlertType.ERROR);
-        } else {
-            Semestre novoSemestre = new Semestre(nomeSemestre);
-            semestreNome.add(novoSemestre); // Adiciona o novo semestre à lista observável
-            limparCampos();
+        try {
+            List<Semestre> semestres = dao.getSemestres();
+            semestreNome.addAll(semestres);
+        } catch (Exception e) {
+            mostrarAlerta("Erro", "Erro ao carregar semestres: " + e.getMessage(), AlertType.ERROR);
+        }
+    }
+
+
+    public void adicionarSemestre() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastrarSemestreView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Aplica efeito de desfoque no contentPane se não for nulo
+            if (contentPane != null) {
+                contentPane.setEffect(blurEffect);
+            }
+
+            Scene scene = new Scene(root);
+
+            Stage stage = new Stage(StageStyle.DECORATED); // Define a janela como sem decoração
+            stage.setTitle("Sistema RECAP");
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+            stage.getIcons().add(logo);
+
+            stage.setScene(scene);
+            stage.show();
+
+            // Remove o efeito quando o popup é fechado
+            stage.setOnHidden(event -> {
+                if (contentPane != null) {
+                    contentPane.setEffect(null);
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -80,6 +127,11 @@ public class SemestreController {
                 // Carregar o FXML da tela de edição
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtSemestreView.fxml"));
                 Parent root = loader.load();
+
+                // Aplica efeito de desfoque no contentPane se não for nulo
+                if (contentPane != null) {
+                    contentPane.setEffect(blurEffect);
+                }
 
                 // Exibir a nova janela
                 Stage stage = new Stage();
@@ -94,6 +146,13 @@ public class SemestreController {
 
                 // Atualizar a ListView após o fechamento da janela de edição
                 stage.setOnHidden(event -> listView.refresh());
+
+                // Remove o efeito quando o popup é fechado
+                stage.setOnHidden(event -> {
+                    if (contentPane != null) {
+                        contentPane.setEffect(null);
+                    }
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
