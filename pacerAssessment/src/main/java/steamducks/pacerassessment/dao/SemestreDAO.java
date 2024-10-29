@@ -26,7 +26,7 @@ public class SemestreDAO {
                 int id = rs.getInt("id_semestre");
                 String nome = rs.getString("nome");
 
-                Semestre semestre = new Semestre(id, nome); // Supondo que o construtor da classe Semestre aceite id e nome
+                Semestre semestre = new Semestre(id, nome);
                 semestres.add(semestre);
             }
 
@@ -45,14 +45,42 @@ public class SemestreDAO {
         return semestres;
     }
 
+    public void atualizarNomeSemestre(int idSemestre, String novoNome) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE semestre SET nome = ? WHERE id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+            pst.setString(1, novoNome);
+            pst.setInt(2, idSemestre);
+
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new RuntimeException("Nenhum semestre encontrado com o ID fornecido: " + idSemestre);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar o nome do semestre: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
     public List<Criterio> buscarCriterios() {
         List<Criterio> criterios = new ArrayList<>();
         Connection con = null;
 
         try {
             con = getConnection();
-            String select_sql = "SELECT * FROM criterio";
-            PreparedStatement pst = con.prepareStatement(select_sql);
+            String selectSql = "SELECT * FROM criterio";
+            PreparedStatement pst = con.prepareStatement(selectSql);
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -139,6 +167,39 @@ public class SemestreDAO {
                 ex.printStackTrace();
             }
             throw new RuntimeException("Erro ao vincular critérios! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    public boolean excluirSemestre(int id) {
+        Connection con = null;
+        String sql = "DELETE FROM semestre WHERE id_semestre = ?";
+
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+
+            con.commit();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
         } finally {
             try {
                 if (con != null) con.close();

@@ -11,6 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ import javafx.scene.image.Image;
 public class SemestreController {
 
     @FXML
-    private AnchorPane contentPane; // Pane para aplicar o efeito de desfoque
+    private AnchorPane contentPane;
 
     @FXML
     private Button bntEditSem;
@@ -35,13 +36,13 @@ public class SemestreController {
     private Button bntAdcSemestre;
 
     @FXML
-    private Button bntRmvCrit;
+    private Button bntRmvSem;
 
     @FXML
     private TextField txtSemestre;
 
     @FXML
-    private ListView<Semestre> listView; // <Semestre> especifica o tipo da ListView
+    private ListView<Semestre> listView;
 
     private ObservableList<Semestre> semestreNome = FXCollections.observableArrayList();
 
@@ -49,7 +50,7 @@ public class SemestreController {
 
     @FXML
     private void initialize() {
-        carregarSemestres(); // Adiciona semestres do banco de dados na ObservableList
+        carregarSemestres();
 
         listView.setCellFactory(param -> new ListCell<Semestre>() {
             @Override
@@ -67,7 +68,7 @@ public class SemestreController {
 
         bntAdcSemestre.setOnAction(event -> adicionarSemestre());
         bntEditSem.setOnAction(event -> abrirTelaEdicao());
-        bntRmvCrit.setOnAction(event -> removerSemestre());
+        bntRmvSem.setOnAction(event -> removerSemestre());
     }
 
     private void carregarSemestres() {
@@ -87,14 +88,13 @@ public class SemestreController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastrarSemestreView.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Aplica efeito de desfoque no contentPane se não for nulo
             if (contentPane != null) {
                 contentPane.setEffect(blurEffect);
             }
 
             Scene scene = new Scene(root);
 
-            Stage stage = new Stage(StageStyle.DECORATED); // Define a janela como sem decoração
+            Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Sistema RECAP");
             stage.setMaximized(false);
             stage.setResizable(false);
@@ -106,7 +106,6 @@ public class SemestreController {
             stage.setScene(scene);
             stage.show();
 
-            // Remove o efeito quando o popup é fechado
             stage.setOnHidden(event -> {
                 if (contentPane != null) {
                     contentPane.setEffect(null);
@@ -118,22 +117,18 @@ public class SemestreController {
         }
     }
 
-    // Método para abrir a tela de edição
     public void abrirTelaEdicao() {
         Semestre semestreSelecionado = listView.getSelectionModel().getSelectedItem();
 
         if (semestreSelecionado != null) {
             try {
-                // Carregar o FXML da tela de edição
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtSemestreView.fxml"));
                 Parent root = loader.load();
 
-                // Aplica efeito de desfoque no contentPane se não for nulo
                 if (contentPane != null) {
                     contentPane.setEffect(blurEffect);
                 }
 
-                // Exibir a nova janela
                 Stage stage = new Stage();
                 stage.setTitle("Sistema RECAP");
                 stage.setScene(new Scene(root));
@@ -141,17 +136,17 @@ public class SemestreController {
                 stage.setResizable(false);
                 Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
                 stage.getIcons().add(logo);
-                stage.initModality(Modality.APPLICATION_MODAL); // Bloquear interação com a janela anterior
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
-                // Passar os dados para o controller de edição
                 EdtSemestreController controller = loader.getController();
                 controller.inicializarCampos(semestreSelecionado);
 
-                // Atualizar a ListView após o fechamento da janela de edição
-                stage.setOnHidden(event -> listView.refresh());
+                stage.setOnHidden(event -> {
+                    semestreNome.clear();
+                    carregarSemestres();
+                });
 
-                // Remove o efeito quando o popup é fechado
                 stage.setOnHidden(event -> {
                     if (contentPane != null) {
                         contentPane.setEffect(null);
@@ -166,23 +161,51 @@ public class SemestreController {
         }
     }
 
-    // Método para remover o semestre selecionado
     public void removerSemestre() {
         Semestre semestreSelecionado = listView.getSelectionModel().getSelectedItem();
 
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+
         if (semestreSelecionado != null) {
-            semestreNome.remove(semestreSelecionado); // Remove o semestre da lista
+            Alert confirmacao = new Alert(AlertType.CONFIRMATION);
+            confirmacao.setTitle("Confirmação de exclusão");
+
+            confirmacao.setHeaderText(null);
+            confirmacao.setContentText("Tem certeza de que deseja excluir o semestre selecionado?");
+
+
+            confirmacao.showAndWait().ifPresent(resposta -> {
+                if (resposta == ButtonType.OK) {
+                    SemestreDAO dao = new SemestreDAO();
+                    boolean sucesso = dao.excluirSemestre(semestreSelecionado.getId());
+
+                    if (sucesso) {
+                        semestreNome.remove(semestreSelecionado);
+                        mostrarAlerta("Sucesso", "Semestre excluído com sucesso.", AlertType.INFORMATION);
+                    } else {
+                        mostrarAlerta("Erro", "Erro ao excluir o semestre. Tente novamente.", AlertType.ERROR);
+                    }
+                }
+
+                if (contentPane != null) {
+                    contentPane.setEffect(null);
+                }
+            });
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione um semestre para remover.", AlertType.WARNING);
+            mostrarAlerta("Seleção Inválida", "Selecione um semestre para excluir.", AlertType.WARNING);
+
+            if (contentPane != null) {
+                contentPane.setEffect(null);
+            }
         }
     }
 
-    // Limpar o campo de texto
     private void limparCampos() {
         txtSemestre.clear();
     }
 
-    // Exibir uma caixa de alerta
     private void mostrarAlerta(String titulo, String mensagem, AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
