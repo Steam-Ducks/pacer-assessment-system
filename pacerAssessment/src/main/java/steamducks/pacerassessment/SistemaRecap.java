@@ -17,6 +17,12 @@ public class SistemaRecap extends Application {
         stage.setTitle("Sistema RECAP");
         stage.setScene(scene);
 
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+
+        stage.setMaximized(false);
+        stage.setResizable(false);
+
+
         Image logo = new Image(getClass().getResourceAsStream("/assets/logo-dark.png"), 200, 200, true, true);
         stage.getIcons().add(logo);
 
