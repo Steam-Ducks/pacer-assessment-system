@@ -4,16 +4,34 @@ import javafx.collections.ObservableList;
 
 public class Equipe {
 
+    private int idEquipe;
     private String nome;
     private String gitHub;
     private ObservableList<Usuario> usuarios;
     private String semestre;
+
+
+    public Equipe(int idEquipe, String nome, String gitHub, ObservableList<Usuario> usuarios, String semestre) {
+        this.idEquipe = idEquipe;
+        this.nome = nome;
+        this.gitHub = gitHub;
+        this.usuarios = usuarios;
+        this.semestre = semestre;
+    }
 
     public Equipe(String nome, String gitHub, ObservableList<Usuario> usuarios, String semestre) {
         this.nome = nome;
         this.gitHub = gitHub;
         this.usuarios = usuarios;
         this.semestre = semestre;
+    }
+
+    public int getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
     }
 
     public String getNome() {

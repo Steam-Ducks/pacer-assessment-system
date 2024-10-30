@@ -23,7 +23,7 @@ public class TelaGerenciarEquipesController {
     @FXML
     void btnCadastrarEquipe(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroEquipeAlunoView.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setTitle("Cadastrar Grupo");
@@ -51,5 +51,16 @@ public class TelaGerenciarEquipesController {
     }
 
     public void btnAdicionarEquipe(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroGrupoAlunoView.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Cadastrar Grupo");
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
