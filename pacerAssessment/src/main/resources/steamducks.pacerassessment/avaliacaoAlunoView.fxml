@@ -25,7 +25,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lblPontosTotais" layoutX="207.0" layoutY="80.0" text="Pontos restantes:  100" />
+      <Label fx:id="lblPontosTotais" layoutX="207.0" layoutY="80.0" text="Pontos restantes:  0" />
       <TableView fx:id="tvAvaliacao" layoutX="34.0" layoutY="120.0" prefHeight="200.0" prefWidth="295.0">
         <columns>
           <TableColumn fx:id="tcCriterio" prefWidth="194.0" text="Critério" />

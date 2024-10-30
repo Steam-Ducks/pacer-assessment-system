@@ -138,4 +138,32 @@ public class AvaliacaoDAO extends ConexaoDAO {
         return criteriosComNota;
     }
 
+
+    public int obterTotalPontosPorSprintEEquipe(int idSprint, int idEquipe) {
+        int totalPontos = 0;
+        String sql = """
+        SELECT SUM(pontos) AS total_pontos
+        FROM pontuacao
+        WHERE id_sprint = ? AND id_equipe = ?
+    """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idSprint);
+            stmt.setInt(2, idEquipe);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    totalPontos = rs.getInt("total_pontos");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return totalPontos;
+    }
+
+
 }

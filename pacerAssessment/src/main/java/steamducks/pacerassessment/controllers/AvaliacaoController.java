@@ -7,9 +7,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.cell.PropertyValueFactory;
 import steamducks.pacerassessment.dao.AvaliacaoDAO;
 import steamducks.pacerassessment.models.Criterio;
 import steamducks.pacerassessment.models.Sprint;
@@ -27,7 +27,7 @@ public class AvaliacaoController {
     @FXML
     private TableColumn<Criterio, String> tcCriterio;
     @FXML
-    private TableColumn<Criterio, String> tcNota;
+    private TableColumn<Criterio, Integer> tcNota;
     @FXML
     private TableView<Criterio> tvAvaliacao;
 
@@ -43,7 +43,7 @@ public class AvaliacaoController {
         carregarAlunosEquipe();
         carregarSprints();
         configurarOuvintesComboBox();
-        configurarColunas(); // Mover configuração para cá
+        configurarColunas();
         carregarCriteriosComNotas();
     }
 
@@ -67,21 +67,13 @@ public class AvaliacaoController {
     private void configurarColunas() {
         tcCriterio.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
-        // Se 'nota' for Integer, convertê-lo para String na exibição
-        tcNota.setCellValueFactory(cellData -> {
-            Integer nota = cellData.getValue().getNota();
-            return new SimpleStringProperty(nota != null ? nota.toString() : ""); // Usar String
-        });
-        tcNota.setCellFactory(TextFieldTableCell.forTableColumn());
+        ObservableList<Integer> notas = FXCollections.observableArrayList(0, 1, 2, 3);
+        tcNota.setCellValueFactory(new PropertyValueFactory<>("nota"));
+        tcNota.setCellFactory(ComboBoxTableCell.forTableColumn(notas));
 
-        // Permitir edição de notas
         tcNota.setOnEditCommit(event -> {
             Criterio criterio = event.getRowValue();
-            try {
-                criterio.setNota(Integer.parseInt(event.getNewValue())); // Certifique-se de que 'setNota' aceita Integer
-            } catch (NumberFormatException e) {
-                criterio.setNota(0); // Define como 0 se a nota não for numérica
-            }
+            criterio.setNota(event.getNewValue());
         });
     }
 
@@ -96,10 +88,15 @@ public class AvaliacaoController {
                     alunoAvaliado.getEmail(),
                     sprintSelecionada.getIdSprint()
             );
-
             ObservableList<Criterio> criteriosObservableList = FXCollections.observableArrayList(criteriosComNotas);
             tvAvaliacao.setItems(criteriosObservableList);
-            tvAvaliacao.setEditable(true); // Definindo a tabela como editável
+            tvAvaliacao.setEditable(true);
+
+            // Obter e exibir o total de pontos da Sprint para o grupo específico
+            int totalPontos = avaliacaoDAO.obterTotalPontosPorSprintEEquipe(
+                    sprintSelecionada.getIdSprint(), alunoAvaliado.getIdEquipe()
+            );
+            lblPontosTotais.setText("Total de Pontos: " + totalPontos);
         }
     }
 }
