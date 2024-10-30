@@ -2,25 +2,22 @@ package steamducks.pacerassessment.models;
 
 public class Semestre {
 
-    private int idSemestre;
+    private int id;
     private String nome;
 
-    public Semestre(int idSemestre, String nome) {
-        this.idSemestre = idSemestre;
+    public Semestre(int id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
-    public Semestre(String nome) {
-        this.nome = nome;
+    public int getId() {
+        return id;
     }
 
-    public int getIdSemestre() {
-        return idSemestre;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setIdSemestre(int idSemestre) {
-        this.idSemestre = idSemestre;
-    }
     public String getNome() {
         return nome;
     }
@@ -30,9 +27,7 @@ public class Semestre {
 
     @Override
     public String toString() {
-        return "Semestre{" +
-                "idSemestre=" + idSemestre +
-                ", nome='" + nome + '\'' +
-                '}';
+
+        return "Semestre{id=" + id + ", nome='" + nome + "'}";
     }
 }
