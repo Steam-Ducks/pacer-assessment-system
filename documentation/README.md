@@ -180,8 +180,6 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A funcionalidade foi testada manualmente e nenhum defeito crítico foi encontrado.
 - O Product Owner revisou e aprovou a implementação final.
 
-## Validações feitas com o Cliente
-
 ---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
@@ -203,7 +201,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | Validações | Respostas |
 |------------|-----------|
 | Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
-| As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|| Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
+| As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
+| Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
 
 ---
 
@@ -299,6 +298,13 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O layout da interface para cadastro e gerenciamento do calendário das sprints foi finalizado.
 - Wireframe:
 <img src="WireframePAS-36.jpeg" alt="Wireframe PAS - 36" width="50%" />
+
+
+## Validações feitas com o Cliente
+
+| Validações | Respostas |
+|------------|-----------|
+| Gostaria de saber quanto tempo um aluno terá para avaliar os integrantes da equipe após o professor designar o limite de pontos | Pode ser 7 dias|
 
 ---
 
