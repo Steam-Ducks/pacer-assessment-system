@@ -131,7 +131,7 @@ Garantir a continuidade e o comprometimento dos membros da equipe no projeto ess
 O projeto é uma parte fundamental para a conclusão do semestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
 
 <div align="center">
-    <img src="assets/footer.new.png" alt="footer" width="100%" />
+    <img src="assets/footer.png" alt="footer" width="100%" />
 </div>
 
 </body>
