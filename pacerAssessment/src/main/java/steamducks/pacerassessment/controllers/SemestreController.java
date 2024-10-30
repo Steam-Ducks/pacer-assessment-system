@@ -8,13 +8,26 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Semestre;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
+import javafx.scene.image.Image;
 
 public class SemestreController {
+
+    @FXML
+    private AnchorPane contentPane;
 
     @FXML
     private Button bntEditSem;
@@ -23,20 +36,22 @@ public class SemestreController {
     private Button bntAdcSemestre;
 
     @FXML
-    private Button bntRmvCrit;
+    private Button bntRmvSem;
 
     @FXML
     private TextField txtSemestre;
 
     @FXML
-    private ListView<Semestre> listView; // <Semestre> especifica o tipo da ListView
+    private ListView<Semestre> listView;
 
-    // ObservableList que contém os semestres
-    private ObservableList<Semestre> semestreNome = FXCollections.observableArrayList();
+    private ObservableList<Semestre> listaSemestres = FXCollections.observableArrayList();
+
+    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     @FXML
     private void initialize() {
-        // Configurar a ListView para exibir o nome dos semestres
+        carregarSemestres();
+
         listView.setCellFactory(param -> new ListCell<Semestre>() {
             @Override
             protected void updateItem(Semestre item, boolean empty) {
@@ -44,56 +59,101 @@ public class SemestreController {
                 if (empty || item == null) {
                     setText(null);
                 } else {
-                    setText(item.getNome()); // Exibir o nome do semestre
+                    setText(item.getNome());
                 }
             }
         });
 
-        // Definir a lista observável como o modelo de dados da ListView
-        listView.setItems(semestreNome);
+        listView.setItems(listaSemestres);
 
-        // Definir os eventos para os botões
         bntAdcSemestre.setOnAction(event -> adicionarSemestre());
         bntEditSem.setOnAction(event -> abrirTelaEdicao());
-        bntRmvCrit.setOnAction(event -> removerSemestre());
+        bntRmvSem.setOnAction(event -> removerSemestre());
     }
 
-    // Método para adicionar um novo semestre
-    public void adicionarSemestre() {
-        String nomeSemestre = txtSemestre.getText();
+    private void carregarSemestres() {
+        SemestreDAO dao = new SemestreDAO();
 
-        if (nomeSemestre.isEmpty()) {
-            mostrarAlerta("Erro", "Preencha todos os campos antes de adicionar um semestre.", AlertType.ERROR);
-        } else {
-            Semestre novoSemestre = new Semestre(nomeSemestre);
-            semestreNome.add(novoSemestre); // Adiciona o novo semestre à lista observável
-            limparCampos();
+        try {
+            List<Semestre> semestres = dao.getSemestres();
+            listaSemestres.setAll(FXCollections.observableArrayList(semestres));
+        } catch (Exception e) {
+            mostrarAlerta("Erro", "Erro ao carregar semestres: " + e.getMessage(), AlertType.ERROR);
         }
     }
 
-    // Método para abrir a tela de edição
+    public void adicionarSemestre() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastrarSemestreView.fxml"));
+            Parent root = fxmlLoader.load();
+
+            if (contentPane != null) {
+                contentPane.setEffect(blurEffect);
+            }
+
+            Scene scene = new Scene(root);
+
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Sistema RECAP");
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+            stage.getIcons().add(logo);
+
+            stage.setScene(scene);
+            stage.show();
+
+            stage.setOnHidden(event -> {
+                if (contentPane != null) {
+                    contentPane.setEffect(null);
+                }
+                carregarSemestres();
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void abrirTelaEdicao() {
         Semestre semestreSelecionado = listView.getSelectionModel().getSelectedItem();
 
         if (semestreSelecionado != null) {
             try {
-                // Carregar o FXML da tela de edição
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtSemestreView.fxml"));
                 Parent root = loader.load();
 
-                // Exibir a nova janela
+                if (contentPane != null) {
+                    contentPane.setEffect(blurEffect);
+                }
+
                 Stage stage = new Stage();
-                stage.setTitle("Editar Semestre");
+                stage.setTitle("Sistema RECAP");
                 stage.setScene(new Scene(root));
-                stage.initModality(Modality.APPLICATION_MODAL); // Bloquear interação com a janela anterior
+                stage.setMaximized(false);
+                stage.setResizable(false);
+
+                Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+                stage.getIcons().add(logo);
+
+                stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
-                // Passar os dados para o controller de edição
                 EdtSemestreController controller = loader.getController();
                 controller.inicializarCampos(semestreSelecionado);
 
-                // Atualizar a ListView após o fechamento da janela de edição
-                stage.setOnHidden(event -> listView.refresh());
+                stage.setOnHidden(event -> {
+                    carregarSemestres();
+                });
+
+                stage.setOnHidden(event -> {
+                    if (contentPane != null) {
+                        contentPane.setEffect(null);
+                    }
+                    carregarSemestres();
+                });
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -103,28 +163,72 @@ public class SemestreController {
         }
     }
 
-    // Método para remover o semestre selecionado
     public void removerSemestre() {
         Semestre semestreSelecionado = listView.getSelectionModel().getSelectedItem();
 
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+
         if (semestreSelecionado != null) {
-            semestreNome.remove(semestreSelecionado); // Remove o semestre da lista
+            Alert confirmacao = new Alert(AlertType.CONFIRMATION);
+            confirmacao.setTitle("Confirmação de exclusão");
+
+            Stage stage = (Stage) confirmacao.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
+            confirmacao.setHeaderText(null);
+            confirmacao.setContentText("Tem certeza de que deseja excluir o semestre selecionado?");
+
+            confirmacao.showAndWait().ifPresent(resposta -> {
+                if (resposta == ButtonType.OK) {
+                    SemestreDAO dao = new SemestreDAO();
+                    boolean sucesso = dao.excluirSemestre(semestreSelecionado.getId());
+
+                    if (sucesso) {
+                        listaSemestres.remove(semestreSelecionado);
+                        mostrarAlerta("Sucesso", "Semestre excluído com sucesso.", AlertType.INFORMATION);
+                    } else {
+                        mostrarAlerta("Erro", "Erro ao excluir o semestre. Tente novamente.", AlertType.ERROR);
+
+                    }
+                }
+
+                if (contentPane != null) {
+                    contentPane.setEffect(null);
+                }
+            });
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione um semestre para remover.", AlertType.WARNING);
+            mostrarAlerta("Seleção Inválida", "Selecione um semestre para excluir.", AlertType.WARNING);
+
+            if (contentPane != null) {
+                contentPane.setEffect(null);
+            }
         }
     }
 
-    // Limpar o campo de texto
     private void limparCampos() {
         txtSemestre.clear();
     }
 
-    // Exibir uma caixa de alerta
-    private void mostrarAlerta(String titulo, String mensagem, AlertType tipo) {
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
+
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
         alerta.showAndWait();
+
+        if (contentPane != null) {
+            contentPane.setEffect(null);
+        }
     }
+
 }

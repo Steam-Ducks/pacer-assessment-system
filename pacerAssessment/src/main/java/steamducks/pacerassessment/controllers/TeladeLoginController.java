@@ -77,6 +77,10 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.centerOnScreen();
+
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
             stage.getIcons().add(logo);
 
