@@ -24,7 +24,6 @@ public class EdtSemestreController {
     @FXML
     public void initialize() {
         btnCancelEdit.setOnAction(event -> fecharJanela());
-
         btnConcluirEdt.setOnAction(event -> concluirEdicao());
     }
 
@@ -43,6 +42,7 @@ public class EdtSemestreController {
             dao.atualizarNomeSemestre(semestreSelecionado.getId(), novoNome);
 
             fecharJanela();
+
         } else {
             mostrarAlerta("Erro", "Semestre não encontrado ou nome inválido.");
         }

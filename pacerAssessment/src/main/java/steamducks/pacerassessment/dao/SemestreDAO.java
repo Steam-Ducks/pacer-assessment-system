@@ -11,7 +11,47 @@ public class SemestreDAO {
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
+    // PUT
+    public int criarSemestre(String nome) {
+        Connection con = null;
+        int idSemestre = 0;
 
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+
+            String insertSemestreSql = "INSERT INTO semestre (nome) VALUES (?)";
+            PreparedStatement pstSemestre = con.prepareStatement(insertSemestreSql, Statement.RETURN_GENERATED_KEYS);
+            pstSemestre.setString(1, nome);
+            pstSemestre.executeUpdate();
+
+            ResultSet rs = pstSemestre.getGeneratedKeys();
+            if (rs.next()) {
+                idSemestre = rs.getInt(1);
+            }
+
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            throw new RuntimeException("Erro ao criar semestre! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return idSemestre;
+    }
+
+    // GET ALL
     public List<Semestre> getSemestres() {
         List<Semestre> semestres = new ArrayList<>();
         Connection con = null;
@@ -45,6 +85,7 @@ public class SemestreDAO {
         return semestres;
     }
 
+    // UPDATE
     public void atualizarNomeSemestre(int idSemestre, String novoNome) {
         Connection con = null;
 
@@ -63,6 +104,40 @@ public class SemestreDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao atualizar o nome do semestre: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    // DELETE
+    public boolean excluirSemestre(int id) {
+        Connection con = null;
+        String sql = "DELETE FROM semestre WHERE id_semestre = ?";
+
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+
+            con.commit();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
         } finally {
             try {
                 if (con != null) con.close();
@@ -103,45 +178,6 @@ public class SemestreDAO {
         return criterios;
     }
 
-    public int criarSemestre(String nome) {
-        Connection con = null;
-        int idSemestre = 0;
-
-        try {
-            con = getConnection();
-            con.setAutoCommit(false);
-
-            String insertSemestreSql = "INSERT INTO semestre (nome) VALUES (?)";
-            PreparedStatement pstSemestre = con.prepareStatement(insertSemestreSql, Statement.RETURN_GENERATED_KEYS);
-            pstSemestre.setString(1, nome);
-            pstSemestre.executeUpdate();
-
-            ResultSet rs = pstSemestre.getGeneratedKeys();
-            if (rs.next()) {
-                idSemestre = rs.getInt(1);
-            }
-
-            con.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                if (con != null) con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            throw new RuntimeException("Erro ao criar semestre! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
-
-        return idSemestre;
-    }
-
     public void vincularCriterios(int idSemestre, List<Criterio> criterios) {
         Connection con = null;
 
@@ -167,39 +203,6 @@ public class SemestreDAO {
                 ex.printStackTrace();
             }
             throw new RuntimeException("Erro ao vincular critérios! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
-    }
-
-    public boolean excluirSemestre(int id) {
-        Connection con = null;
-        String sql = "DELETE FROM semestre WHERE id_semestre = ?";
-
-        try {
-            con = getConnection();
-            con.setAutoCommit(false);
-
-            PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setInt(1, id);
-            int linhasAfetadas = stmt.executeUpdate();
-
-            con.commit();
-            return linhasAfetadas > 0;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            try {
-                if (con != null) con.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            return false;
         } finally {
             try {
                 if (con != null) con.close();

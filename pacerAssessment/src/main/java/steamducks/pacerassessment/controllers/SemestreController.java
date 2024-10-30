@@ -44,7 +44,7 @@ public class SemestreController {
     @FXML
     private ListView<Semestre> listView;
 
-    private ObservableList<Semestre> semestreNome = FXCollections.observableArrayList();
+    private ObservableList<Semestre> listaSemestres = FXCollections.observableArrayList();
 
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
@@ -64,7 +64,7 @@ public class SemestreController {
             }
         });
 
-        listView.setItems(semestreNome);
+        listView.setItems(listaSemestres);
 
         bntAdcSemestre.setOnAction(event -> adicionarSemestre());
         bntEditSem.setOnAction(event -> abrirTelaEdicao());
@@ -76,12 +76,11 @@ public class SemestreController {
 
         try {
             List<Semestre> semestres = dao.getSemestres();
-            semestreNome.addAll(semestres);
+            listaSemestres.setAll(FXCollections.observableArrayList(semestres));
         } catch (Exception e) {
             mostrarAlerta("Erro", "Erro ao carregar semestres: " + e.getMessage(), AlertType.ERROR);
         }
     }
-
 
     public void adicionarSemestre() {
         try {
@@ -110,6 +109,7 @@ public class SemestreController {
                 if (contentPane != null) {
                     contentPane.setEffect(null);
                 }
+                carregarSemestres();
             });
 
         } catch (IOException e) {
@@ -134,8 +134,10 @@ public class SemestreController {
                 stage.setScene(new Scene(root));
                 stage.setMaximized(false);
                 stage.setResizable(false);
+
                 Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
                 stage.getIcons().add(logo);
+
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
@@ -143,7 +145,6 @@ public class SemestreController {
                 controller.inicializarCampos(semestreSelecionado);
 
                 stage.setOnHidden(event -> {
-                    semestreNome.clear();
                     carregarSemestres();
                 });
 
@@ -151,6 +152,7 @@ public class SemestreController {
                     if (contentPane != null) {
                         contentPane.setEffect(null);
                     }
+                    carregarSemestres();
                 });
 
             } catch (IOException e) {
@@ -172,9 +174,11 @@ public class SemestreController {
             Alert confirmacao = new Alert(AlertType.CONFIRMATION);
             confirmacao.setTitle("Confirmação de exclusão");
 
+            Stage stage = (Stage) confirmacao.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
             confirmacao.setHeaderText(null);
             confirmacao.setContentText("Tem certeza de que deseja excluir o semestre selecionado?");
-
 
             confirmacao.showAndWait().ifPresent(resposta -> {
                 if (resposta == ButtonType.OK) {
@@ -182,10 +186,11 @@ public class SemestreController {
                     boolean sucesso = dao.excluirSemestre(semestreSelecionado.getId());
 
                     if (sucesso) {
-                        semestreNome.remove(semestreSelecionado);
+                        listaSemestres.remove(semestreSelecionado);
                         mostrarAlerta("Sucesso", "Semestre excluído com sucesso.", AlertType.INFORMATION);
                     } else {
                         mostrarAlerta("Erro", "Erro ao excluir o semestre. Tente novamente.", AlertType.ERROR);
+
                     }
                 }
 
@@ -206,11 +211,24 @@ public class SemestreController {
         txtSemestre.clear();
     }
 
-    private void mostrarAlerta(String titulo, String mensagem, AlertType tipo) {
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
+
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
         alerta.showAndWait();
+
+        if (contentPane != null) {
+            contentPane.setEffect(null);
+        }
     }
+
 }
