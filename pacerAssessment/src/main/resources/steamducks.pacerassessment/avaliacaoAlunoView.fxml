@@ -10,14 +10,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.AvaliacaoController">
    <children>
-      <ComboBox fx:id="cmbAluno" layoutX="34.0" layoutY="41.0" prefWidth="150.0" promptText="Selecionar Aluno" />
+      <ComboBox fx:id="cmbAluno" layoutX="34.0" layoutY="76.0" prefWidth="150.0" promptText="Selecionar Aluno" />
       <Button fx:id="btnSalvar" layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#salvarAvaliacoes" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Salvar" textFill="#fcfcfc">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label layoutX="34.0" layoutY="14.0" opacity="0.65" text="Avaliar Aluno" textFill="#808080">
+      <Label fx:id="lblSprint" layoutX="34.0" layoutY="14.0" opacity="0.65" text="Avaliando:" textFill="#808080">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
       <Button fx:id="btnCancelar" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE">
@@ -32,6 +32,5 @@
           <TableColumn fx:id="tcNota" prefWidth="100.0" text="Nota" />
         </columns>
       </TableView>
-      <ComboBox fx:id="cmbSprint" layoutX="34.0" layoutY="76.0" prefWidth="150.0" promptText="Selecionar Sprint" />
    </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import steamducks.pacerassessment.models.Sprint;
 import steamducks.pacerassessment.models.Usuario;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,37 +42,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
         return colegas;
     }
 
-    public List<Sprint> getSpritsDaEquipe(int idEquipe) {
-        List<Sprint> sprints = new ArrayList<>();
-        String sql = """
-            SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
-            FROM sprint s
-            INNER JOIN equipe e ON s.id_semestre = e.id_semestre
-            WHERE e.id_equipe = ?
-        """;
 
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, idEquipe);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Sprint sprint = new Sprint();
-                    sprint.setIdSprint(rs.getInt("id_sprint"));
-                    sprint.setNome(rs.getString("nome"));
-                    sprint.setDataInicio(rs.getDate("data_inicio").toLocalDate());
-                    sprint.setDataFim(rs.getDate("data_fim").toLocalDate());
-                    sprint.setIdSemestre(rs.getInt("id_semestre"));
-                    sprints.add(sprint);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return sprints;
-    }
 
 
     public List<Criterio> getNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint) {
@@ -164,25 +135,55 @@ public class AvaliacaoDAO extends ConexaoDAO {
         return somaPontos;
     }
 
+    public Sprint getSprintAtivaPorDataEEquipe(LocalDate data, int idEquipe) {
+        Sprint sprintAtiva = null;
+        String sql = """
+        SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
+        FROM sprint s
+        INNER JOIN equipe e ON s.id_semestre = e.id_semestre
+        WHERE e.id_equipe = ? AND ? BETWEEN s.data_inicio AND DATE_ADD(s.data_fim, INTERVAL 1 WEEK)
+    """;
 
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idEquipe);
+            stmt.setDate(2, Date.valueOf(data));
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    sprintAtiva = new Sprint();
+                    sprintAtiva.setIdSprint(rs.getInt("id_sprint"));
+                    sprintAtiva.setNome(rs.getString("nome"));
+                    sprintAtiva.setDataInicio(rs.getDate("data_inicio").toLocalDate());
+                    sprintAtiva.setDataFim(rs.getDate("data_fim").toLocalDate());
+                    sprintAtiva.setIdSemestre(rs.getInt("id_semestre"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return sprintAtiva;
+    }
 
     public void cadastrarOuAtualizarAvaliacao(Avaliacao avaliacao) {
         String checkSql = """
-            SELECT COUNT(*) AS count
-            FROM avaliacao
-            WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
-        """;
+        SELECT COUNT(*) AS count
+        FROM avaliacao
+        WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
+    """;
 
         String insertSql = """
-            INSERT INTO avaliacao (nota, email_avaliador, email_avaliado, id_sprint, id_criterio)
-            VALUES (?, ?, ?, ?, ?)
-        """;
+        INSERT INTO avaliacao (nota, email_avaliador, email_avaliado, id_sprint, id_criterio)
+        VALUES (?, ?, ?, ?, ?)
+    """;
 
         String updateSql = """
-            UPDATE avaliacao
-            SET nota = ?
-            WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
-        """;
+        UPDATE avaliacao
+        SET nota = ?
+        WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
+    """;
 
         try (Connection conn = getConnection();
              PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
@@ -200,6 +201,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
                         updateStmt.setString(3, avaliacao.getEmailAvaliado());
                         updateStmt.setInt(4, avaliacao.getIdSprint());
                         updateStmt.setInt(5, avaliacao.getIdCriterio());
+                        updateStmt.executeUpdate();
                     }
                 } else {
                     try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
@@ -208,6 +210,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
                         insertStmt.setString(3, avaliacao.getEmailAvaliado());
                         insertStmt.setInt(4, avaliacao.getIdSprint());
                         insertStmt.setInt(5, avaliacao.getIdCriterio());
+                        insertStmt.executeUpdate();
                     }
                 }
             }

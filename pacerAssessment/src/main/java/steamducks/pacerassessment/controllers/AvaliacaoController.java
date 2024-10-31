@@ -17,14 +17,13 @@ import steamducks.pacerassessment.models.Criterio;
 import steamducks.pacerassessment.models.Sprint;
 import steamducks.pacerassessment.models.Usuario;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class AvaliacaoController {
 
     @FXML
     private ComboBox<Usuario> cmbAluno;
-    @FXML
-    private ComboBox<Sprint> cmbSprint;
 
     @FXML
     private TableColumn<Criterio, String> tcCriterio;
@@ -36,17 +35,21 @@ public class AvaliacaoController {
     @FXML
     private Label lblPontosTotais;
 
+    @FXML
+    private Label lblSprint;
+
     private AvaliacaoDAO avaliacaoDAO;
     private Usuario alunoAvaliador;
     private int totalPontosDisponiveis;
+    private Sprint sprintAtiva;
 
     public void inicializar(Usuario alunoAvaliador) {
         this.avaliacaoDAO = new AvaliacaoDAO();
         this.alunoAvaliador = alunoAvaliador;
         carregarAlunosEquipe();
-        carregarSprints();
         configurarListeners();
         configurarColunas();
+        carregarSprintAtiva();
         carregarCriteriosComNotas();
     }
 
@@ -56,15 +59,18 @@ public class AvaliacaoController {
         cmbAluno.setItems(usuariosObservableList);
     }
 
-    private void carregarSprints() {
-        List<Sprint> sprints = avaliacaoDAO.getSpritsDaEquipe(alunoAvaliador.getIdEquipe());
-        ObservableList<Sprint> sprintsObservableList = FXCollections.observableArrayList(sprints);
-        cmbSprint.setItems(sprintsObservableList);
+    private void carregarSprintAtiva() {
+        sprintAtiva = avaliacaoDAO.getSprintAtivaPorDataEEquipe(LocalDate.now(), alunoAvaliador.getIdEquipe());
+        if (sprintAtiva != null) {
+            lblSprint.setText("Avaliando: " + sprintAtiva.getNome());
+        } else {
+            lblSprint.setText("Sem Sprint Ativa");
+            mostrarAlerta(Alert.AlertType.WARNING, "Aviso", "Nenhuma sprint ativa encontrada.");
+        }
     }
 
     private void configurarListeners() {
         cmbAluno.valueProperty().addListener((observable, oldValue, newValue) -> carregarCriteriosComNotas());
-        cmbSprint.valueProperty().addListener((observable, oldValue, newValue) -> carregarCriteriosComNotas());
     }
 
     private void configurarColunas() {
@@ -86,7 +92,7 @@ public class AvaliacaoController {
                 criterio.setNota(novaNota);
                 atualizarPontosTotais();
             } else {
-                //reverter mudanca
+                // Revert the change if the new value exceeds the available points
                 event.getTableView().getItems().set(event.getTablePosition().getRow(), criterio);
             }
         });
@@ -95,27 +101,22 @@ public class AvaliacaoController {
     @FXML
     private void carregarCriteriosComNotas() {
         Usuario alunoAvaliado = cmbAluno.getValue();
-        Sprint sprintSelecionada = cmbSprint.getValue();
 
-        if (alunoAvaliado != null && sprintSelecionada != null) {
-            // puxar todos os pontos que o aluno logado ja deu aos outros alunos (excluindo o aluno que ele esta avaliando)
+        if (alunoAvaliado != null && sprintAtiva != null) {
             int pontosJaAtribuidos = avaliacaoDAO.getPontosTotaisExcluindoAluno(
-                    alunoAvaliador.getEmail(), alunoAvaliado.getEmail(), sprintSelecionada.getIdSprint()
+                    alunoAvaliador.getEmail(), alunoAvaliado.getEmail(), sprintAtiva.getIdSprint()
             );
 
-            // Obter o total de pontos da Sprint para o grupo
             int totalPontosSprint = avaliacaoDAO.getTotalDePontosDaEquipeNaSprint(
-                    sprintSelecionada.getIdSprint(), alunoAvaliado.getIdEquipe()
+                    sprintAtiva.getIdSprint(), alunoAvaliado.getIdEquipe()
             );
 
-            // Calcular os pontos disponíveis subtraindo os pontos já atribuídos
             totalPontosDisponiveis = totalPontosSprint - pontosJaAtribuidos;
 
-            // Carregar os critérios e notas do aluno avaliado
             List<Criterio> criteriosComNotas = avaliacaoDAO.getNotasPorCriterio(
                     alunoAvaliador.getEmail(),
                     alunoAvaliado.getEmail(),
-                    sprintSelecionada.getIdSprint()
+                    sprintAtiva.getIdSprint()
             );
             ObservableList<Criterio> criteriosObservableList = FXCollections.observableArrayList(criteriosComNotas);
             tvAvaliacao.setItems(criteriosObservableList);
@@ -126,7 +127,6 @@ public class AvaliacaoController {
     }
 
     private int obterPontosUtilizados() {
-        //pega a soma de todas as notas carregadas na TV
         return tvAvaliacao.getItems().stream().mapToInt(Criterio::getNota).sum();
     }
 
@@ -138,27 +138,26 @@ public class AvaliacaoController {
 
     @FXML
     void cancelar(ActionEvent event) {
-        carregarCriteriosComNotas(); // faz um refresh
+        carregarCriteriosComNotas();
     }
 
     @FXML
     void salvarAvaliacoes(ActionEvent event) {
         Usuario alunoAvaliado = cmbAluno.getValue();
-        Sprint sprintSelecionada = cmbSprint.getValue();
 
-        if (alunoAvaliado != null && sprintSelecionada != null) {
+        if (alunoAvaliado != null && sprintAtiva != null) {
             try {
                 for (Criterio criterio : tvAvaliacao.getItems()) {
                     Avaliacao avaliacao = new Avaliacao();
                     avaliacao.setNota(criterio.getNota());
                     avaliacao.setEmailAvaliador(alunoAvaliador.getEmail());
                     avaliacao.setEmailAvaliado(alunoAvaliado.getEmail());
-                    avaliacao.setIdSprint(sprintSelecionada.getIdSprint());
+                    avaliacao.setIdSprint(sprintAtiva.getIdSprint());
                     avaliacao.setIdCriterio(criterio.getId());
                     avaliacaoDAO.cadastrarOuAtualizarAvaliacao(avaliacao);
                 }
                 mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Avaliações salvas com sucesso!");
-                carregarCriteriosComNotas(); // faz um refresh
+                carregarCriteriosComNotas();
             } catch (Exception e) {
                 mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao salvar avaliações: " + e.getMessage());
             }
