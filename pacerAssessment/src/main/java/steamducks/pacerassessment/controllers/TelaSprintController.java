@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import steamducks.pacerassessment.dao.SprintDAO;
 import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.dao.GrupoAlunoDAO;
 import steamducks.pacerassessment.dao.CriteriosDAO;

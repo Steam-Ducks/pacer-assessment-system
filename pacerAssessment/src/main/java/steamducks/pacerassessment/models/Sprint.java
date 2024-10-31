@@ -3,13 +3,15 @@ package steamducks.pacerassessment.models;
 import java.time.LocalDate;
 
 public class Sprint {
+    private String nome;
     private int idSprint;
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private int idSemestre;
 
     // Construtor completo
-    public Sprint(int idSprint, LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
+    public Sprint(String nome, int idSprint, LocalDate dataInicio, LocalDate dataFim, int idSemestre) {
+        this.nome = nome;
         this.idSprint = idSprint;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -21,6 +23,9 @@ public class Sprint {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
         this.idSemestre = idSemestre;
+    }
+
+    public Sprint() {
     }
 
     // Getters e Setters
@@ -54,6 +59,14 @@ public class Sprint {
 
     public void setIdSemestre(int idSemestre) {
         this.idSemestre = idSemestre;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     @Override
