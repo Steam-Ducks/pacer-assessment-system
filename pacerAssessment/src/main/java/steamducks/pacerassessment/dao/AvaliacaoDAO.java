@@ -1,5 +1,6 @@
 package steamducks.pacerassessment.dao;
 
+import steamducks.pacerassessment.models.Avaliacao;
 import steamducks.pacerassessment.models.Criterio;
 import steamducks.pacerassessment.models.Sprint;
 import steamducks.pacerassessment.models.Usuario;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class AvaliacaoDAO extends ConexaoDAO {
 
-    public List<Usuario> obterColegasEquipe(int idEquipe) {
+    public List<Usuario> getAlunosEquipe(int idEquipe) {
         List<Usuario> colegas = new ArrayList<>();
         String sql = """
             SELECT email, nome, is_professor, id_equipe 
@@ -40,7 +41,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
         return colegas;
     }
 
-    public List<Sprint> obterSprintsPorEquipe(int idEquipe) {
+    public List<Sprint> getSpritsDaEquipe(int idEquipe) {
         List<Sprint> sprints = new ArrayList<>();
         String sql = """
             SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
@@ -72,38 +73,8 @@ public class AvaliacaoDAO extends ConexaoDAO {
         return sprints;
     }
 
-    public List<Criterio> obterCriteriosPorEquipe(int idEquipe) {
-        List<Criterio> criterios = new ArrayList<>();
-        String sql = """
-            SELECT c.id_criterio, c.nome, c.descricao
-            FROM criterio c
-            INNER JOIN semestre_criterio sc ON c.id_criterio = sc.id_criterio
-            INNER JOIN equipe e ON sc.id_semestre = e.id_semestre
-            WHERE e.id_equipe = ?
-        """;
 
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.setInt(1, idEquipe);
-
-            try (ResultSet rs = stmt.executeQuery()) {
-                while (rs.next()) {
-                    Criterio criterio = new Criterio();
-                    criterio.setId(rs.getInt("id_criterio"));
-                    criterio.setNome(rs.getString("nome"));
-                    criterio.setDescricao(rs.getString("descricao"));
-                    criterios.add(criterio);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return criterios;
-    }
-
-    public List<Criterio> obterNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint) {
+    public List<Criterio> getNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint) {
         List<Criterio> criteriosComNota = new ArrayList<>();
         String sql = """
         SELECT c.id_criterio, c.nome, c.descricao, COALESCE(a.nota, 0) AS nota
@@ -139,7 +110,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
     }
 
 
-    public int obterTotalPontosPorSprintEEquipe(int idSprint, int idEquipe) {
+    public int getTotalDePontosDaEquipeNaSprint(int idSprint, int idEquipe) {
         int totalPontos = 0;
         String sql = """
         SELECT SUM(pontos) AS total_pontos
@@ -163,6 +134,87 @@ public class AvaliacaoDAO extends ConexaoDAO {
         }
 
         return totalPontos;
+    }
+
+
+    public int getPontosTotaisExcluindoAluno(String emailAvaliador, String emailAvaliado, int idSprint) {
+        int somaPontos = 0;
+        String sql = """
+        SELECT SUM(nota) AS soma_pontos
+        FROM avaliacao
+        WHERE email_avaliador = ? AND id_sprint = ? AND email_avaliado != ?
+    """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, emailAvaliador);
+            stmt.setInt(2, idSprint);
+            stmt.setString(3, emailAvaliado);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    somaPontos = rs.getInt("soma_pontos");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return somaPontos;
+    }
+
+
+
+    public void cadastrarOuAtualizarAvaliacao(Avaliacao avaliacao) {
+        String checkSql = """
+            SELECT COUNT(*) AS count
+            FROM avaliacao
+            WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
+        """;
+
+        String insertSql = """
+            INSERT INTO avaliacao (nota, email_avaliador, email_avaliado, id_sprint, id_criterio)
+            VALUES (?, ?, ?, ?, ?)
+        """;
+
+        String updateSql = """
+            UPDATE avaliacao
+            SET nota = ?
+            WHERE email_avaliador = ? AND email_avaliado = ? AND id_sprint = ? AND id_criterio = ?
+        """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
+
+            checkStmt.setString(1, avaliacao.getEmailAvaliador());
+            checkStmt.setString(2, avaliacao.getEmailAvaliado());
+            checkStmt.setInt(3, avaliacao.getIdSprint());
+            checkStmt.setInt(4, avaliacao.getIdCriterio());
+
+            try (ResultSet rs = checkStmt.executeQuery()) {
+                if (rs.next() && rs.getInt("count") > 0) {
+                    try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
+                        updateStmt.setInt(1, avaliacao.getNota());
+                        updateStmt.setString(2, avaliacao.getEmailAvaliador());
+                        updateStmt.setString(3, avaliacao.getEmailAvaliado());
+                        updateStmt.setInt(4, avaliacao.getIdSprint());
+                        updateStmt.setInt(5, avaliacao.getIdCriterio());
+                    }
+                } else {
+                    try (PreparedStatement insertStmt = conn.prepareStatement(insertSql)) {
+                        insertStmt.setInt(1, avaliacao.getNota());
+                        insertStmt.setString(2, avaliacao.getEmailAvaliador());
+                        insertStmt.setString(3, avaliacao.getEmailAvaliado());
+                        insertStmt.setInt(4, avaliacao.getIdSprint());
+                        insertStmt.setInt(5, avaliacao.getIdCriterio());
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error saving evaluation", e);
+        }
     }
 
 
