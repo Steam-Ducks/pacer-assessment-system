@@ -3,37 +3,34 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.telaAlunoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.AvaliacaoController">
    <children>
-      <ComboBox fx:id="cmb_SelAluno" layoutX="14.0" layoutY="54.0" prefWidth="150.0" promptText="Selecionar Aluno" />
-      <Button fx:id="btn_Salvar" layoutX="245.0" layoutY="348.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Salvar" textFill="#fcfcfc">
+      <ComboBox fx:id="cmbAluno" layoutX="34.0" layoutY="76.0" prefWidth="150.0" promptText="Selecionar Aluno" />
+      <Button fx:id="btnSalvar" layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#salvarAvaliacoes" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Salvar" textFill="#fcfcfc">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label layoutX="14.0" layoutY="14.0" opacity="0.65" text="Avaliar Aluno" textFill="#808080">
+      <Label fx:id="lblSprint" layoutX="34.0" layoutY="14.0" opacity="0.65" text="Avaliando:" textFill="#808080">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="scrollBox" layoutY="118.0" prefHeight="200.0" prefWidth="397.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="357.0">
-               <children>
-                  <VBox fx:id="vbox_criterios" layoutX="24.0" layoutY="14.0" prefHeight="154.0" prefWidth="346.0" />
-               </children>
-            </AnchorPane>
-        </content>
-      </ScrollPane>
-      <Button fx:id="btn_Cancelar" layoutX="89.0" layoutY="348.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="btnCancelar" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lbl_pontosRestantes" layoutX="224.0" layoutY="58.0" text="Pontos restantes: " />
+      <Label fx:id="lblPontosTotais" layoutX="207.0" layoutY="80.0" text="Pontos restantes:  0" />
+      <TableView fx:id="tvAvaliacao" layoutX="34.0" layoutY="120.0" prefHeight="200.0" prefWidth="295.0">
+        <columns>
+          <TableColumn fx:id="tcCriterio" prefWidth="194.0" text="Critério" />
+          <TableColumn fx:id="tcNota" prefWidth="100.0" text="Nota" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
