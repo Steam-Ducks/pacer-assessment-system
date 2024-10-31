@@ -77,6 +77,7 @@ public class TeladeLoginController {
             Stage stage = new Stage();
             stage.setTitle(nomeTela);
 
+
             Object controller = fxmlLoader.getController();
             if (controller instanceof MenuProfessorController)
             {
@@ -86,6 +87,10 @@ public class TeladeLoginController {
             {
                 ((MenuAlunoController) controller).inicializar(usuario);
             }
+          
+            stage.setMaximized(false);
+            stage.setResizable(false);
+            stage.centerOnScreen();
 
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
             stage.getIcons().add(logo);

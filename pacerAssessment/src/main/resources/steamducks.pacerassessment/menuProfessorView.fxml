@@ -16,11 +16,11 @@
    <center>
       <AnchorPane style="-fx-pref-height: 700; -fx-pref-width: 900; -fx-background-color: #E5E5E5;" styleClass="ca">
          <children>
-            <AnchorPane layoutX="3.0" layoutY="2.0" prefHeight="200.0" prefWidth="609.0">
+            <AnchorPane layoutX="3.0" layoutY="2.0" prefHeight="751.0" prefWidth="962.0">
                <children>
                   <AnchorPane layoutX="-33.0" layoutY="-2.0" prefHeight="60.0" prefWidth="1054.0" style="-fx-background-color: #14213d;">
                      <children>
-                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="996.0" layoutY="15.0" mnemonicParsing="false" onAction="#abrirLogin" styleClass="buttonSairMenuPrincipal" stylesheets="@../styles.css" text="Sair" textFill="WHITE">
+                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="994.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" styleClass="buttonSairMenuPrincipal" stylesheets="@../styles.css" text="Sair" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -28,12 +28,12 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="818.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="827.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../assets/user.png" />
                            </image>
                         </ImageView>
-                        <Text fill="WHITE" layoutX="855.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
+                        <Text fill="WHITE" layoutX="864.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -166,7 +166,7 @@
       </AnchorPane>
    </left>
    <top>
-      <MenuBar prefHeight="22.0" prefWidth="1276.0" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="26.0" prefWidth="1254.0" BorderPane.alignment="CENTER">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>

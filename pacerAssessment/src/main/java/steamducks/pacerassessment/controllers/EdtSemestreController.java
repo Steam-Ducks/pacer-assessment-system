@@ -1,9 +1,11 @@
 package steamducks.pacerassessment.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Semestre;
 
 public class EdtSemestreController {
@@ -21,26 +23,39 @@ public class EdtSemestreController {
 
     @FXML
     public void initialize() {
-        // Ação do botão "Cancelar"
         btnCancelEdit.setOnAction(event -> fecharJanela());
-
-        // Ação do botão "Concluir Edição"
         btnConcluirEdt.setOnAction(event -> concluirEdicao());
     }
 
-    // Método para inicializar os campos com os dados do semestre selecionado
     public void inicializarCampos(Semestre semestre) {
         this.semestreSelecionado = semestre;
         txtEdtSem.setText(semestre.getNome());
     }
 
-    // Método para concluir a edição e atualizar os dados
     private void concluirEdicao() {
-        semestreSelecionado.setNome(txtEdtSem.getText());
-        fecharJanela();
+        String novoNome = txtEdtSem.getText();
+
+        if (semestreSelecionado != null && semestreSelecionado.getId() > 0 && novoNome != null && !novoNome.trim().isEmpty()) {
+            semestreSelecionado.setNome(novoNome);
+
+            SemestreDAO dao = new SemestreDAO();
+            dao.atualizarNomeSemestre(semestreSelecionado.getId(), novoNome);
+
+            fecharJanela();
+
+        } else {
+            mostrarAlerta("Erro", "Semestre não encontrado ou nome inválido.");
+        }
     }
 
-    // Método para fechar a janela de edição
+    private void mostrarAlerta(String titulo, String mensagem) {
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+        alerta.showAndWait();
+    }
+
     private void fecharJanela() {
         Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
         stage.close();
