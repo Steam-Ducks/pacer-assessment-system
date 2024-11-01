@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,85 +14,114 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="800.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.MenuAlunoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1245.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.MenuAlunoController">
    <center>
-      <AnchorPane fx:id="Anchorpane" style="-fx-pref-height: 700; -fx-pref-width: 900;">
+      <AnchorPane style="-fx-pref-height: 700; -fx-pref-width: 900; -fx-background-color: #E5E5E5;" styleClass="ca">
          <children>
-            <Line endX="754.0" layoutX="220.0" layoutY="219.0" startX="-211.6000213623047" stroke="#14213d" strokeWidth="2.0" />
-            <Label layoutX="49.0" layoutY="15.0" prefHeight="63.0" prefWidth="629.0" text="Prezado(a) aluno(a)" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="32.0" />
-               </font>
-            </Label>
-            <Label layoutX="49.0" layoutY="46.0" prefHeight="144.0" prefWidth="886.0" text="Informamos que o período de avaliação ainda não começou. Fique atento(a) ao calendário acadêmico para as datas oficiais e, caso tenha dúvidas, entre em contato com a coordenação." wrapText="true">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </Label>
+            <AnchorPane layoutX="3.0" layoutY="2.0" prefHeight="751.0" prefWidth="962.0">
+               <children>
+                  <AnchorPane layoutX="-33.0" layoutY="-2.0" prefHeight="60.0" prefWidth="1054.0" style="-fx-background-color: #14213d;">
+                     <children>
+                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="996.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" styleClass="buttonSairMenuPrincipal" stylesheets="@../styles.css" text="Sair" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="819.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/user.png" />
+                           </image>
+                        </ImageView>
+                        <Text fx:id="saudacaoAluno" fill="WHITE" layoutX="857.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="983.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/sair.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="contentPane" layoutX="33.0" layoutY="87.0" prefHeight="664.0" prefWidth="955.0" styleClass="contentPane" stylesheets="@../styles.css" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </center>
    <left>
-      <AnchorPane prefHeight="779.0" prefWidth="273.0" style="-fx-background-color: #14213d;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="779.0" prefWidth="231.0" style="-fx-background-color: #14213d;" BorderPane.alignment="CENTER">
          <children>
-            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="69.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Text fill="WHITE" layoutX="19.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minhas informações">
-               <font>
-                  <Font name="SansSerif Bold" size="24.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="163.0" fitWidth="208.0" layoutX="48.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="223.0" fitWidth="230.0" layoutX="2.0" layoutY="-12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/logo-dark.png" />
                </image>
             </ImageView>
-            <Label fx:id="nomeAluno" layoutX="26.0" layoutY="232.0" prefHeight="23.0" prefWidth="222.0" text="Samuel Prado" textFill="WHITE">
+            <Label fx:id="nomeAluno" layoutX="36.0" layoutY="257.0" text="Aluno Exemplo" textFill="WHITE" />
+            <Label fx:id="emailAluno" layoutX="36.0" layoutY="289.0" text="usuario@fatec.sp.gov.br" textFill="WHITE" wrapText="true" />
+            <Button fx:id="btnAvaliar" graphicTextGap="0.0" layoutX="-3.0" layoutY="342.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#avaliar" prefHeight="60.0" prefWidth="233.0" style="-fx-text-alignment: &quot;left&quot;;" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
                <font>
-                  <Font size="19.0" />
+                  <Font name="SansSerif Regular" size="16.0" />
                </font>
-            </Label>
-            <Label fx:id="DataAluno" layoutX="26.0" layoutY="280.0" prefHeight="23.0" prefWidth="222.0" text="02/07/2003" textFill="WHITE">
+            </Button>
+            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/criterios.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="48.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Avalie sua equipe">
                <font>
-                  <Font size="19.0" />
+                  <Font size="14.0" />
                </font>
-            </Label>
-            <Label fx:id="emailAluno" layoutX="20.0" layoutY="325.0" prefHeight="58.0" prefWidth="230.0" text="samuel.prado@fatec.sp.gov.br" textFill="WHITE" wrapText="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Text>
+            <Text fill="WHITE" layoutX="13.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Minhas Informações">
                <font>
-                  <Font size="19.0" />
+                  <Font size="18.0" />
                </font>
-            </Label>
-            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="232.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="14.0" layoutY="118.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Line endX="235.1999969482422" endY="150.23330688476562" layoutX="12.0" layoutY="165.0" startX="9.078693389892578" startY="150.2333221435547" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="2.0" />
-            <Button fx:id="btnAvaliar" layoutX="62.0" layoutY="462.0" mnemonicParsing="false" onAction="#avaliar" prefHeight="80.0" prefWidth="134.0" text="AVALIAR!" />
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </Text>
+            <ImageView fitHeight="15.0" fitWidth="25.0" layoutX="13.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/usuario.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="16.0" fitWidth="15.0" layoutX="13.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/email.png" />
+               </image>
+            </ImageView>
+            <Line endX="100.0" layoutX="115.0" layoutY="340.0" startX="-100.0" stroke="WHITE" />
          </children>
       </AnchorPane>
    </left>
    <top>
-      <AnchorPane prefHeight="54.0" prefWidth="1024.0" style="-fx-background-color: #14213D;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="6.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/logo-dark.png" />
-               </image>
-            </ImageView>
-            <Text fill="WHITE" layoutX="71.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema RECAP">
-               <font>
-                  <Font name="SansSerif Bold" size="20.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="1068.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-            <Text fill="WHITE" layoutX="1099.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá, Aluno (a)  |">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Text>
-            <Button fx:id="btnLogout" alignment="CENTER" graphicTextGap="2.0" layoutX="1194.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" style="-fx-background-color: transparent;" text="Sair" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
+      <MenuBar prefHeight="26.0" prefWidth="1254.0" BorderPane.alignment="CENTER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Delete" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
    </top>
 </BorderPane>
