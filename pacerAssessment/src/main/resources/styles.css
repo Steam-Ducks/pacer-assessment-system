@@ -230,5 +230,21 @@
     -fx-font-size: 14px;
 }
 
+.table-view {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #14213D;
+    -fx-font-size: 24px;
+}
+
+.table-view .column-header {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+    -fx-text-fill: #FFFFFF;
+}
+
 
 

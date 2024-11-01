@@ -5,32 +5,56 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.AvaliacaoController">
+<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="955.0" styleClass="contentPane" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.AvaliacaoController">
    <children>
-      <ComboBox fx:id="cmbAluno" layoutX="34.0" layoutY="76.0" prefWidth="150.0" promptText="Selecionar Aluno" />
-      <Button fx:id="btnSalvar" layoutX="207.0" layoutY="349.0" mnemonicParsing="false" onAction="#salvarAvaliacoes" prefHeight="30.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" text="Salvar" textFill="#fcfcfc">
+   <Line endX="918.0" endY="72.5" layoutX="-4.0" layoutY="38.0" startX="42.5" startY="72.5" styleClass="linhaGradiente" />
+   <Text fx:id="lblSprint" fill="#14213d" layoutX="36.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tituloDeTelasGerenciar" text="Avalie sua equipe" />
+   <Text fill="#14213d" layoutX="38.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Aqui, você poderá avaliar os membros da sua equipe com os critérios estabelecidos para o semestre atual, quando houver uma avaliação de sprint ativa." wrappingWidth="878.5">
+      <font>
+         <Font size="14.0" />
+      </font>
+   </Text>
+      <ComboBox fx:id="cmbAluno" layoutX="38.0" layoutY="258.0" prefHeight="26.0" prefWidth="280.0" promptText="Selecionar Aluno" />
+      <Button fx:id="btnSalvar" layoutX="805.0" layoutY="583.0" mnemonicParsing="false" onAction="#salvarAvaliacoes" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Label fx:id="lblSprint" layoutX="34.0" layoutY="14.0" opacity="0.65" text="Avaliando:" textFill="#808080">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnCancelar" layoutX="59.0" layoutY="348.0" mnemonicParsing="false" onAction="#cancelar" prefHeight="31.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" text="Cancelar" textFill="WHITE">
+      <Button fx:id="btnCancelar" layoutX="669.0" layoutY="583.0" mnemonicParsing="false" onAction="#cancelar" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lblPontosTotais" layoutX="207.0" layoutY="80.0" text="Pontos restantes:  0" />
-      <TableView fx:id="tvAvaliacao" layoutX="34.0" layoutY="120.0" prefHeight="200.0" prefWidth="295.0">
-        <columns>
-          <TableColumn fx:id="tcCriterio" prefWidth="194.0" text="Critério" />
-          <TableColumn fx:id="tcNota" prefWidth="100.0" text="Nota" />
-        </columns>
+      <Label fx:id="lblPontosTotais" layoutX="745.0" layoutY="259.0" styleClass="descricaoTela" text="Pontos restantes:  0" textFill="#14213d">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TableView fx:id="tvAvaliacao" layoutX="38.0" layoutY="310.0" prefHeight="248.0" prefWidth="879.0" stylesheets="@../styles.css">
+         <columns>
+            <TableColumn fx:id="tcCriterio" editable="false" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" styleClass="table-view" text="Critério" />
+            <TableColumn fx:id="tcNota" prefWidth="381.5999633789063" text="Nota" />
+         </columns>
       </TableView>
+      <Text fx:id="lblSprint" fill="#14213d" layoutX="36.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" wrappingWidth="392.9000244140625">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#14213d" layoutX="60.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Ao avaliar cada aluno, não esqueça de clicar em 'Salvar'." wrappingWidth="459.300048828125">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="37.0" layoutY="594.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/info.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
