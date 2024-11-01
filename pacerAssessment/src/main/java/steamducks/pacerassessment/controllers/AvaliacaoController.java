@@ -11,6 +11,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.AvaliacaoDAO;
 import steamducks.pacerassessment.models.Avaliacao;
 import steamducks.pacerassessment.models.Criterio;
@@ -26,21 +31,31 @@ public class AvaliacaoController {
     private ComboBox<Usuario> cmbAluno;
 
     @FXML
+    private AnchorPane contentPane;
+
+    @FXML
     private TableColumn<Criterio, String> tcCriterio;
+
     @FXML
     private TableColumn<Criterio, Integer> tcNota;
+
     @FXML
     private TableView<Criterio> tvAvaliacao;
 
     @FXML
-    private Label lblPontosTotais;
+    private Text lblSprint;
 
     @FXML
-    private Label lblSprint;
+    private Label lblPontosTotais;
+
+    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     private AvaliacaoDAO avaliacaoDAO;
+
     private Usuario alunoAvaliador;
+
     private int totalPontosDisponiveis;
+
     private Sprint sprintAtiva;
 
     public void inicializar(Usuario alunoAvaliador) {
@@ -165,10 +180,22 @@ public class AvaliacaoController {
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
         alerta.showAndWait();
+
+        if (contentPane != null) {
+            contentPane.setEffect(null);
+        }
     }
+
 }
