@@ -11,7 +11,10 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.EquipeDAO;
+import steamducks.pacerassessment.dao.SemestreDAO;
+import steamducks.pacerassessment.dao.UsuarioDAO;
 import steamducks.pacerassessment.models.Equipe;
+import steamducks.pacerassessment.models.Semestre;
 import steamducks.pacerassessment.models.Usuario;
 
 import java.io.*;
@@ -24,7 +27,7 @@ public class CadastroGrupoAlunoController {
     private TextField txtGithub;
 
     @FXML
-    private ComboBox<String> cmbSemestre;
+    private ComboBox<Semestre> cmbSemestre;
 
     @FXML
     private Button btnRegistrar;
@@ -124,8 +127,8 @@ public class CadastroGrupoAlunoController {
     }
 
     private void carregarSemestres() {
-        EquipeDAO equipeDAO = new EquipeDAO();
-        ObservableList<String> semestreList = FXCollections.observableArrayList(equipeDAO.buscarSemestres());
+        SemestreDAO semestreDAO = new SemestreDAO();
+        ObservableList<Semestre> semestreList = FXCollections.observableArrayList(semestreDAO.getSemestres());
         cmbSemestre.setItems(semestreList);
     }
 
@@ -133,19 +136,12 @@ public class CadastroGrupoAlunoController {
     void registrar(ActionEvent event) {
         String nomeEquipe = txtEquipe.getText();
         String github = txtGithub.getText();
-        String semestreSelecionado = cmbSemestre.getValue();
+        Semestre semestreSelecionado = cmbSemestre.getValue();
 
         if (nomeEquipe.isEmpty() || github.isEmpty() || semestreSelecionado == null) {
             mostrarAlerta("Erro", "Por favor, preencha todos os campos da equipe.", Alert.AlertType.WARNING);
             return;
         }
-
-        /* precisa ter um aluno?
-        if (alunoList.isEmpty()) {
-            mostrarAlerta("Erro", "A equipe deve ter pelo menos um aluno.", Alert.AlertType.WARNING);
-            return;
-        }
-        */
 
         for (Usuario aluno : alunoList) {
             if (aluno.getNome().isEmpty() || aluno.getEmail().isEmpty() || aluno.getSenha().isEmpty()) {
@@ -154,20 +150,14 @@ public class CadastroGrupoAlunoController {
             }
         }
 
-        EquipeDAO dao = new EquipeDAO();
-        int idSemestre;
-
-        try {
-            idSemestre = dao.obterIdSemestre(semestreSelecionado);
-        } catch (RuntimeException e) {
-            mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
-            return;
-        }
+        EquipeDAO equipeDAO = new EquipeDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        int idSemestre = semestreSelecionado.getId();
 
         int idEquipe;
 
         try {
-            idEquipe = dao.criarEquipe(nomeEquipe, github, idSemestre);
+            idEquipe = equipeDAO.criarEquipe(nomeEquipe, github, idSemestre);
         } catch (RuntimeException e) {
             mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
             return;
@@ -183,7 +173,7 @@ public class CadastroGrupoAlunoController {
         }
 
         try {
-            boolean alunosAdicionados = dao.adicionarAlunos(idEquipe, alunoList);
+            boolean alunosAdicionados = usuarioDAO.adicionarAlunos(idEquipe, alunoList);
             if (!alunosAdicionados) {
                 mostrarAlerta("Erro", "Falha ao adicionar alunos. Tente novamente.", Alert.AlertType.WARNING);
                 return;
@@ -248,7 +238,7 @@ public class CadastroGrupoAlunoController {
                 }
             }
 
-            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, cmbSemestre.getValue());
+            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, cmbSemestre.getValue().getNome());
 
         } catch (IOException e) {
             mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
