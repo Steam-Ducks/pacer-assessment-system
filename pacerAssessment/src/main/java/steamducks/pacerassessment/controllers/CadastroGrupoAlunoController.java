@@ -7,9 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+import steamducks.pacerassessment.dao.EquipeDAO;
 import steamducks.pacerassessment.models.Equipe;
 import steamducks.pacerassessment.models.Usuario;
 
@@ -98,11 +99,11 @@ public class CadastroGrupoAlunoController {
 
     private void configurarDeletar() {
         tcDelete.setCellFactory(column -> new TableCell<Usuario, String>() {
-            private final Button deleteButton = new Button("X");
+            private final Button deleteButton = new Button("x");
 
             {
-                deleteButton.setStyle("-fx-background-color: #CC2936; -fx-text-fill: white; -fx-font-size: 14;");
-                deleteButton.setPrefSize(20, 20);
+                deleteButton.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center;");
+                deleteButton.setPrefSize(15, 10);
             }
 
             @Override
@@ -123,8 +124,8 @@ public class CadastroGrupoAlunoController {
     }
 
     private void carregarSemestres() {
-        GrupoAlunoDAO grupoAlunoDAO = new GrupoAlunoDAO();
-        ObservableList<String> semestreList = FXCollections.observableArrayList(grupoAlunoDAO.buscarSemestres());
+        EquipeDAO equipeDAO = new EquipeDAO();
+        ObservableList<String> semestreList = FXCollections.observableArrayList(equipeDAO.buscarSemestres());
         cmbSemestre.setItems(semestreList);
     }
 
@@ -153,7 +154,7 @@ public class CadastroGrupoAlunoController {
             }
         }
 
-        GrupoAlunoDAO dao = new GrupoAlunoDAO();
+        EquipeDAO dao = new EquipeDAO();
         int idSemestre;
 
         try {
@@ -200,12 +201,15 @@ public class CadastroGrupoAlunoController {
         tvAlunos.setItems(alunoList);
     }
 
-    private void mostrarAlerta(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle("Sistema RECAP");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alerta.showAndWait();
     }
 
     @FXML

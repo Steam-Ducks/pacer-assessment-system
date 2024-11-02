@@ -11,7 +11,7 @@ import java.util.List;
 
 import steamducks.pacerassessment.models.Usuario;
 
-public class GrupoAlunoDAO {
+public class EquipeDAO {
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
@@ -110,7 +110,7 @@ public class GrupoAlunoDAO {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            throw new RuntimeException("Erro ao adicionar usuários! " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao adicionar usuários!");
         } finally {
             try {
                 if (con != null) {
@@ -153,4 +153,40 @@ public class GrupoAlunoDAO {
 
         return idSemestre;
     }
+
+    public boolean excluirEquipe(int idEquipe) {
+        Connection con = null;
+        String sql = "DELETE FROM equipe WHERE id_equipe = ?";
+
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idEquipe);
+            int linhasAfetadas = stmt.executeUpdate();
+
+            con.commit();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+
+
 }
