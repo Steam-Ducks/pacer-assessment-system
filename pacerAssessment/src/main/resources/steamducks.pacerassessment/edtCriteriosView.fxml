@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.EdtCriteriosController">
    <children>
-      <Button fx:id="btnConcluirEdt" layoutX="361.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Concluir" textFill="WHITE" />
+      <Button fx:id="btnConcluirEdt" layoutX="361.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
       <Button fx:id="btnCancelEdit" layoutX="241.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtEdtNome" layoutX="29.0" layoutY="130.0" prefHeight="31.0" prefWidth="442.0" styleClass="txtFieldLogin" />
       <TextArea fx:id="txtEditDescricao" layoutX="29.0" layoutY="194.0" prefHeight="69.0" prefWidth="442.0" styleClass="txtFieldLogin" />
