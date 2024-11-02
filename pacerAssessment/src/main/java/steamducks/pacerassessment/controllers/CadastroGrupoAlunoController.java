@@ -56,7 +56,6 @@ public class CadastroGrupoAlunoController {
     @FXML
     private TableView<Usuario> tvAlunos;
 
-    private Equipe equipe;
     private final ObservableList<Usuario> alunoList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -237,8 +236,6 @@ public class CadastroGrupoAlunoController {
                     alunoList.add(aluno);
                 }
             }
-
-            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, cmbSemestre.getValue().getNome());
 
         } catch (IOException e) {
             mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
