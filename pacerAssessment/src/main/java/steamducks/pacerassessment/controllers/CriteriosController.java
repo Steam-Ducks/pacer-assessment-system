@@ -9,28 +9,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 import steamducks.pacerassessment.dao.CriteriosDAO;
 import steamducks.pacerassessment.models.Criterio;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Objects;
 
 public class CriteriosController {
 
     @FXML
+    private AnchorPane contentPane;
+
+    @FXML
     private Button btnAdcCriterio;
-
-    @FXML
-    private Button btnCnlNovoCrit;
-
-    @FXML
-    private TextField txtNome;
-
-    @FXML
-    private TextArea txtDescricao;
 
     @FXML
     private Button btnRmvCrit;
@@ -51,127 +49,147 @@ public class CriteriosController {
     private Button btnNovoCriterio;
 
     @FXML
-    private TableColumn<Criterio, Integer > idColumn;
+    private TableColumn<Criterio, Integer> idColumn;
 
     private ObservableList<Criterio> criterioData = FXCollections.observableArrayList();
 
     CriteriosDAO criteriosDao;
 
+    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
+
     public void initialize() {
         criterioData = FXCollections.observableArrayList();
-
         criteriosDao = new CriteriosDAO();
 
-        List<Criterio> criterios = criteriosDao.buscarCriterios(); // usa essa funcao da DAO pra criar uma lista de criterios
-        criterioData.addAll(criterios); // Adiciona essa lista do banco na lista do controlador
-
-
+        List<Criterio> criterios = criteriosDao.buscarCriterios();
+        criterioData.addAll(criterios);
 
         idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-
         criteriosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
-
         descricaoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
-
         tableCriterios.setItems(criterioData);
-
     }
 
-
     @FXML
-    void adicionarCriterio(ActionEvent event) {
-        String nome = txtNome.getText();
-        String descricao = txtDescricao.getText();
+    void abrirTelaCadastroCriterio(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/cadastroCriterioView.fxml"));
+            Parent root = loader.load();
 
-        if (!nome.isEmpty() && !descricao.isEmpty()) {
-            Criterio criterio = new Criterio(nome, descricao);
-            try {
-                int tempId = criteriosDao.adicionarCriterio(criterio);
-                criterio.setId(tempId);
-                criterioData.add(criterio);
-
-                txtNome.clear();
-                txtDescricao.clear();
-            } catch (RuntimeException e) {
-                e.printStackTrace();
+            if (contentPane != null) {
+                contentPane.setEffect(blurEffect);
             }
-        } else {
-            System.out.println("Nome e Descrição não podem estar vazios.");
+
+            Stage stage = new Stage();
+            stage.setTitle("Sistema RECAP");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+            stage.getIcons().add(logo);
+
+            stage.setOnHidden(e -> {
+                atualizarListaCriterios();
+                if (contentPane != null) {
+                    contentPane.setEffect(null);
+                }
+            });
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    // Metodo para abrir a tela de edição
+
+    public void atualizarListaCriterios() {
+        tableCriterios.setItems(FXCollections.observableArrayList(criteriosDao.buscarCriterios()));
+    }
+
     @FXML
     void abrirTelaEdicao(ActionEvent event) {
-
         Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
 
         if (criterioSelecionado == null) {
-            // Caso nenhum item esteja selecionado, exibe uma mensagem de alerta
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setHeaderText("Nenhum critério selecionado");
-            alert.setContentText("Por favor, selecione um critério para editar.");
-            alert.showAndWait();
+            mostrarAlerta("Sistema RECAP", "Nenhum critério selecionado. Por favor, selecione um critério para editar.", Alert.AlertType.WARNING);
             return;
         }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtCriteriosView.fxml"));
             Parent root = loader.load();
-
-            // Pega o controlador da tela de edição
             EdtCriteriosController edtCriteriosController = loader.getController();
-            edtCriteriosController.setCriterio(criterioSelecionado);  // Passa o critério selecionado
+            edtCriteriosController.setCriterio(criterioSelecionado);
 
-            // Cria uma janela para a edição
+            if (contentPane != null) {
+                contentPane.setEffect(blurEffect);
+            }
+
             Stage stage = new Stage();
-            stage.setTitle("Editar Critério");
+            stage.setTitle("Sistema RECAP");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL); // Bloqueia a tela anterior enquanto edita
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
+            stage.getIcons().add(logo);
+
             stage.showAndWait();
 
-            // Atualiza a tabela após a edição
+            contentPane.setEffect(null);
             tableCriterios.refresh();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+
     @FXML
     void removerCriterio(ActionEvent event) {
-        // Pega o critério selecionado
         Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
 
         if (criterioSelecionado == null) {
-            // Caso nenhum item esteja selecionado, você pode exibir uma mensagem de alerta
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Aviso");
-            alert.setHeaderText("Nenhum critério selecionado");
-            alert.setContentText("Por favor, selecione um critério para excluir.");
-            alert.showAndWait();
+            mostrarAlerta("Sistema RECAP", "Por favor, selecione um critério para excluir.", Alert.AlertType.ERROR);
             return;
         }
 
-        // Exibir um alerta de confirmação
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Confirmação de Exclusão");
+        confirmAlert.setTitle("Sistema RECAP");
         confirmAlert.setHeaderText("Você realmente quer excluir o critério?");
         confirmAlert.setContentText("Essa ação não pode ser desfeita.");
 
+        Stage confirmStage = (Stage) confirmAlert.getDialogPane().getScene().getWindow();
+        confirmStage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
         Optional<ButtonType> result = confirmAlert.showAndWait();
-        try {
-            criteriosDao.removerCriterio(criterioSelecionado.getId()); //chama a funcao da DAO enviando o ID do objeto selecionado
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                criteriosDao.removerCriterio(criterioSelecionado.getId());
+                atualizarListaCriterios();
+                mostrarAlerta("Sistema RECAP", "Critério excluído com sucesso.", Alert.AlertType.INFORMATION);
+            } catch (Exception e) {
+                mostrarAlerta("Sistema RECAP", "Erro ao excluir o critério. Tente novamente.", Alert.AlertType.ERROR);
+                e.printStackTrace();
+            }
+        }
+    }
 
-            // Remove o critério da lista e atualiza a tabela
-            tableCriterios.getItems().remove(criterioSelecionado);
-            criterioData.remove(criterioSelecionado);
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
 
-            // Atualiza a tabela após a exclusão
-            tableCriterios.refresh();
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alerta.showAndWait();
+
+        if (contentPane != null) {
+            contentPane.setEffect(null);
         }
     }
 }
