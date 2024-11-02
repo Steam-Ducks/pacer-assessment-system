@@ -27,7 +27,7 @@
                 </ImageView>
             </children>
         </Pane>
-        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="128.0" layoutY="158.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="129.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../assets/github.png" />
             </image>
@@ -39,8 +39,8 @@
         </ImageView>
       <Button fx:id="btnConfirmar" layoutX="448.0" layoutY="482.0" mnemonicParsing="false" onAction="#confirmarEdicao" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
       <Button fx:id="btnCancelar" layoutX="314.0" layoutY="482.0" mnemonicParsing="false" onAction="#cancelarEdicao" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
-      <TextField fx:id="txtNome" layoutX="172.0" layoutY="114.0" prefHeight="25.0" prefWidth="239.0" promptText="Nome da Equipe" />
-      <TextField fx:id="txtGithub" layoutX="172.0" layoutY="158.0" prefHeight="25.0" prefWidth="239.0" promptText="https://github.com/" />
+      <TextField fx:id="txtNome" layoutX="158.0" layoutY="115.0" prefHeight="26.0" prefWidth="310.0" promptText="Nome da Equipe" />
+      <TextField fx:id="txtGithub" layoutX="158.0" layoutY="159.0" prefHeight="26.0" prefWidth="310.0" promptText="https://github.com/" />
       <TableView layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
         <columns>
           <TableColumn prefWidth="172.0" text="Nome" />

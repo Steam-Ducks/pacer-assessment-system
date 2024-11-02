@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.EdtSemestreController">
    <children>
-      <Button fx:id="btnConcluirEdt" layoutX="351.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Concluir" textFill="WHITE" />
+      <Button fx:id="btnConcluirEdt" layoutX="351.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
       <Button fx:id="btnCancelEdit" layoutX="215.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtEdtSem" layoutX="40.0" layoutY="132.0" prefHeight="31.0" prefWidth="422.0" styleClass="listViewGerenciar" />
       <Label layoutX="40.0" layoutY="104.0" prefHeight="28.0" prefWidth="94.0" styleClass="titleLabel" text="Semestre" textFill="#14213d" />
