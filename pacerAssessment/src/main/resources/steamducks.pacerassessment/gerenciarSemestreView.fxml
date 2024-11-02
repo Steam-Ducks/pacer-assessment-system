@@ -17,7 +17,7 @@
          </font>
       </Text>
       <Button fx:id="bntEditSem" layoutX="668.0" layoutY="591.0" mnemonicParsing="false" onAction="#abrirTelaEdicao" styleClass="buttonEditar" text="Editar" textFill="WHITE" />
-      <Button id="btnCancelEdit" fx:id="bntAdcSemestre" layoutX="532.0" layoutY="591.0" mnemonicParsing="false" onAction="#adicionarSemestre" styleClass="buttonVerde" stylesheets="@../styles.css" text="Cadastrar" textFill="WHITE" />
+      <Button fx:id="bntAdcSemestre" layoutX="532.0" layoutY="591.0" mnemonicParsing="false" onAction="#adicionarSemestre" styleClass="buttonVerde" stylesheets="@../styles.css" text="Cadastrar" textFill="WHITE" />
       <Button fx:id="bntRmvSem" layoutX="804.0" layoutY="591.0" mnemonicParsing="false" onAction="#removerSemestre" styleClass="buttonExcluir" text="Excluir" textFill="WHITE" />
       <ListView fx:id="listView" layoutX="36.0" layoutY="194.0" prefHeight="363.0" prefWidth="879.0" styleClass="listViewGerenciar" stylesheets="@../styles.css" />
    </children>

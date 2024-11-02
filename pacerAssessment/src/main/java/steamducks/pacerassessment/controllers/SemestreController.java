@@ -223,7 +223,7 @@ public class SemestreController {
 
 
         Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
         alerta.showAndWait();
 
         if (contentPane != null) {

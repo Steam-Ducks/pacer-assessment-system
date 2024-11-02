@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 public class TelaEditarEquipesController {
@@ -21,13 +22,14 @@ public class TelaEditarEquipesController {
     private TextField txtGithub;
 
     @FXML
-    void btnConfirmarEditar(ActionEvent event) {
+    void confirmarEdicao(ActionEvent event) {
 
     }
 
     @FXML
-    void btnCancelarEditar(ActionEvent event) {
-
+    void cancelarEdicao(ActionEvent event) {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 
 }
