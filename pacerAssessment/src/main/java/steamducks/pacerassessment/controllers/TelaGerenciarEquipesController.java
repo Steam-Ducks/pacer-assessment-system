@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -16,9 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import steamducks.pacerassessment.dao.EquipeDAO;
-import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Equipe;
-import steamducks.pacerassessment.models.Semestre;
 
 import java.io.IOException;
 
@@ -39,9 +39,28 @@ public class TelaGerenciarEquipesController {
     @FXML
     private TableView<Equipe> tbEquipes;
 
+    @FXML
+    private TableColumn<Equipe, String> tcNome;
+
+    @FXML
+    private TableColumn<Equipe, String> tcGithub;
+
     private ObservableList<Equipe> listaEquipes = FXCollections.observableArrayList();
 
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
+
+    @FXML
+    public void initialize() {
+        tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tcGithub.setCellValueFactory(new PropertyValueFactory<>("github"));
+        carregarEquipes();
+    }
+
+    private void carregarEquipes() {
+        EquipeDAO equipeDAO = new EquipeDAO();
+        listaEquipes.setAll(equipeDAO.getEquipes());
+        tbEquipes.setItems(listaEquipes);
+    }
 
     @FXML
     void cadastrarEquipe(ActionEvent event) {
@@ -102,7 +121,7 @@ public class TelaGerenciarEquipesController {
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
             confirmacao.setHeaderText(null);
-            confirmacao.setContentText("Tem certeza de que deseja excluir o semestre selecionado?");
+            confirmacao.setContentText("Tem certeza de que deseja excluir a equipe selecionada?");
 
             confirmacao.showAndWait().ifPresent(resposta -> {
                 if (resposta == ButtonType.OK) {
@@ -111,10 +130,9 @@ public class TelaGerenciarEquipesController {
 
                     if (sucesso) {
                         listaEquipes.remove(equipeSelecionada);
-                        mostrarAlerta("Sucesso", "Semestre excluído com sucesso.", Alert.AlertType.INFORMATION);
+                        mostrarAlerta("Sucesso", "Equipe excluída com sucesso.", Alert.AlertType.INFORMATION);
                     } else {
-                        mostrarAlerta("Erro", "Erro ao excluir o semestre. Tente novamente.", Alert.AlertType.ERROR);
-
+                        mostrarAlerta("Erro", "Erro ao excluir a equipe. Tente novamente.", Alert.AlertType.ERROR);
                     }
                 }
 
@@ -123,7 +141,7 @@ public class TelaGerenciarEquipesController {
                 }
             });
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione um semestre para excluir.", Alert.AlertType.WARNING);
+            mostrarAlerta("Seleção Inválida", "Selecione uma equipe para excluir.", Alert.AlertType.WARNING);
 
             if (contentPane != null) {
                 contentPane.setEffect(null);
