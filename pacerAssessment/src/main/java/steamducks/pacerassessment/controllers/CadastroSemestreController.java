@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.dao.CriteriosDAO;
 import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Criterio;
 
@@ -43,13 +44,14 @@ public class CadastroSemestreController implements Initializable {
     private TextField txtFieldNome;
 
     private final SemestreDAO semestreDAO = new SemestreDAO();
+    private final CriteriosDAO criteriosDAO = new CriteriosDAO();
     private List<String> criteriosSelecionados = new ArrayList<>();
     private ObservableList<Criterio> opcoes;
     private ObservableList<Criterio> criteriosSelecionadosView;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Criterio> criterioDisponiveis = semestreDAO.buscarCriterios();
+        List<Criterio> criterioDisponiveis = criteriosDAO.buscarCriterios();
         opcoes = FXCollections.observableArrayList(criterioDisponiveis);
         criteriosSelecionadosView = FXCollections.observableArrayList();
 
@@ -114,7 +116,7 @@ public class CadastroSemestreController implements Initializable {
             txtFieldNome.clear();
             listViewCriterios.getItems().clear();
             criteriosSelecionados.clear();
-            opcoes.setAll(semestreDAO.buscarCriterios());
+            opcoes.setAll(criteriosDAO.buscarCriterios());
 
 
             opcoes.sort((c1, c2) -> c1.getNome().compareToIgnoreCase(c2.getNome()));

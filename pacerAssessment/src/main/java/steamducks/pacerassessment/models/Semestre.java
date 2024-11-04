@@ -30,4 +30,5 @@ public class Semestre {
 
         return "Semestre{id=" + id + ", nome='" + nome + "'}";
     }
+
 }

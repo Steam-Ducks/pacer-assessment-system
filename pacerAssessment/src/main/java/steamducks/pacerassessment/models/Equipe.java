@@ -8,22 +8,25 @@ public class Equipe {
     private String nome;
     private String gitHub;
     private ObservableList<Usuario> usuarios;
-    private String semestre;
+    private int IdSemestre;
 
-
-    public Equipe(int idEquipe, String nome, String gitHub, ObservableList<Usuario> usuarios, String semestre) {
+    public Equipe(int idEquipe, String nome, String gitHub, ObservableList<Usuario> usuarios, int semestre) {
         this.idEquipe = idEquipe;
         this.nome = nome;
         this.gitHub = gitHub;
         this.usuarios = usuarios;
-        this.semestre = semestre;
+        this.IdSemestre = semestre;
     }
 
-    public Equipe(String nome, String gitHub, ObservableList<Usuario> usuarios, String semestre) {
+    public Equipe(String nome, String gitHub, ObservableList<Usuario> usuarios, int semestre) {
         this.nome = nome;
         this.gitHub = gitHub;
         this.usuarios = usuarios;
-        this.semestre = semestre;
+        this.IdSemestre = semestre;
+    }
+
+    public Equipe() {
+
     }
 
     public int getIdEquipe() {
@@ -50,12 +53,12 @@ public class Equipe {
         this.gitHub = gitHub;
     }
 
-    public String getSemestre() {
-        return semestre;
+    public int getSemestre() {
+        return IdSemestre;
     }
 
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setSemestre(int semestre) {
+        this.IdSemestre = semestre;
     }
 
     public ObservableList<Usuario> getUsuarios() {
@@ -79,7 +82,7 @@ public class Equipe {
         return "Equipe{" +
                 "nome='" + nome + '\'' +
                 ", gitHub='" + gitHub + '\'' +
-                ", semestre='" + semestre + '\'' +
+                ", semestre='" + IdSemestre + '\'' +
                 ", usuarios=[" + usuariosString + "]" +
                 '}';
     }

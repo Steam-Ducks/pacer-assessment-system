@@ -108,5 +108,37 @@ public class CriteriosDAO {
 
     }
 
+    public List<String> buscarCriteriosPorIdSemestre(int idSemestre) {
+        List<String> criterios = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT c.nome FROM criterio c " +
+                    "JOIN semestre_criterio sc ON c.id_criterio = sc.id_criterio " +
+                    "WHERE sc.id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                criterios.add(rs.getString("nome"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar critérios para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return criterios;
+    }
+
     }
 

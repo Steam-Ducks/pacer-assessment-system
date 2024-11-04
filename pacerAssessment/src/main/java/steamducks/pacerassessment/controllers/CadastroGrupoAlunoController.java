@@ -10,6 +10,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Equipe;
 import steamducks.pacerassessment.models.Usuario;
 
@@ -124,7 +125,8 @@ public class CadastroGrupoAlunoController {
 
     private void carregarSemestres() {
         GrupoAlunoDAO grupoAlunoDAO = new GrupoAlunoDAO();
-        ObservableList<String> semestreList = FXCollections.observableArrayList(grupoAlunoDAO.buscarSemestres());
+        SemestreDAO semestreDAO = new SemestreDAO();
+        ObservableList<String> semestreList = FXCollections.observableArrayList(semestreDAO.buscarNomeSemestres());
         cmbSemestre.setItems(semestreList);
     }
 
@@ -139,13 +141,6 @@ public class CadastroGrupoAlunoController {
             return;
         }
 
-        /* precisa ter um aluno?
-        if (alunoList.isEmpty()) {
-            mostrarAlerta("Erro", "A equipe deve ter pelo menos um aluno.", Alert.AlertType.WARNING);
-            return;
-        }
-        */
-
         for (Usuario aluno : alunoList) {
             if (aluno.getNome().isEmpty() || aluno.getEmail().isEmpty() || aluno.getSenha().isEmpty()) {
                 mostrarAlerta("Erro", "Todos os campos dos alunos devem ser preenchidos.", Alert.AlertType.WARNING);
@@ -156,8 +151,9 @@ public class CadastroGrupoAlunoController {
         GrupoAlunoDAO dao = new GrupoAlunoDAO();
         int idSemestre;
 
+        // Obtenha o ID do semestre usando o nome selecionado
         try {
-            idSemestre = dao.obterIdSemestre(semestreSelecionado);
+            idSemestre = dao.obterIdSemestre(semestreSelecionado); // Obtenha o ID do semestre
         } catch (RuntimeException e) {
             mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
             return;
@@ -200,6 +196,8 @@ public class CadastroGrupoAlunoController {
         tvAlunos.setItems(alunoList);
     }
 
+
+
     private void mostrarAlerta(String title, String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -231,6 +229,18 @@ public class CadastroGrupoAlunoController {
             boolean primeiraLinha = true;
             alunoList.clear();
 
+            // Obtém o semestre selecionado novamente, se necessário
+            String semestreSelecionado = cmbSemestre.getValue();
+            int idSemestre;
+
+            if (semestreSelecionado != null) {
+                GrupoAlunoDAO dao = new GrupoAlunoDAO();
+                idSemestre = dao.obterIdSemestre(semestreSelecionado);
+            } else {
+                mostrarAlerta("Erro", "Por favor, selecione um semestre.", Alert.AlertType.WARNING);
+                return;
+            }
+
             while ((line = br.readLine()) != null) {
                 if (primeiraLinha) {
                     primeiraLinha = false;
@@ -244,12 +254,14 @@ public class CadastroGrupoAlunoController {
                 }
             }
 
-            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, cmbSemestre.getValue());
+            // Agora você pode criar a equipe com o idSemestre correto
+            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, idSemestre);
 
         } catch (IOException e) {
             mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
         }
     }
+
 
     @FXML
     void downloadModel(ActionEvent event) {
