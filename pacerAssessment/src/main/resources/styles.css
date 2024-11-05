@@ -225,9 +225,43 @@
     -fx-cursor: hand;
 }
 
+.buttonAcoes {
+    -fx-font-family: Poppins;
+    -fx-font-size: 12px;
+    -fx-background-color: #14213D;
+    -fx-min-height: 30px;
+    -fx-min-width: 110px !important;
+    -fx-border-radius: 50px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 7, 0.0, 2, 2);
+    -fx-cursor: hand;
+}
+.buttonAcoes:hover {
+    -fx-min-width: 110px;
+    -fx-border-radius: 50px;
+    -fx-background-color: #1F315A;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+}
+
 .listViewGerenciar {
     -fx-font-family: Poppins;
     -fx-font-size: 14px;
+}
+
+.table-view {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #14213D;
+    -fx-font-size: 24px;
+}
+
+.table-view .column-header {
+    -fx-font-family: Poppins;
+    -fx-font-size: 14px;
+    -fx-text-fill: #FFFFFF;
 }
 
 

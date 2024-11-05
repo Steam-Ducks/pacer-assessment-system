@@ -12,153 +12,162 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.util.List;
+import java.util.stream.Collectors;
+import javafx.util.StringConverter;
+
+import steamducks.pacerassessment.dao.*;
+import steamducks.pacerassessment.models.Semestre;
+import steamducks.pacerassessment.models.Sprint;
+import steamducks.pacerassessment.models.Pontuacao;
 
 public class TelaSprintController {
 
     @FXML
-    private ComboBox<String> cmb_SelSprint;// Combobox Selecionar Sprint
-
+    private ComboBox<String> cmb_SelSprint;
     @FXML
-    private ComboBox<String> cmb_SelTurma; // ComboBox Selecionar Turma
-
+    private ComboBox<Semestre> cmb_SelTurma;
     @FXML
-    private VBox vbox_equipes; // VBox para a lista de equipes
-
+    private VBox vbox_equipes;
     @FXML
-    private Button btn_Cancelar; // Botão Cancelar
-
+    private Button btn_Cancelar;
     @FXML
-    private Button btn_Salvar;// Botão Salvar
-
+    private Button btn_Salvar;
     @FXML
-    private ScrollPane scrollBox;//ScrollBox onde estão localizadas as equipes
+    private ScrollPane scrollBox;
 
-    // Inicialização da tela
+    private EquipeDAO equipeDAO;
+    private SprintDAO sprintDAO;
+    private SemestreDAO semestreDAO;
+    private PontuacaoDAO pontuacaoDAO;
+
     @FXML
     public void initialize() {
-        // Define as opções da ComboBox (as turmas)
-        ObservableList<String> turmas = FXCollections.observableArrayList(
-                "BD-1", "BD-2", "BD-3", "BD-4", "BD-5", "BD-6"
-        );
+        equipeDAO = new EquipeDAO();
+        sprintDAO = new SprintDAO();
+        semestreDAO = new SemestreDAO();
+        pontuacaoDAO = new PontuacaoDAO();
 
-        // introduz as opções para a combobox
-        cmb_SelTurma.setItems(turmas);
+        // Preenche a ComboBox de semestres
+        List<Semestre> semestreData = semestreDAO.getSemestres();
+        ObservableList<Semestre> obsSemestre = FXCollections.observableArrayList(semestreData);
+        cmb_SelTurma.setItems(obsSemestre);
 
-        // Define as opções da Combobox de Sprints
-        ObservableList<String> sprints = FXCollections.observableArrayList(
-                "Sprint 1", "Sprint 2", "Sprint 3", "Sprint 4"
-        );
+        // Configura o StringConverter para exibir apenas o nome do semestre
+        cmb_SelTurma.setConverter(new StringConverter<Semestre>() {
+            @Override
+            public String toString(Semestre semestre) {
+                return semestre != null ? semestre.getNome() : "";
+            }
 
-        //introduz as opções para a combobox
-        cmb_SelSprint.setItems(sprints);
+            @Override
+            public Semestre fromString(String string) {
+                return semestreData.stream()
+                        .filter(semestre -> semestre.getNome().equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
 
-        // Adiciona um listener para atualizar as equipes ao selecionar uma turma
+        // Listener para atualizar sprints e equipes ao selecionar uma turma
         cmb_SelTurma.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                atualizarEquipes(newValue); // Chama o metodo para atualizar as equipes
+                atualizarSprints(newValue);
+                atualizarEquipes(newValue);
             }
         });
 
         // Ações para os botões
-        // Botão cancelar fecha a janela
         btn_Cancelar.setOnAction(event -> fecharJanela());
-        // Botão Salvar confirma as alterações feitas
         btn_Salvar.setOnAction(event -> verificarCampos());
     }
 
-    // Metodo que atualiza as equipes conforme a turma selecionada
-    private void atualizarEquipes(String turmaSelecionada) {
+    @FXML
+    private void atualizarSprints(Semestre semestreSelecionado) {
+        int idSemestre = semestreSelecionado.getId();
+        List<Sprint> sprints = sprintDAO.buscarSprintPorID(idSemestre);
+        ObservableList<String> nomeSprints = FXCollections.observableArrayList(
+                sprints.stream().map(Sprint::getNome).collect(Collectors.toList())
+        );
+        cmb_SelSprint.setItems(nomeSprints);
+    }
 
-        // Lista que contém as equipes de cada turma
-        List<String> equipes = switch (turmaSelecionada) {
-            // De acordo com a equipe selecionada podemos ter diferentes equipes que estão definidas nas listas
+    private void atualizarEquipes(Semestre semestreSelecionado) {
+        int idSemestre = semestreSelecionado.getId();
+        List<String> equipes = equipeDAO.buscarEquipesPorIdSemestre(idSemestre);
+        int numeroDeCriterios = semestreDAO.contarCriteriosPorIdSemestre(idSemestre); // Supondo que esse método retorna o número de critérios do semestre
 
-            case "BD-1" -> List.of("Equipe A", "Equipe B", "Equipe C", "Equipe D", "Equipe E");
-            case "BD-2" -> List.of("SteamDucks", "SQLutions", "DenariusData", "AlphaCode", "CyberNexus");
-            case "BD-3" -> List.of("Equipe 1", "Equipe 2", "Equipe 3", "Equipe 4", "Equipe 5");
-            case "BD-4" -> List.of("Equipe01", "Equipe02", "Equipe03", "Equipe04", "Equipe05");
-            case "BD-5" -> List.of("Equipe_1", "Equipe_2", "Equipe_3", "Equipe_4", "Equipe_5");
-            case "BD-6" -> List.of("Equipe I", "Equipe II", "Equipe III", "Equipe IV", "Equipe V");
-            default -> List.of();
-        };
-
-        // Limpa a VBox para evitar duplicatas
         vbox_equipes.getChildren().clear();
 
-        // o for faz com que sejam criados "linhas" para todos os itens das listas
         for (String equipe : equipes) {
+            // Obtém o número de membros para cada equipe
+            int numeroDeMembros = equipeDAO.getNumeroDeMembros(equipe, idSemestre);
 
-            // Cria HBox para o Label
+            // Calcula o limite de pontos com a fórmula fornecida
+            int limiteDePontos = numeroDeMembros * numeroDeCriterios * 3;
+
             HBox labelHBox = new HBox();
             Label label = new Label(equipe);
             label.setFont(new Font("Arial", 14));
             label.setPrefWidth(100);
             labelHBox.getChildren().add(label);
 
-            // Cria HBox para o TextField
             HBox textFieldHBox = new HBox();
             TextField textField = new TextField();
             textField.setPromptText("0");
-            textField.setPrefWidth(45); // Largura preferida para o TextField
-            textFieldHBox.getChildren().add(textField);
+            textField.setPrefWidth(45);
 
-            // Listener para garantir que a entrada esteja entre 1 e 100
+            // Listener para limitar a pontuação no TextField
             textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if (!newValue.matches("\\d*") || (newValue.length() > 0 && (Integer.parseInt(newValue) < 1 || Integer.parseInt(newValue) > 100))) {
-                    textField.setText(oldValue); // Reverte para o valor anterior se a entrada não for válida
+                if (!newValue.matches("\\d*")) {
+                    textField.setText(oldValue);
+                } else if (!newValue.isEmpty()) {
+                    int valor = Integer.parseInt(newValue);
+                    if (valor < 1 || valor > limiteDePontos) {
+                        textField.setText(oldValue);
+                    }
                 }
             });
 
-            // Cria uma HBox principal para organizar os HBoxes dos elementos
+            textFieldHBox.getChildren().add(textField);
+
             HBox hbox = new HBox(labelHBox, textFieldHBox);
-            hbox.setSpacing(0); // Espaçamento entre as HBoxes
-            //como os elementos estao em hboxes "filhas", podemos definir a margem deles
+            hbox.setSpacing(0);
             VBox.setMargin(hbox, new Insets(5, 70, 5, 60));
 
-            // Faz o hbox ocupar o espaço restante
             HBox.setHgrow(textFieldHBox, Priority.ALWAYS);
-
-            //definimos as posições dos comboboxes
             labelHBox.setAlignment(Pos.CENTER_LEFT);
             textFieldHBox.setAlignment(Pos.CENTER_RIGHT);
 
-            // Adiciona o HBox principal à VBox
             vbox_equipes.getChildren().add(hbox);
         }
     }
 
-    // Metodo que fecha a janela quando o botão Cancelar é clicado
+
     private void fecharJanela() {
         ((Stage) btn_Cancelar.getScene().getWindow()).close();
     }
 
-    // Metodo para verificar se o usuário preencheu todos os campos antes de salvar
     private void verificarCampos() {
-
-        //caso o usuario não tenha selecionado uma turma aparece um popup de erro
         if (cmb_SelTurma.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Nenhuma turma selecionada");
             alert.setContentText("Você deve selecionar uma turma antes de salvar a avaliação.");
             alert.showAndWait();
-            return; // Retorna após mostrar o alerta
+            return;
         }
 
-        //caso o usuario não selecione uma sprint aparece um popup de erro
         if (cmb_SelSprint.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Nenhuma sprint selecionada");
             alert.setContentText("Você deve selecionar uma sprint antes de salvar a avaliação.");
             alert.showAndWait();
-            return; // Retorna após mostrar o alerta
+            return;
         }
 
-        //veridica se todos os campos de notas foram preenchidos para todas as equipes
         for (var node : vbox_equipes.getChildren()) {
             if (node instanceof HBox hbox) {
-                //loop que faz com que todos os campos sejam verificados
                 for (var innerNode : hbox.getChildren()) {
                     if (innerNode instanceof HBox textFieldHBox) {
                         for (var textFieldNode : textFieldHBox.getChildren()) {
@@ -169,7 +178,7 @@ public class TelaSprintController {
                                     alert.setHeaderText("Campo de nota em branco");
                                     alert.setContentText("Você deve preencher todos os campos de nota antes de salvar a avaliação.");
                                     alert.showAndWait();
-                                    return; // Retorna após mostrar o alerta
+                                    return;
                                 }
                             }
                         }
@@ -178,12 +187,62 @@ public class TelaSprintController {
             }
         }
 
-        // Se todas as verificações passarem, mostra a mensagem de sucesso
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sucesso");
-        alert.setHeaderText("Avaliação concluída");
-        alert.setContentText("A avaliação foi salva com sucesso para a turma " + cmb_SelTurma.getValue() + "!");
-        alert.showAndWait();
+        salvarAvaliacoes();
+    }
+
+    private void salvarAvaliacoes() {
+        String nomeSprint = cmb_SelSprint.getValue();
+        int idSemestre = cmb_SelTurma.getValue().getId();
+        Sprint sprintSelecionada = sprintDAO.buscarSprintPorNomeEIdSemestre(nomeSprint, idSemestre);
+        boolean avaliacaoRealizada = false; // Variável para rastrear sucesso
+
+        if (sprintSelecionada == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Sprint não encontrada");
+            alert.setContentText("A sprint selecionada não foi encontrada para a turma escolhida.");
+            alert.showAndWait();
+            return;
+        }
+
+        int idSprint = sprintSelecionada.getIdSprint();
+
+        for (var node : vbox_equipes.getChildren()) {
+            if (node instanceof HBox hbox) {
+                Label label = (Label) ((HBox) hbox.getChildren().get(0)).getChildren().get(0);
+                TextField textField = (TextField) ((HBox) hbox.getChildren().get(1)).getChildren().get(0);
+                int idEquipe = equipeDAO.buscarEquipePorNomeEIdSemestre(label.getText(), idSemestre).getIdEquipe();
+                int pontos = Integer.parseInt(textField.getText());
+
+                // Verifica se já existe pontuação
+                if (pontuacaoDAO.pontuacaoJaExiste(idEquipe, idSprint)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Aviso");
+                    alert.setHeaderText("Pontuação já atribuída");
+                    alert.setContentText("A equipe " + label.getText() + " já possui pontuação para esta sprint.");
+                    alert.showAndWait();
+                    continue; // Pule para a próxima equipe sem cadastrar a pontuação duplicada
+                }
+
+                // Cadastra a pontuação se não houver duplicata
+                Pontuacao pontuacao = new Pontuacao();
+                pontuacao.setPontos(pontos);
+                pontuacao.setIdSprint(idSprint);
+                pontuacao.setIdEquipe(idEquipe);
+
+                pontuacaoDAO.cadastrarPontuacao(pontuacao);
+                avaliacaoRealizada = true; // Marca que pelo menos uma avaliação foi realizada
+            }
+        }
+
+        // Exibe o alerta de sucesso apenas se houve uma nova avaliação realizada
+        if (avaliacaoRealizada) {
+            String nomeSemestre = cmb_SelTurma.getValue().getNome();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Sucesso");
+            alert.setHeaderText("Avaliação concluída");
+            alert.setContentText("A avaliação foi salva com sucesso para a turma " + nomeSemestre + " na " + nomeSprint + "!");
+            alert.showAndWait();
+        }
     }
 }
-

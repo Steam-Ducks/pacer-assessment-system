@@ -40,43 +40,38 @@ public class CriteriosDAO {
     }
 
     public List<Criterio> buscarCriterios() {
-        List<Criterio> criterios = new ArrayList<>(); //lista que vamos salvar os criterios que retornar do banco
-        String selectSQL = "SELECT * FROM criterio"; //select que vamos fazer no banco
+        List<Criterio> criterios = new ArrayList<>();
+        String selectSQL = "SELECT * FROM criterio";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-             ResultSet resultSet = preparedStatement.executeQuery()) // aqui salva o resultado do select na variavel resultSet
-        {
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            //try catch com esse connection = getConnection() usa pra ele fazer(tentar) a conexao com o banco
-
-            //faz um loop por todos os resultados
             while (resultSet.next()) {
-                Criterio criterio = new Criterio(); //cria um novo objeto criterio e usa os dados do resultado pra preencher os valores
+                Criterio criterio = new Criterio();
                 criterio.setId(resultSet.getInt("id_criterio"));
                 criterio.setDescricao(resultSet.getString("descricao"));
                 criterio.setNome(resultSet.getString("nome"));
                 criterios.add(criterio);
             }
 
-        } catch (SQLException e) { //se der algo errado ele passa pra ca e faz o que tiver dentro do bloco
+        } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao buscar critérios! " + e.getMessage(), e);
         }
 
-        return criterios; // volta a lista de criterios
+        return criterios;
     }
 
-    public void removerCriterio(int idCriterio) { //passando o id do criterio que queremos bigodar
-        String deleteCriterioSql = "DELETE FROM criterio WHERE id_criterio = ?"; //query que deleta
+    public void removerCriterio(int idCriterio) {
+        String deleteCriterioSql = "DELETE FROM criterio WHERE id_criterio = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstCriterio = con.prepareStatement(deleteCriterioSql)) {
 
-            pstCriterio.setInt(1, idCriterio); // passa o id
+            pstCriterio.setInt(1, idCriterio);
 
-            int linhasAfetadas = pstCriterio.executeUpdate(); // ve se apagou algo ou nao
-
+            int linhasAfetadas = pstCriterio.executeUpdate();
             if (linhasAfetadas == 0) {
                 throw new RuntimeException("Nenhum critério encontrado com o ID: " + idCriterio);
             }
@@ -99,14 +94,32 @@ public class CriteriosDAO {
 
             int linhasAfetadas = pstCriterio.executeUpdate();
             if (linhasAfetadas == 0) {
-                throw new RuntimeException("Nenhum criterio Editado!");
+                throw new RuntimeException("Nenhum critério editado!");
             }
 
-            } catch (SQLException e) {
-            throw new RuntimeException("nenhum criterio encontrado");
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao editar critério! " + e.getMessage(), e);
         }
-
     }
 
-    }
+    // Metodo para verificar se já existe um critério com o mesmo nome
+    public boolean existeCriterioComNome(String nome) {
+        String sql = "SELECT COUNT(*) FROM criterio WHERE nome = ?";
 
+        try (Connection con = getConnection();
+             PreparedStatement stmt = con.prepareStatement(sql)) {
+
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao verificar existência do critério! " + e.getMessage(), e);
+        }
+        return false;
+    }
+}
