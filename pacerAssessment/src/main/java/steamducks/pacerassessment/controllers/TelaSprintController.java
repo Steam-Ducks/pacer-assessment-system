@@ -15,10 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javafx.util.StringConverter;
 
-import steamducks.pacerassessment.dao.SprintDAO;
-import steamducks.pacerassessment.dao.SemestreDAO;
-import steamducks.pacerassessment.dao.GrupoAlunoDAO;
-import steamducks.pacerassessment.dao.PontuacaoDAO;
+import steamducks.pacerassessment.dao.*;
 import steamducks.pacerassessment.models.Semestre;
 import steamducks.pacerassessment.models.Sprint;
 import steamducks.pacerassessment.models.Pontuacao;
@@ -38,14 +35,14 @@ public class TelaSprintController {
     @FXML
     private ScrollPane scrollBox;
 
-    private GrupoAlunoDAO grupoAlunoDAO;
+    private EquipeDAO equipeDAO;
     private SprintDAO sprintDAO;
     private SemestreDAO semestreDAO;
     private PontuacaoDAO pontuacaoDAO;
 
     @FXML
     public void initialize() {
-        grupoAlunoDAO = new GrupoAlunoDAO();
+        equipeDAO = new EquipeDAO();
         sprintDAO = new SprintDAO();
         semestreDAO = new SemestreDAO();
         pontuacaoDAO = new PontuacaoDAO();
@@ -96,14 +93,14 @@ public class TelaSprintController {
 
     private void atualizarEquipes(Semestre semestreSelecionado) {
         int idSemestre = semestreSelecionado.getId();
-        List<String> equipes = grupoAlunoDAO.buscarEquipesPorIdSemestre(idSemestre);
+        List<String> equipes = equipeDAO.buscarEquipesPorIdSemestre(idSemestre);
         int numeroDeCriterios = semestreDAO.contarCriteriosPorIdSemestre(idSemestre); // Supondo que esse método retorna o número de critérios do semestre
 
         vbox_equipes.getChildren().clear();
 
         for (String equipe : equipes) {
             // Obtém o número de membros para cada equipe
-            int numeroDeMembros = grupoAlunoDAO.getNumeroDeMembros(equipe, idSemestre);
+            int numeroDeMembros = equipeDAO.getNumeroDeMembros(equipe, idSemestre);
 
             // Calcula o limite de pontos com a fórmula fornecida
             int limiteDePontos = numeroDeMembros * numeroDeCriterios * 3;
@@ -214,7 +211,7 @@ public class TelaSprintController {
             if (node instanceof HBox hbox) {
                 Label label = (Label) ((HBox) hbox.getChildren().get(0)).getChildren().get(0);
                 TextField textField = (TextField) ((HBox) hbox.getChildren().get(1)).getChildren().get(0);
-                int idEquipe = grupoAlunoDAO.buscarEquipePorNomeEIdSemestre(label.getText(), idSemestre).getIdEquipe();
+                int idEquipe = equipeDAO.buscarEquipePorNomeEIdSemestre(label.getText(), idSemestre).getIdEquipe();
                 int pontos = Integer.parseInt(textField.getText());
 
                 // Verifica se já existe pontuação

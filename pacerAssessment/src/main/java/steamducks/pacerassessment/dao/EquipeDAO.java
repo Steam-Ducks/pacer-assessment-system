@@ -1,26 +1,18 @@
 package steamducks.pacerassessment.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import steamducks.pacerassessment.models.Equipe;
 import steamducks.pacerassessment.models.Usuario;
 
-public class GrupoAlunoDAO {
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class EquipeDAO extends ConexaoDAO {
 
+    // CREATE
     public int criarEquipe(String nomeEquipe, String github, int idSemestre) {
+        int idEquipe = -1;
         Connection con = null;
-        int idEquipe = 0;
 
         try {
             con = getConnection();
@@ -51,49 +43,116 @@ public class GrupoAlunoDAO {
         return idEquipe;
     }
 
-    public boolean adicionarAlunos(long idEquipe, List<Usuario> usuarios) {
+    // READ
+    public List<Equipe> getEquipes() {
+        List<Equipe> equipes = new ArrayList<>();
         Connection con = null;
 
         try {
             con = getConnection();
-            String insertUsuarioSql = "INSERT INTO usuario (nome, email, senha, is_professor, id_equipe) VALUES (?, ?, ?, ?, ?)";
-            con.setAutoCommit(false);
-            PreparedStatement pstUsuario = con.prepareStatement(insertUsuarioSql);
+            String selectSql = "SELECT * FROM equipe";
+            PreparedStatement pst = con.prepareStatement(selectSql);
+            ResultSet rs = pst.executeQuery();
 
-            for (Usuario usuario : usuarios) {
-                pstUsuario.setString(1, usuario.getNome());
-                pstUsuario.setString(2, usuario.getEmail());
-                pstUsuario.setString(3, usuario.getSenha());
-                pstUsuario.setBoolean(4, usuario.isProfessor());
-                pstUsuario.setLong(5, idEquipe);
-                pstUsuario.executeUpdate();
+            while (rs.next()) {
+                int id = rs.getInt("id_equipe");
+                String nome = rs.getString("nome");
+                String github = rs.getString("github");
+                int idSemestre = rs.getInt("id_semestre");
+
+                Equipe equipe = new Equipe(id, nome, github, String.valueOf(idSemestre));
+                equipes.add(equipe);
             }
-
-            con.commit();
-            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                if (con != null) {
-                    con.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-            throw new RuntimeException("Erro ao adicionar usuários! " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao buscar equipes: " + e.getMessage(), e);
         } finally {
             try {
-                if (con != null) {
-                    con.setAutoCommit(true);
-                    con.close();
-                }
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return equipes;
+    }
+
+    // UPDATE
+    public void atualizarEquipe(int idEquipe, String nome, String github, int idSemestre) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE equipe SET nome = ?, github = ?, id_semestre = ? WHERE id_equipe = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+            pst.setString(1, nome);
+            pst.setString(2, github);
+            pst.setInt(3, idSemestre);
+            pst.setInt(4, idEquipe);
+
+            int rowsAffected = pst.executeUpdate();
+            if (rowsAffected == 0) {
+                throw new RuntimeException("Nenhuma equipe encontrada com o ID fornecido: " + idEquipe);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar equipe: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
             }
         }
     }
+
+    // DELETE
+    public boolean excluirEquipe(int idEquipe) {
+        Connection con = null;
+        String deleteEquipeSql = "DELETE FROM equipe WHERE id_equipe = ?";
+
+        try {
+            con = getConnection();
+            con.setAutoCommit(false);
+
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean usuariosExcluidos = usuarioDAO.excluirUsuariosPorEquipe(idEquipe);
+
+            if (!usuariosExcluidos) {
+                con.rollback();
+                return false;
+            }
+
+            PreparedStatement pstEquipe = con.prepareStatement(deleteEquipeSql);
+            pstEquipe.setInt(1, idEquipe);
+            int linhasAfetadas = pstEquipe.executeUpdate();
+
+            con.commit();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                if (con != null) con.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            return false;
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+
 
     public int obterIdSemestre(String nomeSemestre) {
         int idSemestre = -1;
@@ -171,7 +230,7 @@ public class GrupoAlunoDAO {
             if (rs.next()) {
                 grupo = new Equipe();
                 grupo.setIdEquipe(rs.getInt("id_equipe")); // Defina o ID da equipe
-                grupo.setSemestre(rs.getInt("id_semestre"));
+                grupo.setSemestre(String.valueOf(rs.getInt("id_semestre")));
                 grupo.setNome(rs.getString("nome"));
                 // Preencha outros campos de 'Equipe', se necessário
             }
@@ -223,5 +282,4 @@ public class GrupoAlunoDAO {
 
         return numeroDeMembros;
     }
-
 }

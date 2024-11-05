@@ -2,14 +2,14 @@ package steamducks.pacerassessment.models;
 
 public class Avaliacao {
     private int id;
-    private double nota;
+    private int nota;
     private String emailAvaliador;
     private String emailAvaliado;
     private int idSprint;
     private int idCriterio;
 
     // Construtor
-    public Avaliacao(int id, double nota, String emailAvaliador, String emailAvaliado, int idSprint, int idCriterio) {
+    public Avaliacao(int id, int nota, String emailAvaliador, String emailAvaliado, int idSprint, int idCriterio) {
         this.id = id;
         this.nota = nota;
         this.emailAvaliador = emailAvaliador;
@@ -18,13 +18,15 @@ public class Avaliacao {
         this.idCriterio = idCriterio;
     }
 
-    public Avaliacao(double nota, String emailAvaliador, String emailAvaliado, int idSprint, int idCriterio) {
+    public Avaliacao(int nota, String emailAvaliador, String emailAvaliado, int idSprint, int idCriterio) {
         this.nota = nota;
         this.emailAvaliador = emailAvaliador;
         this.emailAvaliado = emailAvaliado;
         this.idSprint = idSprint;
         this.idCriterio = idCriterio;
     }
+
+    public Avaliacao (){}
 
     // Getters e Setters
     public int getId() {
@@ -35,11 +37,11 @@ public class Avaliacao {
         this.id = id;
     }
 
-    public double getNota() {
+    public int getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(int nota) {
         this.nota = nota;
     }
 

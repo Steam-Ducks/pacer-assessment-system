@@ -6,23 +6,30 @@ public class Equipe {
 
     private int idEquipe;
     private String nome;
-    private String gitHub;
+    private String github;
     private ObservableList<Usuario> usuarios;
-    private int IdSemestre;
+    private String semestre;
 
-    public Equipe(int idEquipe, String nome, String gitHub, ObservableList<Usuario> usuarios, int semestre) {
+    public Equipe(int idEquipe, String nome, String github, ObservableList<Usuario> usuarios, String semestre) {
         this.idEquipe = idEquipe;
         this.nome = nome;
-        this.gitHub = gitHub;
+        this.github = github;
         this.usuarios = usuarios;
-        this.IdSemestre = semestre;
+        this.semestre = semestre;
     }
 
-    public Equipe(String nome, String gitHub, ObservableList<Usuario> usuarios, int semestre) {
+    public Equipe(String nome, String github, ObservableList<Usuario> usuarios, String semestre) {
         this.nome = nome;
-        this.gitHub = gitHub;
+        this.github = github;
         this.usuarios = usuarios;
-        this.IdSemestre = semestre;
+        this.semestre = semestre;
+    }
+
+    public Equipe(int idEquipe, String nome, String github, String semestre) {
+        this.idEquipe = idEquipe;
+        this.nome = nome;
+        this.github = github;
+        this.semestre = semestre;
     }
 
     public Equipe() {
@@ -45,20 +52,20 @@ public class Equipe {
         this.nome = nome;
     }
 
-    public String getGitHub() {
-        return gitHub;
+    public String getGithub() {
+        return github;
     }
 
-    public void setGitHub(String gitHub) {
-        this.gitHub = gitHub;
+    public void setGithub(String github) {
+        this.github = github;
     }
 
-    public int getSemestre() {
-        return IdSemestre;
+    public String getSemestre() {
+        return semestre;
     }
 
-    public void setSemestre(int semestre) {
-        this.IdSemestre = semestre;
+    public void setSemestre(String semestre) {
+        this.semestre = semestre;
     }
 
     public ObservableList<Usuario> getUsuarios() {
@@ -79,11 +86,6 @@ public class Equipe {
             usuariosString.setLength(usuariosString.length() - 2);
         }
 
-        return "Equipe{" +
-                "nome='" + nome + '\'' +
-                ", gitHub='" + gitHub + '\'' +
-                ", semestre='" + IdSemestre + '\'' +
-                ", usuarios=[" + usuariosString + "]" +
-                '}';
+        return nome;
     }
 }

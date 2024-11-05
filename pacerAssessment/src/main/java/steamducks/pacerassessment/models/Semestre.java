@@ -28,7 +28,7 @@ public class Semestre {
     @Override
     public String toString() {
 
-        return "Semestre{id=" + id + ", nome='" + nome + "'}";
+        return nome;
     }
 
 }

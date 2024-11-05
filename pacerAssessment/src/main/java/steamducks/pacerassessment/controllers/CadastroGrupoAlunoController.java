@@ -7,11 +7,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import steamducks.pacerassessment.dao.GrupoAlunoDAO;
+import steamducks.pacerassessment.dao.EquipeDAO;
 import steamducks.pacerassessment.dao.SemestreDAO;
+import steamducks.pacerassessment.dao.UsuarioDAO;
 import steamducks.pacerassessment.models.Equipe;
+import steamducks.pacerassessment.models.Semestre;
 import steamducks.pacerassessment.models.Usuario;
 
 import java.io.*;
@@ -24,7 +27,7 @@ public class CadastroGrupoAlunoController {
     private TextField txtGithub;
 
     @FXML
-    private ComboBox<String> cmbSemestre;
+    private ComboBox<Semestre> cmbSemestre;
 
     @FXML
     private Button btnRegistrar;
@@ -53,7 +56,6 @@ public class CadastroGrupoAlunoController {
     @FXML
     private TableView<Usuario> tvAlunos;
 
-    private Equipe equipe;
     private final ObservableList<Usuario> alunoList = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -99,11 +101,11 @@ public class CadastroGrupoAlunoController {
 
     private void configurarDeletar() {
         tcDelete.setCellFactory(column -> new TableCell<Usuario, String>() {
-            private final Button deleteButton = new Button("X");
+            private final Button deleteButton = new Button("x");
 
             {
-                deleteButton.setStyle("-fx-background-color: #CC2936; -fx-text-fill: white; -fx-font-size: 14;");
-                deleteButton.setPrefSize(20, 20);
+                deleteButton.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 14; -fx-alignment: center;");
+                deleteButton.setPrefSize(15, 10);
             }
 
             @Override
@@ -124,9 +126,8 @@ public class CadastroGrupoAlunoController {
     }
 
     private void carregarSemestres() {
-        GrupoAlunoDAO grupoAlunoDAO = new GrupoAlunoDAO();
         SemestreDAO semestreDAO = new SemestreDAO();
-        ObservableList<String> semestreList = FXCollections.observableArrayList(semestreDAO.buscarNomeSemestres());
+        ObservableList<Semestre> semestreList = FXCollections.observableArrayList(semestreDAO.getSemestres());
         cmbSemestre.setItems(semestreList);
     }
 
@@ -134,7 +135,7 @@ public class CadastroGrupoAlunoController {
     void registrar(ActionEvent event) {
         String nomeEquipe = txtEquipe.getText();
         String github = txtGithub.getText();
-        String semestreSelecionado = cmbSemestre.getValue();
+        Semestre semestreSelecionado = cmbSemestre.getValue();
 
         if (nomeEquipe.isEmpty() || github.isEmpty() || semestreSelecionado == null) {
             mostrarAlerta("Erro", "Por favor, preencha todos os campos da equipe.", Alert.AlertType.WARNING);
@@ -148,21 +149,14 @@ public class CadastroGrupoAlunoController {
             }
         }
 
-        GrupoAlunoDAO dao = new GrupoAlunoDAO();
-        int idSemestre;
-
-        // Obtenha o ID do semestre usando o nome selecionado
-        try {
-            idSemestre = dao.obterIdSemestre(semestreSelecionado); // Obtenha o ID do semestre
-        } catch (RuntimeException e) {
-            mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
-            return;
-        }
+        EquipeDAO equipeDAO = new EquipeDAO();
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        int idSemestre = semestreSelecionado.getId();
 
         int idEquipe;
 
         try {
-            idEquipe = dao.criarEquipe(nomeEquipe, github, idSemestre);
+            idEquipe = equipeDAO.criarEquipe(nomeEquipe, github, idSemestre);
         } catch (RuntimeException e) {
             mostrarAlerta("Erro", e.getMessage(), Alert.AlertType.WARNING);
             return;
@@ -178,7 +172,7 @@ public class CadastroGrupoAlunoController {
         }
 
         try {
-            boolean alunosAdicionados = dao.adicionarAlunos(idEquipe, alunoList);
+            boolean alunosAdicionados = usuarioDAO.adicionarAlunos(idEquipe, alunoList);
             if (!alunosAdicionados) {
                 mostrarAlerta("Erro", "Falha ao adicionar alunos. Tente novamente.", Alert.AlertType.WARNING);
                 return;
@@ -196,14 +190,15 @@ public class CadastroGrupoAlunoController {
         tvAlunos.setItems(alunoList);
     }
 
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle("Sistema RECAP");
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
 
-
-    private void mostrarAlerta(String title, String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alerta.showAndWait();
     }
 
     @FXML
@@ -229,18 +224,6 @@ public class CadastroGrupoAlunoController {
             boolean primeiraLinha = true;
             alunoList.clear();
 
-            // Obtém o semestre selecionado novamente, se necessário
-            String semestreSelecionado = cmbSemestre.getValue();
-            int idSemestre;
-
-            if (semestreSelecionado != null) {
-                GrupoAlunoDAO dao = new GrupoAlunoDAO();
-                idSemestre = dao.obterIdSemestre(semestreSelecionado);
-            } else {
-                mostrarAlerta("Erro", "Por favor, selecione um semestre.", Alert.AlertType.WARNING);
-                return;
-            }
-
             while ((line = br.readLine()) != null) {
                 if (primeiraLinha) {
                     primeiraLinha = false;
@@ -254,14 +237,10 @@ public class CadastroGrupoAlunoController {
                 }
             }
 
-            // Agora você pode criar a equipe com o idSemestre correto
-            equipe = new Equipe(txtEquipe.getText(), txtGithub.getText(), alunoList, idSemestre);
-
         } catch (IOException e) {
             mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
         }
     }
-
 
     @FXML
     void downloadModel(ActionEvent event) {
