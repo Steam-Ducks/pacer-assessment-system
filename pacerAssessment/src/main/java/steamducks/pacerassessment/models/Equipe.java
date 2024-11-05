@@ -32,6 +32,10 @@ public class Equipe {
         this.semestre = semestre;
     }
 
+    public Equipe() {
+
+    }
+
     public int getIdEquipe() {
         return idEquipe;
     }

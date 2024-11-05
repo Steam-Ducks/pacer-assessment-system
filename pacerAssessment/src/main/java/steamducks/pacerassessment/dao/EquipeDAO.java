@@ -183,4 +183,103 @@ public class EquipeDAO extends ConexaoDAO {
 
         return idSemestre;
     }
+
+    public List<String> buscarEquipesPorIdSemestre(int idSemestre) {
+        List<String> equipes = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT nome FROM equipe WHERE id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                equipes.add(rs.getString("nome"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar equipes para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return equipes;
+    }
+
+    public Equipe buscarEquipePorNomeEIdSemestre(String nomeEquipe, int idSemestre) {
+        Equipe grupo = null;
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT * FROM equipe WHERE nome = ? AND id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setString(1, nomeEquipe);
+            pst.setInt(2, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                grupo = new Equipe();
+                grupo.setIdEquipe(rs.getInt("id_equipe")); // Defina o ID da equipe
+                grupo.setSemestre(String.valueOf(rs.getInt("id_semestre")));
+                grupo.setNome(rs.getString("nome"));
+                // Preencha outros campos de 'Equipe', se necessário
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar equipe " + nomeEquipe + " para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return grupo;
+    }
+
+    public int getNumeroDeMembros(String nomeEquipe, int idSemestre) {
+        int numeroDeMembros = 0;
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT COUNT(*) AS total FROM usuario WHERE id_equipe = (SELECT id_equipe FROM equipe WHERE nome = ? AND id_semestre = ?)";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setString(1, nomeEquipe);
+            pst.setInt(2, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                numeroDeMembros = rs.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao obter o número de membros da equipe " + nomeEquipe + " para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return numeroDeMembros;
+    }
 }

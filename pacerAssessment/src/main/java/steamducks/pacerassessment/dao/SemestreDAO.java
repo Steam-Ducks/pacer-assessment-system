@@ -85,6 +85,36 @@ public class SemestreDAO {
         return semestres;
     }
 
+    public List<String> buscarNomeSemestres() {
+        List<String> semestres = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT nome FROM semestre";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                semestres.add(rs.getString("nome"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar semestres! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return semestres;
+    }
+
     // UPDATE
     public void atualizarNomeSemestre(int idSemestre, String novoNome) {
         Connection con = null;
@@ -148,35 +178,6 @@ public class SemestreDAO {
         }
     }
 
-    public List<Criterio> buscarCriterios() {
-        List<Criterio> criterios = new ArrayList<>();
-        Connection con = null;
-
-        try {
-            con = getConnection();
-            String selectSql = "SELECT * FROM criterio";
-            PreparedStatement pst = con.prepareStatement(selectSql);
-            ResultSet rs = pst.executeQuery();
-
-            while (rs.next()) {
-                Criterio c = new Criterio(rs.getInt("id_criterio"), rs.getString("nome"), rs.getString("descricao"));
-                criterios.add(c);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar critérios! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null) con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
-
-        return criterios;
-    }
 
     public void vincularCriterios(int idSemestre, List<Criterio> criterios) {
         Connection con = null;
@@ -212,4 +213,59 @@ public class SemestreDAO {
             }
         }
     }
+
+    public int buscarIdSemestrePorNome(String nomeSemestre) {
+        int idSemestre = -1; // Inicializa com valor inválido para verificar se o semestre foi encontrado
+        String selectSQL = "SELECT id FROM semestre WHERE nome = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+
+            preparedStatement.setString(1, nomeSemestre); // Define o nome do semestre na consulta
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+                idSemestre = rs.getInt("id"); // Obtém o ID do semestre
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Tratar o erro conforme necessário (exibir mensagem, log etc.)
+        }
+        return idSemestre;
+    }
+
+    public int contarCriteriosPorIdSemestre(int idSemestre) {
+        int count = 0;
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String query = "SELECT COUNT(*) AS total FROM criterio c " +
+                    "JOIN semestre_criterio sc ON c.id_criterio = sc.id_criterio " +
+                    "WHERE sc.id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                count = rs.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao contar critérios para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return count;
+    }
+
+
 }

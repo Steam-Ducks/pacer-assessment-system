@@ -1,13 +1,16 @@
 package steamducks.pacerassessment.models;
 
 public class Pontuacao {
-    private int id;
+    private int idPontuacao;
+    private int idEquipe;
     private double pontos;
     private int idSprint;
 
+
     // Construtor
-    public Pontuacao(int id, double pontos, int idSprint) {
-        this.id = id;
+    public Pontuacao(int id, int idEquipe, double pontos, int idSprint) {
+        this.idPontuacao = id;
+        this.idEquipe = idEquipe;
         this.pontos = pontos;
         this.idSprint = idSprint;
     }
@@ -17,13 +20,17 @@ public class Pontuacao {
         this.idSprint = idSprint;
     }
 
+    public Pontuacao() {
+
+    }
+
     // Getters e Setters
     public int getId() {
-        return id;
+        return idPontuacao;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idPontuacao = id;
     }
 
     public double getPontos() {
@@ -42,10 +49,18 @@ public class Pontuacao {
         this.idSprint = idSprint;
     }
 
+    public int getIdEquipe() {
+        return idEquipe;
+    }
+
+    public void setIdEquipe(int idEquipe) {
+        this.idEquipe = idEquipe;
+    }
+
     @Override
     public String toString() {
         return "Pontuacao{" +
-                "id=" + id +
+                "id=" + idPontuacao +
                 ", pontos=" + pontos +
                 ", idSprint=" + idSprint +
                 '}';
