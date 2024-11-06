@@ -221,4 +221,33 @@ public class AvaliacaoDAO extends ConexaoDAO {
     }
 
 
+    public int getMediaAlunoPorCriterio(int idSprint, String emailAluno, int idCriterio) {
+        String sql = """
+            SELECT AVG(nota) AS media
+            FROM avaliacao
+            WHERE id_sprint = ? AND email_avaliado = ? AND id_criterio = ?
+        """;
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idSprint);
+            stmt.setString(2, emailAluno);
+            stmt.setInt(3, idCriterio);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    double media = rs.getInt("media");
+                    return (int) ((media >= 2.5) ? Math.ceil(media) : Math.floor(media));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao calcular a média do aluno por critério", e);
+        }
+
+        return 0;
+    }
+
+
 }
