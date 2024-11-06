@@ -38,7 +38,7 @@
 - User story claramente definido, incluindo critérios de aceitação.
 - Estrutura do arquivo .csv terá os campos nome, e-mail e senha.
 - wireframe de gerenciamento de grupo:<br>
-<img src="WireframePAS-02.JPG" alt="Wireframe PAS - 02" width="50%" />
+<img src="Wireframes/WireframePAS-02.JPG" alt="Wireframe PAS - 02" width="50%" />
 
 ## Validações feitas com o Cliente
 
@@ -70,7 +70,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - No cadastro do semestre deve ser inserido o nome e os critérios que já foram cadastrados a serem avaliados.
 - wireframe da criação de semestre:<br>
-<img src="WireframePAS-08.JPG" alt="Wireframe PAS - 08" width="50%" />
+<img src="Wireframes/WireframePAS-08.JPG" alt="Wireframe PAS - 08" width="50%" />
 
 ## Validações feitas com o Cliente
 
@@ -100,7 +100,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - Na avaliação do aluno, avaliaremos um aluno por página aonde será listado todos os critérios e aonde há uma choicebox para a seleção da nota.
 - wireframe da avaliação do aluno:<br>
-<img src="WireframePAS-14.JPG" alt="Wireframe PAS - 14" width="50%" />
+<img src="Wireframes/WireframePAS-14.JPG" alt="Wireframe PAS - 14" width="50%" />
 
 | Validações | Respostas |
 |------------|-----------|
@@ -127,7 +127,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - Na pontuação da sprint, o professor deve selecionar qual semestre e sprint vai avaliar e o sistema deve listar todas as equipes desse semestres com um caixa de texto que deve ser preenchida com a pontuação.
 - Limite de pontuação é 3 vezes o total de integrantes no grupo multiplicado pelo total de critérios do semestre ( 3 * Quantidade de integrantes do grupo * Quantidade de critérios avaliados)
 - wireframe da avaliação do aluno:<br>
-<img src="WireframePAS-12.JPG" alt="Wireframe PAS - 12" width="50%" />
+<img src="Wireframes/WireframePAS-12.JPG" alt="Wireframe PAS - 12" width="50%" />
 
 ---
 
@@ -149,7 +149,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - No login, o usuario deve digitar o login e senha para acessar a sua conta
 - wireframe da tela de login:<br>
-<img src="WireframePAS-16.JPG" alt="Wireframe PAS - 16" width="50%" />
+<img src="Wireframes/WireframePAS-16.JPG" alt="Wireframe PAS - 16" width="50%" />
 
 ## Validações feitas com o Cliente
 
@@ -180,7 +180,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - No cadastro do critério de avaliação, o professor deve informar o nome do critério e uma breve descrição
 - wireframe de gerenciamento de critério:<br>
-<img src="WireframePAS-18.JPG" alt="Wireframe PAS - 18" width="50%" />
+<img src="Wireframes/WireframePAS-18.JPG" alt="Wireframe PAS - 18" width="50%" />
 
 
 ## Validações feitas com o Cliente
@@ -192,7 +192,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 ---
 
 ### Burndown
-<img src="BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
+<img src="BurnDown/BurnDown_Sprint1.PNG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
 
@@ -220,7 +220,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - No gerenciamento do aluno será feito no gerenciamento do grupo, aonde podemos adicionar ou remover o aluno. Devemos informar o nome, e-mail e senha.
 - wireframe de gerenciamento do aluno:<br>
-<img src="WireframePAS-04.JPG" alt="Wireframe PAS - 04" width="50%" />
+<img src="Wireframes/WireframePAS-04.JPG" alt="Wireframe PAS - 04" width="50%" />
 
 ---
 
@@ -242,7 +242,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User story claramente definido, incluindo critérios de aceitação.
 - No cadastro da sprint o professor deve informar para qual semestre está cadastrando a sprint, qual o nome, data de início e data de término da sprint.
 - wireframe de gerenciamento do aluno:<br>
-<img src="WireframePAS-09.JPG" alt="Wireframe PAS - 09" width="50%" />
+<img src="Wireframes/WireframePAS-09.JPG" alt="Wireframe PAS - 09" width="50%" />
 
 
 ## Validações feitas com o Cliente
@@ -257,7 +257,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 
 ### Burndown
-<img src="BurnDown_Sprint2.PNG" alt="BurnDown_Sprint2" width="100%" />
+<img src="BurnDown/BurnDown_Sprint2.PNG" alt="BurnDown_Sprint2" width="100%" />
 
 </details>
 
@@ -265,64 +265,6 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 <summary>Sprint 3</summary>
 
 ### User Stories da Sprint
-
-| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|----|------------|------------|--------|-----------------------|
-| 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 3 | 2 |
-
-### Requisitos: 
-- O professor deve poder gerar o relatório com o mínimo de clicks possível.
-- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema.
-- O professor deve poder gerar quantos arquivos quiser.
-- O professor deve poder filtrar os grupos do relatório por semestre.
-
-### Definition of done:
-- Código funcional disponibilizado no Git.
-- Documento de instalação atualizado.
-- Layout definido e implementado.
-- Validação de dados realizada e tratada.
-- Funcionalidade totalmente integrada ao sistema.
-
-### Definition of ready: 
-- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
-- O layout do relatório e os dados que ele deve conter foram detalhados.
-- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
-- A origem dos dados que serão usados para gerar o relatório estão identificados.
-- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
-- User storie revisada para garantir que os requisitos estão claros.
-- Wireframe:<br>
-<img src="WireframePAS-22.jpeg" alt="Wireframe PAS - 22" width="50%" />  
-
----
-
-| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
-|------|------------|----|------------|------------|--------|-----------------------|
-| 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 3 | 3 |
-
-### Requisitos: 
-- O professor deve poder gerar o relatório com o mínimo de clicks possível.
-- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar.
-- O professor deve poder gerar quantos arquivos quiser.
-- O professor deve poder filtrar os alunos do relatório por turma.
-
-### Definition of done:
-- Código funcional e organizado, disponibilizado no Git.
-- Documento de instalação atualizado.
-- Layout definido e implementado.
-- Validação de dados realizada e tratada.
-- Funcionalidade totalmente integrada ao sistema.
-
-### Definition of ready: 
-- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
-- O layout do relatório e os dados que ele deve conter foram detalhados.
-- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
-- A origem dos dados que serão usados para gerar o relatório estão identificados.
-- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
-- User storie revisada para garantir que os requisitos estão claros.
-- Wireframe:<br>
-<img src="WireframePAS-24.jpeg" alt="Wireframe PAS - 24" width="50%" />
-
----
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
@@ -346,7 +288,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - User storie revisada para garantir que os requisitos estão claros.
 - O layout da interface para cadastro e gerenciamento do calendário das sprints foi finalizado.
 - Wireframe:<br>
-<img src="WireframePAS-36.jpeg" alt="Wireframe PAS - 36" width="50%" />
+<img src="Wireframes/WireframePAS-36.jpeg" alt="Wireframe PAS - 36" width="50%" />
 
 
 ## Validações feitas com o Cliente
@@ -378,7 +320,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A interface onde os alunos irão visualizar as notas foi finalizada e está de fácil entendimento.
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:<br>
-<img src="WireframePAS-26.jpeg" alt="Wireframe PAS - 26" width="50%" />
+<img src="Wireframes/WireframePAS-26.jpeg" alt="Wireframe PAS - 26" width="50%" />
 
 ---
 
@@ -400,7 +342,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - A interface onde os alunos irão visualizar as notas foi finalizada e está de fácil entendimento.
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe:<br>
-<img src="WireframePAS-28.jpeg" alt="Wireframe PAS - 28" width="50%" />
+<img src="Wireframes/WireframePAS-28.jpeg" alt="Wireframe PAS - 28" width="50%" />
 
 ---
 
@@ -412,6 +354,64 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 <summary>Sprint 4</summary>
 
 ### User Stories da Sprint
+
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 10 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 3 | 2 |
+
+### Requisitos: 
+- O professor deve poder gerar o relatório com o mínimo de clicks possível.
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema.
+- O professor deve poder gerar quantos arquivos quiser.
+- O professor deve poder filtrar os grupos do relatório por semestre.
+
+### Definition of done:
+- Código funcional disponibilizado no Git.
+- Documento de instalação atualizado.
+- Layout definido e implementado.
+- Validação de dados realizada e tratada.
+- Funcionalidade totalmente integrada ao sistema.
+
+### Definition of ready: 
+- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
+- O layout do relatório e os dados que ele deve conter foram detalhados.
+- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
+- A origem dos dados que serão usados para gerar o relatório estão identificados.
+- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
+- User storie revisada para garantir que os requisitos estão claros.
+- Wireframe:<br>
+<img src="Wireframes/WireframePAS-22.jpeg" alt="Wireframe PAS - 22" width="50%" />  
+
+---
+
+| Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
+|------|------------|----|------------|------------|--------|-----------------------|
+| 11 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 3 | 3 |
+
+### Requisitos: 
+- O professor deve poder gerar o relatório com o mínimo de clicks possível.
+- A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar.
+- O professor deve poder gerar quantos arquivos quiser.
+- O professor deve poder filtrar os alunos do relatório por turma.
+
+### Definition of done:
+- Código funcional e organizado, disponibilizado no Git.
+- Documento de instalação atualizado.
+- Layout definido e implementado.
+- Validação de dados realizada e tratada.
+- Funcionalidade totalmente integrada ao sistema.
+
+### Definition of ready: 
+- As notas serão arredodadas para cima caso a casa decimal sejá 5 ou superior e arredondado para baixo caso seja menor que 5.
+- O layout do relatório e os dados que ele deve conter foram detalhados.
+- A interface onde o professor solicitará e visualizará o relatório foi finalizada.
+- A origem dos dados que serão usados para gerar o relatório estão identificados.
+- Os dados necessários para calcular as notas médias dos alunos estão disponíveis no banco de dados.
+- User storie revisada para garantir que os requisitos estão claros.
+- Wireframe:<br>
+<img src="Wireframes/WireframePAS-24.jpeg" alt="Wireframe PAS - 24" width="50%" />
+
+---
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
@@ -434,9 +434,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O e-mail de recuperação será enviado do e-mail sistemarecap@gmail.com
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe do botão de "Esqueci a senha":<br>
-<img src="WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" /> <br>
+<img src="Wireframes/WireframePAS-33.jpeg" alt="Wireframe PAS - 33" width="50%" /> <br>
 - Wireframe de tela que pedirá informações pra redefinir a senha:<br>
-<img src="WireframePAS-33-2.JPG" alt="Wireframe PAS - 33 - 2" width="50%" />
+<img src="Wireframes/WireframePAS-33-2.JPG" alt="Wireframe PAS - 33 - 2" width="50%" />
 
 ---
 
@@ -461,10 +461,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O e-mail de recuperação será enviado do e-mail sistemarecap@gmail.com
 - A user story foi revisada para garantir que os requisitos estão claros e de acordo com as expectativas dos usuários.
 - Wireframe do botão de "Esqueci a senha":<br>
-<img src="WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" /> <br>
+<img src="Wireframes/WireframePAS-34.jpeg" alt="Wireframe PAS - 34" width="50%" /> <br>
 
 - Wireframe de tela que pedirá informações pra redefinir a senha:<br>
-<img src="WireframePAS-34-2.JPG" alt="Wireframe PAS - 34 - 2" width="50%" />
+<img src="Wireframes/WireframePAS-34-2.JPG" alt="Wireframe PAS - 34 - 2" width="50%" />
 
 ### Burndown
 
