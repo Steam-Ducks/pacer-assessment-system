@@ -28,12 +28,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="827.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../assets/user.png" />
-                           </image>
-                        </ImageView>
-                        <Text fill="WHITE" layoutX="864.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
+                        <Text fill="WHITE" layoutX="853.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -54,7 +49,7 @@
                   <Image url="@../assets/logo-dark.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnGerenciarAlunosEquipes" graphicTextGap="0.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarEquipes" prefHeight="60.0" prefWidth="232.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnGerenciarAlunosEquipes" graphicTextGap="0.0" layoutY="202.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarEquipes" prefHeight="60.0" prefWidth="232.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Alunos e Equipes" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
@@ -64,27 +59,27 @@
                   <Image url="@../assets/aluno-equipe.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnGerenciarCriterios" graphicTextGap="0.0" layoutY="261.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarCriterios" prefHeight="60.0" prefWidth="233.0" style="-fx-text-alignment: &quot;left&quot;;" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnGerenciarCriterios" graphicTextGap="0.0" layoutY="261.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarCriterios" prefHeight="60.0" prefWidth="233.0" style="-fx-text-alignment: &quot;left&quot;;" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Critérios" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnGerenciarPontuacaoSprint" graphicTextGap="0.0" layoutY="322.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarPontuacaoSprint" prefHeight="60.0" prefWidth="235.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnGerenciarPontuacaoSprint" graphicTextGap="0.0" layoutY="322.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarPontuacaoSprint" prefHeight="60.0" prefWidth="235.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Pontuar Sprints" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnRelatorios" graphicTextGap="0.0" layoutY="383.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="60.0" prefWidth="234.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnRelatorios" graphicTextGap="0.0" layoutY="383.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="60.0" prefWidth="234.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Relatórios" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnGerenciarSemestre" graphicTextGap="0.0" layoutY="443.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarSemestre" prefHeight="60.0" prefWidth="235.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnGerenciarSemestre" graphicTextGap="0.0" layoutY="443.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarSemestre" prefHeight="60.0" prefWidth="235.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Semestres" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnGerenciarSprints" graphicTextGap="0.0" layoutX="-2.0" layoutY="503.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarSprints" prefHeight="60.0" prefWidth="237.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnGerenciarSprints" graphicTextGap="0.0" layoutX="-2.0" layoutY="503.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirGerenciarSprints" prefHeight="60.0" prefWidth="237.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Sprints" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
@@ -114,54 +109,6 @@
                   <Image url="@../assets/sprint.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="51.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Alunos e Equipes">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
-            <Text fill="WHITE" layoutX="51.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Pontuação da Sprint">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
-            <Text fill="WHITE" layoutX="51.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Critérios">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
-            <Text fill="WHITE" layoutX="52.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Relatórios">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
-            <Text fill="WHITE" layoutX="51.0" layoutY="480.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Semestre">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
-            <Text fill="WHITE" layoutX="51.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Sprints">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
          </children>
       </AnchorPane>
    </left>
