@@ -6,6 +6,7 @@ module steamducks.pacerassessment {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
+    requires mysql.connector.j;
 
     opens steamducks.pacerassessment to javafx.fxml;
     exports steamducks.pacerassessment;
