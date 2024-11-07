@@ -221,6 +221,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
     }
 
 
+
     public int getMediaAlunoPorCriterio(int idSprint, String emailAluno, int idCriterio) {
         String sql = """
             SELECT AVG(nota) AS media
