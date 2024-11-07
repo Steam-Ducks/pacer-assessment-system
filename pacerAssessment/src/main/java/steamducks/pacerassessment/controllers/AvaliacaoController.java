@@ -58,7 +58,7 @@ public class AvaliacaoController {
 
     private Sprint sprintAtiva;
 
-    public void inicializar(Usuario alunoAvaliador) {
+    public void initialize(Usuario alunoAvaliador) {
         this.avaliacaoDAO = new AvaliacaoDAO();
         this.alunoAvaliador = alunoAvaliador;
         carregarAlunosEquipe();

@@ -39,14 +39,18 @@ public class VisualizarMediaAlunoController {
     private final AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
     private final SprintDAO sprintDAO = new SprintDAO();
 
+    private Usuario usuario;
+
     @FXML
-    public void initialize() {
+    public void initialize(Usuario usuario) {
+        this.usuario = usuario;
+
         // Configuração das colunas da tabela
         criterioaluno.setCellValueFactory(new PropertyValueFactory<>("nome"));
         notaaluno.setCellValueFactory(new PropertyValueFactory<>("nota"));
 
         // Carregar alunos e sprints diretamente como objetos nos ComboBoxes
-        carregarAlunos(1);  // ID da equipe, adapte conforme necessário
+        carregarAlunos(usuario.getIdEquipe());
         carregarSprints();
 
         // Adicionar listeners para capturar a seleção de aluno e sprint
@@ -74,7 +78,7 @@ public class VisualizarMediaAlunoController {
             String emailAluno = alunoSelecionado.getEmail(); // Obtém o email direto do objeto Usuario
             int idSprint = sprintSelecionada.getIdSprint(); // Obtém o ID direto do objeto Sprint
 
-            List<Criterio> notas = avaliacaoDAO.getNotasPorCriterio("avaliador@exemplo.com", emailAluno, idSprint); // Substitua com o email do avaliador real
+            List<Criterio> notas = avaliacaoDAO.getNotasPorCriterio(usuario.getEmail(), emailAluno, idSprint); // Substitua com o email do avaliador real
             ObservableList<Criterio> criterios = FXCollections.observableArrayList(notas);
             tabelanotaaluno.setItems(criterios);
         }
