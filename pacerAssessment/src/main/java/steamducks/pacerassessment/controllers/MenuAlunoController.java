@@ -41,11 +41,7 @@ public class MenuAlunoController {
 
     @FXML
     public void initialize() {
-        try {
-            abrirMediaAluno();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Initialization logic if needed
     }
 
     public void inicializar(Usuario usuario) {
@@ -57,16 +53,22 @@ public class MenuAlunoController {
         nomeAluno.setText(nomeCompleto);
         emailAluno.setText(usuario.getEmail());
         saudacaoAluno.setText("Olá, " + primeiroNome);
+
+        try {
+            abrirMediaAluno();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void abrirMediaAluno() throws IOException {
-        carregarView("/steamducks.pacerassessment/visualizarMediaAlunoView.fxml");
+        carregarView("/steamducks.pacerassessment/visualizarMediaAlunoView.fxml", usuarioLogado);
     }
 
     @FXML
     void avaliar(ActionEvent event) throws IOException {
-        carregarView("/steamducks.pacerassessment/avaliacaoAlunoView.fxml");
+        carregarView("/steamducks.pacerassessment/avaliacaoAlunoView.fxml", usuarioLogado);
     }
 
     @FXML
@@ -89,9 +91,19 @@ public class MenuAlunoController {
         stageAtual.close();
     }
 
-    private void carregarView(String viewName) throws IOException {
+    private void carregarView(String viewName, Usuario usuario) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(viewName));
         Node view = loader.load();
+
+        Object controller = loader.getController();
+        if (controller instanceof VisualizarMediaAlunoController)
+        {
+            ((VisualizarMediaAlunoController) controller).initialize(usuario);
+        }
+        else if (controller instanceof AvaliacaoController)
+        {
+            ((AvaliacaoController) controller).initialize(usuario);
+        }
 
         contentPane.getChildren().setAll(view);
     }
