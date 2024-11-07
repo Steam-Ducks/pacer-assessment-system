@@ -110,7 +110,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
   
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 4 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 12 | Como um professor, eu quero estabelecer um limite de pontos para as sprints dos grupos para que os integrantes possam usar esses pontos para avaliar uns aos outros | 3 | 1 | 1 |
+| 4 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 12 | Como um professor, eu quero estabelecer um limite de pontos para impedir que os alunos pontuem todos os critérios com nota máxima.| 3 | 1 | 1 |
 
 ### Requisitos: 
 - O professor deve ser capaz de definir um limite máximo de pontos da sprint para cada grupo.
@@ -133,7 +133,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 5 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 16 | Como um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha para que eu possa avaliar os outros integrantes do meu grupo em todos os critérios | 1 | 1 | 8 |
+| 5 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 16 | Como um aluno ou professor, eu quero acessar o sistema com meu e-mail e senha para que eu possa acessar somente as funções que eu devo operar. | 1 | 1 | 8 |
 
 ### Requisitos: 
 - O usuário deve poder inserir seu e-mail e senha para autenticar no sistema.
@@ -164,7 +164,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 6 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 18 | Como um professor, eu quero criar e editar critérios de avaliação para que os alunos possa se avaliar no final de cadas Spint. | 1 | 1 | 6 |
+| 6 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 18 | Como um professor, eu quero criar e editar critérios de avaliação para que os alunos possam avaliar os integrantes no final de cadas Spint. | 1 | 1 | 6 |
 
 ### Requisitos: 
 - O professor deve ser capaz de criar novos critérios de avaliação, especificando título e descrição.
@@ -203,7 +203,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 7 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 04 | um professor, eu quero poder adicionar, remover ou modificar membros de um grupo de alunos para garantir que cada grupo tenha a composição correta do grupo da API. | 1 | 2 | 7 |
+| 7 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 04 | Como um professor, eu quero poder adicionar, remover ou modificar membros de um grupo de alunos para garantir que cada grupo tenha a composição correta do grupo da API. | 1 | 2 | 7 |
 
 ### Requisitos: 
 - O professor deve poder adicionar um aluno com nome, e-mail e senha.
@@ -215,6 +215,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - Código funcional e organizado, disponibilizado no Github.
 - Layout para avaliação do aluno definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
+- Documentação atualizada.
 
 ### Definition of ready: 
 - User story claramente definido, incluindo critérios de aceitação.
@@ -226,7 +227,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 8 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 09 | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar de forma sistemática o desempenho dos integrantes do grupo.| 2 | 2 | 8 |
+| 8 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 09 | Como um professor, eu quero criar e gerenciar sprints para que os alunos possam avaliar os integrantes do grupo nos critérios da sprint.| 2 | 2 | 8 |
 
 ### Requisitos: 
 - O professor deve poder criar diversas sprints.
@@ -268,7 +269,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 3 | 1 |
+| 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para definir a data de início e término de cada sprint. | 5 | 3 | 1 |
 
 ### Requisitos 
 - O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no semestre.
@@ -276,7 +277,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder visualizar as sprints criadas.
 
 ### Defitionion of done: 
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Documento de instalação atualizado.
 - Layout de exibição definido e implementado.
 - Layout de importação definido e implementado.
@@ -301,7 +302,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 10 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 26 | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral e identificar áreas onde podemos melhorar como equipe. | 3 | 3 | 3 |
+| 10 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 26 | Como um aluno, eu quero visualizar a nota média de todos os integrantes do meu grupo para compreender o desempenho geral da equipe. | 3 | 3 | 3 |
 
 ### Requisitos 
 - A tela que demonstra as notas médias deve ser a primeira a aparecer para o aluno ao fazer o login juntamente a opção de avaliar os outros integrantes da equipe.
@@ -309,7 +310,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - Quando estiver no período de avaliação da Sprint, deve haver um botão para avaliar os integrantes do grupo na mesma tela.
 
 ### Defitionion of done: 
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Layout de exibição definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
 - Documento de instalação atualizado.
@@ -326,13 +327,13 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 11 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em áreas específicas e identificar onde posso melhorar. | 3 | 3 | 2 |
+| 11 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 28  | Como um aluno, eu quero visualizar minhas notas médias para cada critério de avaliação para entender meu desempenho em cada critério. | 3 | 3 | 2 |
 
 ### Requisitos: 
 - Deve aparece no menu inicial demonstrando a nota média de cada critério de forma clara.
 
 ### Defitionion of done: 
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Layout de exibição definido e implementado.
 - Funcionalidade totalmente integrada ao sistema.
 
@@ -357,7 +358,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 12 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral da turma.| 2 | 4 | 2 |
+| 12 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 22  | Como um professor, eu quero gerar um relatório com a nota média de todos os alunos de um grupo para acompanhar o desempenho geral desse grupo.| 2 | 4 | 2 |
 
 ### Requisitos: 
 - O professor deve poder gerar o relatório com o mínimo de clicks possível.
@@ -366,7 +367,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder filtrar os grupos do relatório por semestre.
 
 ### Definition of done:
-- Código funcional disponibilizado no Git.
+- Código funcional disponibilizado no Github.
 - Documento de instalação atualizado.
 - Layout definido e implementado.
 - Validação de dados realizada e tratada.
@@ -386,7 +387,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 13 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em áreas específicas." | 2 | 4 | 3 |
+| 13 | ![#ffff00](https://via.placeholder.com/15/ffff00/000000?text=+)MEDIO | PAS - 24  | Como um professor, eu quero gerar um relatório com a nota média por aluno para cada critério, para que eu possa avaliar o desempenho individual dos alunos em cada critério." | 2 | 4 | 3 |
 
 ### Requisitos: 
 - O professor deve poder gerar o relatório com o mínimo de clicks possível.
@@ -395,7 +396,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder filtrar os alunos do relatório por turma.
 
 ### Definition of done:
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Documento de instalação atualizado.
 - Layout definido e implementado.
 - Validação de dados realizada e tratada.
@@ -415,7 +416,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro |
 |------|------------|----|------------|------------|--------|-----------------------|
-| 14 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 33 | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual. | 4 | 4 | 8 |
+| 14 | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO | PAS - 33 | Como um professor, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta. | 4 | 4 | 8 |
 
 ### Requisitos
 - Deve ser apenas um botão na tela de login
@@ -423,10 +424,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - E-mail de recuperação que será enviado para usuario deve ser gerado automaticamente e nele deve conter um link para alterar senha
 
 ### Definition of done: 
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Layout integrado na tela de login.
 - Funcionalidade totalmente integrada ao sistema.
-- Documento de instalação atualizado.
+- Documentação atualizada.
 
 ### Definition of ready: 
 - O cadastro dos usuários já está funcionando e integrado ao banco de dados.
@@ -442,7 +443,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Rank | Prioridade | ID | User Story | Estimativa | Sprint | Requisito do parceiro | 
 |------|------------|----|------------|------------|--------|-----------------------|
-| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta de forma segura e conveniente caso eu esqueça minha senha atual.     | 4          | 4      | 8 |
+| 15   | ![#0000ff](https://via.placeholder.com/15/0000ff/000000?text=+) BAIXO      | PAS - 34  | Como um aluno, eu quero poder mudar minha senha através do e-mail para que eu possa recuperar o acesso à minha conta. | 4          | 4      | 8 |
 
 ### Requisitos
 - Deve ser apenas um botão na tela de login
@@ -450,10 +451,10 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - E-mail de recuperação que será enviado para usuario deve ser gerado automaticamente e nele deve conter um link para alterar senha
 
 ### Definition of done: 
-- Código funcional e organizado, disponibilizado no Git.
+- Código funcional e organizado, disponibilizado no Github.
 - Layout integrado na tela de login.
 - Funcionalidade totalmente integrada ao sistema.
-- Documento de instalação atualizado.
+- Documentação atualizada.
 
 ### Definition of ready: 
 - O cadastro dos usuários já está funcionando e integrado ao banco de dados.
