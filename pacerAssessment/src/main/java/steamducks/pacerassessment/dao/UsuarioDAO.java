@@ -178,5 +178,41 @@ public class UsuarioDAO extends ConexaoDAO {
         }
     }
 
+    public List<Usuario> getUsuariosPorEquipe(int idEquipe) {
+        List<Usuario> usuarios = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM usuario WHERE id_equipe = ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, idEquipe);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setEmail(rs.getString("email"));
+                usuario.setNome(rs.getString("nome"));
+                usuario.setSenha(rs.getString("senha"));
+                usuario.setIsProfessor(rs.getBoolean("is_professor"));
+                usuario.setIdEquipe(rs.getInt("id_equipe"));
+                usuarios.add(usuario);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar usuários por equipe: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return usuarios;
+    }
+
 
 }

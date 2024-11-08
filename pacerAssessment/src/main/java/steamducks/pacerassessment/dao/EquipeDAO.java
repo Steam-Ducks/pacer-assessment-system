@@ -282,4 +282,39 @@ public class EquipeDAO extends ConexaoDAO {
 
         return numeroDeMembros;
     }
+
+    public Equipe buscarEquipePorId(int idEquipe) {
+        Equipe equipe = null;
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT * FROM equipe WHERE id_equipe = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idEquipe);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+                equipe = new Equipe();
+                equipe.setIdEquipe(rs.getInt("id_equipe"));
+                equipe.setNome(rs.getString("nome"));
+                equipe.setGithub(rs.getString("github"));
+                equipe.setSemestre(String.valueOf(rs.getInt("id_semestre")));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar equipe com ID " + idEquipe + ": " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return equipe;
+    }
+
 }
