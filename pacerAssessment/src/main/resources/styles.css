@@ -54,13 +54,17 @@
     -fx-font-family: Poppins;
     -fx-background-color: transparent;
     -fx-text-fill: white;
+    -fx-font-size: 14px;
     -fx-min-height: 60px;
-    -fx-text-alignment: left !important;
+    -fx-text-alignment: left;
+    -fx-alignment: center-left;
+    -fx-padding: 0 10 0 60;
 }
 
 .buttonMenuPrincipal:hover {
     -fx-background-color: #1F315A;
     -fx-cursor: hand;
+    -fx-font-size: 14px;
 }
 
 .buttonSairMenuPrincipal {

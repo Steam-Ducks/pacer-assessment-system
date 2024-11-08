@@ -142,6 +142,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
         FROM sprint s
         INNER JOIN equipe e ON s.id_semestre = e.id_semestre
         WHERE e.id_equipe = ? AND ? BETWEEN s.data_inicio AND DATE_ADD(s.data_fim, INTERVAL 1 WEEK)
+           OR ? BETWEEN s.data_inicio AND DATE_ADD(s.data_inicio, INTERVAL 8 DAY)
     """;
 
         try (Connection conn = getConnection();
@@ -149,6 +150,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
             stmt.setInt(1, idEquipe);
             stmt.setDate(2, Date.valueOf(data));
+            stmt.setDate(3, Date.valueOf(data));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
@@ -166,7 +168,6 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
         return sprintAtiva;
     }
-
     public void cadastrarOuAtualizarAvaliacao(Avaliacao avaliacao) {
         String checkSql = """
         SELECT COUNT(*) AS count
@@ -219,6 +220,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
             throw new RuntimeException("Error saving evaluation", e);
         }
     }
+
 
 
     public int getMediaAlunoPorCriterio(int idSprint, String emailAluno, int idCriterio) {

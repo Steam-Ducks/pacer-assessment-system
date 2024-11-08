@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -47,12 +48,10 @@ public class TelaSprintController {
         semestreDAO = new SemestreDAO();
         pontuacaoDAO = new PontuacaoDAO();
 
-        // Preenche a ComboBox de semestres
         List<Semestre> semestreData = semestreDAO.getSemestres();
         ObservableList<Semestre> obsSemestre = FXCollections.observableArrayList(semestreData);
         cmb_SelTurma.setItems(obsSemestre);
 
-        // Configura o StringConverter para exibir apenas o nome do semestre
         cmb_SelTurma.setConverter(new StringConverter<Semestre>() {
             @Override
             public String toString(Semestre semestre) {
@@ -68,7 +67,6 @@ public class TelaSprintController {
             }
         });
 
-        // Listener para atualizar sprints e equipes ao selecionar uma turma
         cmb_SelTurma.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 atualizarSprints(newValue);
@@ -76,7 +74,6 @@ public class TelaSprintController {
             }
         });
 
-        // Ações para os botões
         btn_Cancelar.setOnAction(event -> fecharJanela());
         btn_Salvar.setOnAction(event -> verificarCampos());
     }
@@ -99,24 +96,21 @@ public class TelaSprintController {
         vbox_equipes.getChildren().clear();
 
         for (String equipe : equipes) {
-            // Obtém o número de membros para cada equipe
             int numeroDeMembros = equipeDAO.getNumeroDeMembros(equipe, idSemestre);
 
-            // Calcula o limite de pontos com a fórmula fornecida
             int limiteDePontos = numeroDeMembros * numeroDeCriterios * 3;
 
             HBox labelHBox = new HBox();
             Label label = new Label(equipe);
-            label.setFont(new Font("Arial", 14));
-            label.setPrefWidth(100);
+            label.setFont(new Font("Poppins", 14));
+            label.setPrefWidth(150);
             labelHBox.getChildren().add(label);
 
             HBox textFieldHBox = new HBox();
             TextField textField = new TextField();
             textField.setPromptText("0");
-            textField.setPrefWidth(45);
+            textField.setPrefWidth(50);
 
-            // Listener para limitar a pontuação no TextField
             textField.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (!newValue.matches("\\d*")) {
                     textField.setText(oldValue);
@@ -132,11 +126,11 @@ public class TelaSprintController {
 
             HBox hbox = new HBox(labelHBox, textFieldHBox);
             hbox.setSpacing(0);
-            VBox.setMargin(hbox, new Insets(5, 70, 5, 60));
+            VBox.setMargin(hbox, new Insets(5, 230, 5, 5));
 
             HBox.setHgrow(textFieldHBox, Priority.ALWAYS);
-            labelHBox.setAlignment(Pos.CENTER_LEFT);
-            textFieldHBox.setAlignment(Pos.CENTER_RIGHT);
+            labelHBox.setAlignment(Pos.CENTER);
+            textFieldHBox.setAlignment(Pos.CENTER);
 
             vbox_equipes.getChildren().add(hbox);
         }
@@ -153,6 +147,9 @@ public class TelaSprintController {
             alert.setTitle("Erro");
             alert.setHeaderText("Nenhuma turma selecionada");
             alert.setContentText("Você deve selecionar uma turma antes de salvar a avaliação.");
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
             alert.showAndWait();
             return;
         }
@@ -162,6 +159,9 @@ public class TelaSprintController {
             alert.setTitle("Erro");
             alert.setHeaderText("Nenhuma sprint selecionada");
             alert.setContentText("Você deve selecionar uma sprint antes de salvar a avaliação.");
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
             alert.showAndWait();
             return;
         }
@@ -177,6 +177,9 @@ public class TelaSprintController {
                                     alert.setTitle("Erro");
                                     alert.setHeaderText("Campo de nota em branco");
                                     alert.setContentText("Você deve preencher todos os campos de nota antes de salvar a avaliação.");
+
+                                    Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                                    stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
                                     alert.showAndWait();
                                     return;
                                 }

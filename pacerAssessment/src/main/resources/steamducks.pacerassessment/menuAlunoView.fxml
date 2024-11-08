@@ -63,24 +63,16 @@
             </ImageView>
             <Label fx:id="nomeAluno" layoutX="36.0" layoutY="257.0" text="Aluno Exemplo" textFill="WHITE" />
             <Label fx:id="emailAluno" layoutX="36.0" layoutY="289.0" text="usuario@fatec.sp.gov.br" textFill="WHITE" wrapText="true" />
-            <Button fx:id="btnAvaliar" graphicTextGap="0.0" layoutX="-3.0" layoutY="342.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#avaliar" prefHeight="60.0" prefWidth="233.0" style="-fx-text-alignment: &quot;left&quot;;" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" textFill="WHITE">
+            <Button fx:id="btnAvaliar" graphicTextGap="0.0" layoutX="-3.0" layoutY="342.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#avaliar" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../styles.css" text="Avalie sua equipe" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/criterios.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="48.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Avalie sua equipe">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Text>
             <Text fill="WHITE" layoutX="13.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Minhas Informações">
                <font>
                   <Font size="18.0" />
