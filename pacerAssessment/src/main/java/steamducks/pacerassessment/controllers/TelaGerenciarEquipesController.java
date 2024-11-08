@@ -73,7 +73,10 @@ public class TelaGerenciarEquipesController {
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
-            stage.setOnHidden(e -> contentPane.setEffect(null));
+            stage.setOnHidden(e -> {
+                contentPane.setEffect(null);
+                carregarEquipes();
+            });
 
             stage.show();
         } catch (IOException ex) {
@@ -102,7 +105,7 @@ public class TelaGerenciarEquipesController {
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
                 stage.show();
 
-                stage.setOnHidden(e -> contentPane.setEffect(null));
+                stage.setOnHidden(e -> {contentPane.setEffect(null); carregarEquipes();});
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

@@ -1,14 +1,18 @@
 package steamducks.pacerassessment.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.EquipeDAO;
+import steamducks.pacerassessment.dao.UsuarioDAO;
 import steamducks.pacerassessment.models.Equipe;
 import steamducks.pacerassessment.models.Usuario;
+
+import java.util.List;
 
 public class TelaEditarEquipesController {
 
@@ -25,6 +29,9 @@ public class TelaEditarEquipesController {
     private TextField txtGithub;
 
     @FXML
+    private TableView<Usuario> tbUsuarios;
+
+    @FXML
     private TableColumn<Usuario, String> tcNome;
 
     @FXML
@@ -33,17 +40,37 @@ public class TelaEditarEquipesController {
     @FXML
     private TableColumn<Usuario, String> tcEmail;
 
-    public Equipe equipeSelecionado;
+    private ObservableList<Usuario> listaUsuarios = FXCollections.observableArrayList();
+
+    private Equipe equipeSelecionado;
+
+    private Usuario usuarioTabela;
+
+    EquipeDAO dao = new EquipeDAO();
+
+    Usuario usuario = new Usuario();
 
     @FXML
-    private void inicializar(){
+    private void initialize() {
         btnConfirmar.setOnAction(event -> confirmarEdicao());
         btnCancelar.setOnAction(event -> cancelarEdicao());
+
+        tcNome.setCellValueFactory(new PropertyValueFactory<>(usuario.getNome()));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<>(usuario.getEmail()));
+        tcSenha.setCellValueFactory(new PropertyValueFactory<>(usuario.getSenha()));
+
+        tbUsuarios.setEditable(true);
+        tcNome.setCellFactory(TextFieldTableCell.forTableColumn());
+        tcEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+        tcSenha.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        configurarListenersDeEdicao();
+        carregarUsuarios(usuario.getIdEquipe());
     }
 
     public void inicializarCampos(int idEquipe) {
-        EquipeDAO dao = new EquipeDAO();
         Equipe equipe = dao.buscarEquipePorId(idEquipe);
+
         if (equipe != null) {
             this.equipeSelecionado = equipe;
             txtNome.setText(equipe.getNome());
@@ -51,6 +78,16 @@ public class TelaEditarEquipesController {
         } else {
             mostrarAlerta("Equipe não encontrada.", "Erro");
         }
+
+        carregarUsuarios(idEquipe);
+    }
+
+    private void carregarUsuarios(int idEquipe) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        List<Usuario> usuarios = usuarioDAO.getUsuariosPorEquipe(idEquipe);
+
+        listaUsuarios.setAll(usuarios);
+        tbUsuarios.setItems(listaUsuarios);
     }
 
     @FXML
@@ -80,9 +117,37 @@ public class TelaEditarEquipesController {
     }
 
     @FXML
-    void cancelarEdicao() {
+    private void cancelarEdicao() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+
+    private void configurarListenersDeEdicao() {
+        tcNome.setOnEditCommit(event -> {
+            Usuario usuario = event.getRowValue();
+            usuario.setNome(event.getNewValue());
+            atualizarUsuarioNoBanco(usuario);
+        });
+
+        tcEmail.setOnEditCommit(event -> {
+            Usuario usuario = event.getRowValue();
+            usuario.setEmail(event.getNewValue());
+            atualizarUsuarioNoBanco(usuario);
+        });
+
+        tcSenha.setOnEditCommit(event -> {
+            Usuario usuario = event.getRowValue();
+            usuario.setSenha(event.getNewValue());
+            atualizarUsuarioNoBanco(usuario);
+        });
+    }
+
+    private void atualizarUsuarioNoBanco(Usuario usuario) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
+        if (!sucesso) {
+            mostrarAlerta("Erro ao atualizar usuário", "Erro");
+        }
     }
 
 }
