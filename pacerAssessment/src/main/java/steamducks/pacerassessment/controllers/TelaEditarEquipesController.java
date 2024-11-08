@@ -104,6 +104,14 @@ public class TelaEditarEquipesController {
             EquipeDAO dao = new EquipeDAO();
             dao.atualizarEquipe(equipeSelecionado.getIdEquipe(), novoNome, novoGithub, 1);
 
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            for (Usuario usuario : listaUsuarios) {
+                boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
+                if (!sucesso) {
+                    mostrarAlerta("Erro ao atualizar o usuário: " + usuario.getNome(), "Erro");
+                }
+            }
+
             cancelarEdicao();
         } else {
             mostrarAlerta("Erro ao editar a equipe", "Erro");
@@ -128,19 +136,16 @@ public class TelaEditarEquipesController {
         tcNome.setOnEditCommit(event -> {
             Usuario usuario = event.getRowValue();
             usuario.setNome(event.getNewValue());
-            atualizarUsuarioNoBanco(usuario);
         });
 
         tcEmail.setOnEditCommit(event -> {
             Usuario usuario = event.getRowValue();
             usuario.setEmail(event.getNewValue());
-            atualizarUsuarioNoBanco(usuario);
         });
 
         tcSenha.setOnEditCommit(event -> {
             Usuario usuario = event.getRowValue();
             usuario.setSenha(event.getNewValue());
-            atualizarUsuarioNoBanco(usuario);
         });
     }
 
