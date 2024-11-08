@@ -62,12 +62,14 @@ public class CadastroSprintController {
 
     @FXML
     void cadastrarSprint(ActionEvent event) {
+        // Lógica para cadastrar a sprint
         String nomeSprint = txtFieldNome.getText();
         Semestre semestreSelecionado = cmb_SelSem.getValue();
-
+        // Validar os campos e cadastrar a sprint
     }
 
     @FXML
     void cancelarCadastrarSprint(ActionEvent event) {
+        // Lógica para cancelar o cadastro
     }
 }
