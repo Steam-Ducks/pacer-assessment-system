@@ -28,11 +28,10 @@
 ### 3. Download e Preparação
 
 **Download do Sistema:**  
-Acesse o link de download: [Sistema RECAP](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/Sistema%20RECAP.jar)
-Baixe o instalador na pasta desejada.
+   - Acesse o link de download: [Sistema RECAP](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/Sistema%20RECAP.jar)
+   - Baixe o instalador na pasta desejada.
 
-**Preparação do Ambiente:**  
-Verifique se o Java JDK e MySQL estão instalados. Caso contrário, instale seguindo os links abaixo:
+**Preparação do Ambiente:** Verifique se o Java JDK e MySQL estão instalados. Caso contrário, instale seguindo os links abaixo:
 
 - **Java JDK:** [Download JDK 20](https://www.oracle.com/java/technologies/javase/jdk20-archive-downloads.html) (Escolha a opção Windows x64 Installer)
 - **MySQL:** [Download MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
