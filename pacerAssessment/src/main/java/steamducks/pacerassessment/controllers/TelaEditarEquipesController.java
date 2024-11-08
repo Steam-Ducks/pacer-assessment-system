@@ -50,16 +50,19 @@ public class TelaEditarEquipesController {
 
     Usuario usuario = new Usuario();
 
+
     @FXML
     private void initialize() {
         btnConfirmar.setOnAction(event -> confirmarEdicao());
         btnCancelar.setOnAction(event -> cancelarEdicao());
 
-        tcNome.setCellValueFactory(new PropertyValueFactory<>(usuario.getNome()));
-        tcEmail.setCellValueFactory(new PropertyValueFactory<>(usuario.getEmail()));
-        tcSenha.setCellValueFactory(new PropertyValueFactory<>(usuario.getSenha()));
+        tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tcSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
 
         tbUsuarios.setEditable(true);
+        tbUsuarios.setItems(listaUsuarios);
+
         tcNome.setCellFactory(TextFieldTableCell.forTableColumn());
         tcEmail.setCellFactory(TextFieldTableCell.forTableColumn());
         tcSenha.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -87,7 +90,6 @@ public class TelaEditarEquipesController {
         List<Usuario> usuarios = usuarioDAO.getUsuariosPorEquipe(idEquipe);
 
         listaUsuarios.setAll(usuarios);
-        tbUsuarios.setItems(listaUsuarios);
     }
 
     @FXML

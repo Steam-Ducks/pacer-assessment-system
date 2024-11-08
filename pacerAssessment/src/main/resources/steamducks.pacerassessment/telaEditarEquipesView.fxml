@@ -49,7 +49,7 @@
       <TableView fx:id="tbUsuarios" layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
         <columns>
           <TableColumn fx:id="tcNome" prefWidth="151.0" text="Nome" />
-            <TableColumn fx:id="tcEmail" prefWidth="222.0" text="E-mail" />
+            <TableColumn fx:id="tcEmail" prefWidth="190.0" text="E-mail" />
             <TableColumn fx:id="tcSenha" minWidth="0.0" prefWidth="146.0" text="Senha" />
         </columns>
       </TableView>
