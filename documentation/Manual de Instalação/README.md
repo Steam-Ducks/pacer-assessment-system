@@ -2,13 +2,12 @@
 
 ## Índice
 
-[1. Introdução](#introdução) <br />
-[2. Requisitos do Sistema](#requisitos-do-sistema) <br />
-[3. Download e Preparação](#download-e-preparação) <br />
-[4. Configuração Inicial](#configuração-inicial) <br />
-[5. Solução de Problemas](#solução-de-problemas) <br />
-[6. Suporte e Contato](#suporte-e-contato) <br />
-
+- [Introdução](#introdução)
+- [Requisitos do Sistema](#requisitos-do-sistema)
+- [Download e Preparação](#download-e-preparação)
+- [Configuração Inicial](#configuração-inicial)
+- [Solução de Problemas](#solução-de-problemas)
+- [Suporte e Contato](#suporte-e-contato)
 ---
 
 ### 1. Introdução
