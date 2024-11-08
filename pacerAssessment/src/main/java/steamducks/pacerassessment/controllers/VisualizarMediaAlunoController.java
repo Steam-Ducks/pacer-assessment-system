@@ -31,7 +31,7 @@ public class VisualizarMediaAlunoController {
     private ComboBox<Sprint> escolhersprint; // Armazenando objetos Sprint
 
     @FXML
-    private TableColumn<Criterio, Double> notaaluno;
+    private TableColumn<Criterio, Integer> notaaluno;
 
     @FXML
     private TableView<Criterio> tabelanotaaluno;
@@ -75,12 +75,16 @@ public class VisualizarMediaAlunoController {
         Sprint sprintSelecionada = escolhersprint.getValue();
 
         if (alunoSelecionado != null && sprintSelecionada != null) {
-            String emailAluno = alunoSelecionado.getEmail(); // Obtém o email direto do objeto Usuario
-            int idSprint = sprintSelecionada.getIdSprint(); // Obtém o ID direto do objeto Sprint
+            String emailAluno = alunoSelecionado.getEmail();
+            int idSprint = sprintSelecionada.getIdSprint();
 
-            List<Criterio> notas = avaliacaoDAO.getNotasPorCriterio(usuario.getEmail(), emailAluno, idSprint); // Substitua com o email do avaliador real
-            ObservableList<Criterio> criterios = FXCollections.observableArrayList(notas);
-            tabelanotaaluno.setItems(criterios);
+            List<Criterio> criterios = avaliacaoDAO.getNotasPorCriterio(usuario.getEmail(), emailAluno, idSprint);
+            for (Criterio criterio : criterios) {
+                int mediaNota = avaliacaoDAO.getMediaAlunoPorCriterio(idSprint, emailAluno, criterio.getId());
+                criterio.setNota(mediaNota);
+            }
+            ObservableList<Criterio> criteriosObservable = FXCollections.observableArrayList(criterios);
+            tabelanotaaluno.setItems(criteriosObservable);
         }
     }
 }
