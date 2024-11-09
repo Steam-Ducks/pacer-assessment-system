@@ -46,7 +46,7 @@ public class SemestreController {
 
     private ObservableList<Semestre> listaSemestres = FXCollections.observableArrayList();
 
-    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
+    static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     @FXML
     private void initialize() {
