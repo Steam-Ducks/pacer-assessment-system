@@ -37,8 +37,22 @@
 
      - **Java JDK:** [Download JDK 20](https://www.oracle.com/java/technologies/javase/jdk20-archive-downloads.html) (Escolha a opção Windows x64 Installer)
      - **MySQL:** [Download MySQL Workbench](https://dev.mysql.com/downloads/workbench/)
+     - **Baixe o arquivo para o banco de dados:** [clique aqui](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/src/SQLDatabase/sistema_recap_DB.exe) e siga o exemplo da imagem abaixo:
+       
+        <div align="center">
+        <img src="/assets/dowload-database.png" alt="exemplo-download" width="500">
+        </div>
+       
+        • Após fazer o download, tente acessar o arquivo. Caso o seu Windows apareça uma mensagem como a da imagem abaixo, siga os passos a seguir:
+        <div align="center">
+        <img src="/assets/aviso1-download.png" alt="exemplo-download" width="500">
+        </div>
+       
+       <div align="center">
+        <img src="/assets/aviso2-download.png" alt="exemplo-download" width="500">
+        </div>
+       
      - **Baixe o arquivo executável:** [clique aqui](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/Sistema%20RECAP.jar) e siga o exemplo da imagem abaixo):
-
 
    <div align="center">
         <img src="/assets/exemplo-download.PNG" alt="exemplo-download" width="500">
@@ -48,8 +62,7 @@
 
    1. **Configuração do Banco de Dados:**
 
-      - Crie uma base de dados: `sistema_recap`.
-      - Execute o script de configuração: `sistema_recap.sql`.
+      - Abra o arquivo **sistema_recap_DB** que você instalou, insira a senha de segurança *ducks* para estrair o arquivo sistema_recap_DB.sql, e abra ele no MySQL Workbench.
 
    2. Com o banco criado, abra o arquivo executável do Sistema RECAP e acesse com os dados abaixo:
       - **Usuário:** professor@email.com
