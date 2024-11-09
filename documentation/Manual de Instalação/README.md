@@ -29,6 +29,10 @@
 1. **Download do Sistema:**  
    - Acesse o link de download: [Sistema RECAP](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/Sistema%20RECAP.jar)
    - Baixe o instalador na pasta desejada.
+        <div align="center">
+        <img src="/assets/exemplo-download.PNG" alt="exemplo-download" width="500">
+    </div>
+  
 
 
 2. **Preparação do Ambiente:** 
@@ -51,13 +55,7 @@
        <div align="center">
         <img src="/assets/aviso2-download.png" alt="exemplo-download" width="500">
         </div>
-       
-     - **Baixe o arquivo executável:** [clique aqui](https://github.com/Steam-Ducks/pacer-assessment-system/blob/sprint-3/pacerAssessment/Sistema%20RECAP.jar) e siga o exemplo da imagem abaixo):
 
-   <div align="center">
-        <img src="/assets/exemplo-download.PNG" alt="exemplo-download" width="500">
-    </div>
-  
 ### 4. Configuração Inicial
 
    1. **Configuração do Banco de Dados:**
