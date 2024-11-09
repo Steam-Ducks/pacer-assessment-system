@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="568.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CadastroSprintController">
+<AnchorPane prefHeight="568.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CadastroSprintController">
    <children>
       <Pane layoutX="-3.0" prefHeight="86.0" prefWidth="607.0" style="-fx-background-color: #14213d;">
          <children>
@@ -30,7 +30,7 @@
 
       <ComboBox fx:id="cmb_SelSem" layoutX="127.0" layoutY="114.0" prefHeight="25.0" prefWidth="350.0" promptText="Semestre" />
 
-      <Button fx:id="btn_Cancelar" layoutX="302.0" layoutY="501.0" mnemonicParsing="false" onAction="#cancelarCadastrarSprint" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #CC2936;" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
+      <Button fx:id="btn_Cancelar" layoutX="302.0" layoutY="501.0" mnemonicParsing="false" onAction="#cancelarCadastrarSprint" prefHeight="38.0" prefWidth="85.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <Button fx:id="btn_Cadastrar" layoutX="430.0" layoutY="501.0" mnemonicParsing="false" onAction="#cadastrarSprint" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #20BF55;" styleClass="buttonVerde" text="Cadastrar" textFill="WHITE" />
 
       <TableView fx:id="tableViewSprint" layoutX="56.0" layoutY="234.0" prefHeight="238.0" prefWidth="512.0">

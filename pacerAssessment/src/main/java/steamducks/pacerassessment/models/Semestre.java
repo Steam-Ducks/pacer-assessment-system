@@ -10,6 +10,10 @@ public class Semestre {
         this.nome = nome;
     }
 
+    public Semestre() {
+
+    }
+
     public int getId() {
         return id;
     }

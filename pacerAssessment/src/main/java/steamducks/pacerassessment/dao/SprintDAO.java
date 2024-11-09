@@ -1,6 +1,6 @@
 package steamducks.pacerassessment.dao;
 
-import steamducks.pacerassessment.models.Sprint;
+import steamducks.pacerassessment.models.*;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -103,7 +103,7 @@ public class SprintDAO {
     }
 
     public void removerSprint(int id_sprint) { //passando o id do criterio que queremos bigodar
-        String deleteSprintSql = "DELETE FROM sprint WHERE id_criterio = ?"; //query que deleta
+        String deleteSprintSql = "DELETE FROM sprint WHERE id_sprint = ?"; //query que deleta
 
         try (Connection con = getConnection();
              PreparedStatement pstSprint = con.prepareStatement(deleteSprintSql)) {
@@ -190,6 +190,40 @@ public class SprintDAO {
         return sprint;
     }
 
+    public List<Semestre> buscarTodosSemestres() {
+        List<Semestre> semestres = new ArrayList<>();
+        Connection con = null;
 
+        try {
+            con = getConnection();
+
+            String select_sql = "SELECT * FROM semestre";  // Consulta para pegar todos os semestres
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                Semestre semestre = new Semestre();
+                semestre.setId(rs.getInt("id_semestre"));
+                semestre.setNome(rs.getString("nome"));
+                // Preencha outros campos de Semestre, se necessário
+                semestres.add(semestre);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar todos os semestres! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar a conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return semestres;
+    }
 
 }
