@@ -21,11 +21,12 @@ public class SprintDAO {
             con = getConnection();
             con.setAutoCommit(false);
 
-            String insertSprintSql = "INSERT INTO sprint (nome, data_inicio, data_fim) VALUES (?,?,?)";
+            String insertSprintSql = "INSERT INTO sprint (nome, data_inicio, data_fim, id_semestre) VALUES (?,?,?,?)";
             PreparedStatement pstSprint = con.prepareStatement(insertSprintSql, Statement.RETURN_GENERATED_KEYS);
             pstSprint.setString(1, sprint.getNome());
             pstSprint.setString(2, sprint.getDataInicio().toString());
             pstSprint.setString(3, sprint.getDataFim().toString());
+            pstSprint.setInt(4, sprint.getIdSemestre());
             pstSprint.executeUpdate();
 
             ResultSet rs = pstSprint.getGeneratedKeys();
@@ -41,7 +42,7 @@ public class SprintDAO {
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
-            throw new RuntimeException("Erro ao criar semestre! " + e.getMessage(), e);
+            throw new RuntimeException("Erro ao criar sprint! " + e.getMessage(), e);
         } finally {
             try {
                 if (con != null) con.close();
@@ -53,7 +54,6 @@ public class SprintDAO {
 
         return sprint;
     }
-
     public static List<Sprint> buscarSprint() {
         List<Sprint> sprints = new ArrayList<>(); // Lista que vamos salvar os critérios que retornar do banco
         String selectSQL = "SELECT * FROM sprint"; // Select que vamos fazer no banco

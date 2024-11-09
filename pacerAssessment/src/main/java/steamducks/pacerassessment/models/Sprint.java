@@ -26,6 +26,12 @@ public class Sprint {
         this.idSemestre = idSemestre;
     }
 
+    public Sprint(String nome, LocalDate dataInicio, LocalDate dataFim) {
+        this.nome = nome;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+    }
+
     public  Sprint(){}
     // Getters e Setters
     public int getIdSprint() {
