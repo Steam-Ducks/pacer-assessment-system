@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Semestre.EditarSemestreController">
+   <children>
+      <Button fx:id="btnConcluirEdt" layoutX="351.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
+      <Button fx:id="btnCancelEdit" layoutX="215.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
+      <TextField fx:id="txtEdtSem" layoutX="40.0" layoutY="132.0" prefHeight="31.0" prefWidth="422.0" styleClass="listViewGerenciar" />
+      <Label layoutX="40.0" layoutY="104.0" prefHeight="28.0" prefWidth="94.0" styleClass="titleLabel" text="Semestre" textFill="#14213d" />
+      <Pane prefHeight="86.0" prefWidth="500.0" style="-fx-background-color: #14213d;">
+         <children>
+            <Text fill="#fca311" layoutX="42.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulosPopUps" text="Editando semestre">
+               <font>
+                  <Font name="SansSerif Regular" size="24.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="62.0" fitWidth="76.0" layoutX="405.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/edit-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+
+   </children>
+</AnchorPane>
