@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Sprint;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.SprintDAO;
 import steamducks.pacerassessment.models.Sprint;
@@ -24,7 +23,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.HashMap;
 
-public class SprintController {
+public class GerenciarSprintController {
 
     @FXML
     private Button btn_AdcSprint;

@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Avaliacao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

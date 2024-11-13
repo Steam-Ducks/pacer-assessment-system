@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Sprint;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +21,7 @@ import steamducks.pacerassessment.models.Semestre;
 import steamducks.pacerassessment.models.Sprint;
 import steamducks.pacerassessment.models.Pontuacao;
 
-public class TelaSprintController {
+public class AvaliarSprintController {
 
     @FXML
     private ComboBox<String> cmb_SelSprint;

@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Menu;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -15,6 +15,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import steamducks.pacerassessment.controllers.Avaliacao.VisualizarAvaliacaoController;
+import steamducks.pacerassessment.controllers.Avaliacao.AvaliacaoController;
 import steamducks.pacerassessment.models.Usuario;
 
 public class MenuAlunoController {
@@ -96,9 +98,9 @@ public class MenuAlunoController {
         Node view = loader.load();
 
         Object controller = loader.getController();
-        if (controller instanceof VisualizarMediaAlunoController)
+        if (controller instanceof VisualizarAvaliacaoController)
         {
-            ((VisualizarMediaAlunoController) controller).initialize(usuario);
+            ((VisualizarAvaliacaoController) controller).initialize(usuario);
         }
         else if (controller instanceof AvaliacaoController)
         {

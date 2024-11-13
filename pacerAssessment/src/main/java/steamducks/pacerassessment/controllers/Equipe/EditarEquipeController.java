@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Equipe;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,7 +14,7 @@ import steamducks.pacerassessment.models.Usuario;
 
 import java.util.List;
 
-public class TelaEditarEquipesController {
+public class EditarEquipeController {
 
     @FXML
     private Button btnConfirmar;

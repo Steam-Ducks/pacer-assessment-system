@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Semestre;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +11,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 import javafx.scene.image.Image;
 
-public class SemestreController {
+public class GerenciarSemestreController {
 
     @FXML
     private AnchorPane contentPane;
@@ -141,7 +140,7 @@ public class SemestreController {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
 
-                EdtSemestreController controller = loader.getController();
+                EditarSemestreController controller = loader.getController();
                 controller.inicializarCampos(semestreSelecionado);
 
                 stage.setOnHidden(event -> {

@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Criterio;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.CriteriosDAO;
 import steamducks.pacerassessment.models.Criterio;
 
-public class EdtCriteriosController {
+public class EditarCriterioController {
 
     private CriteriosDAO criteriosDAO = new CriteriosDAO();
 

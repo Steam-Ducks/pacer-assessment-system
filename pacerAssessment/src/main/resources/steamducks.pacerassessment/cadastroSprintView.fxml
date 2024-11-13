@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="568.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CadastroSprintController">
+<AnchorPane prefHeight="568.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.Sprint.CadastrarSprintController">
    <children>
       <Pane layoutX="-3.0" prefHeight="86.0" prefWidth="607.0" style="-fx-background-color: #14213d;">
          <children>

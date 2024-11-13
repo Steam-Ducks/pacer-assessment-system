@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Menu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

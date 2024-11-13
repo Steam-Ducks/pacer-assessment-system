@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Semestre;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import steamducks.pacerassessment.dao.CriteriosDAO;
 import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Criterio;
 
-public class CadastroSemestreController implements Initializable {
+public class CadastrarSemestreController implements Initializable {
 
     @FXML
     private Button btnCadastrar;

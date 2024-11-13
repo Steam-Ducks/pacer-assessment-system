@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Avaliacao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,7 +16,7 @@ import steamducks.pacerassessment.models.Sprint;
 
 import java.util.List;
 
-public class VisualizarMediaAlunoController {
+public class VisualizarAvaliacaoController {
 
     @FXML
     private AnchorPane contentPane;

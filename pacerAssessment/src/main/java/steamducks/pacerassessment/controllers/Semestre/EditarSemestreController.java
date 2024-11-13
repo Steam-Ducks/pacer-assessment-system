@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Semestre;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.models.Semestre;
 
-public class EdtSemestreController {
+public class EditarSemestreController {
 
     @FXML
     private Button btnCancelEdit;

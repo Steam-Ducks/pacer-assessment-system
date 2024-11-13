@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Criterio;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Objects;
 
-public class CriteriosController {
+public class GerenciarCriterioController {
 
     @FXML
     private AnchorPane contentPane;
@@ -119,8 +119,8 @@ public class CriteriosController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/edtCriteriosView.fxml"));
             Parent root = loader.load();
-            EdtCriteriosController edtCriteriosController = loader.getController();
-            edtCriteriosController.setCriterio(criterioSelecionado);
+            EditarCriterioController editarCriterioController = loader.getController();
+            editarCriterioController.setCriterio(criterioSelecionado);
 
             if (contentPane != null) {
                 contentPane.setEffect(blurEffect);

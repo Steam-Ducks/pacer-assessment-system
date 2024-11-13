@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="302.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.CriteriosController">
+<AnchorPane prefHeight="302.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.Criterio.GerenciarCriterioController">
    <children>
       <TextArea fx:id="txtDescricao" layoutX="28.0" layoutY="128.0" prefHeight="102.0" prefWidth="293.0" promptText="Digite a Descrição" />
       <TextField fx:id="txtNome" layoutX="28.0" layoutY="64.0" prefHeight="31.0" prefWidth="293.0" promptText="Digite o Nome" />

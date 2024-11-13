@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Equipe;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,13 +13,12 @@ import javafx.stage.Stage;
 import steamducks.pacerassessment.dao.EquipeDAO;
 import steamducks.pacerassessment.dao.SemestreDAO;
 import steamducks.pacerassessment.dao.UsuarioDAO;
-import steamducks.pacerassessment.models.Equipe;
 import steamducks.pacerassessment.models.Semestre;
 import steamducks.pacerassessment.models.Usuario;
 
 import java.io.*;
 
-public class CadastroGrupoAlunoController {
+public class CadastrarEquipeController {
 
     @FXML
     private TextField txtEquipe;

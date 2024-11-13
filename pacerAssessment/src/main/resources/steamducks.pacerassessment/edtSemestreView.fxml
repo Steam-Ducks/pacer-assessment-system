@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.EdtSemestreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.pacerassessment.controllers.Semestre.EditarSemestreController">
    <children>
       <Button fx:id="btnConcluirEdt" layoutX="351.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
       <Button fx:id="btnCancelEdit" layoutX="215.0" layoutY="190.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />

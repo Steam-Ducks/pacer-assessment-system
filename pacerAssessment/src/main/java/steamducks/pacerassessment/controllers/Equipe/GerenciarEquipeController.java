@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Equipe;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,11 +15,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import steamducks.pacerassessment.dao.EquipeDAO;
 import steamducks.pacerassessment.models.Equipe;
-import steamducks.pacerassessment.models.Semestre;
 
 import java.io.IOException;
 
-public class TelaGerenciarEquipesController {
+public class GerenciarEquipeController {
 
     @FXML
     private AnchorPane contentPane;
@@ -96,7 +95,7 @@ public class TelaGerenciarEquipesController {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/steamducks.pacerassessment/telaEditarEquipesView.fxml"));
                 Parent root = fxmlLoader.load();
 
-                TelaEditarEquipesController controller = fxmlLoader.getController();
+                EditarEquipeController controller = fxmlLoader.getController();
                 controller.inicializarCampos(equipeSelecionado.getIdEquipe());
 
                 Stage stage = new Stage();

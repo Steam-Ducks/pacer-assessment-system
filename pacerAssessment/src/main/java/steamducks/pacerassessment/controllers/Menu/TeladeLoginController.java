@@ -1,4 +1,4 @@
-package steamducks.pacerassessment.controllers;
+package steamducks.pacerassessment.controllers.Menu;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +12,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import steamducks.pacerassessment.controllers.Menu.MenuAlunoController;
+import steamducks.pacerassessment.controllers.Menu.MenuProfessorController;
 import steamducks.pacerassessment.dao.LoginDAO;
 import steamducks.pacerassessment.models.Usuario;
 
