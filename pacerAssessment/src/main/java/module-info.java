@@ -8,10 +8,22 @@ module steamducks.pacerassessment {
     requires java.desktop;
     requires mysql.connector.j;
 
-    opens steamducks.pacerassessment to javafx.fxml;
-    exports steamducks.pacerassessment;
-    exports steamducks.pacerassessment.models;
-    opens steamducks.pacerassessment.models to javafx.fxml;
-    exports steamducks.pacerassessment.controllers;
-    opens steamducks.pacerassessment.controllers to javafx.fxml;
+    opens steamducks.SistemaRecap to javafx.fxml;
+    exports steamducks.SistemaRecap;
+    exports steamducks.SistemaRecap.models;
+    opens steamducks.SistemaRecap.models to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Criterio;
+    opens steamducks.SistemaRecap.controllers.Criterio to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Semestre;
+    opens steamducks.SistemaRecap.controllers.Semestre to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Avaliacao;
+    opens steamducks.SistemaRecap.controllers.Avaliacao to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Equipe;
+    opens steamducks.SistemaRecap.controllers.Equipe to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Menu;
+    opens steamducks.SistemaRecap.controllers.Menu to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Sprint;
+    opens steamducks.SistemaRecap.controllers.Sprint to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Relatorio;
+    opens steamducks.SistemaRecap.controllers.Relatorio to javafx.fxml;
 }
