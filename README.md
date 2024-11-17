@@ -12,7 +12,7 @@
 </div>
 
 <br />
-<p>Nós da equipe <b>STEAM DUCKS</b> estudantes do 2º semestre do curso de Banco de Dados na FATEC SJC, estamos comprometidos com o desenvolvimento do projeto "Sistema de avaliação PACER" neste repositório. O objetivo do projeto é criar uma aplicação desktop simples que permita os usuários alunos avaliarem todos os integrantes de seu grupo nos
+<p>Nós da equipe <b>STEAM DUCKS</b> estudantes do 2º idSemestre do curso de Banco de Dados na FATEC SJC, estamos comprometidos com o desenvolvimento do projeto "Sistema de avaliação PACER" neste repositório. O objetivo do projeto é criar uma aplicação desktop simples que permita os usuários alunos avaliarem todos os integrantes de seu grupo nos
 critérios definidos pelo usuário administrador. O projeto inclui a modelagem de um banco de dados relacional. Por meio deste projeto, buscamos solidificar nossos conhecimentos em modelagem de dados e desenvolvimento de software.</p>
 
 ## Índice
@@ -35,7 +35,7 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 <li>Fornecer uma forma de carregar informações referentes aos grupos por meio de arquivo;</li>
 <li>Também deve ser possível incluir ou excluir membros em grupos no caso de realocações;</li>
 <li>Permitir o gerenciamento dos critérios de avaliação. Deve ser possível incluir novos critérios, além de alterar e desativar critérios existentes. Critérios desativados não devem aparecer durante uma avaliação;</li>
-<li>Permitir que o professor cadastre o calendário de Sprints para cada semestre. Em vez de solicitar o número da Sprint em uma avaliação, o sistema deve verificar a data atual e automaticamente assumir que ela está associada à Sprint que acabou de finalizar;</li>
+<li>Permitir que o professor cadastre o calendário de Sprints para cada idSemestre. Em vez de solicitar o número da Sprint em uma avaliação, o sistema deve verificar a data atual e automaticamente assumir que ela está associada à Sprint que acabou de finalizar;</li>
 <li>Usar autenticação por usuário e senha para garantir que cada aluno possa realizar apenas uma avaliação por Sprint e que apenas o professor tenha acesso aos relatórios.</li>
 </ol>
 
@@ -96,7 +96,7 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 ## Termo de Requisitos de Permanência
 
 ### Objetivo: 
-Garantir a continuidade e o comprometimento dos membros da equipe no projeto essencial para a conclusão do semestre.
+Garantir a continuidade e o comprometimento dos membros da equipe no projeto essencial para a conclusão do idSemestre.
 
 ### 1. Reuniões Fixas
 - As reuniões da equipe ocorrerão todas as segundas e quintas-feiras, durante as aulas designadas para a API.
@@ -128,7 +128,7 @@ Garantir a continuidade e o comprometimento dos membros da equipe no projeto ess
 - O não cumprimento dos prazos pode resultar em impactos significativos e deve ser evitado a todo custo.
 
 ### Observação: 
-O projeto é uma parte fundamental para a conclusão do semestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
+O projeto é uma parte fundamental para a conclusão do idSemestre, e o comprometimento de cada membro é essencial para o sucesso coletivo. Contamos com a sua colaboração e dedicação!
 
 <div align="center">
     <img src="assets/footer.png" alt="footer" width="100%" />

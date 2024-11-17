@@ -27,7 +27,7 @@
             </Text>
             <ImageView fitHeight="62.0" fitWidth="76.0" layoutX="405.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../assets/add-semestre.png" />
+                  <Image url="@../../assets/add-idSemestre.png" />
                </image>
             </ImageView>
          </children>

@@ -1,6 +1,7 @@
 package steamducks.SistemaRecap.dao;
 
 import steamducks.SistemaRecap.models.Equipe;
+import steamducks.SistemaRecap.models.Semestre;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class EquipeDAO extends ConexaoDAO {
                 String github = rs.getString("github");
                 int idSemestre = rs.getInt("id_semestre");
 
-                Equipe equipe = new Equipe(id, nome, github, String.valueOf(idSemestre));
+                Equipe equipe = new Equipe(id, nome, github, idSemestre);
                 equipes.add(equipe);
             }
 
@@ -229,7 +230,7 @@ public class EquipeDAO extends ConexaoDAO {
             if (rs.next()) {
                 grupo = new Equipe();
                 grupo.setIdEquipe(rs.getInt("id_equipe")); // Defina o ID da equipe
-                grupo.setSemestre(String.valueOf(rs.getInt("id_semestre")));
+                grupo.setIdSemestre(rs.getInt("id_semestre"));
                 grupo.setNome(rs.getString("nome"));
                 // Preencha outros campos de 'Equipe', se necessário
             }
@@ -298,7 +299,7 @@ public class EquipeDAO extends ConexaoDAO {
                 equipe.setIdEquipe(rs.getInt("id_equipe"));
                 equipe.setNome(rs.getString("nome"));
                 equipe.setGithub(rs.getString("github"));
-                equipe.setSemestre(String.valueOf(rs.getInt("id_semestre")));
+                equipe.setIdSemestre(rs.getInt("id_semestre"));
             }
 
         } catch (SQLException e) {
@@ -316,4 +317,42 @@ public class EquipeDAO extends ConexaoDAO {
         return equipe;
     }
 
+    public List<Equipe> getEquipesPorIdSemestre(int idSemestre) {
+        List<Equipe> equipes = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT * FROM equipe WHERE id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int id_equipe = rs.getInt("id_equipe");
+                String nome = rs.getString("nome");
+                String github = rs.getString("github");
+                int id_semestre = rs.getInt("id_semestre");
+
+
+
+                Equipe equipe = new Equipe(id_equipe, nome, github, id_semestre);
+                equipes.add(equipe);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar equipes para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return equipes;
+    }
 }

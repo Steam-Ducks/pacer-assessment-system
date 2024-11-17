@@ -2,16 +2,22 @@ package steamducks.SistemaRecap.controllers.Equipe;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.EquipeDAO;
 import steamducks.SistemaRecap.dao.UsuarioDAO;
 import steamducks.SistemaRecap.models.Equipe;
 import steamducks.SistemaRecap.models.Usuario;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EditarEquipeController {
@@ -102,7 +108,7 @@ public class EditarEquipeController {
             equipeSelecionado.setGithub(novoGithub);
 
             EquipeDAO dao = new EquipeDAO();
-            dao.atualizarEquipe(equipeSelecionado.getIdEquipe(), novoNome, novoGithub, 1);
+            dao.atualizarEquipe(equipeSelecionado.getIdEquipe(), novoNome, novoGithub, equipeSelecionado.getIdSemestre() );
 
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             for (Usuario usuario : listaUsuarios) {
@@ -157,4 +163,19 @@ public class EditarEquipeController {
         }
     }
 
+    public void adicionarAluno(ActionEvent actionEvent) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SistemaRecap/Equipe/adicionarAlunoView.fxml"));
+                Parent root = fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Sistema RECAP");
+                stage.setScene(new Scene(root));
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+
+    }
+}
 }

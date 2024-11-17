@@ -14,9 +14,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import steamducks.SistemaRecap.dao.EquipeDAO;
+import steamducks.SistemaRecap.dao.SemestreDAO;
 import steamducks.SistemaRecap.models.Equipe;
+import steamducks.SistemaRecap.models.Semestre;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class GerenciarEquipeController {
 
@@ -41,21 +45,49 @@ public class GerenciarEquipeController {
     @FXML
     private TableColumn<Equipe, String> tcGithub;
 
+    @FXML
+    private ComboBox<Semestre> cmb_selSemestre;
+
     private ObservableList<Equipe> listaEquipes = FXCollections.observableArrayList();
+    private ObservableList<Semestre> listaSemestres = FXCollections.observableArrayList();
 
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     @FXML
-    public void initialize() {
+    public void initialize() throws SQLException {
         tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tcGithub.setCellValueFactory(new PropertyValueFactory<>("github"));
-        carregarEquipes();
+
+        carregarSemestres();
+        cmb_selSemestre.setOnAction(event -> atualizarEquipesPorSemestre());
     }
 
     private void carregarEquipes() {
         EquipeDAO equipeDAO = new EquipeDAO();
         listaEquipes.setAll(equipeDAO.getEquipes());
         tbEquipes.setItems(listaEquipes);
+    }
+
+    private void carregarSemestres() throws SQLException {
+        EquipeDAO grupoAlunoDAO = new EquipeDAO();
+        SemestreDAO semestreDAO = new SemestreDAO();
+        List<Semestre> semestres = semestreDAO.getSemestres();
+        listaSemestres.setAll(semestres);
+        cmb_selSemestre.setItems(listaSemestres);
+    }
+
+    private void atualizarEquipesPorSemestre() {
+        Semestre semestreSelecionado = cmb_selSemestre.getValue();
+        if (semestreSelecionado != null) {
+            EquipeDAO equipeDAO = new EquipeDAO();
+            List<Equipe> equipes = equipeDAO.getEquipesPorIdSemestre(semestreSelecionado.getId());
+            listaEquipes.setAll(equipes);
+            tbEquipes.setItems(listaEquipes);
+        } else {
+            listaEquipes.clear();
+            tbEquipes.setItems(listaEquipes);
+            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as equipes.", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
@@ -74,7 +106,7 @@ public class GerenciarEquipeController {
 
             stage.setOnHidden(e -> {
                 contentPane.setEffect(null);
-                carregarEquipes();
+                atualizarEquipesPorSemestre();
             });
 
             stage.show();
@@ -90,7 +122,7 @@ public class GerenciarEquipeController {
         }
         Equipe equipeSelecionado = tbEquipes.getSelectionModel().getSelectedItem();
 
-        if(equipeSelecionado != null) {
+        if (equipeSelecionado != null) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SistemaRecap/Equipe/telaEditarEquipesView.fxml"));
                 Parent root = fxmlLoader.load();
@@ -104,11 +136,14 @@ public class GerenciarEquipeController {
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
                 stage.show();
 
-                stage.setOnHidden(e -> {contentPane.setEffect(null); carregarEquipes();});
+                stage.setOnHidden(e -> {
+                    contentPane.setEffect(null);
+                    atualizarEquipesPorSemestre();
+                });
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-        }else{
+        } else {
             mostrarAlerta("Seleção Inválida", "Selecione uma equipe para editar.", Alert.AlertType.WARNING);
             if (contentPane != null) {
                 contentPane.setEffect(null);

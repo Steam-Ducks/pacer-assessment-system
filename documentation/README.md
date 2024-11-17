@@ -56,9 +56,9 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 2 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 08  | Como um professor, eu quero criar semestres para dividir os grupos e organizar as equipes, de forma a facilitar a gestão e o acompanhamento do progresso dos alunos na API. | 1 | 1 | 5 |
 
 ### Requisitos
-- O professor, quando for criar o semestre, deve selecionar quais critérios serão avaliados no semestre.
+- O professor, quando for criar o idSemestre, deve selecionar quais critérios serão avaliados no idSemestre.
 - O professor pode criar quantos semestres quiser e pode renomea-los quando desejar
-- Deve ser possível associar grupos a um semestre específico.
+- Deve ser possível associar grupos a um idSemestre específico.
 - O professor deve ser capaz de visualizar todos os semestres criados e os grupos associados a ele.
 
 ### Defitionion of done: 
@@ -68,16 +68,16 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ### Definition of ready: 
 - User story claramente definido, incluindo critérios de aceitação.
-- No cadastro do semestre deve ser inserido o nome e os critérios que já foram cadastrados a serem avaliados.
-- wireframe da criação de semestre:<br>
+- No cadastro do idSemestre deve ser inserido o nome e os critérios que já foram cadastrados a serem avaliados.
+- wireframe da criação de idSemestre:<br>
 <img src="WireframePAS-08.JPG" alt="Wireframe PAS - 08" width="50%" />
 
 ## Validações feitas com o Cliente
 
 | Validações                                                              | Respostas                                                                       |
 |-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024" | sim, preciso separar por semestre/turma |
-| Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por semestre ele vai ter acesso a somente uma turma, mas no semestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
+| Seria de seu interesse separar os grupos por turmas? Por exemplo, "Grupos do 2º Semestre de Banco de Dados 2024" | sim, preciso separar por idSemestre/turma |
+| Em relação ao professor que vai acessar ao sistema, ele vai ter acesso a todos os grupos dos alunos de várias turmas diferentes ou somente os grupos de uma turma específica? | Por idSemestre ele vai ter acesso a somente uma turma, mas no idSemestre seguinte a turma será diferente (a não ser que todo mundo reprove) |
 
   ---
   
@@ -124,8 +124,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ### Definition of ready: 
 - User story claramente definido, incluindo critérios de aceitação.
-- Na pontuação da sprint, o professor deve selecionar qual semestre e sprint vai avaliar e o sistema deve listar todas as equipes desse semestres com um caixa de texto que deve ser preenchida com a pontuação.
-- Limite de pontuação é 3 vezes o total de integrantes no grupo multiplicado pelo total de critérios do semestre ( 3 * Quantidade de integrantes do grupo * Quantidade de critérios avaliados)
+- Na pontuação da sprint, o professor deve selecionar qual idSemestre e sprint vai avaliar e o sistema deve listar todas as equipes desse semestres com um caixa de texto que deve ser preenchida com a pontuação.
+- Limite de pontuação é 3 vezes o total de integrantes no grupo multiplicado pelo total de critérios do idSemestre ( 3 * Quantidade de integrantes do grupo * Quantidade de critérios avaliados)
 - wireframe da avaliação do aluno:<br>
 <img src="WireframePAS-12.JPG" alt="Wireframe PAS - 12" width="50%" />
 
@@ -230,7 +230,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ### Requisitos: 
 - O professor deve poder criar diversas sprints.
-- O professor deve vincular a sprint criada a um semestre.
+- O professor deve vincular a sprint criada a um idSemestre.
 - O professor deve poder visualizar as sprints criadas.
 
 ### Defitionion of done: 
@@ -240,7 +240,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 ### Definition of ready: 
 - User story claramente definido, incluindo critérios de aceitação.
-- No cadastro da sprint o professor deve informar para qual semestre está cadastrando a sprint, qual o nome, data de início e data de término da sprint.
+- No cadastro da sprint o professor deve informar para qual idSemestre está cadastrando a sprint, qual o nome, data de início e data de término da sprint.
 - wireframe de gerenciamento do aluno:<br>
 <img src="WireframePAS-09.JPG" alt="Wireframe PAS - 09" width="50%" />
 
@@ -249,8 +249,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 
 | Validações | Respostas |
 |------------|-----------|
-| Prefere definir as datas das sprints ao cadastrar o semestre ou em uma tela separada?| Tanto faz.|
-| As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo semestre muda.|
+| Prefere definir as datas das sprints ao cadastrar o idSemestre ou em uma tela separada?| Tanto faz.|
+| As datas definidas para as sprints serão para todos os projetos (turmas) ou individualmente para cada um?| Todo idSemestre muda.|
 | Em relação a nota do aluno, todos os integrantes, incluindo ele mesmo, vão avaliar. Se por exemplo um grupo com 3 alunos, um em especifico recebeu duas notas 3 e uma nota 1, a média que será exibida será arredondada ou a nota será com casas decimais? Caso arredonde, qual a regra para arredondar? | Arredondado para 1 casa. Arredondamento normal |
 
 ---
@@ -274,7 +274,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 - O professor deve poder gerar o relatório com o mínimo de clicks possível.
 - A tela de exportação de arquivo deve ser a primeira tela que o professor irá visualizar ao acessar o sistema.
 - O professor deve poder gerar quantos arquivos quiser.
-- O professor deve poder filtrar os grupos do relatório por semestre.
+- O professor deve poder filtrar os grupos do relatório por idSemestre.
 
 ### Definition of done:
 - Código funcional disponibilizado no Git.
@@ -329,8 +329,8 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 | 9 | ![#ff0000](https://via.placeholder.com/15/ff0000/000000?text=+) ALTA | PAS - 36 | Como um professor, eu quero cadastrar e gerenciar o calendário das sprints para planejar as datas de início e término de cada sprint, garantindo que os alunos possam se organizar e cumprir os prazos estabelecidos. | 5 | 3 | 1 |
 
 ### Requisitos 
-- O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no semestre.
-- O professor deve vincular as sprints cadastradas a um semestre.
+- O professor deve poder cadastrar um calendário importando um arquivo .CSV com todas as sprints que haverão no idSemestre.
+- O professor deve vincular as sprints cadastradas a um idSemestre.
 - O professor deve poder visualizar as sprints criadas.
 
 ### Defitionion of done: 
