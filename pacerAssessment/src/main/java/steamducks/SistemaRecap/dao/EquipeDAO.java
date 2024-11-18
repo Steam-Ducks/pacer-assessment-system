@@ -151,38 +151,6 @@ public class EquipeDAO extends ConexaoDAO {
         }
     }
 
-
-
-    public int obterIdSemestre(String nomeSemestre) {
-        int idSemestre = -1;
-        Connection con = null;
-
-        try {
-            con = getConnection();
-            String select_sql = "SELECT id_semestre FROM semestre WHERE nome = ?";
-            PreparedStatement pst = con.prepareStatement(select_sql);
-            pst.setString(1, nomeSemestre);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                idSemestre = rs.getInt("id_semestre");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar ID do semestre! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
-
-        return idSemestre;
-    }
-
     public List<String> buscarEquipesPorIdSemestre(int idSemestre) {
         List<String> equipes = new ArrayList<>();
         Connection con = null;
@@ -316,4 +284,33 @@ public class EquipeDAO extends ConexaoDAO {
         return equipe;
     }
 
+    public List<String> buscarEmailsAlunosPorIdEquipe(int idEquipe) {
+        List<String> emails = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT email FROM usuario WHERE id_equipe = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idEquipe);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                emails.add(rs.getString("email"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar emails dos alunos da equipe com ID " + idEquipe + ": " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return emails;
+    }
 }

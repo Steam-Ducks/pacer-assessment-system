@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 import javafx.util.StringConverter;
 
 import steamducks.SistemaRecap.dao.*;
+import steamducks.SistemaRecap.models.Avaliacao;
 import steamducks.SistemaRecap.models.Semestre;
 import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Pontuacao;
@@ -40,6 +41,8 @@ public class AvaliarSprintController {
     private SprintDAO sprintDAO;
     private SemestreDAO semestreDAO;
     private PontuacaoDAO pontuacaoDAO;
+
+    private AvaliacaoDAO avaliacaoDAO = new AvaliacaoDAO();
 
     @FXML
     public void initialize() {
@@ -235,6 +238,21 @@ public class AvaliarSprintController {
 
                 pontuacaoDAO.cadastrarPontuacao(pontuacao);
                 avaliacaoRealizada = true; // Marca que pelo menos uma avaliação foi realizada
+
+                // Registra automaticamente notas como 0 para todos os alunos do grupo
+                List<String> emailsAlunos = equipeDAO.buscarEmailsAlunosPorIdEquipe(idEquipe);
+                List<Integer> criterios = semestreDAO.buscarCriteriosPorIdSemestre(idSemestre);
+
+                for (String emailAvaliador : emailsAlunos) {
+                    for (String emailAvaliado : emailsAlunos) {
+                        if (!emailAvaliador.equals(emailAvaliado)) {
+                            for (int idCriterio : criterios) {
+                                Avaliacao avaliacao = new Avaliacao(0, emailAvaliador, emailAvaliado, idSprint, idCriterio);
+                                avaliacaoDAO.cadastrarOuAtualizarAvaliacao(avaliacao);
+                            }
+                        }
+                    }
+                }
             }
         }
 
