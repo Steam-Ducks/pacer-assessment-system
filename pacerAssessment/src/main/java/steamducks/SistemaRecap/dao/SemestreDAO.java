@@ -11,6 +11,7 @@ public class SemestreDAO {
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
+
     // PUT
     public int criarSemestre(String nome) {
         Connection con = null;
@@ -178,7 +179,6 @@ public class SemestreDAO {
         }
     }
 
-
     public void vincularCriterios(int idSemestre, List<Criterio> criterios) {
         Connection con = null;
 
@@ -267,5 +267,34 @@ public class SemestreDAO {
         return count;
     }
 
+    // New method to fetch criteria by semester ID
+    public List<Integer> buscarCriteriosPorIdSemestre(int idSemestre) {
+        List<Integer> criterios = new ArrayList<>();
+        Connection con = null;
 
+        try {
+            con = getConnection();
+            String query = "SELECT id_criterio FROM semestre_criterio WHERE id_semestre = ?";
+            PreparedStatement pst = con.prepareStatement(query);
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                criterios.add(rs.getInt("id_criterio"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar critérios para o semestre " + idSemestre + "! " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return criterios;
+    }
 }
