@@ -26,4 +26,6 @@ module steamducks.pacerassessment {
     opens steamducks.SistemaRecap.controllers.Sprint to javafx.fxml;
     exports steamducks.SistemaRecap.controllers.Relatorio;
     opens steamducks.SistemaRecap.controllers.Relatorio to javafx.fxml;
+    exports steamducks.SistemaRecap.controllers.Senha;
+    opens steamducks.SistemaRecap.controllers.Senha to javafx.fxml;
 }
