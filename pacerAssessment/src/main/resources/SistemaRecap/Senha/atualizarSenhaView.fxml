@@ -11,8 +11,8 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxWidth="300.0" prefHeight="400.0" prefWidth="400.0" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Senha.AtualizarSenhaController">
-    <Pane layoutY="-7.0" prefHeight="117.0" prefWidth="450.0" style="-fx-background-color: #14213d;">
+<AnchorPane maxWidth="300.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #ffffff;" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Senha.AtualizarSenhaController">
+    <Pane layoutY="-8.0" prefHeight="117.0" prefWidth="450.0" style="-fx-background-color: #14213d;">
         <children>
             <ImageView fitHeight="88.0" fitWidth="81.0" layoutX="185.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                 <image>
@@ -41,7 +41,7 @@
             <Font size="16.0" />
         </font>
     </Button>
-   <PasswordField fx:id="txtFieldSenha" layoutX="51.0" layoutY="266.0" prefHeight="35.0" prefWidth="339.0" promptText="Nova senha">
+   <PasswordField fx:id="txtFieldSenha" layoutX="51.0" layoutY="261.0" prefHeight="35.0" prefWidth="339.0" promptText="Nova senha">
       <styleClass>
          <String fx:value="txtFieldLogin" />
          <String fx:value="panneLogin" />
