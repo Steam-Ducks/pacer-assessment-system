@@ -214,5 +214,32 @@ public class UsuarioDAO extends ConexaoDAO {
         return usuarios;
     }
 
+    public boolean removerDaEquipe(Usuario usuario) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE usuario SET id_equipe = NULL WHERE email = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+
+            pst.setString(1, usuario.getEmail());
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao remover da equipe: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+
 
 }

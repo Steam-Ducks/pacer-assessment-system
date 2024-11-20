@@ -41,13 +41,13 @@
       <Button fx:id="btnCancelar" layoutX="314.0" layoutY="482.0" mnemonicParsing="false" onAction="#cancelarEdicao" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtNome" layoutX="158.0" layoutY="115.0" prefHeight="26.0" prefWidth="310.0" promptText="Nome da Equipe" />
       <TextField fx:id="txtGithub" layoutX="158.0" layoutY="159.0" prefHeight="26.0" prefWidth="310.0" promptText="https://github.com/" />
-      <TableView fx:id="tbUsuarios" layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
-        <columns>
-          <TableColumn fx:id="tcNome" prefWidth="151.0" text="Nome" />
-            <TableColumn fx:id="tcEmail" prefWidth="190.0" text="E-mail" />
-            <TableColumn fx:id="tcSenha" minWidth="0.0" prefWidth="145.0" text="Senha" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnAdicionarAluno" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#adicionarAluno" style="-fx-background-color: #14213d;" styleClass="buttonCancelar" text="Adicionar Aluno" textFill="WHITE" />
+        <TableView fx:id="tbUsuarios" layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
+            <columns>
+                <TableColumn fx:id="tcNome" prefWidth="177.0" text="Nome" />
+                <TableColumn fx:id="tcEmail" prefWidth="215.0" text="E-mail" />
+                <TableColumn fx:id="tcRemover" prefWidth="107.0" text="Remover" />
+            </columns>
+        </TableView>
+      <Button fx:id="btnAdicionarAluno" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#adicionarAluno" style="-fx-background-color: #14213d;" styleClass="buttonCancelar" text="Selecionar Aluno" textFill="WHITE" />
    </children>
 </AnchorPane>
