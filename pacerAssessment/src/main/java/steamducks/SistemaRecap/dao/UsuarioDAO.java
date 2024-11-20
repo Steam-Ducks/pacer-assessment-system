@@ -120,6 +120,33 @@ public class UsuarioDAO extends ConexaoDAO {
         }
     }
 
+    // UPDATE PASSWORD
+    public boolean atualizarSenha(String email, String novaSenha) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE usuario SET senha = ? WHERE email = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+            pst.setString(1, novaSenha);
+            pst.setString(2, email);
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar senha: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
     // DELETE
     public boolean excluirUsuario(String email) {
         Connection con = null;

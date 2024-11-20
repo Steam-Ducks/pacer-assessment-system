@@ -5,11 +5,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.LoginDAO;
@@ -28,6 +25,9 @@ public class TeladeLoginController {
 
     @FXML
     private Button btnEntrar;
+
+    @FXML
+    private Hyperlink esqueciMinhaSenha;
 
     private LoginDAO loginDAO;
 
@@ -61,6 +61,34 @@ public class TeladeLoginController {
             showLoginErrorPopup();
         }
     }
+
+    @FXML
+    void abrirResetSenha(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SistemaRecap/Senha/atualizarSenhaView.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Sistema RECAP");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.centerOnScreen();
+
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
+            Stage currentStage = (Stage) btnEntrar.getScene().getWindow();
+            currentStage.getScene().getRoot().setEffect(new javafx.scene.effect.GaussianBlur(10));
+
+            stage.setOnHidden(e -> currentStage.getScene().getRoot().setEffect(null));
+
+            stage.showAndWait();
+
+        } catch (IOException e) {
+            System.out.println("Erro ao abrir a tela de atualização de senha.");
+            e.printStackTrace();
+        }
+    }
+
 
     private void loadView(String fxmlFile, String nomeTela, Usuario usuario) {
         try {
