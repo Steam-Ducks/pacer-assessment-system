@@ -260,7 +260,7 @@ public class UsuarioDAO extends ConexaoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return usuariosSemEquipe;
     }
+
 }

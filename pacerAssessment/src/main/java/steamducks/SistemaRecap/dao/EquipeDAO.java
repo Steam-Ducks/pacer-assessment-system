@@ -398,4 +398,34 @@ public class EquipeDAO extends ConexaoDAO {
         }
     }
 
+    public List<String> buscarEmailsAlunosPorIdEquipe(int idEquipe) {
+        List<String> emails = new ArrayList<>();
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String select_sql = "SELECT email FROM usuario WHERE id_equipe = ?";
+            PreparedStatement pst = con.prepareStatement(select_sql);
+            pst.setInt(1, idEquipe);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                emails.add(rs.getString("email"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar emails dos alunos da equipe com ID " + idEquipe + ": " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+
+        return emails;
+    }
+
 }
