@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="550.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Equipe.EditarEquipeController">
+<AnchorPane prefHeight="550.0" prefWidth="600.0" styleClass="contentPanePopUp" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Equipe.EditarEquipeController">
     <children>
         <Pane prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: #14213d;">
             <children>
@@ -46,12 +41,13 @@
       <Button fx:id="btnCancelar" layoutX="314.0" layoutY="482.0" mnemonicParsing="false" onAction="#cancelarEdicao" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtNome" layoutX="158.0" layoutY="115.0" prefHeight="26.0" prefWidth="310.0" promptText="Nome da Equipe" />
       <TextField fx:id="txtGithub" layoutX="158.0" layoutY="159.0" prefHeight="26.0" prefWidth="310.0" promptText="https://github.com/" />
-      <TableView fx:id="tbUsuarios" layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
-        <columns>
-          <TableColumn fx:id="tcNome" prefWidth="151.0" text="Nome" />
-            <TableColumn fx:id="tcEmail" prefWidth="190.0" text="E-mail" />
-            <TableColumn fx:id="tcSenha" minWidth="0.0" prefWidth="146.0" text="Senha" />
-        </columns>
-      </TableView>
+        <TableView fx:id="tbUsuarios" layoutX="39.0" layoutY="213.0" prefHeight="241.0" prefWidth="520.0" styleClass="listViewGerenciar">
+            <columns>
+                <TableColumn fx:id="tcNome" prefWidth="177.0" text="Nome" />
+                <TableColumn fx:id="tcEmail" prefWidth="215.0" text="E-mail" />
+                <TableColumn fx:id="tcRemover" prefWidth="107.0" text="Remover" />
+            </columns>
+        </TableView>
+      <Button fx:id="btnAdicionarAluno" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#adicionarAluno" style="-fx-background-color: #14213d;" styleClass="buttonCancelar" text="Selecionar Aluno" textFill="WHITE" />
    </children>
 </AnchorPane>

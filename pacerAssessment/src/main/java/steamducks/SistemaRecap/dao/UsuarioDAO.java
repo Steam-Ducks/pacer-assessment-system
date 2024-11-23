@@ -241,4 +241,51 @@ public class UsuarioDAO extends ConexaoDAO {
 
         return usuarios;
     }
-}
+public boolean removerDaEquipe(Usuario usuario) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE usuario SET id_equipe = NULL WHERE email = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+
+            pst.setString(1, usuario.getEmail());
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao remover da equipe: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    public List<Usuario> buscarUsuariosSemEquipe() {
+        List<Usuario> usuariosSemEquipe = new ArrayList<>();
+        String sql = "SELECT * FROM usuario WHERE id_equipe IS NULL AND is_professor = 0";
+        ; // Ajuste conforme sua estrutura de banco
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setEmail(rs.getString("email"));
+                usuario.setIdEquipe(rs.getInt("id_equipe"));
+                usuario.setNome(rs.getString("nome"));
+                // Preencha outros atributos, se necessário
+                usuariosSemEquipe.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return usuariosSemEquipe;
+    }

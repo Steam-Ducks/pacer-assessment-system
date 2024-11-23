@@ -8,28 +8,28 @@ public class Equipe {
     private String nome;
     private String github;
     private ObservableList<Usuario> usuarios;
-    private String semestre;
+    private int idSemestre;
 
-    public Equipe(int idEquipe, String nome, String github, ObservableList<Usuario> usuarios, String semestre) {
+    public Equipe(int idEquipe, String nome, String github, ObservableList<Usuario> usuarios, int idSemestre) {
         this.idEquipe = idEquipe;
         this.nome = nome;
         this.github = github;
         this.usuarios = usuarios;
-        this.semestre = semestre;
+        this.idSemestre = idSemestre;
     }
 
-    public Equipe(String nome, String github, ObservableList<Usuario> usuarios, String semestre) {
+    public Equipe(String nome, String github, ObservableList<Usuario> usuarios, int idSemestre) {
         this.nome = nome;
         this.github = github;
         this.usuarios = usuarios;
-        this.semestre = semestre;
+        this.idSemestre = idSemestre;
     }
 
-    public Equipe(int idEquipe, String nome, String github, String semestre) {
+    public Equipe(int idEquipe, String nome, String github, int idSemestre) {
         this.idEquipe = idEquipe;
         this.nome = nome;
         this.github = github;
-        this.semestre = semestre;
+        this.idSemestre = idSemestre;
     }
 
     public Equipe() {
@@ -60,12 +60,12 @@ public class Equipe {
         this.github = github;
     }
 
-    public String getSemestre() {
-        return semestre;
+    public int getIdSemestre() {
+        return idSemestre;
     }
 
-    public void setSemestre(String semestre) {
-        this.semestre = semestre;
+    public void setIdSemestre(int idSemestre) {
+        this.idSemestre = idSemestre;
     }
 
     public ObservableList<Usuario> getUsuarios() {
