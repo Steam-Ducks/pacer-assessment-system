@@ -11,12 +11,12 @@
 <AnchorPane minHeight="419.0" prefHeight="419.0" prefWidth="592.0" styleClass="contentPanePopUp" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Equipe.AdicionarAlunoController">
    <children>
       <Label layoutX="42.0" layoutY="107.0" prefHeight="28.0" prefWidth="169.0" styleClass="titleLabel" text="Alunos disponiveis" textFill="#14213d" />
-      <ListView fx:id="listViewOpcoes" layoutX="41.0" layoutY="135.0" prefHeight="197.0" prefWidth="202.0" style="-fx-border-color: #E5E5E5;" styleClass="listViewGerenciar" />
-      <ListView fx:id="listViewCriterios" layoutX="341.0" layoutY="134.0" prefHeight="197.0" prefWidth="211.0" style="-fx-border-color: #E5E5E5;" styleClass="listViewGerenciar" stylesheets="@../../styles.css" />
-      <Button fx:id="btnAdd" layoutX="271.0" layoutY="189.0" mnemonicParsing="false" onAction="#addOption" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: #14213d;" text="&gt;" textFill="WHITE" />
-      <Button fx:id="btnRemove" layoutX="271.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeOption" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: #14213d;" text="&lt;" textFill="WHITE" />
-      <Button fx:id="btnSalvar" layoutX="441.0" layoutY="354.0" mnemonicParsing="false" onAction="#SalvarAlteracoes" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
-      <Button fx:id="btnCancelar" layoutX="302.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelarAlteracoes" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
+      <ListView fx:id="listViewDisponiveis" layoutX="41.0" layoutY="135.0" prefHeight="197.0" prefWidth="202.0" style="-fx-border-color: #E5E5E5;" styleClass="listViewGerenciar" />
+      <ListView fx:id="listViewSelecionados" layoutX="341.0" layoutY="134.0" prefHeight="197.0" prefWidth="211.0" style="-fx-border-color: #E5E5E5;" styleClass="listViewGerenciar" stylesheets="@../../styles.css" />
+      <Button fx:id="btnAdd" layoutX="271.0" layoutY="189.0" mnemonicParsing="false" onAction="#adicionarAluno" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: #14213d;" text="&gt;" textFill="WHITE" />
+      <Button fx:id="btnRemove" layoutX="271.0" layoutY="224.0" mnemonicParsing="false" onAction="#removerAluno" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: #14213d;" text="&lt;" textFill="WHITE" />
+      <Button fx:id="btnSalvar" layoutX="441.0" layoutY="354.0" mnemonicParsing="false" onAction="#salvarEquipe" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
+      <Button fx:id="btnCancelar" layoutX="302.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelarOperacao" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <Label layoutX="341.0" layoutY="106.0" prefHeight="28.0" prefWidth="182.0" styleClass="titleLabel" text="Alunos adicionados" textFill="#14213d" />
       <Pane prefHeight="86.0" prefWidth="592.0" style="-fx-background-color: #14213d;">
          <children>

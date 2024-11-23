@@ -240,6 +240,27 @@ public class UsuarioDAO extends ConexaoDAO {
         }
     }
 
+    public List<Usuario> buscarUsuariosSemEquipe() {
+        List<Usuario> usuariosSemEquipe = new ArrayList<>();
+        String sql = "SELECT * FROM usuario WHERE id_equipe IS NULL AND is_professor = 0";
+        ; // Ajuste conforme sua estrutura de banco
 
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
+            while (rs.next()) {
+                Usuario usuario = new Usuario();
+                usuario.setEmail(rs.getString("email"));
+                usuario.setIdEquipe(rs.getInt("id_equipe"));
+                usuario.setNome(rs.getString("nome"));
+                // Preencha outros atributos, se necessário
+                usuariosSemEquipe.add(usuario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuariosSemEquipe;
+    }
 }

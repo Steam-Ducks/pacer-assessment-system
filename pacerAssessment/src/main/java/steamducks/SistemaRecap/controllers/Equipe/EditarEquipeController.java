@@ -12,20 +12,17 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.EquipeDAO;
 import steamducks.SistemaRecap.dao.UsuarioDAO;
 import steamducks.SistemaRecap.models.Equipe;
 import steamducks.SistemaRecap.models.Usuario;
-
 import java.io.IOException;
 import java.util.List;
 
-import static java.sql.Types.NULL;
-
 public class EditarEquipeController {
+
 
     @FXML
     private Button btnConfirmar;
@@ -44,9 +41,6 @@ public class EditarEquipeController {
 
     @FXML
     private TableColumn<Usuario, String> tcNome;
-
-    @FXML
-    private TableColumn<Usuario, String> tcSenha;
 
     @FXML
     private TableColumn<Usuario, String> tcEmail;
@@ -150,8 +144,8 @@ public class EditarEquipeController {
                     mostrarAlerta("Erro ao atualizar o usuário: " + usuario.getNome(), "Erro");
                 }
             }
-
-            cancelarEdicao();
+            Stage stage = (Stage) btnConfirmar.getScene().getWindow();
+            stage.close();
         } else {
             mostrarAlerta("Erro ao editar a equipe", "Erro");
         }
@@ -184,22 +178,25 @@ public class EditarEquipeController {
 
     }
 
-    private void atualizarUsuarioNoBanco(Usuario usuario) {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        boolean sucesso = usuarioDAO.atualizarUsuario(usuario);
-        if (!sucesso) {
-            mostrarAlerta("Erro ao atualizar usuário", "Erro");
-        }
-    }
+
 
     public void adicionarAluno(ActionEvent actionEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SistemaRecap/Equipe/adicionarAlunoView.fxml"));
             Parent root = fxmlLoader.load();
+
+            // Acessar a controladora da tela de Adicionar Aluno
+            AdicionarAlunoController controller = fxmlLoader.getController();
+            int idEquipeSelecionado = equipeSelecionado.getIdEquipe();
+            controller.setIdEquipe(idEquipeSelecionado); // Passar o ID da equipe
+
             Stage stage = new Stage();
-            stage.setTitle("Sistema RECAP");
+            stage.setTitle("Sistema RECAP - Adicionar Aluno");
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
+            // Atualiza os dados da equipe ao fechar a tela de adicionar aluno
+            stage.setOnCloseRequest(event -> atualizarDadosEquipe());
 
             stage.show();
         } catch (IOException ex) {
@@ -207,16 +204,42 @@ public class EditarEquipeController {
         }
     }
 
-    private void removerUsuarioDaEquipe(Usuario usuario) {
-        // Atualizar o id_equipe do usuário para null no banco de dados
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        boolean sucesso = usuarioDAO.removerDaEquipe(usuario);
 
-        if (sucesso) {
-            // Atualizar a lista de usuários na tabela
-            listaUsuarios.remove(usuario);
-        } else {
-            mostrarAlerta("Erro ao remover o usuário da equipe", "Erro");
+
+    private void removerUsuarioDaEquipe(Usuario usuario) {
+        // Criar um popup de confirmação
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar remoção");
+        alert.setHeaderText(null);
+        alert.setContentText("Tem certeza de que deseja remover o usuário " + usuario.getNome() + " da equipe?");
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+
+        // Mostrar o popup e aguardar a resposta
+        ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+        if (result == ButtonType.OK) {
+            // Se o usuário confirmar, remover do banco de dados
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean sucesso = usuarioDAO.removerDaEquipe(usuario);
+
+            if (sucesso) {
+                // Atualizar a lista de usuários na tabela
+                listaUsuarios.remove(usuario);
+            } else {
+                mostrarAlerta("Erro ao remover o usuário da equipe", "Erro");
+            }
         }
     }
+
+    public void atualizarDadosEquipe() {
+        if (equipeSelecionado != null) {
+            carregarUsuarios(equipeSelecionado.getIdEquipe());
+            txtNome.setText(equipeSelecionado.getNome());
+            txtGithub.setText(equipeSelecionado.getGithub());
+        }
+    }
+
+
 }
