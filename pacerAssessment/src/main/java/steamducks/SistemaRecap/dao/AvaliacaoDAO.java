@@ -225,10 +225,10 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
     public int getMediaAlunoPorCriterio(int idSprint, String emailAluno, int idCriterio) {
         String sql = """
-            SELECT AVG(nota) AS media
-            FROM avaliacao
-            WHERE id_sprint = ? AND email_avaliado = ? AND id_criterio = ?
-        """;
+        SELECT AVG(nota) AS media
+        FROM avaliacao
+        WHERE id_sprint = ? AND email_avaliado = ? AND id_criterio = ?
+    """;
 
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -239,8 +239,8 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    double media = rs.getInt("media");
-                    return (int) ((media >= 2.5) ? Math.ceil(media) : Math.floor(media));
+                    double media = rs.getDouble("media");
+                    return (int) Math.round(media);
                 }
             }
         } catch (SQLException e) {

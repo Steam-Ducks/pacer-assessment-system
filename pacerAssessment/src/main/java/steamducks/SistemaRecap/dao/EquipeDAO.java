@@ -154,38 +154,6 @@ public class EquipeDAO extends ConexaoDAO {
         }
     }
 
-
-
-    public int obterIdSemestre(String nomeSemestre) {
-        int idSemestre = -1;
-        Connection con = null;
-
-        try {
-            con = getConnection();
-            String select_sql = "SELECT id_semestre FROM semestre WHERE nome = ?";
-            PreparedStatement pst = con.prepareStatement(select_sql);
-            pst.setString(1, nomeSemestre);
-            ResultSet rs = pst.executeQuery();
-
-            if (rs.next()) {
-                idSemestre = rs.getInt("id_semestre");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao buscar ID do semestre! " + e.getMessage(), e);
-        } finally {
-            try {
-                if (con != null)
-                    con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
-            }
-        }
-
-        return idSemestre;
-    }
-
     public List<String> buscarEquipesPorIdSemestre(int idSemestre) {
         List<String> equipes = new ArrayList<>();
         Connection con = null;
@@ -319,7 +287,7 @@ public class EquipeDAO extends ConexaoDAO {
         return equipe;
     }
 
-    public List<Equipe> getEquipesPorIdSemestre(int idSemestre) {
+ public List<Equipe> getEquipesPorIdSemestre(int idSemestre) {
         List<Equipe> equipes = new ArrayList<>();
         Connection con = null;
 
@@ -425,7 +393,6 @@ public class EquipeDAO extends ConexaoDAO {
             }
         }
 
-        return emails;
-    }
-
+        return emails;
+    }
 }

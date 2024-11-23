@@ -1,6 +1,7 @@
 package steamducks.SistemaRecap.dao;
 
 import steamducks.SistemaRecap.models.Usuario;
+import steamducks.SistemaRecap.utils.Utils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class UsuarioDAO extends ConexaoDAO {
             for (Usuario usuario : usuarios) {
                 pstUsuario.setString(1, usuario.getNome());
                 pstUsuario.setString(2, usuario.getEmail());
-                pstUsuario.setString(3, usuario.getSenha());
+                pstUsuario.setString(3, Utils.hashPassword(usuario.getSenha()));
                 pstUsuario.setBoolean(4, usuario.isProfessor());
                 pstUsuario.setLong(5, idEquipe);
                 pstUsuario.executeUpdate();
@@ -99,7 +100,7 @@ public class UsuarioDAO extends ConexaoDAO {
             PreparedStatement pst = con.prepareStatement(updateSql);
             pst.setString(1, usuario.getNome());
             pst.setString(2, usuario.getEmail());
-            pst.setString(3, usuario.getSenha());
+            pst.setString(3, Utils.hashPassword(usuario.getSenha()));
             pst.setBoolean(4, usuario.isProfessor());
             pst.setInt(5, usuario.getIdEquipe());
             pst.setString(6, usuario.getEmail());
@@ -110,6 +111,33 @@ public class UsuarioDAO extends ConexaoDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Erro ao atualizar usuário: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
+            }
+        }
+    }
+
+    // UPDATE PASSWORD
+    public boolean atualizarSenha(String email, String novaSenha) {
+        Connection con = null;
+
+        try {
+            con = getConnection();
+            String updateSql = "UPDATE usuario SET senha = ? WHERE email = ?";
+            PreparedStatement pst = con.prepareStatement(updateSql);
+            pst.setString(1, Utils.hashPassword(novaSenha));
+            pst.setString(2, email);
+
+            int rowsAffected = pst.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao atualizar senha: " + e.getMessage(), e);
         } finally {
             try {
                 if (con != null) con.close();
@@ -213,8 +241,7 @@ public class UsuarioDAO extends ConexaoDAO {
 
         return usuarios;
     }
-
-    public boolean removerDaEquipe(Usuario usuario) {
+public boolean removerDaEquipe(Usuario usuario) {
         Connection con = null;
 
         try {
@@ -261,6 +288,4 @@ public class UsuarioDAO extends ConexaoDAO {
             e.printStackTrace();
         }
         return usuariosSemEquipe;
-    }
-
-}
+    }

@@ -50,12 +50,12 @@
             <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="#14213d" layoutX="30.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="avaliações e impulsione a educação de seus" wrappingWidth="332.0">
+      <Text fill="#14213d" layoutX="30.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="avaliações e impulsione a educação de seus" wrappingWidth="332.0">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Hyperlink layoutX="114.0" layoutY="331.0" text="Esqueci minha senha" textFill="#14213d" />
+      <Hyperlink fx:id="esqueciMinhaSenha" layoutX="114.0" layoutY="331.0" onAction="#abrirResetSenha" text="Esqueci minha senha" textFill="#14213d" />
       <Text fill="#14213d" layoutX="73.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="subTituloPrincipal" text="alunos para um futuro brilhante!" wrappingWidth="233.0">
          <font>
             <Font size="14.0" />

@@ -1,13 +1,9 @@
 package steamducks.SistemaRecap.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Types;
-
+import steamducks.SistemaRecap.utils.Utils;
 import steamducks.SistemaRecap.models.Usuario;
+
+import java.sql.*;
 
 public class LoginDAO {
 
@@ -30,7 +26,7 @@ public class LoginDAO {
                     try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
                         insertStmt.setString(1, "Admin");
                         insertStmt.setString(2, ADMIN_EMAIL);
-                        insertStmt.setString(3, ADMIN_PASSWORD);
+                        insertStmt.setString(3, Utils.hashPassword(ADMIN_PASSWORD));
                         insertStmt.setNull(4, Types.INTEGER);
                         insertStmt.setBoolean(5, true);
 
@@ -57,7 +53,7 @@ public class LoginDAO {
             String query = "SELECT * FROM usuario WHERE email = ? AND senha = ?";
             try (PreparedStatement stmt = connection.prepareStatement(query)) {
                 stmt.setString(1, email);
-                stmt.setString(2, senha);
+                stmt.setString(2, Utils.hashPassword(senha));
                 ResultSet rs = stmt.executeQuery();
 
                 if (rs.next()) {
