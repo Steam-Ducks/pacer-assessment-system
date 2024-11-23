@@ -1,6 +1,7 @@
 package steamducks.SistemaRecap.dao;
 
 import steamducks.SistemaRecap.models.Usuario;
+import steamducks.SistemaRecap.utils.Utils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class UsuarioDAO extends ConexaoDAO {
             for (Usuario usuario : usuarios) {
                 pstUsuario.setString(1, usuario.getNome());
                 pstUsuario.setString(2, usuario.getEmail());
-                pstUsuario.setString(3, usuario.getSenha());
+                pstUsuario.setString(3, Utils.hashPassword(usuario.getSenha()));
                 pstUsuario.setBoolean(4, usuario.isProfessor());
                 pstUsuario.setLong(5, idEquipe);
                 pstUsuario.executeUpdate();
@@ -99,7 +100,7 @@ public class UsuarioDAO extends ConexaoDAO {
             PreparedStatement pst = con.prepareStatement(updateSql);
             pst.setString(1, usuario.getNome());
             pst.setString(2, usuario.getEmail());
-            pst.setString(3, usuario.getSenha());
+            pst.setString(3, Utils.hashPassword(usuario.getSenha()));
             pst.setBoolean(4, usuario.isProfessor());
             pst.setInt(5, usuario.getIdEquipe());
             pst.setString(6, usuario.getEmail());
@@ -128,7 +129,7 @@ public class UsuarioDAO extends ConexaoDAO {
             con = getConnection();
             String updateSql = "UPDATE usuario SET senha = ? WHERE email = ?";
             PreparedStatement pst = con.prepareStatement(updateSql);
-            pst.setString(1, novaSenha);
+            pst.setString(1, Utils.hashPassword(novaSenha));
             pst.setString(2, email);
 
             int rowsAffected = pst.executeUpdate();
@@ -240,6 +241,4 @@ public class UsuarioDAO extends ConexaoDAO {
 
         return usuarios;
     }
-
-
 }
