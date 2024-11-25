@@ -5,7 +5,7 @@ import steamducks.SistemaRecap.models.Usuario;
 
 import java.sql.*;
 
-public class LoginDAO {
+public class LoginDAO extends ConexaoDAO {
 
     private static final String ADMIN_EMAIL = "admin";
     private static final String ADMIN_PASSWORD = "1234";
@@ -40,10 +40,6 @@ public class LoginDAO {
         } catch (SQLException e) {
             System.out.println("Erro criando user admin: " + e.getMessage());
         }
-    }
-
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
     }
 
     public Usuario login(String email, String senha) {

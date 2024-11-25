@@ -5,11 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriteriosDAO {
-
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class CriteriosDAO extends ConexaoDAO {
 
     public int adicionarCriterio(Criterio criterio) {
         String insertCriterioSql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
@@ -102,7 +98,6 @@ public class CriteriosDAO {
         }
     }
 
-    // Metodo para verificar se já existe um critério com o mesmo nome
     public boolean existeCriterioComNome(String nome) {
         String sql = "SELECT COUNT(*) FROM criterio WHERE nome = ?";
 

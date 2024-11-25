@@ -7,11 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SprintDAO {
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class SprintDAO extends ConexaoDAO {
 
     public Sprint criarSprint(Sprint sprint) {
         Connection con = null;
@@ -54,21 +50,21 @@ public class SprintDAO {
 
         return sprint;
     }
-    public static List<Sprint> buscarSprint() {
-        List<Sprint> sprints = new ArrayList<>(); // Lista que vamos salvar os critérios que retornar do banco
-        String selectSQL = "SELECT * FROM sprint"; // Select que vamos fazer no banco
+
+    public List<Sprint> buscarSprint() {
+        List<Sprint> sprints = new ArrayList<>();
+        String selectSQL = "SELECT * FROM sprint";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-             ResultSet resultSet = preparedStatement.executeQuery()) // Aqui salva o resultado do select na variável resultSet
-        {
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                Sprint sprint = new Sprint(); // Cria um novo objeto Sprint e usa os dados do resultado para preencher os valores
+                Sprint sprint = new Sprint();
                 sprint.setNome(resultSet.getString("nome"));
                 sprint.setIdSprint(resultSet.getInt("id_sprint"));
                 sprint.setDataInicio(resultSet.getObject("data_inicio", LocalDate.class));
-                sprint.setDataFim(resultSet.getObject("data_fim", LocalDate.class)); // Corrigido para buscar a coluna data_fim
+                sprint.setDataFim(resultSet.getObject("data_fim", LocalDate.class));
                 sprint.setIdSemestre(resultSet.getInt("id_semestre"));
                 sprints.add(sprint);
             }
@@ -99,18 +95,17 @@ public class SprintDAO {
         } catch (SQLException e) {
             throw new RuntimeException("nenhuma sprint encontrado");
         }
-
     }
 
-    public void removerSprint(int id_sprint) { //passando o id do criterio que queremos bigodar
-        String deleteSprintSql = "DELETE FROM sprint WHERE id_sprint = ?"; //query que deleta
+    public void removerSprint(int id_sprint) {
+        String deleteSprintSql = "DELETE FROM sprint WHERE id_sprint = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstSprint = con.prepareStatement(deleteSprintSql)) {
 
-            pstSprint.setInt(1, id_sprint); // passa o id
+            pstSprint.setInt(1, id_sprint);
 
-            int linhasAfetadas = pstSprint.executeUpdate(); // ve se apagou algo ou nao
+            int linhasAfetadas = pstSprint.executeUpdate();
 
             if (linhasAfetadas == 0) {
                 throw new RuntimeException("Nenhum sprint encontrado com o ID: " + id_sprint);
@@ -122,16 +117,13 @@ public class SprintDAO {
         }
     }
 
-    //Busca Sprint por ID do semestre, mosterando assim apenas as sprints cadastradas para aquele semestre
-
-    public static List<Sprint> buscarSprintPorID(int idSemestre) {
+    public List<Sprint> buscarSprintPorID(int idSemestre) {
         List<Sprint> sprints = new ArrayList<>();
-        String selectSQL = "SELECT * FROM sprint WHERE id_semestre = ?"; // Filtro por id_semestre
+        String selectSQL = "SELECT * FROM sprint WHERE id_semestre = ?";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
 
-            // Definindo o parâmetro id_semestre na consulta
             preparedStatement.setInt(1, idSemestre);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -171,7 +163,6 @@ public class SprintDAO {
                 sprint.setIdSprint(rs.getInt("id_sprint"));
                 sprint.setNome(rs.getString("nome"));
                 sprint.setIdSemestre(rs.getInt("id_semestre"));
-                // Preencha outros campos da Sprint, se necessário
             }
 
         } catch (SQLException e) {
@@ -179,8 +170,7 @@ public class SprintDAO {
             throw new RuntimeException("Erro ao buscar sprint " + nomeSprint + " para o semestre " + idSemestre + "! " + e.getMessage(), e);
         } finally {
             try {
-                if (con != null)
-                    con.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);
@@ -197,7 +187,7 @@ public class SprintDAO {
         try {
             con = getConnection();
 
-            String select_sql = "SELECT * FROM semestre";  // Consulta para pegar todos os semestres
+            String select_sql = "SELECT * FROM semestre";
             PreparedStatement pst = con.prepareStatement(select_sql);
             ResultSet rs = pst.executeQuery();
 
@@ -205,7 +195,6 @@ public class SprintDAO {
                 Semestre semestre = new Semestre();
                 semestre.setId(rs.getInt("id_semestre"));
                 semestre.setNome(rs.getString("nome"));
-                // Preencha outros campos de Semestre, se necessário
                 semestres.add(semestre);
             }
 
@@ -225,5 +214,4 @@ public class SprintDAO {
 
         return semestres;
     }
-
 }
