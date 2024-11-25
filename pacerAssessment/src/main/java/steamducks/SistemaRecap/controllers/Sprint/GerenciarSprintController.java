@@ -97,7 +97,7 @@ public class GerenciarSprintController {
         } else {
             listaSprint.clear();
             tableSprints.setItems(listaSprint);
-            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as equipes.", Alert.AlertType.WARNING);
+            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
         }
     }
 
