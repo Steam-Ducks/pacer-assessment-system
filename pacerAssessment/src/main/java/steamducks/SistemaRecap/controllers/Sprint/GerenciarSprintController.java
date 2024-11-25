@@ -13,11 +13,12 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import steamducks.SistemaRecap.dao.SprintDAO;
+import steamducks.SistemaRecap.dao.*;
 import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Semestre;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -47,16 +48,14 @@ public class GerenciarSprintController {
     private TableColumn<Sprint, String> nomeColumn;
 
     @FXML
-    private TableColumn<Sprint, String> descricaoColumn;
-
-    @FXML
     private TableColumn<Sprint, String> dataInicioColumn;
 
     @FXML
     private TableColumn<Sprint, String> dataFimColumn;
 
+
     @FXML
-    private TableColumn<Sprint, String> semestreColumn;
+    private ComboBox<Semestre> cmb_selSemestre;
 
     private ObservableList<Sprint> sprintData = FXCollections.observableArrayList();
 
@@ -65,22 +64,41 @@ public class GerenciarSprintController {
 
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
-    public void initialize() {
+    private ObservableList<Sprint> listaSprint = FXCollections.observableArrayList();
+    private ObservableList<Semestre> listaSemestres = FXCollections.observableArrayList();
+
+    public void initialize() throws SQLException {
         sprintDao = new SprintDAO();
-        carregarSprints();
+
+        carregarSemestres();
+        cmb_selSemestre.setOnAction(event -> atualizarSprintPorSemestre());
 
         nomeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
         dataInicioColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataInicio().toString()));
         dataFimColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDataFim().toString()));
 
-        // Modificação na coluna semestre para exibir o nome ao invés do ID
-        semestreColumn.setCellValueFactory(cellData -> {
-            Integer idSemestre = cellData.getValue().getIdSemestre();
-            String semestreNome = semestreMap.get(idSemestre);
-            return new SimpleStringProperty(semestreNome != null ? semestreNome : "Semestre não encontrado");
-        });
-
         tableSprints.setItems(sprintData);
+    }
+
+    private void carregarSemestres() throws SQLException {
+        SemestreDAO semestreDAO = new SemestreDAO();
+        List<Semestre> semestres = semestreDAO.getSemestres();
+        listaSemestres.setAll(semestres);
+        cmb_selSemestre.setItems(listaSemestres);
+    }
+
+    private void atualizarSprintPorSemestre() {
+        Semestre semestreSelecionado = cmb_selSemestre.getValue();
+        if (semestreSelecionado != null) {
+            SprintDAO sprintDAO = new SprintDAO();
+            List<Sprint> sprint = sprintDAO.buscarSprintPorID(semestreSelecionado.getId());
+            listaSprint.setAll(sprint);
+            tableSprints.setItems(listaSprint);
+        } else {
+            listaSprint.clear();
+            tableSprints.setItems(listaSprint);
+            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
+        }
     }
 
     private void carregarSprints() {
