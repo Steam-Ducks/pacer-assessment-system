@@ -36,7 +36,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <AnchorPane layoutX="374.0" prefHeight="509.0" prefWidth="378.0" styleClass="secondPane">
+      <AnchorPane layoutX="374.0" layoutY="-12.0" prefHeight="519.0" prefWidth="378.0" styleClass="secondPane">
          <children>
             <ImageView fitHeight="292.0" fitWidth="311.0" layoutX="43.0" layoutY="109.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -61,5 +61,10 @@
             <Font size="14.0" />
          </font>
       </Text>
+      <ImageView fitHeight="35.0" fitWidth="71.0" layoutX="151.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../assets/1.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
