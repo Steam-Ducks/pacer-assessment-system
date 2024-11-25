@@ -288,4 +288,5 @@ public boolean removerDaEquipe(Usuario usuario) {
             e.printStackTrace();
         }
         return usuariosSemEquipe;
-    }
+    }
+}
