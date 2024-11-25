@@ -393,6 +393,6 @@ public class EquipeDAO extends ConexaoDAO {
             }
         }
 
-        return emails;
-    }
+        return emails;
+    }
 }
