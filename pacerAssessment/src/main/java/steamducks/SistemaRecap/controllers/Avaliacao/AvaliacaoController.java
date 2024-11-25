@@ -4,23 +4,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.AvaliacaoDAO;
+import steamducks.SistemaRecap.dao.CriteriosDAO;
 import steamducks.SistemaRecap.models.Avaliacao;
 import steamducks.SistemaRecap.models.Criterio;
 import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Usuario;
+import javafx.geometry.Pos;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -51,7 +52,7 @@ public class AvaliacaoController {
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     private AvaliacaoDAO avaliacaoDAO;
-
+    private CriteriosDAO criteriosDAO;
     private Usuario alunoAvaliador;
 
     private int totalPontosDisponiveis;
@@ -90,27 +91,7 @@ public class AvaliacaoController {
 
     private void configurarColunas() {
         tcCriterio.setCellValueFactory(new PropertyValueFactory<>("nome"));
-
-        ObservableList<Integer> notas = FXCollections.observableArrayList(0, 1, 2, 3);
-        tcNota.setCellValueFactory(new PropertyValueFactory<>("nota"));
-        tcNota.setCellFactory(ComboBoxTableCell.forTableColumn(notas));
-
-        tcNota.setOnEditCommit(event -> {
-            Criterio criterio = event.getRowValue();
-            int novaNota = event.getNewValue();
-            int notaAntiga = criterio.getNota();
-
-            int pontosUtilizados = obterPontosUtilizados();
-            int pontosRestantes = totalPontosDisponiveis - pontosUtilizados + notaAntiga;
-
-            if (novaNota <= pontosRestantes) {
-                criterio.setNota(novaNota);
-                atualizarPontosTotais();
-            } else {
-                // Revert the change if the new value exceeds the available points
-                event.getTableView().getItems().set(event.getTablePosition().getRow(), criterio);
-            }
-        });
+        tcNota.setCellFactory(column -> new RadioButtonTableCell());
     }
 
     @FXML
@@ -128,11 +109,14 @@ public class AvaliacaoController {
 
             totalPontosDisponiveis = totalPontosSprint - pontosJaAtribuidos;
 
+            // Fetch criterios with their notes for the current sprint and semester
             List<Criterio> criteriosComNotas = avaliacaoDAO.getNotasPorCriterio(
                     alunoAvaliador.getEmail(),
                     alunoAvaliado.getEmail(),
-                    sprintAtiva.getIdSprint()
+                    sprintAtiva.getIdSprint(),
+                    sprintAtiva.getIdSemestre()
             );
+
             ObservableList<Criterio> criteriosObservableList = FXCollections.observableArrayList(criteriosComNotas);
             tvAvaliacao.setItems(criteriosObservableList);
             tvAvaliacao.setEditable(true);
@@ -198,4 +182,50 @@ public class AvaliacaoController {
         }
     }
 
+    private class RadioButtonTableCell extends TableCell<Criterio, Integer> {
+        private final ToggleGroup toggleGroup = new ToggleGroup();
+        private final RadioButton[] radioButtons = new RadioButton[4];
+        private final HBox hBox = new HBox(40); // espacamento entre os radiobuttons
+
+        public RadioButtonTableCell() {
+            hBox.setPadding(new Insets(2, 5, 2, 15)); // (top, right, bottom, left)
+            hBox.setAlignment(Pos.CENTER_LEFT);
+
+            for (int i = 0; i < 4; i++) {
+                radioButtons[i] = new RadioButton(String.valueOf(i));
+                radioButtons[i].setToggleGroup(toggleGroup);
+                radioButtons[i].setUserData(i);
+                hBox.getChildren().add(radioButtons[i]);
+            }
+
+            toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    int selectedValue = (int) newValue.getUserData();
+                    Criterio criterio = getTableView().getItems().get(getIndex());
+                    int notaAntiga = criterio.getNota();
+                    int pontosUtilizados = obterPontosUtilizados();
+                    int pontosRestantes = totalPontosDisponiveis - pontosUtilizados + notaAntiga;
+
+                    if (selectedValue <= pontosRestantes) {
+                        criterio.setNota(selectedValue);
+                        atualizarPontosTotais();
+                    } else {
+                        toggleGroup.selectToggle(oldValue);
+                    }
+                }
+            });
+        }
+
+        @Override
+        protected void updateItem(Integer item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+                setGraphic(null);
+            } else {
+                Criterio criterio = getTableView().getItems().get(getIndex());
+                radioButtons[criterio.getNota()].setSelected(true);
+                setGraphic(hBox);
+            }
+        }
+    }
 }

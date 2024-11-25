@@ -77,8 +77,9 @@ public class VisualizarAvaliacaoController {
         if (alunoSelecionado != null && sprintSelecionada != null) {
             String emailAluno = alunoSelecionado.getEmail();
             int idSprint = sprintSelecionada.getIdSprint();
+            int idSemestre = sprintSelecionada.getIdSemestre();
 
-            List<Criterio> criterios = avaliacaoDAO.getNotasPorCriterio(usuario.getEmail(), emailAluno, idSprint);
+            List<Criterio> criterios = avaliacaoDAO.getNotasPorCriterio(usuario.getEmail(), emailAluno, idSprint, idSemestre);
             for (Criterio criterio : criterios) {
                 int mediaNota = avaliacaoDAO.getMediaAlunoPorCriterio(idSprint, emailAluno, criterio.getId());
                 criterio.setNota(mediaNota);
