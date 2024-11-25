@@ -109,6 +109,11 @@
                   <Image url="@../../assets/sprint.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="78.0" layoutX="76.0" layoutY="729.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
