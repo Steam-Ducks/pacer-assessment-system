@@ -241,7 +241,8 @@ public class UsuarioDAO extends ConexaoDAO {
 
         return usuarios;
     }
-public boolean removerDaEquipe(Usuario usuario) {
+
+    public boolean removerDaEquipe(Usuario usuario) {
         Connection con = null;
 
         try {
@@ -288,4 +289,5 @@ public boolean removerDaEquipe(Usuario usuario) {
             e.printStackTrace();
         }
         return usuariosSemEquipe;
-    }
+}
+}
