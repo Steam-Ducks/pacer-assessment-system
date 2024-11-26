@@ -211,7 +211,80 @@ public class RelatoriosDAO {
         return alunos;
     }
 
+    public int getMediaAlunoPorCriterio(int idSprint, String emailAluno, int idCriterio) {
+        String sql = """
+        SELECT AVG(nota) AS media
+        FROM avaliacao
+        WHERE id_sprint = ? AND email_avaliado = ? AND id_criterio = ?
+    """;
 
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idSprint);
+            stmt.setString(2, emailAluno);
+            stmt.setInt(3, idCriterio);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    double media = rs.getDouble("media");
+                    return (int) Math.round(media);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao calcular a média do aluno por critério", e);
+        }
+
+        return 0;
+    }
+
+    public List<String> buscarNomesCriteriosPorSprint(int idSprint) {
+        String sql = """
+        SELECT c.nome
+        FROM criterio c
+        INNER JOIN avaliacao a ON c.id_criterio = a.id_criterio
+        WHERE a.id_sprint = ?
+        GROUP BY c.id_criterio, c.nome
+    """;
+
+        List<String> criterios = new ArrayList<>();
+
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idSprint);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    criterios.add(rs.getString("nome"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar critérios por sprint", e);
+        }
+
+        return criterios;
+    }
+
+    public int buscarIdCriterioPorNome(String nomeCriterio) {
+        String sql = "SELECT id_criterio FROM criterio WHERE nome = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, nomeCriterio);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("id_criterio");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar ID do critério por nome", e);
+        }
+
+        return -1; // Retorna -1 se não encontrar
+    }
 
 
 }

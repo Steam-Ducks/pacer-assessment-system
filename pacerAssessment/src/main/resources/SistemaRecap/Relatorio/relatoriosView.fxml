@@ -18,29 +18,30 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <Text fill="#14213d" layoutX="57.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Equipes" wrappingWidth="78.90666198730469">
+        <Text fill="#14213d" layoutX="38.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Equipes" wrappingWidth="78.90666198730469">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmbEquipes" layoutX="136.0" layoutY="214.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Equipe" />
-        <Text fill="#14213d" layoutX="57.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Semestres" wrappingWidth="78.90666198730469">
+        <ComboBox fx:id="cmbEquipes" layoutX="38.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Equipe" />
+        <Text fill="#14213d" layoutX="352.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Semestres" wrappingWidth="78.90666198730469">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <Text fill="#14213d" layoutX="478.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Sprints" wrappingWidth="78.90666198730469">
+        <Text fill="#14213d" layoutX="668.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Sprints" wrappingWidth="78.90666198730469">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmbSprint" layoutX="527.0" layoutY="215.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Sprint" />
-        <ComboBox fx:id="cmbSemestre" layoutX="136.0" layoutY="259.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione o Semestre" />
-        <Button fx:id="btnExportarCsv" layoutX="581.0" layoutY="273.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="139.0" styleClass="buttonLoginEntrar" stylesheets="@../../styles.css" text="Exportar CSV" textFill="WHITE" />
-      <TableView fx:id="tableAlunos" layoutX="52.0" layoutY="357.0" prefHeight="246.0" prefWidth="852.0">
-        <columns>
-          <TableColumn fx:id="columnAlunos" prefWidth="636.7999687194824" text="Alunos" />
-        </columns>
-      </TableView>
+        <ComboBox fx:id="cmbSprint" layoutX="668.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Sprint" />
+        <ComboBox fx:id="cmbSemestre" layoutX="352.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione o Semestre" />
+        <Button fx:id="btnExportarCsv" layoutX="777.0" layoutY="601.0" mnemonicParsing="false" onAction="#exportarCSV" prefHeight="40.0" prefWidth="139.0" styleClass="buttonLoginEntrar" stylesheets="@../../styles.css" text="Exportar CSV" textFill="WHITE" />
+        <TableView fx:id="tableAlunos" layoutX="38.0" layoutY="259.0" prefHeight="319.0" prefWidth="879.0">
+            <columns>
+                <TableColumn fx:id="columnAlunos" editable="false" prefWidth="878.4000122070313" resizable="false" text="Alunos" />
+            </columns>
+        </TableView>
+      <Button layoutX="543.0" layoutY="601.0" mnemonicParsing="false" onAction="#exportarAlunoCSV" prefHeight="40.0" prefWidth="203.0" styleClass="buttonLoginEntrar" stylesheets="@../../styles.css" text=" Exportar Aluno CSV " textFill="WHITE" />
     </children>
 </AnchorPane>

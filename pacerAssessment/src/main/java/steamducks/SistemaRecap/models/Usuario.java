@@ -6,6 +6,7 @@ public class Usuario {
     private String senha;
     private int idEquipe;
     private boolean isProfessor;
+    private int media;
 
     // Construtor
     public Usuario(String nome, String email, String senha, int idEquipe, boolean isProfessor) {
@@ -60,7 +61,13 @@ public class Usuario {
         this.isProfessor = isProfessor;
     }
 
+    public int getMedia() {
+        return media;
+    }
 
+    public void setMedia(int media) {
+        this.media = media;
+    }
 
     @Override
     public String toString() {
