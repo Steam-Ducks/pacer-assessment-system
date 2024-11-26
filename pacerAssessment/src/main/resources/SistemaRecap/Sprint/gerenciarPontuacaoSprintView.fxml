@@ -19,14 +19,9 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmb_SelTurma" layoutX="38.0" layoutY="197.0" prefHeight="26.0" prefWidth="211.0" promptText="Selecionar Semestre" styleClass="subTituloPrincipal" />
-        <ComboBox fx:id="cmb_SelSprint" layoutX="298.0" layoutY="197.0" prefHeight="26.0" prefWidth="211.0" promptText="Selecionar Sprint" styleClass="subTituloPrincipal" />
-        <Button fx:id="btn_Salvar" layoutX="800.0" layoutY="595.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Button>
-        <Button fx:id="btn_Cancelar" layoutX="663.0" layoutY="595.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE">
+        <ComboBox fx:id="cmb_SelTurma" layoutX="38.0" layoutY="197.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Semestre" styleClass="subTituloPrincipal" />
+        <ComboBox fx:id="cmb_SelSprint" layoutX="313.0" layoutY="197.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Sprint" styleClass="subTituloPrincipal" />
+        <Button fx:id="btn_Salvar" layoutX="807.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
             <font>
                 <Font size="15.0" />
             </font>

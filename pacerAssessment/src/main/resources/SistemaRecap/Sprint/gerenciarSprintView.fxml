@@ -30,6 +30,6 @@
         <Button fx:id="btn_AdcSprint" layoutX="532.0" layoutY="591.0" mnemonicParsing="false" onAction="#adicionarSprint" styleClass="buttonVerde" text="Cadastrar" textFill="WHITE" />
         <Button fx:id="btn_EditSprint" layoutX="668.0" layoutY="591.0" mnemonicParsing="false" styleClass="buttonEditar" text="Editar" textFill="WHITE" />
         <Button fx:id="btn_RmvSprint" layoutX="804.0" layoutY="591.0" mnemonicParsing="false" onAction="#removerSprint" styleClass="buttonExcluir" text="Excluir" textFill="WHITE" />
-        <ComboBox fx:id="cmb_selSemestre" layoutX="36.0" layoutY="185.0" prefHeight="30.0" prefWidth="195.0" promptText="Selecionar Semestre" />
+        <ComboBox fx:id="cmb_selSemestre" layoutX="36.0" layoutY="185.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Semestre" />
     </children>
 </AnchorPane>

@@ -125,7 +125,7 @@ public class GerenciarSprintController {
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Cadastrar Sprint");
+            stage.setTitle("Sistema RECAP");
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 

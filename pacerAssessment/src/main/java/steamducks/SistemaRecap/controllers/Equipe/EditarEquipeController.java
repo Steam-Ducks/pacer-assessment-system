@@ -194,7 +194,7 @@ public class EditarEquipeController {
             controller.setCallback(this::atualizarDadosEquipe);
 
             Stage stage = new Stage();
-            stage.setTitle("Sistema RECAP - Adicionar Aluno");
+            stage.setTitle("Sistema RECAP");
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
@@ -211,7 +211,7 @@ public class EditarEquipeController {
     private void removerUsuarioDaEquipe(Usuario usuario) {
         // Criar um popup de confirmação
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmar remoção");
+        alert.setTitle("Sistema RECAP");
         alert.setHeaderText(null);
         alert.setContentText("Tem certeza de que deseja remover o usuário " + usuario.getNome() + " da equipe?");
 
