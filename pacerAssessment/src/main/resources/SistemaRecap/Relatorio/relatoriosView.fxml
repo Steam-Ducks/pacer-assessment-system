@@ -18,13 +18,13 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <Text fill="#14213d" layoutX="38.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Equipes" wrappingWidth="78.90666198730469">
+        <Text fill="#14213d" layoutX="352.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Equipes" wrappingWidth="78.90666198730469">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmbEquipes" layoutX="38.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Equipe" />
-        <Text fill="#14213d" layoutX="352.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Semestres" wrappingWidth="78.90666198730469">
+        <ComboBox fx:id="cmbEquipes" layoutX="352.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione uma Equipe" />
+        <Text fill="#14213d" layoutX="38.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtRelatorios" text="Semestres" wrappingWidth="78.90666198730469">
             <font>
                 <Font size="14.0" />
             </font>
@@ -34,8 +34,8 @@
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmbSprint" layoutX="668.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione a Sprint" />
-        <ComboBox fx:id="cmbSemestre" layoutX="352.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione o Semestre" />
+        <ComboBox fx:id="cmbSprint" layoutX="668.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione uma Sprint" />
+        <ComboBox fx:id="cmbSemestre" layoutX="38.0" layoutY="211.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecione o Semestre" />
         <Button fx:id="btnExportarCsv" layoutX="777.0" layoutY="601.0" mnemonicParsing="false" onAction="#exportarCSV" prefHeight="40.0" prefWidth="139.0" styleClass="buttonLoginEntrar" stylesheets="@../../styles.css" text="Exportar CSV" textFill="WHITE" />
         <TableView fx:id="tableAlunos" layoutX="38.0" layoutY="259.0" prefHeight="319.0" prefWidth="879.0">
             <columns>

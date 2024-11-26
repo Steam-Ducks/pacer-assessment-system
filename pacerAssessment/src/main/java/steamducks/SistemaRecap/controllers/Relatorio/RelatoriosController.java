@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,13 +55,13 @@ public class RelatoriosController {
 
         // Listener para carregar equipes, sprints e alunos ao selecionar um semestre
         cmbSemestre.valueProperty().addListener((obs, oldVal, newVal) -> {
+            limparEquipesESprints();
             if (newVal != null) {
                 int idSemestre = buscarIdSemestre(newVal);
                 carregarEquipes(idSemestre);
                 carregarSprints(idSemestre);
                 carregarAlunosPorSemestre(idSemestre);
             } else {
-                limparEquipesESprints();
                 limparTabela();
             }
         });
@@ -161,7 +162,6 @@ public class RelatoriosController {
         }
     }
 
-
     private int buscarIdSemestre(String nomeSemestre) {
         try {
             List<Semestre> semestres = relatoriosDAO.buscarTodosSemestres();
@@ -201,13 +201,17 @@ public class RelatoriosController {
         return -1; // Retorna -1 se não encontrar
     }
 
-
-
     @FXML
     private void exportarCSV() {
+        // Verificar se a sprint está selecionada
+        if (cmbSprint.getValue() == null) {
+            emitirAlerta("Erro", "Selecione uma Sprint antes de exportar o CSV.");
+            return;
+        }
+
         // Obter os alunos da tabela
         ObservableList<Usuario> alunos = tableAlunos.getItems();
-        int idSprint = buscarIdSprint(cmbSprint.getValue()); // Método para pegar o idSprint
+        int idSprint = buscarIdSprint(cmbSprint.getValue());
 
         // Buscar os nomes dos critérios dinamicamente do banco
         List<String> criterios = relatoriosDAO.buscarNomesCriteriosPorSprint(idSprint);
@@ -255,17 +259,23 @@ public class RelatoriosController {
         }
     }
 
+
     @FXML
     private void exportarAlunoCSV() {
-        // Obter o aluno selecionado na tabela
-        Usuario alunoSelecionado = tableAlunos.getSelectionModel().getSelectedItem();
-
-        if (alunoSelecionado == null) {
-            System.err.println("Nenhum aluno selecionado!");
-            return; // Retorna se nenhum aluno estiver selecionado
+        // Verificar se a sprint está selecionada
+        if (cmbSprint.getValue() == null) {
+            emitirAlerta("Erro", "Selecione uma Sprint antes de exportar o CSV do aluno.");
+            return;
         }
 
-        int idSprint = buscarIdSprint(cmbSprint.getValue()); // Método para pegar o idSprint
+        // Verificar se um aluno está selecionado
+        Usuario alunoSelecionado = tableAlunos.getSelectionModel().getSelectedItem();
+        if (alunoSelecionado == null) {
+            emitirAlerta("Erro", "Selecione um aluno antes de exportar o CSV.");
+            return;
+        }
+
+        int idSprint = buscarIdSprint(cmbSprint.getValue()); // Metodo para pegar o idSprint
 
         // Buscar os nomes dos critérios dinamicamente do banco
         List<String> criterios = relatoriosDAO.buscarNomesCriteriosPorSprint(idSprint);
@@ -311,10 +321,28 @@ public class RelatoriosController {
     }
 
 
-    private void limparEquipesESprints() {
-        cmbEquipes.getItems().clear();
-        cmbSprint.getItems().clear();
+    private void emitirAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
     }
+
+    private void limparEquipesESprints() {
+        // Redefinir a seleção atual para null
+        cmbEquipes.setValue(null);
+        cmbEquipes.getItems().clear();
+        cmbEquipes.setPromptText("Selecione uma equipe"); // Reconfigura o texto padrão
+
+        cmbSprint.setValue(null);
+        cmbSprint.getItems().clear();
+        cmbSprint.setPromptText("Selecione uma sprint"); // Reconfigura o texto padrão
+    }
+
+
+
+
 
     private void limparTabela() {
         tableAlunos.getItems().clear();
