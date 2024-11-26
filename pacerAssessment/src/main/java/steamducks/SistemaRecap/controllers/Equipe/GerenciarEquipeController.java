@@ -69,7 +69,6 @@ public class GerenciarEquipeController {
     }
 
     private void carregarSemestres() throws SQLException {
-        EquipeDAO grupoAlunoDAO = new EquipeDAO();
         SemestreDAO semestreDAO = new SemestreDAO();
         List<Semestre> semestres = semestreDAO.getSemestres();
         listaSemestres.setAll(semestres);
