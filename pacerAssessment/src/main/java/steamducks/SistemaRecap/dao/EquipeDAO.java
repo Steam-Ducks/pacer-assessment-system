@@ -287,7 +287,7 @@ public class EquipeDAO extends ConexaoDAO {
         return equipe;
     }
 
- public List<Equipe> getEquipesPorIdSemestre(int idSemestre) {
+    public List<Equipe> getEquipesPorIdSemestre(int idSemestre) {
         List<Equipe> equipes = new ArrayList<>();
         Connection con = null;
 
@@ -303,8 +303,6 @@ public class EquipeDAO extends ConexaoDAO {
                 String nome = rs.getString("nome");
                 String github = rs.getString("github");
                 int id_semestre = rs.getInt("id_semestre");
-
-
 
                 Equipe equipe = new Equipe(id_equipe, nome, github, id_semestre);
                 equipes.add(equipe);
@@ -325,7 +323,6 @@ public class EquipeDAO extends ConexaoDAO {
 
         return equipes;
     }
-
 
     public boolean adicionarUsuarioAEquipe(int idEquipe, List<Usuario> usuarios) {
         if (usuarios == null || usuarios.isEmpty()) {

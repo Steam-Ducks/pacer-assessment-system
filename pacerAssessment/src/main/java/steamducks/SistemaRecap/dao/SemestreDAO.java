@@ -7,10 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SemestreDAO {
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class SemestreDAO extends ConexaoDAO {
 
     // PUT
     public int criarSemestre(String nome) {
@@ -105,8 +102,7 @@ public class SemestreDAO {
             throw new RuntimeException("Erro ao buscar semestres! " + e.getMessage(), e);
         } finally {
             try {
-                if (con != null)
-                    con.close();
+                if (con != null) con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Erro ao fechar conexão: " + e.getMessage(), e);

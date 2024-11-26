@@ -22,7 +22,7 @@
                <children>
                   <AnchorPane layoutX="-33.0" layoutY="-2.0" prefHeight="60.0" prefWidth="1054.0" style="-fx-background-color: #14213d;">
                      <children>
-                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="996.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" styleClass="buttonSairMenuPrincipal" stylesheets="@../../styles.css" text="Sair" textFill="WHITE">
+                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="980.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" prefHeight="30.0" prefWidth="80.0" styleClass="buttonSairMenuPrincipal" stylesheets="@../../styles.css" text="Sair" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -30,17 +30,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <ImageView fitHeight="34.0" fitWidth="31.0" layoutX="819.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../assets/user.png" />
-                           </image>
-                        </ImageView>
-                        <Text fx:id="saudacaoAluno" fill="WHITE" layoutX="857.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="983.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="986.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../assets/sair.png" />
                            </image>
@@ -61,37 +51,49 @@
                   <Image url="@../../assets/logo-dark.png" />
                </image>
             </ImageView>
-            <Label fx:id="nomeAluno" layoutX="36.0" layoutY="257.0" text="Aluno Exemplo" textFill="WHITE" />
-            <Label fx:id="emailAluno" layoutX="36.0" layoutY="289.0" text="usuario@fatec.sp.gov.br" textFill="WHITE" wrapText="true" />
-            <Button fx:id="btnAvaliar" graphicTextGap="0.0" layoutX="-3.0" layoutY="342.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#avaliar" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../../styles.css" text="Avalie sua equipe" textFill="WHITE">
+            <Label fx:id="nomeAluno" layoutX="36.0" layoutY="242.0" style="-fx-font-family: Poppins;" text="Aluno Exemplo" textFill="WHITE" />
+            <Label fx:id="emailAluno" layoutX="36.0" layoutY="274.0" style="-fx-font-family: Poppins;" text="usuario@fatec.sp.gov.br" textFill="WHITE" wrapText="true" />
+            <Button fx:id="btnAvaliar" graphicTextGap="0.0" layoutX="-3.0" layoutY="321.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#avaliar" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../../styles.css" text="Avalie sua equipe" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
             </Button>
-            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/criterios.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="13.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Minhas Informações">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Text>
-            <ImageView fitHeight="15.0" fitWidth="25.0" layoutX="13.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="15.0" fitWidth="25.0" layoutX="14.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/usuario.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="16.0" fitWidth="15.0" layoutX="13.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="16.0" fitWidth="15.0" layoutX="14.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../assets/email.png" />
                </image>
             </ImageView>
-            <Line endX="100.0" layoutX="115.0" layoutY="340.0" startX="-100.0" stroke="WHITE" />
+            <Line endX="100.0" fill="WHITE" layoutX="115.0" layoutY="319.0" startX="-100.0" stroke="WHITE" />
+            <ImageView fitHeight="43.0" fitWidth="78.0" layoutX="76.0" layoutY="729.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/2.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="saudacaoAluno" fill="WHITE" layoutX="15.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="" wrappingWidth="204.5999755859375">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnSuasMedias" graphicTextGap="0.0" layoutX="-3.0" layoutY="381.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirMediaAluno" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../../styles.css" text="Suas médias" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="16.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="20.0" fitWidth="45.0" layoutX="15.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../assets/student.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>

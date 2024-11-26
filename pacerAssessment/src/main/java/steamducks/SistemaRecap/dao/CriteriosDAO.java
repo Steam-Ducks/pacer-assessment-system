@@ -5,11 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CriteriosDAO {
-
-    public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class CriteriosDAO extends ConexaoDAO {
 
     public int adicionarCriterio(Criterio criterio) {
         String insertCriterioSql = "INSERT INTO criterio (nome, descricao) VALUES (?, ?)";
@@ -62,6 +58,26 @@ public class CriteriosDAO {
 
         return criterios;
     }
+    public List<Criterio> getCriteriosPorSemestre(int idSemestre) {
+        String sql = "SELECT * FROM criterio WHERE id_semestre = ?";
+        List<Criterio> criterios = new ArrayList<>();
+        try (Connection con = getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Criterio criterio = new Criterio();
+                criterio.setId(rs.getInt("id"));
+                criterio.setNome(rs.getString("nome"));
+                criterio.setId(rs.getInt("id_semestre"));
+                criterios.add(criterio);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar critérios por semestre: " + e.getMessage(), e);
+        }
+        return criterios;
+    }
 
     public void removerCriterio(int idCriterio) {
         String deleteCriterioSql = "DELETE FROM criterio WHERE id_criterio = ?";
@@ -102,7 +118,6 @@ public class CriteriosDAO {
         }
     }
 
-    // Metodo para verificar se já existe um critério com o mesmo nome
     public boolean existeCriterioComNome(String nome) {
         String sql = "SELECT COUNT(*) FROM criterio WHERE nome = ?";
 

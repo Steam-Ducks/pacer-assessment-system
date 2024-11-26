@@ -158,7 +158,7 @@ public class GerenciarSemestreController {
                 e.printStackTrace();
             }
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione um semestre para editar.", AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Selecione um semestre para editar.", AlertType.WARNING);
         }
     }
 
@@ -171,7 +171,7 @@ public class GerenciarSemestreController {
 
         if (semestreSelecionado != null) {
             Alert confirmacao = new Alert(AlertType.CONFIRMATION);
-            confirmacao.setTitle("Confirmação de exclusão");
+            confirmacao.setTitle("Sistema RECAP");
 
             Stage stage = (Stage) confirmacao.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
@@ -198,7 +198,7 @@ public class GerenciarSemestreController {
                 }
             });
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione um semestre para excluir.", AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Selecione um semestre para excluir.", AlertType.WARNING);
 
             if (contentPane != null) {
                 contentPane.setEffect(null);

@@ -45,15 +45,17 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
 
 
-    public List<Criterio> getNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint) {
+    public List<Criterio> getNotasPorCriterio(String emailAvaliador, String emailAvaliado, int idSprint, int idSemestre) {
         List<Criterio> criteriosComNota = new ArrayList<>();
         String sql = """
         SELECT c.id_criterio, c.nome, c.descricao, COALESCE(a.nota, 0) AS nota
         FROM criterio c
         LEFT JOIN avaliacao a ON c.id_criterio = a.id_criterio
-            AND a.email_avaliador = ? 
+            AND a.email_avaliador = ?
             AND a.email_avaliado = ?
             AND a.id_sprint = ?
+        INNER JOIN semestre_criterio sc ON c.id_criterio = sc.id_criterio
+        WHERE sc.id_semestre = ?
     """;
 
         try (Connection conn = getConnection();
@@ -62,6 +64,7 @@ public class AvaliacaoDAO extends ConexaoDAO {
             stmt.setString(1, emailAvaliador);
             stmt.setString(2, emailAvaliado);
             stmt.setInt(3, idSprint);
+            stmt.setInt(4, idSemestre);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {

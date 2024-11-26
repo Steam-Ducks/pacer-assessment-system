@@ -6,11 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PontuacaoDAO {
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/sistema_recap", "admin", "1234");
-    }
+public class PontuacaoDAO extends ConexaoDAO {
 
     public Pontuacao cadastrarPontuacao(Pontuacao pontuacao) {
         Connection con = null;
@@ -52,19 +48,18 @@ public class PontuacaoDAO {
         return pontuacao;
     }
 
-    public static List<Pontuacao> buscarPoutuacao() {
-        List<Pontuacao> pontuacoes = new ArrayList<>(); // Lista que vamos salvar os critérios que retornar do banco
-        String selectSQL = "SELECT * FROM pontuacao"; // Select que vamos fazer no banco
+    public List<Pontuacao> buscarPontuacao() {
+        List<Pontuacao> pontuacoes = new ArrayList<>();
+        String selectSQL = "SELECT * FROM pontuacao";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSQL);
-             ResultSet resultSet = preparedStatement.executeQuery()) // Aqui salva o resultado do select na variável resultSet
-        {
+             ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                Pontuacao pontuacao = new Pontuacao(); // Cria um novo objeto Sprint e usa os dados do resultado para preencher os valores
+                Pontuacao pontuacao = new Pontuacao();
                 pontuacao.setId(resultSet.getInt("id_pontuacao"));
-                pontuacao.setPontos(Double.parseDouble(resultSet.getString("pontos")));
+                pontuacao.setPontos(resultSet.getDouble("pontos"));
                 pontuacao.setIdSprint(resultSet.getInt("id_sprint"));
                 pontuacao.setIdEquipe(resultSet.getInt("id_equipe"));
                 pontuacoes.add(pontuacao);
@@ -85,7 +80,7 @@ public class PontuacaoDAO {
              PreparedStatement pstPontuacao = con.prepareStatement(updatePontuacaoSql)) {
 
             pstPontuacao.setDouble(1, pontuacao.getPontos());
-            pstPontuacao.setInt(2, pontuacao.getId()); // Definindo o ID da pontuação para atualizar
+            pstPontuacao.setInt(2, pontuacao.getId());
 
             int linhasAfetadas = pstPontuacao.executeUpdate();
             if (linhasAfetadas == 0) {
@@ -105,7 +100,7 @@ public class PontuacaoDAO {
             pst.setInt(2, idSprint);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1) > 0; // Retorna true se já existe uma pontuação
+                return rs.getInt(1) > 0;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -113,6 +108,4 @@ public class PontuacaoDAO {
         }
         return false;
     }
-
-
 }

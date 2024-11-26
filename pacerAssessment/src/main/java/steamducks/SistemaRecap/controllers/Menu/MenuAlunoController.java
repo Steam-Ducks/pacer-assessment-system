@@ -34,6 +34,9 @@ public class MenuAlunoController {
     private Button btnLogout;
 
     @FXML
+    private Button btnSuasMedias;
+
+    @FXML
     private Button btnAvaliar;
 
     private Usuario usuarioLogado;

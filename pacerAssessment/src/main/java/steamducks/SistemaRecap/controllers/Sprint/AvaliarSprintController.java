@@ -77,7 +77,6 @@ public class AvaliarSprintController {
             }
         });
 
-        btn_Cancelar.setOnAction(event -> fecharJanela());
         btn_Salvar.setOnAction(event -> verificarCampos());
     }
 
@@ -139,15 +138,10 @@ public class AvaliarSprintController {
         }
     }
 
-
-    private void fecharJanela() {
-        ((Stage) btn_Cancelar.getScene().getWindow()).close();
-    }
-
     private void verificarCampos() {
         if (cmb_SelTurma.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
+            alert.setTitle("Sistema RECAP");
             alert.setHeaderText("Nenhuma turma selecionada");
             alert.setContentText("Você deve selecionar uma turma antes de salvar a avaliação.");
 
@@ -159,7 +153,7 @@ public class AvaliarSprintController {
 
         if (cmb_SelSprint.getValue() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
+            alert.setTitle("Sistema RECAP");
             alert.setHeaderText("Nenhuma sprint selecionada");
             alert.setContentText("Você deve selecionar uma sprint antes de salvar a avaliação.");
 
@@ -177,7 +171,7 @@ public class AvaliarSprintController {
                             if (textFieldNode instanceof TextField textField) {
                                 if (textField.getText().isEmpty()) {
                                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                                    alert.setTitle("Erro");
+                                    alert.setTitle("Sistema RECAP");
                                     alert.setHeaderText("Campo de nota em branco");
                                     alert.setContentText("Você deve preencher todos os campos de nota antes de salvar a avaliação.");
 
@@ -204,7 +198,7 @@ public class AvaliarSprintController {
 
         if (sprintSelecionada == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
+            alert.setTitle("Sistema RECAP");
             alert.setHeaderText("Sprint não encontrada");
             alert.setContentText("A sprint selecionada não foi encontrada para a turma escolhida.");
             alert.showAndWait();
@@ -223,7 +217,7 @@ public class AvaliarSprintController {
                 // Verifica se já existe pontuação
                 if (pontuacaoDAO.pontuacaoJaExiste(idEquipe, idSprint)) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Aviso");
+                    alert.setTitle("Sistema RECAP");
                     alert.setHeaderText("Pontuação já atribuída");
                     alert.setContentText("A equipe " + label.getText() + " já possui pontuação para esta sprint.");
                     alert.showAndWait();
@@ -260,9 +254,11 @@ public class AvaliarSprintController {
         if (avaliacaoRealizada) {
             String nomeSemestre = cmb_SelTurma.getValue().getNome();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Sucesso");
+            alert.setTitle("Sistema RECAP");
             alert.setHeaderText("Avaliação concluída");
             alert.setContentText("A avaliação foi salva com sucesso para a turma " + nomeSemestre + " na " + nomeSprint + "!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
             alert.showAndWait();
         }
     }

@@ -41,7 +41,11 @@ public class AtualizarSenhaController {
             boolean sucesso = passwordDAO.atualizarSenha(email, novaSenha);
 
             if (sucesso) {
-                showAlert("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
+                Alert.AlertType tipo = showAlert("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
+                if (tipo == Alert.AlertType.INFORMATION) {
+                    // Fecha a janela apenas se o alerta for do tipo INFORMATION
+                    fecharJanela();
+                }
             } else {
                 showAlert("Erro", "E-mail não encontrado. Verifique e tente novamente.", Alert.AlertType.ERROR);
             }
@@ -50,7 +54,7 @@ public class AtualizarSenhaController {
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType type) {
+    private Alert.AlertType showAlert(String title, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -59,5 +63,11 @@ public class AtualizarSenhaController {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
         alert.showAndWait();
+        return type; // Retorna o tipo do alerta exibido
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) btnConfirmar.getScene().getWindow();
+        stage.close();
     }
 }

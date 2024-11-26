@@ -14,19 +14,14 @@
     <children>
         <Line endX="918.0" endY="72.5" layoutX="-4.0" layoutY="38.0" startX="42.5" startY="72.5" styleClass="linhaGradiente" />
         <Text fill="#14213d" layoutX="36.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tituloDeTelasGerenciar" text="Pontuar Sprints" />
-        <Text fill="#14213d" layoutX="38.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Selecione um idSemestre e uma sprint correspondente para que seja possível atribuir as pontuações." wrappingWidth="878.5">
+        <Text fill="#14213d" layoutX="39.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Selecione um semestre e uma sprint correspondente para que seja possível atribuir as pontuações." wrappingWidth="878.5">
             <font>
                 <Font size="14.0" />
             </font>
         </Text>
-        <ComboBox fx:id="cmb_SelTurma" layoutX="38.0" layoutY="197.0" prefHeight="26.0" prefWidth="211.0" promptText="Selecionar Semestre" styleClass="subTituloPrincipal" />
-        <ComboBox fx:id="cmb_SelSprint" layoutX="298.0" layoutY="197.0" prefHeight="26.0" prefWidth="211.0" promptText="Selecionar Sprint" styleClass="subTituloPrincipal" />
-        <Button fx:id="btn_Salvar" layoutX="800.0" layoutY="595.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </Button>
-        <Button fx:id="btn_Cancelar" layoutX="663.0" layoutY="595.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="85.0" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE">
+        <ComboBox fx:id="cmb_SelTurma" layoutX="38.0" layoutY="197.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Semestre" styleClass="subTituloPrincipal" />
+        <ComboBox fx:id="cmb_SelSprint" layoutX="313.0" layoutY="197.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Sprint" styleClass="subTituloPrincipal" />
+        <Button fx:id="btn_Salvar" layoutX="807.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
             <font>
                 <Font size="15.0" />
             </font>

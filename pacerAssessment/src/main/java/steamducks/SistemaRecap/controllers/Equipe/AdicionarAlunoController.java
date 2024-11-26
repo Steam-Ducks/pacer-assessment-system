@@ -21,6 +21,8 @@ public class AdicionarAlunoController implements Initializable {
 
     private int idEquipe;
 
+    private AtualizacaoEquipeCallback callback;
+
     @FXML
     private Button btnAdicionar;
 
@@ -69,6 +71,9 @@ public class AdicionarAlunoController implements Initializable {
         listViewSelecionados.setItems(alunosSelecionados);
     }
 
+    public void setCallback(AtualizacaoEquipeCallback callback) {
+        this.callback = callback;
+    }
 
 
     @FXML
@@ -99,26 +104,31 @@ public class AdicionarAlunoController implements Initializable {
 
     @FXML
     void salvarEquipe(ActionEvent event) {
-
         if (alunosSelecionados.isEmpty()) {
             showAlert("Erro", "Adicione pelo menos um aluno à equipe.", Alert.AlertType.ERROR);
             return;
         }
 
         if (idEquipe > 0) {
-            System.out.println("ID da equipe: " + idEquipe);
             equipeDAO.adicionarUsuarioAEquipe(idEquipe, alunosSelecionados);
-
             showAlert("Sucesso", "Equipe salva com sucesso!", Alert.AlertType.INFORMATION);
 
-            alunosSelecionados.clear();
-            alunosDisponiveis.setAll(usuarioDAO.buscarUsuariosSemEquipe());
+            if (callback != null) {
+                callback.atualizarEquipe();
+            }
+
             Stage stage = (Stage) btnSalvar.getScene().getWindow();
             stage.close();
         } else {
             showAlert("Erro", "Erro ao salvar equipe.", Alert.AlertType.ERROR);
         }
     }
+
+    public interface AtualizacaoEquipeCallback {
+        void atualizarEquipe();
+    }
+
+
 
     @FXML
     void cancelarOperacao(ActionEvent event) {

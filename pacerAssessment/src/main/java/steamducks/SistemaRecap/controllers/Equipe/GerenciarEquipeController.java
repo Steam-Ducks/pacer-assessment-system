@@ -69,7 +69,6 @@ public class GerenciarEquipeController {
     }
 
     private void carregarSemestres() throws SQLException {
-        EquipeDAO grupoAlunoDAO = new EquipeDAO();
         SemestreDAO semestreDAO = new SemestreDAO();
         List<Semestre> semestres = semestreDAO.getSemestres();
         listaSemestres.setAll(semestres);
@@ -144,7 +143,7 @@ public class GerenciarEquipeController {
                 ex.printStackTrace();
             }
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione uma equipe para editar.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Selecione uma equipe para editar.", Alert.AlertType.WARNING);
             if (contentPane != null) {
                 contentPane.setEffect(null);
             }
@@ -160,7 +159,7 @@ public class GerenciarEquipeController {
 
         if (equipeSelecionada != null) {
             Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacao.setTitle("Confirmação de exclusão");
+            confirmacao.setTitle("Sistema RECAP");
 
             Stage stage = (Stage) confirmacao.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
@@ -175,9 +174,9 @@ public class GerenciarEquipeController {
 
                     if (sucesso) {
                         listaEquipes.remove(equipeSelecionada);
-                        mostrarAlerta("Sucesso", "Equipe excluída com sucesso.", Alert.AlertType.INFORMATION);
+                        mostrarAlerta("Sistema RECAP", "Equipe excluída com sucesso.", Alert.AlertType.INFORMATION);
                     } else {
-                        mostrarAlerta("Erro", "Erro ao excluir a equipe. Tente novamente.", Alert.AlertType.ERROR);
+                        mostrarAlerta("Sistema RECAP", "Erro ao excluir a equipe. Tente novamente.", Alert.AlertType.ERROR);
                     }
                 }
 
@@ -186,7 +185,7 @@ public class GerenciarEquipeController {
                 }
             });
         } else {
-            mostrarAlerta("Seleção Inválida", "Selecione uma equipe para excluir.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Selecione uma equipe para excluir.", Alert.AlertType.WARNING);
 
             if (contentPane != null) {
                 contentPane.setEffect(null);

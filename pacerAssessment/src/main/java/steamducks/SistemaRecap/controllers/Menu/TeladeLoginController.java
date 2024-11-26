@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import steamducks.SistemaRecap.dao.ConexaoDAO;
 import steamducks.SistemaRecap.dao.LoginDAO;
 import steamducks.SistemaRecap.models.Usuario;
 
@@ -46,8 +47,10 @@ public class TeladeLoginController {
             System.out.println("Login bem-sucedido!");
 
             if (usuario.isProfessor()) {
+                ConexaoDAO.setFuncaoAtual("professor");
                 loadView("/SistemaRecap/Menu/menuProfessorView.fxml", "Sistema RECAP", usuario);
             } else {
+                ConexaoDAO.setFuncaoAtual("aluno");
                 loadView("/SistemaRecap/Menu/menuAlunoView.fxml", "Sistema RECAP", usuario);
             }
 
@@ -115,7 +118,7 @@ public class TeladeLoginController {
             {
                 ((MenuAlunoController) controller).inicializar(usuario);
             }
-          
+
             stage.setMaximized(false);
             stage.setResizable(false);
             stage.centerOnScreen();
@@ -143,7 +146,7 @@ public class TeladeLoginController {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
-        alert.setTitle("Erro de Login");
+        alert.setTitle("Sistema RECAP");
         alert.setHeaderText("Login ou senha incorretos");
         alert.setContentText("Por favor, verifique seu e-mail e senha e tente novamente.");
         alert.showAndWait();
