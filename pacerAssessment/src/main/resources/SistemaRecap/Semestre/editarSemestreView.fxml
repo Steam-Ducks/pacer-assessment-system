@@ -18,7 +18,7 @@
       <Label layoutX="40.0" layoutY="104.0" prefHeight="28.0" prefWidth="94.0" styleClass="titleLabel" text="Semestre" textFill="#14213d" />
       <Pane prefHeight="86.0" prefWidth="500.0" style="-fx-background-color: #14213d;">
          <children>
-            <Text fill="#fca311" layoutX="42.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulosPopUps" text="Editando idSemestre">
+            <Text fill="#fca311" layoutX="42.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulosPopUps" text="Editando Semestre">
                <font>
                   <Font name="SansSerif Regular" size="24.0" />
                </font>

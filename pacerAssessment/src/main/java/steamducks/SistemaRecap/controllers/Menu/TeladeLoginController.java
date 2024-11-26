@@ -146,7 +146,7 @@ public class TeladeLoginController {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
-        alert.setTitle("Erro de Login");
+        alert.setTitle("Sistema RECAP");
         alert.setHeaderText("Login ou senha incorretos");
         alert.setContentText("Por favor, verifique seu e-mail e senha e tente novamente.");
         alert.showAndWait();

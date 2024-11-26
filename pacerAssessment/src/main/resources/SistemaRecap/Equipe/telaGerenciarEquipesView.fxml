@@ -25,8 +25,8 @@
         </columns>
       </TableView>
       <Button fx:id="btnEditarEquipe" layoutX="668.0" layoutY="591.0" mnemonicParsing="false" onAction="#abrirEditarEquipe" styleClass="buttonEditar" text="Editar" textFill="WHITE" />
-      <Button fx:id="btnCadastrarEquipe" layoutX="529.0" layoutY="591.0" mnemonicParsing="false" onAction="#cadastrarEquipe" styleClass="buttonVerde" text="Cadastrar" textFill="WHITE" />
+      <Button fx:id="btnCadastrarEquipe" layoutX="532.0" layoutY="591.0" mnemonicParsing="false" onAction="#cadastrarEquipe" styleClass="buttonVerde" text="Cadastrar" textFill="WHITE" />
       <Button fx:id="btnExcluirEquipe" layoutX="804.0" layoutY="591.0" mnemonicParsing="false" onAction="#excluirEquipe" styleClass="buttonExcluir" text="Excluir" textFill="WHITE" />
-      <ComboBox fx:id="cmb_selSemestre" layoutX="38.0" layoutY="199.0" prefHeight="30.0" prefWidth="195.0" promptText="Selecionar Semestre" stylesheets="@../../styles.css" />
+      <ComboBox fx:id="cmb_selSemestre" layoutX="38.0" layoutY="199.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Semestre" stylesheets="@../../styles.css" />
    </children>
 </AnchorPane>

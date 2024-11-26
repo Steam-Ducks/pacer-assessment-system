@@ -81,7 +81,7 @@ public class AvaliacaoController {
             lblSprint.setText("Avaliando: " + sprintAtiva.getNome());
         } else {
             lblSprint.setText("Sem Sprint Ativa");
-            mostrarAlerta(Alert.AlertType.WARNING, "Aviso", "Nenhuma sprint ativa encontrada.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Sistema RECAP", "Nenhuma sprint ativa encontrada.");
         }
     }
 
@@ -155,10 +155,10 @@ public class AvaliacaoController {
                     avaliacao.setIdCriterio(criterio.getId());
                     avaliacaoDAO.cadastrarOuAtualizarAvaliacao(avaliacao);
                 }
-                mostrarAlerta(Alert.AlertType.INFORMATION, "Sucesso", "Avaliações salvas com sucesso!");
+                mostrarAlerta(Alert.AlertType.INFORMATION, "Sistema RECAP", "Avaliações salvas com sucesso!");
                 carregarCriteriosComNotas();
             } catch (Exception e) {
-                mostrarAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao salvar avaliações: " + e.getMessage());
+                mostrarAlerta(Alert.AlertType.ERROR, "Sistema RECAP", "Erro ao salvar avaliações: " + e.getMessage());
             }
         }
     }

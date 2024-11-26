@@ -48,6 +48,6 @@
                 <TableColumn fx:id="tcRemover" prefWidth="107.0" text="Remover" />
             </columns>
         </TableView>
-      <Button fx:id="btnAdicionarAluno" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#adicionarAluno" style="-fx-background-color: #14213d;" styleClass="buttonCancelar" text="Selecionar Aluno" textFill="WHITE" />
+      <Button fx:id="btnAdicionarAluno" layoutX="39.0" layoutY="482.0" mnemonicParsing="false" onAction="#adicionarAluno" style="-fx-background-color: #14213d;" styleClass="buttonCancelar" text="Adicionar aluno existente" textFill="WHITE" />
    </children>
 </AnchorPane>
