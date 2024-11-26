@@ -25,6 +25,9 @@ public class Usuario {
         this.email = email;
     }
 
+    public String nomeProperty() {
+        return nome;
+    }
     public String getNome() {
         return nome;
     }
@@ -56,6 +59,8 @@ public class Usuario {
     public void setIsProfessor(boolean isProfessor) {
         this.isProfessor = isProfessor;
     }
+
+
 
     @Override
     public String toString() {
