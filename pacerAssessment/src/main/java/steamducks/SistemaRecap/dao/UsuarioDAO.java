@@ -289,7 +289,5 @@ public class UsuarioDAO extends ConexaoDAO {
             e.printStackTrace();
         }
         return usuariosSemEquipe;
-
     }
-
 }
