@@ -1,5 +1,6 @@
 package steamducks.SistemaRecap.controllers.Equipe;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,8 +64,8 @@ public class EditarEquipeController {
         btnConfirmar.setOnAction(event -> confirmarEdicao());
         btnCancelar.setOnAction(event -> cancelarEdicao());
 
-        tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tcNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
+        tcEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
 
         tbUsuarios.setEditable(true);
         tbUsuarios.setItems(listaUsuarios);
@@ -103,7 +104,6 @@ public class EditarEquipeController {
             }
         });
     }
-
     public void inicializarCampos(int idEquipe) {
         Equipe equipe = dao.buscarEquipePorId(idEquipe);
 
