@@ -182,9 +182,9 @@ public class UsuarioDAO extends ConexaoDAO {
         }
     }
 
-    public boolean excluirUsuariosPorEquipe(int idEquipe) {
+    public boolean removerUsuariosDaEquipe(int idEquipe) {
         Connection con = null;
-        String deleteUsuariosSql = "DELETE FROM usuario WHERE id_equipe = ?";
+        String deleteUsuariosSql = "UPDATE usuario SET id_equipe = NULL WHERE id_equipe = ?";
 
         try {
             con = getConnection();

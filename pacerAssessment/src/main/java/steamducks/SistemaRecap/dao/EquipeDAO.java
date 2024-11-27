@@ -122,7 +122,7 @@ public class EquipeDAO extends ConexaoDAO {
             con.setAutoCommit(false);
 
             UsuarioDAO usuarioDAO = new UsuarioDAO();
-            boolean usuariosExcluidos = usuarioDAO.excluirUsuariosPorEquipe(idEquipe);
+            boolean usuariosExcluidos = usuarioDAO.removerUsuariosDaEquipe(idEquipe);
 
             if (!usuariosExcluidos) {
                 con.rollback();
