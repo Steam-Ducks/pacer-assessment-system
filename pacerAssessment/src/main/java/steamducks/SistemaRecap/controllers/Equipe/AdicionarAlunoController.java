@@ -20,26 +20,13 @@ import steamducks.SistemaRecap.models.Usuario;
 public class AdicionarAlunoController implements Initializable {
 
     private int idEquipe;
-
     private AtualizacaoEquipeCallback callback;
 
     @FXML
-    private Button btnAdicionar;
+    private Button btnAdicionar, btnRemover, btnSalvar, btnCancelar;
 
     @FXML
-    private Button btnRemover;
-
-    @FXML
-    private Button btnSalvar;
-
-    @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private ListView<Usuario> listViewDisponiveis;
-
-    @FXML
-    private ListView<Usuario> listViewSelecionados;
+    private ListView<Usuario> listViewDisponiveis, listViewSelecionados;
 
     private final EquipeDAO equipeDAO = new EquipeDAO();
     private final UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -49,109 +36,106 @@ public class AdicionarAlunoController implements Initializable {
 
     public void setIdEquipe(int idEquipe) {
         this.idEquipe = idEquipe;
-        System.out.println("ID da Equipe recebido: " + idEquipe);
-    }
-
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Método initialize chamado...");
-
-
-        // Busca alunos disponíveis no banco
-        List<Usuario> semEquipe = usuarioDAO.buscarUsuariosSemEquipe();
-        System.out.println("Alunos sem equipe: " + semEquipe.size());  // Verifica a quantidade de usuários encontrados
-        System.out.println(idEquipe);
-        alunosDisponiveis = FXCollections.observableArrayList(semEquipe);
-        alunosSelecionados = FXCollections.observableArrayList();
-
-        // Configura as ListViews
-        alunosDisponiveis.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
-        listViewDisponiveis.setItems(alunosDisponiveis);
-
-        alunosSelecionados.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
-        listViewSelecionados.setItems(alunosSelecionados);
+        log("ID da Equipe recebido: " + idEquipe);
     }
 
     public void setCallback(AtualizacaoEquipeCallback callback) {
         this.callback = callback;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        log("Inicializando controlador...");
+        carregarAlunos();
+    }
 
-    @FXML
-    void adicionarAluno(ActionEvent event) {
-        Usuario alunoSelecionado = listViewDisponiveis.getSelectionModel().getSelectedItem();
-        if (alunoSelecionado != null && !listViewSelecionados.getItems().contains(alunoSelecionado)) {
-            alunosSelecionados.add(alunoSelecionado);
-            alunosDisponiveis.remove(alunoSelecionado);
+    private void carregarAlunos() {
+        List<Usuario> semEquipe = usuarioDAO.buscarUsuariosSemEquipe();
+        log("Quantidade de alunos sem equipe: " + semEquipe.size());
 
-            ordenarListViews();
-        } else {
-            showAlert("Erro", "Nenhum aluno selecionado para adicionar.", Alert.AlertType.ERROR);
-        }
+        alunosDisponiveis = FXCollections.observableArrayList(semEquipe);
+        alunosSelecionados = FXCollections.observableArrayList();
+
+        atualizarListViews();
     }
 
     @FXML
-    void removerAluno(ActionEvent event) {
-        Usuario alunoSelecionado = listViewSelecionados.getSelectionModel().getSelectedItem();
-        if (alunoSelecionado != null) {
-            alunosSelecionados.remove(alunoSelecionado);
-            alunosDisponiveis.add(alunoSelecionado);
-
-            ordenarListViews();
-        } else {
-            showAlert("Erro", "Nenhum aluno selecionado para remover.", Alert.AlertType.ERROR);
-        }
+    private void adicionarAluno(ActionEvent event) {
+        moverUsuario(listViewDisponiveis, alunosDisponiveis, alunosSelecionados, "Nenhum aluno selecionado para adicionar.");
     }
 
     @FXML
-    void salvarEquipe(ActionEvent event) {
+    private void removerAluno(ActionEvent event) {
+        moverUsuario(listViewSelecionados, alunosSelecionados, alunosDisponiveis, "Nenhum aluno selecionado para remover.");
+    }
+
+    @FXML
+    private void salvarEquipe(ActionEvent event) {
         if (alunosSelecionados.isEmpty()) {
-            showAlert("Erro", "Adicione pelo menos um aluno à equipe.", Alert.AlertType.ERROR);
+            exibirAlerta("Erro", "Adicione pelo menos um aluno à equipe.", Alert.AlertType.ERROR);
             return;
         }
 
         if (idEquipe > 0) {
+            log("Salvando equipe ID: " + idEquipe);
             equipeDAO.adicionarUsuarioAEquipe(idEquipe, alunosSelecionados);
-            showAlert("Sucesso", "Equipe salva com sucesso!", Alert.AlertType.INFORMATION);
+            exibirAlerta("Sucesso", "Equipe salva com sucesso!", Alert.AlertType.INFORMATION);
 
             if (callback != null) {
                 callback.atualizarEquipe();
             }
 
-            Stage stage = (Stage) btnSalvar.getScene().getWindow();
-            stage.close();
+            fecharJanela();
         } else {
-            showAlert("Erro", "Erro ao salvar equipe.", Alert.AlertType.ERROR);
+            exibirAlerta("Erro", "Erro ao salvar equipe.", Alert.AlertType.ERROR);
         }
+    }
+
+    @FXML
+    private void cancelarOperacao(ActionEvent event) {
+        fecharJanela();
+    }
+
+    private void moverUsuario(ListView<Usuario> listViewOrigem, ObservableList<Usuario> origem, ObservableList<Usuario> destino, String mensagemErro) {
+        Usuario selecionado = listViewOrigem.getSelectionModel().getSelectedItem();
+        if (selecionado != null) {
+            origem.remove(selecionado);
+            destino.add(selecionado);
+            atualizarListViews();
+        } else {
+            exibirAlerta("Erro", mensagemErro, Alert.AlertType.ERROR);
+        }
+    }
+
+    private void atualizarListViews() {
+        alunosDisponiveis.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
+        alunosSelecionados.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
+
+        listViewDisponiveis.setItems(alunosDisponiveis);
+        listViewSelecionados.setItems(alunosSelecionados);
+    }
+
+    private void exibirAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alert.showAndWait();
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
+    }
+
+    private void log(String mensagem) {
+        System.out.println("[LOG] " + mensagem);
     }
 
     public interface AtualizacaoEquipeCallback {
         void atualizarEquipe();
     }
-
-
-
-    @FXML
-    void cancelarOperacao(ActionEvent event) {
-        Stage stage = (Stage) btnCancelar.getScene().getWindow();
-        stage.close();
-    }
-
-    private void ordenarListViews() {
-        alunosDisponiveis.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
-        alunosSelecionados.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
-    }
-
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Ícone
-        alert.showAndWait();
-    }
-
-
-
 }

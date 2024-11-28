@@ -26,44 +26,48 @@ public class AtualizarSenhaController {
         String email = txtFieldEmail.getText();
         String novaSenha = txtFieldSenha.getText();
 
-        if (email == null || email.isEmpty() || !email.contains("@")) {
-            showAlert("Erro", "Por favor, insira um e-mail válido.", Alert.AlertType.ERROR);
+        if (!validarEmail(email)) {
+            mostrarAlerta("Erro", "Por favor, insira um e-mail válido.", Alert.AlertType.ERROR);
             return;
         }
 
-        if (novaSenha == null || novaSenha.length() < 8) {
-            showAlert("Erro", "A senha deve ter pelo menos 8 caracteres.", Alert.AlertType.ERROR);
+        if (!validarSenha(novaSenha)) {
+            mostrarAlerta("Erro", "A senha deve ter pelo menos 8 caracteres.", Alert.AlertType.ERROR);
             return;
         }
 
         try {
-            UsuarioDAO passwordDAO = new UsuarioDAO();
-            boolean sucesso = passwordDAO.atualizarSenha(email, novaSenha);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean sucesso = usuarioDAO.atualizarSenha(email, novaSenha);
 
             if (sucesso) {
-                Alert.AlertType tipo = showAlert("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
-                if (tipo == Alert.AlertType.INFORMATION) {
-                    // Fecha a janela apenas se o alerta for do tipo INFORMATION
-                    fecharJanela();
-                }
+                mostrarAlerta("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
+                fecharJanela();
             } else {
-                showAlert("Erro", "E-mail não encontrado. Verifique e tente novamente.", Alert.AlertType.ERROR);
+                mostrarAlerta("Erro", "E-mail não encontrado. Verifique e tente novamente.", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
-            showAlert("Erro", "Ocorreu um erro ao atualizar a senha: " + e.getMessage(), Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Ocorreu um erro ao atualizar a senha: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private Alert.AlertType showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
+    private boolean validarEmail(String email) {
+        return email != null && !email.trim().isEmpty() && email.contains("@") && email.contains(".");
+    }
 
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
-        alert.showAndWait();
-        return type; // Retorna o tipo do alerta exibido
+    private boolean validarSenha(String senha) {
+        return senha != null && senha.length() >= 8;
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Ícone personalizado
+        alerta.showAndWait();
     }
 
     private void fecharJanela() {
