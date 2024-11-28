@@ -13,7 +13,9 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import steamducks.SistemaRecap.controllers.Equipe.EditarEquipeController;
 import steamducks.SistemaRecap.dao.*;
+import steamducks.SistemaRecap.models.Equipe;
 import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Semestre;
 
@@ -139,6 +141,43 @@ public class GerenciarSprintController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void abrirEditarSprint(ActionEvent event) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+        Sprint sprintSelecionada = tableSprints.getSelectionModel().getSelectedItem();
+
+        if (sprintSelecionada != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SistemaRecap/Sprint/telaEditarSprintView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                EditarSprintController controller = fxmlLoader.getController();
+                controller.inicializarCampos(sprintSelecionada.getIdSprint());
+
+                Stage stage = new Stage();
+                stage.setTitle("Sistema RECAP");
+                stage.setScene(new Scene(root));
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+                stage.show();
+
+                stage.setOnHidden(e -> {
+                    contentPane.setEffect(null);
+                    atualizarSprintPorSemestre();
+                });
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            mostrarAlerta("Sistema RECAP", "Selecione uma sprint para editar.", Alert.AlertType.WARNING);
+            if (contentPane != null) {
+                contentPane.setEffect(null);
+            }
         }
     }
 
