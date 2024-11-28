@@ -113,6 +113,12 @@ public class AvaliarSprintController {
             textField.setPromptText("0");
             textField.setPrefWidth(50);
 
+            HBox labelLimiteHbox = new HBox();
+            Label labelLimite = new Label("Máximo: " + limiteDePontos);
+            labelLimite.setFont(new Font("Poppins", 14));
+            labelLimiteHbox.getChildren().add(labelLimite);
+
+
             textField.textProperty().addListener((observable, oldValue, newValue) -> {
                 if (!newValue.matches("\\d*")) {
                     textField.setText(oldValue);
@@ -126,9 +132,9 @@ public class AvaliarSprintController {
 
             textFieldHBox.getChildren().add(textField);
 
-            HBox hbox = new HBox(labelHBox, textFieldHBox);
+            HBox hbox = new HBox(labelHBox, textFieldHBox, labelLimiteHbox);
             hbox.setSpacing(0);
-            VBox.setMargin(hbox, new Insets(5, 230, 5, 5));
+            VBox.setMargin(hbox, new Insets(5, 160, 5, 5));
 
             HBox.setHgrow(textFieldHBox, Priority.ALWAYS);
             labelHBox.setAlignment(Pos.CENTER);
