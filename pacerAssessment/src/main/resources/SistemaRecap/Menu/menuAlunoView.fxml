@@ -84,7 +84,7 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <Button fx:id="btnSuasMedias" graphicTextGap="0.0" layoutX="-3.0" layoutY="381.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirMediaAluno" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../../styles.css" text="Suas médias" textFill="WHITE">
+            <Button fx:id="btnSuasMedias" graphicTextGap="0.0" layoutX="-3.0" layoutY="381.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#abrirMediaAluno" prefHeight="60.0" prefWidth="233.0" styleClass="buttonMenuPrincipal" stylesheets="@../../styles.css" text="Minhas médias" textFill="WHITE">
                <font>
                   <Font name="SansSerif Regular" size="16.0" />
                </font>
