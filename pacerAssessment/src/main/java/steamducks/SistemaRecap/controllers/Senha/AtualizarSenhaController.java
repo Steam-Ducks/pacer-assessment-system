@@ -21,43 +21,84 @@ public class AtualizarSenhaController {
     @FXML
     private PasswordField txtFieldSenha;
 
+    /**
+     * Ação executada ao confirmar a atualização da senha.
+     *
+     * @param event Evento do botão Confirmar.
+     */
     @FXML
     void atualizarSenha(ActionEvent event) {
         String email = txtFieldEmail.getText();
         String novaSenha = txtFieldSenha.getText();
 
-        if (email == null || email.isEmpty() || !email.contains("@")) {
-            showAlert("Erro", "Por favor, insira um e-mail válido.", Alert.AlertType.ERROR);
+        if (!validarEmail(email)) {
+            mostrarAlerta("Erro", "Por favor, insira um e-mail válido.", Alert.AlertType.ERROR);
             return;
         }
 
-        if (novaSenha == null || novaSenha.length() < 8) {
-            showAlert("Erro", "A senha deve ter pelo menos 8 caracteres.", Alert.AlertType.ERROR);
+        if (!validarSenha(novaSenha)) {
+            mostrarAlerta("Erro", "A senha deve ter pelo menos 8 caracteres.", Alert.AlertType.ERROR);
             return;
         }
 
         try {
-            UsuarioDAO passwordDAO = new UsuarioDAO();
-            boolean sucesso = passwordDAO.atualizarSenha(email, novaSenha);
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            boolean sucesso = usuarioDAO.atualizarSenha(email, novaSenha);
 
             if (sucesso) {
-                showAlert("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
+                mostrarAlerta("Sucesso", "Senha atualizada com sucesso!", Alert.AlertType.INFORMATION);
+                limparCampos();
             } else {
-                showAlert("Erro", "E-mail não encontrado. Verifique e tente novamente.", Alert.AlertType.ERROR);
+                mostrarAlerta("Erro", "E-mail não encontrado. Verifique e tente novamente.", Alert.AlertType.ERROR);
             }
         } catch (Exception e) {
-            showAlert("Erro", "Ocorreu um erro ao atualizar a senha: " + e.getMessage(), Alert.AlertType.ERROR);
+            mostrarAlerta("Erro", "Ocorreu um erro ao atualizar a senha: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private void showAlert(String title, String message, Alert.AlertType type) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
+    /**
+     * Valida o formato do e-mail.
+     *
+     * @param email E-mail a ser validado.
+     * @return true se for válido; false caso contrário.
+     */
+    private boolean validarEmail(String email) {
+        return email != null && !email.trim().isEmpty() && email.contains("@") && email.contains(".");
+    }
 
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    /**
+     * Valida o comprimento da senha.
+     *
+     * @param senha Senha a ser validada.
+     * @return true se a senha for válida; false caso contrário.
+     */
+    private boolean validarSenha(String senha) {
+        return senha != null && senha.length() >= 8;
+    }
+
+    /**
+     * Exibe um alerta para o usuário.
+     *
+     * @param titulo   Título da janela de alerta.
+     * @param mensagem Mensagem exibida no corpo do alerta.
+     * @param tipo     Tipo do alerta (INFORMATION, WARNING, ERROR).
+     */
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png"))); // Caminho do ícone
-        alert.showAndWait();
+        alerta.showAndWait();
+    }
+
+    /**
+     * Limpa os campos de entrada.
+     */
+    private void limparCampos() {
+        txtFieldEmail.clear();
+        txtFieldSenha.clear();
     }
 }
