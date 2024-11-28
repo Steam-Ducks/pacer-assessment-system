@@ -58,6 +58,26 @@ public class CriteriosDAO extends ConexaoDAO {
 
         return criterios;
     }
+    public List<Criterio> getCriteriosPorSemestre(int idSemestre) {
+        String sql = "SELECT * FROM criterio WHERE id_semestre = ?";
+        List<Criterio> criterios = new ArrayList<>();
+        try (Connection con = getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setInt(1, idSemestre);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Criterio criterio = new Criterio();
+                criterio.setId(rs.getInt("id"));
+                criterio.setNome(rs.getString("nome"));
+                criterio.setId(rs.getInt("id_semestre"));
+                criterios.add(criterio);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar critérios por semestre: " + e.getMessage(), e);
+        }
+        return criterios;
+    }
 
     public void removerCriterio(int idCriterio) {
         String deleteCriterioSql = "DELETE FROM criterio WHERE id_criterio = ?";

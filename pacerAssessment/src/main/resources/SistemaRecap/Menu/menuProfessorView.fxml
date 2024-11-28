@@ -20,7 +20,7 @@
                <children>
                   <AnchorPane layoutX="-33.0" layoutY="-2.0" prefHeight="60.0" prefWidth="1054.0" style="-fx-background-color: #14213d;">
                      <children>
-                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="994.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" styleClass="buttonSairMenuPrincipal" stylesheets="@../../styles.css" text="Sair" textFill="WHITE">
+                        <Button fx:id="btnLogout" graphicTextGap="2.0" layoutX="980.0" layoutY="16.0" mnemonicParsing="false" onAction="#abrirLogin" prefHeight="30.0" prefWidth="80.0" styleClass="buttonSairMenuPrincipal" stylesheets="@../../styles.css" text="Sair" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -28,7 +28,12 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Text fill="WHITE" layoutX="853.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
+                        <ImageView fitHeight="20.0" fitWidth="15.0" layoutX="986.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../assets/sair.png" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" layoutX="839.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Poppins;" text="Olá, Professor (a)   |">
                            <font>
                               <Font size="14.0" />
                            </font>

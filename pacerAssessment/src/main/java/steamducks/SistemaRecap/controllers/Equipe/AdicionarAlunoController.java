@@ -20,6 +20,7 @@ import steamducks.SistemaRecap.models.Usuario;
 public class AdicionarAlunoController implements Initializable {
 
     private int idEquipe;
+    private AtualizacaoEquipeCallback callback;
 
     @FXML
     private Button btnAdicionar, btnRemover, btnSalvar, btnCancelar;
@@ -38,6 +39,10 @@ public class AdicionarAlunoController implements Initializable {
         log("ID da Equipe recebido: " + idEquipe);
     }
 
+    public void setCallback(AtualizacaoEquipeCallback callback) {
+        this.callback = callback;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         log("Inicializando controlador...");
@@ -45,14 +50,12 @@ public class AdicionarAlunoController implements Initializable {
     }
 
     private void carregarAlunos() {
-        // Busca alunos disponíveis no banco
         List<Usuario> semEquipe = usuarioDAO.buscarUsuariosSemEquipe();
         log("Quantidade de alunos sem equipe: " + semEquipe.size());
 
         alunosDisponiveis = FXCollections.observableArrayList(semEquipe);
         alunosSelecionados = FXCollections.observableArrayList();
 
-        // Configura ListViews
         atualizarListViews();
     }
 
@@ -78,7 +81,10 @@ public class AdicionarAlunoController implements Initializable {
             equipeDAO.adicionarUsuarioAEquipe(idEquipe, alunosSelecionados);
             exibirAlerta("Sucesso", "Equipe salva com sucesso!", Alert.AlertType.INFORMATION);
 
-            recarregarDados();
+            if (callback != null) {
+                callback.atualizarEquipe();
+            }
+
             fecharJanela();
         } else {
             exibirAlerta("Erro", "Erro ao salvar equipe.", Alert.AlertType.ERROR);
@@ -101,12 +107,6 @@ public class AdicionarAlunoController implements Initializable {
         }
     }
 
-    private void recarregarDados() {
-        alunosSelecionados.clear();
-        alunosDisponiveis.setAll(usuarioDAO.buscarUsuariosSemEquipe());
-        atualizarListViews();
-    }
-
     private void atualizarListViews() {
         alunosDisponiveis.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
         alunosSelecionados.sort((a1, a2) -> a1.getNome().compareToIgnoreCase(a2.getNome()));
@@ -121,7 +121,6 @@ public class AdicionarAlunoController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
 
-        // Adiciona ícone
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
         alert.showAndWait();
@@ -133,6 +132,10 @@ public class AdicionarAlunoController implements Initializable {
     }
 
     private void log(String mensagem) {
-        System.out.println(mensagem);
+        System.out.println("[LOG] " + mensagem);
+    }
+
+    public interface AtualizacaoEquipeCallback {
+        void atualizarEquipe();
     }
 }

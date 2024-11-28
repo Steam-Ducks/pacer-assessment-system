@@ -1,5 +1,6 @@
 package steamducks.SistemaRecap.controllers.Equipe;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,8 +64,8 @@ public class EditarEquipeController {
         btnConfirmar.setOnAction(event -> confirmarEdicao());
         btnCancelar.setOnAction(event -> cancelarEdicao());
 
-        tcNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        tcNome.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
+        tcEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
 
         tbUsuarios.setEditable(true);
         tbUsuarios.setItems(listaUsuarios);
@@ -103,7 +104,6 @@ public class EditarEquipeController {
             }
         });
     }
-
     public void inicializarCampos(int idEquipe) {
         Equipe equipe = dao.buscarEquipePorId(idEquipe);
 
@@ -188,15 +188,15 @@ public class EditarEquipeController {
             // Acessar a controladora da tela de Adicionar Aluno
             AdicionarAlunoController controller = fxmlLoader.getController();
             int idEquipeSelecionado = equipeSelecionado.getIdEquipe();
-            controller.setIdEquipe(idEquipeSelecionado); // Passar o ID da equipe
+            controller.setIdEquipe(idEquipeSelecionado);
+
+            // Configurar callback para atualizar a tabela de usuários ao salvar
+            controller.setCallback(this::atualizarDadosEquipe);
 
             Stage stage = new Stage();
-            stage.setTitle("Sistema RECAP - Adicionar Aluno");
+            stage.setTitle("Sistema RECAP");
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
-
-            // Atualiza os dados da equipe ao fechar a tela de adicionar aluno
-            stage.setOnCloseRequest(event -> atualizarDadosEquipe());
 
             stage.show();
         } catch (IOException ex) {
@@ -206,10 +206,12 @@ public class EditarEquipeController {
 
 
 
+
+
     private void removerUsuarioDaEquipe(Usuario usuario) {
         // Criar um popup de confirmação
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmar remoção");
+        alert.setTitle("Sistema RECAP");
         alert.setHeaderText(null);
         alert.setContentText("Tem certeza de que deseja remover o usuário " + usuario.getNome() + " da equipe?");
 
@@ -236,10 +238,9 @@ public class EditarEquipeController {
     public void atualizarDadosEquipe() {
         if (equipeSelecionado != null) {
             carregarUsuarios(equipeSelecionado.getIdEquipe());
-            txtNome.setText(equipeSelecionado.getNome());
-            txtGithub.setText(equipeSelecionado.getGithub());
         }
     }
+
 
 
 }
