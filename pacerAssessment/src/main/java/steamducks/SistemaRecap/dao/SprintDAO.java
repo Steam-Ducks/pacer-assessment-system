@@ -214,4 +214,35 @@ public class SprintDAO extends ConexaoDAO {
 
         return semestres;
     }
+
+    public List<Sprint> buscarSprintsPorEquipeESemestre(int idEquipe) {
+        List<Sprint> sprints = new ArrayList<>();
+        String selectSQL = "SELECT s.* FROM sprint s " +
+                "JOIN equipe e ON s.id_semestre = e.id_semestre " +
+                "WHERE e.id_equipe = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(selectSQL)) {
+
+            preparedStatement.setInt(1, idEquipe);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Sprint sprint = new Sprint();
+                    sprint.setNome(resultSet.getString("nome"));
+                    sprint.setIdSprint(resultSet.getInt("id_sprint"));
+                    sprint.setDataInicio(resultSet.getObject("data_inicio", LocalDate.class));
+                    sprint.setDataFim(resultSet.getObject("data_fim", LocalDate.class));
+                    sprint.setIdSemestre(resultSet.getInt("id_semestre"));
+                    sprints.add(sprint);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Erro ao buscar sprints por equipe e semestre! " + e.getMessage(), e);
+        }
+
+        return sprints;
+    }
 }
