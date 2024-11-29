@@ -136,9 +136,19 @@ public class CadastrarSprintController {
                     if (newDate != null) {
                         Sprint sprint = getTableView().getItems().get(getIndex());
                         if (column == tc_DataInicio) {
-                            sprint.setDataInicio(newDate);
+                            if (sprint.getDataFim() != null && newDate.isAfter(sprint.getDataFim())) {
+                                mostrarAlerta("Erro", "A data de início não pode ser após a data de fim.", Alert.AlertType.WARNING);
+                                datePicker.setValue(oldDate); // Restaura o valor anterior
+                            } else {
+                                sprint.setDataInicio(newDate);
+                            }
                         } else if (column == tc_DataFim) {
-                            sprint.setDataFim(newDate);
+                            if (sprint.getDataInicio() != null && newDate.isBefore(sprint.getDataInicio())) {
+                                mostrarAlerta("Erro", "A data de fim não pode ser anterior à data de início.", Alert.AlertType.WARNING);
+                                datePicker.setValue(oldDate); // Restaura o valor anterior
+                            } else {
+                                sprint.setDataFim(newDate);
+                            }
                         }
                     }
                 });
@@ -156,6 +166,7 @@ public class CadastrarSprintController {
             }
         };
     }
+
 
     @FXML
     void addSprint(ActionEvent event) {
@@ -215,7 +226,12 @@ public class CadastrarSprintController {
         }
 
         SprintDAO sprintDAO = new SprintDAO();
+
         for (Sprint sprint : sprintList) {
+            if (sprint.getDataFim().isBefore(sprint.getDataInicio())) {
+                mostrarAlerta("Erro", "A data de fim não pode ser anterior à data de início para a sprint: " + sprint.getNome(), Alert.AlertType.WARNING);
+                return; // Interrompe o processo de cadastro
+            }
             sprint.setIdSemestre(selectedSemestre.getId());
             sprintDAO.criarSprint(sprint);
         }
@@ -224,6 +240,7 @@ public class CadastrarSprintController {
 
         fecharJanela();
     }
+
 
 
     @FXML
