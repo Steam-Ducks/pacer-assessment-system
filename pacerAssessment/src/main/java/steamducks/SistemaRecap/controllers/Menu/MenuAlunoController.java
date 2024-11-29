@@ -1,6 +1,7 @@
 package steamducks.SistemaRecap.controllers.Menu;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import javafx.event.ActionEvent;
@@ -9,14 +10,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController;
 import steamducks.SistemaRecap.controllers.Avaliacao.AvaliacaoController;
+import steamducks.SistemaRecap.dao.AvaliacaoDAO;
+import steamducks.SistemaRecap.dao.PontuacaoDAO;
+import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Usuario;
 
 public class MenuAlunoController {
@@ -43,6 +48,14 @@ public class MenuAlunoController {
 
     @FXML
     private Text saudacaoAluno;
+
+    private AvaliacaoDAO avaliacaoDAO;
+    private PontuacaoDAO pontuacaoDAO;
+
+    public MenuAlunoController() {
+        this.avaliacaoDAO = new AvaliacaoDAO();
+        this.pontuacaoDAO = new PontuacaoDAO();
+    }
 
     @FXML
     public void initialize() {
@@ -73,7 +86,7 @@ public class MenuAlunoController {
 
     @FXML
     void avaliar(ActionEvent event) throws IOException {
-        carregarView("/SistemaRecap/Avaliacao/avaliacaoAlunoView.fxml", usuarioLogado);
+        carregarSprintAtiva();
     }
 
     @FXML
@@ -101,15 +114,39 @@ public class MenuAlunoController {
         Node view = loader.load();
 
         Object controller = loader.getController();
-        if (controller instanceof VisualizarAvaliacaoController)
-        {
+        if (controller instanceof VisualizarAvaliacaoController) {
             ((VisualizarAvaliacaoController) controller).initialize(usuario);
-        }
-        else if (controller instanceof AvaliacaoController)
-        {
+        } else if (controller instanceof AvaliacaoController) {
             ((AvaliacaoController) controller).initialize(usuario);
         }
 
         contentPane.getChildren().setAll(view);
+    }
+
+    private void carregarSprintAtiva() {
+        Sprint sprintAtiva = avaliacaoDAO.getSprintAtivaPorDataEEquipe(LocalDate.now(), usuarioLogado.getIdEquipe());
+        if (sprintAtiva != null && pontuacaoDAO.existePontuacaoParaSprint(sprintAtiva.getIdSprint())) {
+            try {
+                carregarView("/SistemaRecap/Avaliacao/avaliacaoAlunoView.fxml", usuarioLogado);
+            } catch (IOException e) {
+                e.printStackTrace();
+                mostrarAlerta(Alert.AlertType.ERROR, "Sistema RECAP", "Erro ao carregar a tela de avaliação: " + e.getMessage());
+            }
+        } else {
+            mostrarAlerta(Alert.AlertType.WARNING, "Sistema RECAP", "Nenhuma sprint em periodo de avaliação!.");
+        }
+    }
+
+
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensagem) {
+        Alert alerta = new Alert(tipo);
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(null);
+        alerta.setContentText(mensagem);
+
+        Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alerta.showAndWait();
     }
 }

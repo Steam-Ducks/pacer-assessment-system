@@ -141,11 +141,10 @@ public class AvaliacaoDAO extends ConexaoDAO {
     public Sprint getSprintAtivaPorDataEEquipe(LocalDate data, int idEquipe) {
         Sprint sprintAtiva = null;
         String sql = """
-        SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
-        FROM sprint s
-        INNER JOIN equipe e ON s.id_semestre = e.id_semestre
-        WHERE e.id_equipe = ? AND ? BETWEEN s.data_inicio AND DATE_ADD(s.data_fim, INTERVAL 1 WEEK)
-           OR ? BETWEEN s.data_inicio AND DATE_ADD(s.data_inicio, INTERVAL 8 DAY)
+    SELECT s.id_sprint, s.nome, s.data_inicio, s.data_fim, s.id_semestre
+    FROM sprint s
+    INNER JOIN equipe e ON s.id_semestre = e.id_semestre
+    WHERE e.id_equipe = ? AND ? BETWEEN s.data_fim AND DATE_ADD(s.data_fim, INTERVAL 7 DAY)
     """;
 
         try (Connection conn = getConnection();
@@ -153,7 +152,6 @@ public class AvaliacaoDAO extends ConexaoDAO {
 
             stmt.setInt(1, idEquipe);
             stmt.setDate(2, Date.valueOf(data));
-            stmt.setDate(3, Date.valueOf(data));
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
