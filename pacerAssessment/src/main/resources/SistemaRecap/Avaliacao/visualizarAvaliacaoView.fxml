@@ -8,22 +8,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="955.0" styleClass="contentPane" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController">
+<AnchorPane fx:id="contentPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="955.0" styleClass="contentPane" stylesheets="@../../styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController">
     <children>
         <Line endX="918.0" endY="72.5" layoutX="-4.0" layoutY="38.0" startX="42.5" startY="72.5" styleClass="linhaGradiente" />
         <Text fill="#14213d" layoutX="36.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="tituloDeTelasGerenciar" text="Prezado (a) aluno (a)," />
-        <Text fill="#14213d" layoutX="38.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Informamos que uma sprint está disponível para avaliação por 7 dias depois de sua entrega e após ser atribuida uma pontuação pelo professor responsável. Fique atento(a) ao calendário acadêmico para as datas oficiais e, caso tenha dúvidas, entre em contato com a coordenação. Abaixo visualize as notas das últimas sprints." textAlignment="JUSTIFY" wrappingWidth="878.5">
+        <Text fill="#14213d" layoutX="38.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Informamos que uma sprint estará disponível para avaliação por 7 dias após sua entrega e a atribuição de pontuação pelo professor responsável. Fique atento(a) ao calendário acadêmico para as datas oficiais. Caso tenha dúvidas, entre em contato com a coordenação. Abaixo, você pode visualizar as notas das últimas sprints." textAlignment="JUSTIFY" wrappingWidth="878.5">
             <font>
                 <Font size="20.0" />
             </font>
         </Text>
       <TableView fx:id="tabelanotaaluno" layoutX="38.0" layoutY="303.0" prefHeight="334.0" prefWidth="879.0">
          <columns>
-            <TableColumn fx:id="criterioaluno" prefWidth="431.99993896484375" text="Criterio de avaliação" />
+            <TableColumn fx:id="criterioaluno" prefWidth="431.99993896484375" text="Critério de avaliação" />
             <TableColumn fx:id="notaaluno" prefWidth="446.4000122070313" text="Nota" />
          </columns>
       </TableView>
-      <ComboBox fx:id="escolhersprint" layoutX="37.0" layoutY="257.0" prefHeight="28.0" prefWidth="247.0" promptText="Escolha a Sprint" />
-      <ComboBox fx:id="escolheraluno" layoutX="338.0" layoutY="257.0" prefHeight="28.0" prefWidth="247.0" promptText="Escolha o aluno" />
+      <ComboBox fx:id="escolhersprint" layoutX="37.0" layoutY="257.0" prefHeight="30.0" prefWidth="250.0" promptText="Escolha a Sprint" styleClass="subTituloPrincipal" />
+      <ComboBox fx:id="escolheraluno" layoutX="338.0" layoutY="257.0" prefHeight="30.0" prefWidth="250.0" promptText="Escolha o aluno" styleClass="subTituloPrincipal" />
     </children>
 </AnchorPane>

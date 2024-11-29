@@ -21,7 +21,7 @@
          <Font size="14.0" />
       </font>
    </Text>
-      <ComboBox fx:id="cmbAluno" layoutX="38.0" layoutY="258.0" prefHeight="28.0" prefWidth="247.0" promptText="Selecionar Aluno" />
+      <ComboBox fx:id="cmbAluno" layoutX="36.0" layoutY="218.0" prefHeight="30.0" prefWidth="250.0" promptText="Selecionar Aluno" styleClass="subTituloPrincipal" />
       <Button fx:id="btnSalvar" layoutX="805.0" layoutY="583.0" mnemonicParsing="false" onAction="#salvarAvaliacoes" styleClass="buttonVerde" text="Salvar" textFill="#fcfcfc">
          <font>
             <Font size="15.0" />
@@ -31,21 +31,16 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Label fx:id="lblPontosTotais" layoutX="745.0" layoutY="259.0" styleClass="descricaoTela" text="Pontos restantes:  0" textFill="#14213d">
+      <Label fx:id="lblPontosTotais" layoutX="743.0" layoutY="222.0" styleClass="descricaoTela" text="Pontos restantes:  0" textFill="#14213d">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TableView fx:id="tvAvaliacao" layoutX="38.0" layoutY="310.0" prefHeight="248.0" prefWidth="879.0" stylesheets="@../../styles.css">
+      <TableView fx:id="tvAvaliacao" layoutX="38.0" layoutY="271.0" prefHeight="287.0" prefWidth="879.0" stylesheets="@../../styles.css">
          <columns>
             <TableColumn fx:id="tcCriterio" editable="false" maxWidth="500.0" minWidth="500.0" prefWidth="500.0" styleClass="table-view" text="Critério" />
             <TableColumn fx:id="tcNota" prefWidth="381.5999633789063" text="Nota" />
          </columns>
       </TableView>
-      <Text fx:id="lblSprint2" fill="#14213d" layoutX="36.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" wrappingWidth="392.9000244140625">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Text>
       <Text fill="#14213d" layoutX="60.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descricaoTela" text="Ao avaliar cada aluno, não esqueça de clicar em 'Salvar'." wrappingWidth="459.300048828125">
          <font>
             <Font size="14.0" />

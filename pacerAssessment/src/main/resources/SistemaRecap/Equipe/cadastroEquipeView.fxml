@@ -43,7 +43,7 @@
 
         <Button fx:id="btnRegistrar" layoutX="435.0" layoutY="616.0" onAction="#registrar" prefHeight="38.0" prefWidth="85.0" styleClass="buttonVerde" text="Cadastrar" textFill="WHITE" />
         <Button fx:id="btnCancelar" layoutX="305.0" layoutY="616.0" mnemonicParsing="false" onAction="#cancelar" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
-        <ComboBox fx:id="cmbSemestre" layoutX="148.0" layoutY="180.0" prefHeight="25.0" prefWidth="350.0" />
+        <ComboBox fx:id="cmbSemestre" layoutX="148.0" layoutY="180.0" prefHeight="25.0" prefWidth="350.0" styleClass="subTituloPrincipal" />
         <Button fx:id="btnUpload" layoutX="240.0" layoutY="230.0" onAction="#upload" prefHeight="34.0" prefWidth="120.0" styleClass="buttonAcoes" text="Importar Alunos" textFill="WHITE" />
         <Button fx:id="btnDownload" layoutX="403.0" layoutY="230.0" onAction="#downloadModel" prefHeight="34.0" prefWidth="142.0" styleClass="buttonAcoes" text="Baixar Modelo CSV" textFill="WHITE" />
         <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="117.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">

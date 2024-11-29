@@ -100,19 +100,9 @@
    <top>
       <MenuBar prefHeight="26.0" prefWidth="1254.0" BorderPane.alignment="CENTER">
          <menus>
-            <Menu mnemonicParsing="false" text="File">
+            <Menu mnemonicParsing="false" text="Suporte">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Close" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Delete" />
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Help">
-               <items>
-                  <MenuItem mnemonicParsing="false" text="About" />
+                  <MenuItem mnemonicParsing="false" text="Manual do Usuário" onAction="#handleDownloadManual"  />
                </items>
             </Menu>
          </menus>
