@@ -10,7 +10,7 @@ import steamducks.SistemaRecap.models.Criterio;
 
 public class EditarCriterioController {
 
-    private CriteriosDAO criteriosDAO = new CriteriosDAO();
+    private final CriteriosDAO criteriosDAO = new CriteriosDAO();
 
     @FXML
     private TextField txtEdtNome;
@@ -24,33 +24,58 @@ public class EditarCriterioController {
     @FXML
     private TextArea txtEditDescricao;
 
-
     private Criterio criterio;
 
     public void setCriterio(Criterio criterio) {
+        if (criterio == null) {
+            throw new IllegalArgumentException("Critério não pode ser nulo.");
+        }
         this.criterio = criterio;
-        txtEdtNome.setText(criterio.getNome()); // Preenche o campo com o valor atual
-        txtEditDescricao.setText(criterio.getDescricao());
+        preencherCampos();
     }
 
     @FXML
     private void initialize() {
-        // Botão Cancelar - fecha a janela sem salvar mudanças
+        configurarEventos();
+    }
+
+    private void configurarEventos() {
         btnCancelEdit.setOnAction(event -> fecharJanela());
+        btnConcluirEdt.setOnAction(event -> salvarAlteracoes());
+    }
 
-        // Botão Concluir - salva o novo valor e fecha a janela
-        btnConcluirEdt.setOnAction(event -> {
-            criterio.setNome(txtEdtNome.getText()); // Atualiza o valor do critério
-            criterio.setDescricao(txtEditDescricao.getText());
+    private void preencherCampos() {
+        txtEdtNome.setText(criterio.getNome());
+        txtEditDescricao.setText(criterio.getDescricao());
+    }
+
+    private void salvarAlteracoes() {
+        if (criterio == null) {
+            mostrarErro("Critério inválido. Não foi possível salvar as alterações.");
+            return;
+        }
+
+        criterio.setNome(txtEdtNome.getText().trim());
+        criterio.setDescricao(txtEditDescricao.getText().trim());
+
+try {
             criteriosDAO.editarCriterio(criterio);
-
-
             fecharJanela();
-        });
+        } catch (Exception e) {
+            mostrarErro("Erro ao salvar as alterações: " + e.getMessage());
+        }
     }
 
     private void fecharJanela() {
         Stage stage = (Stage) btnCancelEdit.getScene().getWindow();
-        stage.close(); // Fecha a janela
+        if (stage != null) {
+            stage.close();
+        }
+    }
+
+    private void mostrarErro(String mensagem) {
+        // Aqui você pode implementar uma lógica para exibir um alerta de erro ao usuário,
+        // como um Alert ou algum log visual.
+        System.err.println(mensagem);
     }
 }

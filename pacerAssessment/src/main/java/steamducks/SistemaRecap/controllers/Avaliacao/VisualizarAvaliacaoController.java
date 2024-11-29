@@ -51,7 +51,7 @@ public class VisualizarAvaliacaoController {
 
         // Carregar alunos e sprints diretamente como objetos nos ComboBoxes
         carregarAlunos(usuario.getIdEquipe());
-        carregarSprints();
+        carregarSprints(usuario.getIdEquipe());
 
         // Adicionar listeners para capturar a seleção de aluno e sprint
         escolheraluno.setOnAction(event -> atualizarNotas());
@@ -64,8 +64,8 @@ public class VisualizarAvaliacaoController {
         escolheraluno.setItems(alunosObservable);
     }
 
-    private void carregarSprints() {
-        List<Sprint> sprints = sprintDAO.buscarSprint(); // Método retorna uma lista de objetos Sprint
+    private void carregarSprints(int idEquipe) {
+        List<Sprint> sprints = sprintDAO.buscarSprintsPorEquipeESemestre(idEquipe); // Método retorna uma lista de objetos Sprint filtrados por equipe e semestre
         ObservableList<Sprint> sprintsObservable = FXCollections.observableArrayList(sprints);
         escolhersprint.setItems(sprintsObservable);
     }

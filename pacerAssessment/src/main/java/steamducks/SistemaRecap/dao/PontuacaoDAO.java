@@ -108,4 +108,20 @@ public class PontuacaoDAO extends ConexaoDAO {
         }
         return false;
     }
+
+    public boolean existePontuacaoParaSprint(int idSprint) {
+        String sql = "SELECT COUNT(*) AS count FROM pontuacao WHERE id_sprint = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idSprint);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("count") > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

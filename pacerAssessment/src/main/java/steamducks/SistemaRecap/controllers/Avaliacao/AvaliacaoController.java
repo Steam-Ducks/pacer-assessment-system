@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.AvaliacaoDAO;
 import steamducks.SistemaRecap.dao.CriteriosDAO;
+import steamducks.SistemaRecap.dao.PontuacaoDAO;
 import steamducks.SistemaRecap.models.Avaliacao;
 import steamducks.SistemaRecap.models.Criterio;
 import steamducks.SistemaRecap.models.Sprint;
@@ -52,7 +53,6 @@ public class AvaliacaoController {
     private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
 
     private AvaliacaoDAO avaliacaoDAO;
-    private CriteriosDAO criteriosDAO;
     private Usuario alunoAvaliador;
 
     private int totalPontosDisponiveis;
@@ -77,12 +77,7 @@ public class AvaliacaoController {
 
     private void carregarSprintAtiva() {
         sprintAtiva = avaliacaoDAO.getSprintAtivaPorDataEEquipe(LocalDate.now(), alunoAvaliador.getIdEquipe());
-        if (sprintAtiva != null) {
-            lblSprint.setText("Avaliando: " + sprintAtiva.getNome());
-        } else {
-            lblSprint.setText("Sem Sprint Ativa");
-            mostrarAlerta(Alert.AlertType.WARNING, "Sistema RECAP", "Nenhuma sprint ativa encontrada.");
-        }
+        lblSprint.setText("Avaliando: " + sprintAtiva.getNome());
     }
 
     private void configurarListeners() {

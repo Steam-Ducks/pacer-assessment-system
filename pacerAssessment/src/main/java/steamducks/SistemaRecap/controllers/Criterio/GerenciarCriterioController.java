@@ -28,13 +28,10 @@ public class GerenciarCriterioController {
     private AnchorPane contentPane;
 
     @FXML
-    private Button btnAdcCriterio;
+    private TableView<Criterio> tableCriterios;
 
     @FXML
-    private Button btnRmvCrit;
-
-    @FXML
-    private Button btnEditCrit;
+    private TableColumn<Criterio, Integer> idColumn;
 
     @FXML
     private TableColumn<Criterio, String> criteriosColumn;
@@ -42,28 +39,22 @@ public class GerenciarCriterioController {
     @FXML
     private TableColumn<Criterio, String> descricaoColumn;
 
-    @FXML
-    private TableView<Criterio> tableCriterios;
+    private ObservableList<Criterio> criterioData;
+    private final CriteriosDAO criteriosDao = new CriteriosDAO();
+
+    private static final BoxBlur BLUR_EFFECT = new BoxBlur(10, 10, 3);
+    private static final String LOGO_PATH = "/assets/logo-dark.png";
+    private static final String CADASTRO_CRITERIO_PATH = "/SistemaRecap/Criterio/cadastroCriterioView.fxml";
+    private static final String EDICAO_CRITERIO_PATH = "/SistemaRecap/Criterio/editarCriteriosView.fxml";
+    private static final String SISTEMA_RECAP_TITLE = "Sistema RECAP";
 
     @FXML
-    private Button btnNovoCriterio;
-
-    @FXML
-    private TableColumn<Criterio, Integer> idColumn;
-
-    private ObservableList<Criterio> criterioData = FXCollections.observableArrayList();
-
-    CriteriosDAO criteriosDao;
-
-    private static final BoxBlur blurEffect = new BoxBlur(10, 10, 3);
-
     public void initialize() {
-        criterioData = FXCollections.observableArrayList();
-        criteriosDao = new CriteriosDAO();
+        criterioData = FXCollections.observableArrayList(criteriosDao.buscarCriterios());
+        configurarTabela();
+    }
 
-        List<Criterio> criterios = criteriosDao.buscarCriterios();
-        criterioData.addAll(criterios);
-
+    private void configurarTabela() {
         idColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
         criteriosColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNome()));
         descricaoColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescricao()));
@@ -72,124 +63,120 @@ public class GerenciarCriterioController {
 
     @FXML
     void abrirTelaCadastroCriterio(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SistemaRecap/Criterio/cadastroCriterioView.fxml"));
-            Parent root = loader.load();
-
-            if (contentPane != null) {
-                contentPane.setEffect(blurEffect);
-            }
-
-            Stage stage = new Stage();
-            stage.setTitle("Sistema RECAP");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
-            stage.getIcons().add(logo);
-
-            stage.setOnHidden(e -> {
-                atualizarListaCriterios();
-                if (contentPane != null) {
-                    contentPane.setEffect(null);
-                }
-            });
-
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void atualizarListaCriterios() {
-        tableCriterios.setItems(FXCollections.observableArrayList(criteriosDao.buscarCriterios()));
+        abrirTelaModal(CADASTRO_CRITERIO_PATH, "Cadastro de Critério");
     }
 
     @FXML
     void abrirTelaEdicao(ActionEvent event) {
         Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
-
         if (criterioSelecionado == null) {
-            mostrarAlerta("Sistema RECAP", "Nenhum critério selecionado. Por favor, selecione um critério para editar.", Alert.AlertType.WARNING);
+            mostrarAlerta(SISTEMA_RECAP_TITLE, "Nenhum critério selecionado. Por favor, selecione um critério para editar.", Alert.AlertType.WARNING);
             return;
         }
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/SistemaRecap/Criterio/editarCriteriosView.fxml"));
-            Parent root = loader.load();
-            EditarCriterioController editarCriterioController = loader.getController();
-            editarCriterioController.setCriterio(criterioSelecionado);
+        abrirTelaModal(EDICAO_CRITERIO_PATH, "Editar Critério", controller -> {
+            if (controller instanceof EditarCriterioController editarCriterioController) {
+                editarCriterioController.setCriterio(criterioSelecionado);
+            }
+        });
 
-            if (contentPane != null) {
-                contentPane.setEffect(blurEffect);
+        tableCriterios.refresh();
+    }
+
+    private void abrirTelaModal(String fxmlPath, String titulo) {
+        abrirTelaModal(fxmlPath, titulo, null);
+    }
+
+    private void abrirTelaModal(String fxmlPath, String titulo, TelaConfigurarCallback callback) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            if (callback != null) {
+                callback.configurar(loader.getController());
             }
 
+            aplicarBlur();
+
             Stage stage = new Stage();
-            stage.setTitle("Sistema RECAP");
+            stage.setTitle(titulo);
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
-
-            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/assets/logo-dark.png")));
-            stage.getIcons().add(logo);
+            stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOGO_PATH))));
+            stage.setOnHidden(event -> {
+                atualizarListaCriterios();
+                removerBlur();
+            });
 
             stage.showAndWait();
 
-            contentPane.setEffect(null);
-            tableCriterios.refresh();
         } catch (IOException e) {
             e.printStackTrace();
+            mostrarAlerta(SISTEMA_RECAP_TITLE, "Erro ao carregar a tela: " + titulo, Alert.AlertType.ERROR);
         }
     }
-
 
     @FXML
     void removerCriterio(ActionEvent event) {
         Criterio criterioSelecionado = tableCriterios.getSelectionModel().getSelectedItem();
-
         if (criterioSelecionado == null) {
-            mostrarAlerta("Sistema RECAP", "Por favor, selecione um critério para excluir.", Alert.AlertType.ERROR);
+            mostrarAlerta(SISTEMA_RECAP_TITLE, "Por favor, selecione um critério para excluir.", Alert.AlertType.WARNING);
             return;
         }
 
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Sistema RECAP");
-        confirmAlert.setHeaderText("Você realmente quer excluir o critério?");
-        confirmAlert.setContentText("Essa ação não pode ser desfeita.");
-
-        Stage confirmStage = (Stage) confirmAlert.getDialogPane().getScene().getWindow();
-        confirmStage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
-
-        Optional<ButtonType> result = confirmAlert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (confirmarAcao("Você realmente quer excluir o critério?", "Essa ação não pode ser desfeita.")) {
             try {
                 criteriosDao.removerCriterio(criterioSelecionado.getId());
                 atualizarListaCriterios();
-                mostrarAlerta("Sistema RECAP", "Critério excluído com sucesso.", Alert.AlertType.INFORMATION);
+                mostrarAlerta(SISTEMA_RECAP_TITLE, "Critério excluído com sucesso.", Alert.AlertType.INFORMATION);
             } catch (Exception e) {
-                mostrarAlerta("Sistema RECAP", "Erro ao excluir o critério. Tente novamente.", Alert.AlertType.ERROR);
                 e.printStackTrace();
+                mostrarAlerta(SISTEMA_RECAP_TITLE, "Erro ao excluir o critério. Tente novamente.", Alert.AlertType.ERROR);
             }
         }
     }
 
-    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
-        if (contentPane != null) {
-            contentPane.setEffect(blurEffect);
-        }
+    private void atualizarListaCriterios() {
+        criterioData.setAll(criteriosDao.buscarCriterios());
+    }
 
+    private void aplicarBlur() {
+        if (contentPane != null) {
+            contentPane.setEffect(BLUR_EFFECT);
+        }
+    }
+
+    private void removerBlur() {
+        if (contentPane != null) {
+            contentPane.setEffect(null);
+        }
+    }
+
+    private void mostrarAlerta(String titulo, String mensagem, Alert.AlertType tipo) {
         Alert alerta = new Alert(tipo);
         alerta.setTitle(titulo);
         alerta.setHeaderText(null);
         alerta.setContentText(mensagem);
-
         Stage stage = (Stage) alerta.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOGO_PATH))));
         alerta.showAndWait();
+    }
 
-        if (contentPane != null) {
-            contentPane.setEffect(null);
-        }
+    private boolean confirmarAcao(String header, String content) {
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle(SISTEMA_RECAP_TITLE);
+        confirmAlert.setHeaderText(header);
+        confirmAlert.setContentText(content);
+
+        Stage stage = (Stage) confirmAlert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream(LOGO_PATH))));
+
+        Optional<ButtonType> result = confirmAlert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
+
+    @FunctionalInterface
+    private interface TelaConfigurarCallback {
+        void configurar(Object controller);
     }
 }
