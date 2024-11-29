@@ -76,7 +76,7 @@ public class MenuProfessorController {
 
     @FXML
     public void abrirGerenciarSprints(ActionEvent event) throws IOException {
-        carregarView("/SistemaRecap/Sprint/gerenciarSprintView.fxml");
+        carregarView("/SistemaRecap/Sprint/telaGerenciarSprintView.fxml");
     }
 
     @FXML

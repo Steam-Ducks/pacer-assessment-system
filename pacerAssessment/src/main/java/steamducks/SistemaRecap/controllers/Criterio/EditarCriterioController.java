@@ -58,7 +58,7 @@ public class EditarCriterioController {
         criterio.setNome(txtEdtNome.getText().trim());
         criterio.setDescricao(txtEditDescricao.getText().trim());
 
-        try {
+try {
             criteriosDAO.editarCriterio(criterio);
             fecharJanela();
         } catch (Exception e) {

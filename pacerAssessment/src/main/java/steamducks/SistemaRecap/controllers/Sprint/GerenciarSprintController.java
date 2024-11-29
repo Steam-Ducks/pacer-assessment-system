@@ -13,7 +13,9 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import steamducks.SistemaRecap.controllers.Equipe.EditarEquipeController;
 import steamducks.SistemaRecap.dao.*;
+import steamducks.SistemaRecap.models.Equipe;
 import steamducks.SistemaRecap.models.Sprint;
 import steamducks.SistemaRecap.models.Semestre;
 
@@ -102,17 +104,19 @@ public class GerenciarSprintController {
     }
 
     private void carregarSprints() {
-        sprintData.clear();  // Limpa a lista para evitar duplicação
-        List<Sprint> sprints = sprintDao.buscarSprint();
-        sprintData.addAll(sprints);
+        sprintData.clear(); // Limpa a lista para evitar duplicação
+        Semestre semestreSelecionado = cmb_selSemestre.getValue();
 
-        // Carregar semestres e armazenar no mapa
-        List<Semestre> semestres = sprintDao.buscarTodosSemestres();  // Método para buscar todos os semestres
-        semestreMap.clear();
-        for (Semestre semestre : semestres) {
-            semestreMap.put(semestre.getId(), semestre.getNome());
+        if (semestreSelecionado != null) {
+            List<Sprint> sprints = sprintDao.buscarSprintPorID(semestreSelecionado.getId());
+            sprintData.addAll(sprints);
+        } else {
+            mostrarAlerta("Semestre não selecionado", "Selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
         }
+
+        tableSprints.setItems(sprintData);
     }
+
 
     @FXML
     void adicionarSprint(ActionEvent event) {
@@ -129,8 +133,9 @@ public class GerenciarSprintController {
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
+            // Atualiza a tabela ao fechar a janela
             stage.setOnHidden(e -> {
-                carregarSprints();  // Chama novamente para garantir que a tabela seja atualizada
+                atualizarSprintPorSemestre(); // Atualiza a tabela de sprints
                 if (contentPane != null) {
                     contentPane.setEffect(null);
                 }
@@ -139,6 +144,43 @@ public class GerenciarSprintController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void abrirEditarSprint(ActionEvent event) {
+        if (contentPane != null) {
+            contentPane.setEffect(blurEffect);
+        }
+        Sprint sprintSelecionada = tableSprints.getSelectionModel().getSelectedItem();
+
+        if (sprintSelecionada != null) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/SistemaRecap/Sprint/telaEditarSprintView.fxml"));
+                Parent root = fxmlLoader.load();
+
+                EditarSprintController controller = fxmlLoader.getController();
+                controller.setSprint(sprintSelecionada);
+
+                Stage stage = new Stage();
+                stage.setTitle("Sistema RECAP");
+                stage.setScene(new Scene(root));
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+                stage.show();
+
+                stage.setOnHidden(e -> {
+                    contentPane.setEffect(null);
+                    atualizarSprintPorSemestre();
+                });
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            mostrarAlerta("Sistema RECAP", "Selecione uma sprint para editar.", Alert.AlertType.WARNING);
+            if (contentPane != null) {
+                contentPane.setEffect(null);
+            }
         }
     }
 
