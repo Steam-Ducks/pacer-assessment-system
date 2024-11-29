@@ -45,7 +45,12 @@ public class EditarSprintController {
 
         // Botão Confirmar - salva o novo valor e fecha a janela
         btnConfirmar.setOnAction(event -> {
-            System.out.println(sprint.getIdSprint());
+            // Valida as datas antes de salvar
+            if (DateFim.getValue().isBefore(DateInicio.getValue())) {
+                mostrarAlerta("A data de fim não pode ser anterior à data de início.", "Erro");
+                return; // Interrompe o processo se as datas forem inválidas
+            }
+
             sprint.setNome(txtSprint.getText()); // Atualiza o nome
             sprint.setDataInicio(DateInicio.getValue()); // Atualiza a data de início
             sprint.setDataFim(DateFim.getValue()); // Atualiza a data de fim
@@ -56,6 +61,7 @@ public class EditarSprintController {
             fecharJanela(); // Fecha a janela após salvar
         });
     }
+
 
     private void fecharJanela() {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
