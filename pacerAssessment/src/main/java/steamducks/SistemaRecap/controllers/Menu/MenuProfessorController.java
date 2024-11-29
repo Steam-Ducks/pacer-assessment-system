@@ -1,5 +1,12 @@
 package steamducks.SistemaRecap.controllers.Menu;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,13 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Objects;
 
 public class MenuProfessorController {
 
@@ -86,7 +86,7 @@ public class MenuProfessorController {
 
     public void handleDownloadManual(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName("Manual_do_Usuario.pdf");
+        fileChooser.setInitialFileName("Manual_do_Usuario_Sistema_RECAP.pdf");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
         File selectedFile = fileChooser.showSaveDialog(new Stage());
