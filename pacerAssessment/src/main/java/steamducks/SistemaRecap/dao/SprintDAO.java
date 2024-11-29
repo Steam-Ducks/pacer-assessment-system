@@ -78,7 +78,7 @@ public class SprintDAO extends ConexaoDAO {
     }
 
     public void editarSprint(Sprint sprint) {
-        String updateSprintSql = "UPDATE sprint SET nome = ?, data_inicio = ?, data_fim = ? WHERE id_criterio = ?";
+        String updateSprintSql = "UPDATE sprint SET nome = ?, data_inicio = ?, data_fim = ? WHERE id_sprint = ?";
 
         try (Connection con = getConnection();
              PreparedStatement pstSprint = con.prepareStatement(updateSprintSql)) {
@@ -86,6 +86,7 @@ public class SprintDAO extends ConexaoDAO {
             pstSprint.setString(1, sprint.getNome());
             pstSprint.setString(2, sprint.getDataInicio().toString());
             pstSprint.setString(3, sprint.getDataFim().toString());
+            pstSprint.setInt(4, sprint.getIdSprint());
 
             int linhasAfetadas = pstSprint.executeUpdate();
             if (linhasAfetadas == 0) {
@@ -214,4 +215,6 @@ public class SprintDAO extends ConexaoDAO {
 
         return semestres;
     }
+
+
 }

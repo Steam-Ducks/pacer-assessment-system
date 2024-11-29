@@ -217,11 +217,21 @@ public class CadastrarSprintController {
         }
 
         mostrarAlerta("Sucesso", "Sprints cadastradas com sucesso!", Alert.AlertType.INFORMATION);
+
+        // Fecha a janela atual após cadastrar
+        fecharJanela();
     }
+
 
     @FXML
     void cancelarCadastrarSprint(ActionEvent event) {
-        // Implement the logic to cancel the registration
+        // Fecha a janela atual ao cancelar
+        fecharJanela();
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) btn_Cancelar.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

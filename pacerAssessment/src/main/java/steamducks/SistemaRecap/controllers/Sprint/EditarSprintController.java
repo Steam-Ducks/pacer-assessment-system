@@ -1,23 +1,23 @@
 package steamducks.SistemaRecap.controllers.Sprint;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import steamducks.SistemaRecap.dao.SprintDAO;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.SprintDAO;
 import steamducks.SistemaRecap.models.Sprint;
-import steamducks.SistemaRecap.models.Sprint;
-
-import java.sql.SQLException;
-
 
 public class EditarSprintController {
+
+    private SprintDAO sprintDAO = new SprintDAO();
+
+    @FXML
+    private DatePicker DateFim;
+
+    @FXML
+    private DatePicker DateInicio;
 
     @FXML
     private Button btnCancelar;
@@ -26,12 +26,47 @@ public class EditarSprintController {
     private Button btnConfirmar;
 
     @FXML
-    private TableColumn<Sprint, String> dataFimColumn;
+    private TextField txtSprint;
+
+    private Sprint sprint; // Objeto Sprint a ser editado
+
+    // Método para receber e exibir os dados da sprint selecionada
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
+        txtSprint.setText(sprint.getNome()); // Preenche o campo do nome
+        DateInicio.setValue(sprint.getDataInicio()); // Preenche a data de início
+        DateFim.setValue(sprint.getDataFim()); // Preenche a data de fim
+    }
 
     @FXML
-    private TableColumn<Sprint, String> dataInicioColumn;
+    private void initialize() {
+        // Botão Cancelar - fecha a janela sem salvar mudanças
+        btnCancelar.setOnAction(event -> fecharJanela());
 
-    @FXML
-    private TableColumn<Sprint, String> nomeColumn;
+        // Botão Confirmar - salva o novo valor e fecha a janela
+        btnConfirmar.setOnAction(event -> {
+            System.out.println(sprint.getIdSprint());
+            sprint.setNome(txtSprint.getText()); // Atualiza o nome
+            sprint.setDataInicio(DateInicio.getValue()); // Atualiza a data de início
+            sprint.setDataFim(DateFim.getValue()); // Atualiza a data de fim
+            sprintDAO.editarSprint(sprint); // Chama o DAO para salvar no banco
 
+            mostrarAlerta("Sprint editada com sucesso!", "Sucesso");
 
+            fecharJanela(); // Fecha a janela após salvar
+        });
+    }
+
+    private void fecharJanela() {
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close(); // Fecha a janela
+    }
+
+    private void mostrarAlerta(String alerta, String titulo) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(alerta);
+        alert.showAndWait();
+    }
+}

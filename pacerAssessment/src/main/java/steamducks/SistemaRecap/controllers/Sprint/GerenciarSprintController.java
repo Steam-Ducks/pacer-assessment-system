@@ -104,17 +104,19 @@ public class GerenciarSprintController {
     }
 
     private void carregarSprints() {
-        sprintData.clear();  // Limpa a lista para evitar duplicação
-        List<Sprint> sprints = sprintDao.buscarSprint();
-        sprintData.addAll(sprints);
+        sprintData.clear(); // Limpa a lista para evitar duplicação
+        Semestre semestreSelecionado = cmb_selSemestre.getValue();
 
-        // Carregar semestres e armazenar no mapa
-        List<Semestre> semestres = sprintDao.buscarTodosSemestres();  // Método para buscar todos os semestres
-        semestreMap.clear();
-        for (Semestre semestre : semestres) {
-            semestreMap.put(semestre.getId(), semestre.getNome());
+        if (semestreSelecionado != null) {
+            List<Sprint> sprints = sprintDao.buscarSprintPorID(semestreSelecionado.getId());
+            sprintData.addAll(sprints);
+        } else {
+            mostrarAlerta("Semestre não selecionado", "Selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
         }
+
+        tableSprints.setItems(sprintData);
     }
+
 
     @FXML
     void adicionarSprint(ActionEvent event) {
@@ -131,8 +133,9 @@ public class GerenciarSprintController {
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
 
+            // Atualiza a tabela ao fechar a janela
             stage.setOnHidden(e -> {
-                carregarSprints();  // Chama novamente para garantir que a tabela seja atualizada
+                atualizarSprintPorSemestre(); // Atualiza a tabela de sprints
                 if (contentPane != null) {
                     contentPane.setEffect(null);
                 }
@@ -158,7 +161,7 @@ public class GerenciarSprintController {
                 Parent root = fxmlLoader.load();
 
                 EditarSprintController controller = fxmlLoader.getController();
-                controller.inicializarCampos(sprintSelecionada.getIdSprint());
+                controller.setSprint(sprintSelecionada);
 
                 Stage stage = new Stage();
                 stage.setTitle("Sistema RECAP");

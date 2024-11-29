@@ -44,6 +44,7 @@ public class EditarCriterioController {
             criterio.setDescricao(txtEditDescricao.getText());
             criteriosDAO.editarCriterio(criterio);
 
+
             fecharJanela();
         });
     }
