@@ -22,8 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import steamducks.SistemaRecap.controllers.Avaliacao.AvaliacaoController;
 import steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController;
+import steamducks.SistemaRecap.controllers.Avaliacao.AvaliacaoController;
 import steamducks.SistemaRecap.dao.AvaliacaoDAO;
 import steamducks.SistemaRecap.dao.PontuacaoDAO;
 import steamducks.SistemaRecap.models.Sprint;
@@ -86,7 +86,7 @@ public class MenuAlunoController {
 
     public void handleDownloadManual(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName("Manual_do_Usuario_Sistema_RECAP.pdf");
+        fileChooser.setInitialFileName("Manual_do_Usuario.pdf");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
         File selectedFile = fileChooser.showSaveDialog(new Stage());
