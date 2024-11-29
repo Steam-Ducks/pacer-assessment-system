@@ -1,6 +1,10 @@
 package steamducks.SistemaRecap.controllers.Menu;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -16,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController;
 import steamducks.SistemaRecap.controllers.Avaliacao.AvaliacaoController;
@@ -76,6 +81,32 @@ public class MenuAlunoController {
             abrirMediaAluno();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void handleDownloadManual(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialFileName("Manual_do_Usuario.pdf");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+        if (selectedFile != null) {
+            try {
+                Path pdfPath = Path.of(getClass().getResource("/Manual_do_Usuário_Sistema_RECAP.pdf").toURI());
+
+                if (Files.exists(pdfPath)) {
+                    Files.copy(pdfPath, selectedFile.toPath());
+                    System.out.println("O arquivo foi salvo em: " + selectedFile.getAbsolutePath());
+                } else {
+                    System.out.println("Erro: O arquivo Manual_do_Usuario.pdf não foi encontrado na raiz do projeto.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Erro ao salvar o arquivo.");
+            } catch (URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

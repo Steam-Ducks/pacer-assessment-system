@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import steamducks.SistemaRecap.dao.RelatoriosDAO;
@@ -205,7 +206,7 @@ public class RelatoriosController {
     private void exportarCSV() {
         // Verificar se a sprint está selecionada
         if (cmbSprint.getValue() == null) {
-            emitirAlerta("Erro", "Selecione uma Sprint antes de exportar o CSV.");
+            emitirAlerta("Sistema RECAP", "Selecione uma Sprint antes de exportar o CSV.");
             return;
         }
 
@@ -264,14 +265,14 @@ public class RelatoriosController {
     private void exportarAlunoCSV() {
         // Verificar se a sprint está selecionada
         if (cmbSprint.getValue() == null) {
-            emitirAlerta("Erro", "Selecione uma Sprint antes de exportar o CSV do aluno.");
+            emitirAlerta("Sistema RECAP", "Selecione uma Sprint antes de exportar o CSV do aluno.");
             return;
         }
 
         // Verificar se um aluno está selecionado
         Usuario alunoSelecionado = tableAlunos.getSelectionModel().getSelectedItem();
         if (alunoSelecionado == null) {
-            emitirAlerta("Erro", "Selecione um aluno antes de exportar o CSV.");
+            emitirAlerta("Sistema RECAP", "Selecione um aluno antes de exportar o CSV.");
             return;
         }
 
@@ -326,18 +327,19 @@ public class RelatoriosController {
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
         alert.showAndWait();
     }
 
     private void limparEquipesESprints() {
-        // Redefinir a seleção atual para null
         cmbEquipes.setValue(null);
         cmbEquipes.getItems().clear();
-        cmbEquipes.setPromptText("Selecione uma equipe"); // Reconfigura o texto padrão
+        cmbEquipes.setPromptText("Selecione uma equipe");
 
         cmbSprint.setValue(null);
         cmbSprint.getItems().clear();
-        cmbSprint.setPromptText("Selecione uma sprint"); // Reconfigura o texto padrão
+        cmbSprint.setPromptText("Selecione uma sprint");
     }
 
 

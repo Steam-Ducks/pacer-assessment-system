@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -190,7 +191,7 @@ public class CadastrarSprintController {
                 }
             }
         } catch (IOException e) {
-            mostrarAlerta("Erro", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Falha ao importar o arquivo CSV: " + e.getMessage(), Alert.AlertType.WARNING);
         }
     }
 
@@ -199,6 +200,9 @@ public class CadastrarSprintController {
         alert.setTitle(titulo);
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/assets/logo-dark.png")));
+        alert.showAndWait();
         alert.showAndWait();
     }
 
@@ -206,7 +210,7 @@ public class CadastrarSprintController {
     void cadastrarSprint(ActionEvent event) {
         Semestre selectedSemestre = cmb_SelSem.getSelectionModel().getSelectedItem();
         if (selectedSemestre == null) {
-            mostrarAlerta("Erro", "Por favor, selecione um semestre.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Por favor, selecione um semestre.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -216,9 +220,8 @@ public class CadastrarSprintController {
             sprintDAO.criarSprint(sprint);
         }
 
-        mostrarAlerta("Sucesso", "Sprints cadastradas com sucesso!", Alert.AlertType.INFORMATION);
+        mostrarAlerta("Sistema RECAP", "Sprints cadastradas com sucesso!", Alert.AlertType.INFORMATION);
 
-        // Fecha a janela atual após cadastrar
         fecharJanela();
     }
 

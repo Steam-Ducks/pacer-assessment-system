@@ -99,7 +99,7 @@ public class GerenciarSprintController {
         } else {
             listaSprint.clear();
             tableSprints.setItems(listaSprint);
-            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Por favor, selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
         }
     }
 
@@ -111,7 +111,7 @@ public class GerenciarSprintController {
             List<Sprint> sprints = sprintDao.buscarSprintPorID(semestreSelecionado.getId());
             sprintData.addAll(sprints);
         } else {
-            mostrarAlerta("Semestre não selecionado", "Selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Selecione um semestre para carregar as sprints.", Alert.AlertType.WARNING);
         }
 
         tableSprints.setItems(sprintData);

@@ -44,7 +44,7 @@ public class EditarSemestreController {
             fecharJanela();
 
         } else {
-            mostrarAlerta("Erro", "Semestre não encontrado ou nome inválido.");
+            mostrarAlerta("Sistema RECAP", "Semestre não encontrado ou nome inválido.");
         }
     }
 

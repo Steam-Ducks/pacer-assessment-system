@@ -28,7 +28,7 @@
             </children>
         </Pane>
         <Button fx:id="btnConfirmar" layoutX="377.0" layoutY="343.0" mnemonicParsing="false" styleClass="buttonVerde" text="Salvar" textFill="WHITE" />
-        <Button fx:id="btnCancelar" layoutX="226.0" layoutY="343.0" mnemonicParsing="false" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
+        <Button fx:id="btnCancelar" layoutX="241.0" layoutY="343.0" mnemonicParsing="false" styleClass="buttonCancelar" text="Cancelar" textFill="WHITE" />
       <DatePicker fx:id="DateInicio" layoutX="133.0" layoutY="201.0" prefHeight="31.0" prefWidth="252.0" />
       <DatePicker fx:id="DateFim" layoutX="133.0" layoutY="269.0" prefHeight="31.0" prefWidth="252.0" />
       <TextField fx:id="txtSprint" layoutX="133.0" layoutY="139.0" prefHeight="31.0" prefWidth="252.0" />

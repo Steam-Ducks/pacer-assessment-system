@@ -85,7 +85,7 @@ public class GerenciarEquipeController {
         } else {
             listaEquipes.clear();
             tbEquipes.setItems(listaEquipes);
-            mostrarAlerta("Semestre não selecionado", "Por favor, selecione um semestre para carregar as equipes.", Alert.AlertType.WARNING);
+            mostrarAlerta("Sistema RECAP", "Por favor, selecione um semestre para carregar as equipes.", Alert.AlertType.WARNING);
         }
     }
 
