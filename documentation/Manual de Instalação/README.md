@@ -81,3 +81,7 @@
 
 - **Equipe de Suporte:** Steam Ducks
 - **E-mail:** steamduckss@gmail.com
+
+  <div align="center">
+    <img src="../../assets/footer.png" alt="footer" width="100%" />
+   </div>
