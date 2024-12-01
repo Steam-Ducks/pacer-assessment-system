@@ -348,6 +348,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 ---
 
 ### Burndonw
+<img src="BurnDown/BurnDown_Sprint3.PNG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
 
@@ -468,6 +469,7 @@ Em relação aos grupos que realizarão as sprints, além dos integrantes e do n
 <img src="Wireframes/WireframePAS-34-2.JPG" alt="Wireframe PAS - 34 - 2" width="50%" />
 
 ### Burndown
+<img src="BurnDown/BurnDown_Sprint4.PNG" alt="BurnDown_Sprint1" width="100%" />
 
 </details>
 
