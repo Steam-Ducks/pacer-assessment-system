@@ -2,9 +2,9 @@ package steamducks.SistemaRecap.controllers.Menu;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.io.InputStream;
 import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -22,8 +22,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController;
 import steamducks.SistemaRecap.controllers.Avaliacao.AvaliacaoController;
+import steamducks.SistemaRecap.controllers.Avaliacao.VisualizarAvaliacaoController;
 import steamducks.SistemaRecap.dao.AvaliacaoDAO;
 import steamducks.SistemaRecap.dao.PontuacaoDAO;
 import steamducks.SistemaRecap.models.Sprint;
@@ -85,30 +85,28 @@ public class MenuAlunoController {
     }
 
     public void handleDownloadManual(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialFileName("Manual_do_Usuario.pdf");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setInitialFileName("Manual_do_Usuario_Sistema_RECAP.pdf");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
 
-        File selectedFile = fileChooser.showSaveDialog(new Stage());
+    File selectedFile = fileChooser.showSaveDialog(new Stage());
 
-        if (selectedFile != null) {
-            try {
-                Path pdfPath = Path.of(getClass().getResource("/Manual_do_Usuário_Sistema_RECAP.pdf").toURI());
-
-                if (Files.exists(pdfPath)) {
-                    Files.copy(pdfPath, selectedFile.toPath());
-                    System.out.println("O arquivo foi salvo em: " + selectedFile.getAbsolutePath());
-                } else {
-                    System.out.println("Erro: O arquivo Manual_do_Usuario.pdf não foi encontrado na raiz do projeto.");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Erro ao salvar o arquivo.");
-            } catch (URISyntaxException e) {
-                throw new RuntimeException(e);
+    if (selectedFile != null) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/Manual_do_Usuário_Sistema_RECAP.pdf")) {
+            if (inputStream == null) {
+                System.out.println("Erro: O arquivo Manual_do_Usuario.pdf não foi encontrado no JAR.");
+                return;
             }
+
+            Files.copy(inputStream, selectedFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+            System.out.println("O arquivo foi salvo em: " + selectedFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao salvar o arquivo.");
         }
     }
+}
 
     @FXML
     void abrirMediaAluno() throws IOException {
