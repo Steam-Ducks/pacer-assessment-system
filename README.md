@@ -24,6 +24,7 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 ♦ [Tecnologias Utilizadas](#tecnologias-utilizadas) <br />
 ♦ [Termo de Requisitos de Permanência](#termo-de-requisitos-de-permanência) <br />
 ♦ [Documentação](/documentation) <br />
+♦ [Manual do Usuário](/documentation/Manual%20de%20Instalação)<br />
     
 ## Requisitos
 
@@ -87,8 +88,8 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 | Sprint 1              | 09/09/2024     | 29/09/2024      |   ✅   | 
 | Sprint 2              | 30/09/2024     | 20/10/2024      |   ✅   | 
 | Sprint 3              | 21/10/2024     | 10/11/2024      |   ✅   | 
-| Sprint 4              | 11/11/2024     | 01/12/2024      |   🔄   | 
-| Feira de Soluções     | 12/12/2024     | 12/12/2024      |   ❌   | 
+| Sprint 4              | 11/11/2024     | 01/12/2024      |   ✅   | 
+| Feira de Soluções     | 12/12/2024     | 12/12/2024      |   🔄   | 
 
 ## Tecnologias Utilizadas
 
