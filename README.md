@@ -89,7 +89,7 @@ critérios definidos pelo usuário administrador. O projeto inclui a modelagem d
 | Sprint 2              | 30/09/2024     | 20/10/2024      |   ✅   | 
 | Sprint 3              | 21/10/2024     | 10/11/2024      |   ✅   | 
 | Sprint 4              | 11/11/2024     | 01/12/2024      |   ✅   | 
-| Feira de Soluções     | 12/12/2024     | 12/12/2024      |   🔄   | 
+| Feira de Soluções     | 12/12/2024     | 12/12/2024      |   ✅   | 
 
 ## Tecnologias Utilizadas
 
